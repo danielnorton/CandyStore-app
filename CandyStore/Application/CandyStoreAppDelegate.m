@@ -7,28 +7,28 @@
 //
 
 #import "CandyStoreAppDelegate.h"
-#import "CandyStoreViewController.h"
 
 
 @implementation CandyStoreAppDelegate
 
 @synthesize window;
-@synthesize viewController;
+@synthesize tabBarController;
 
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
 	[window release];
-	[viewController release];
+	[tabBarController release];
     [super dealloc];
 }
 
 
 #pragma mark UIApplicationDelegate
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {	 
-	self.window.rootViewController = self.viewController;
-	[self.window makeKeyAndVisible];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
+	[window setRootViewController:tabBarController];
+	[window makeKeyAndVisible];
     return YES;
 }
 

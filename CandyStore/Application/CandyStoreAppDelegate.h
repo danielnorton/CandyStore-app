@@ -6,11 +6,10 @@
 //  Copyright 2011 Firefly Logic. All rights reserved.
 //
 
-@class CandyStoreViewController;
 
-@interface CandyStoreAppDelegate : NSObject <UIApplicationDelegate>
+@interface CandyStoreAppDelegate : NSObject <UIApplicationDelegate, UITabBarDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet CandyStoreViewController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @end
