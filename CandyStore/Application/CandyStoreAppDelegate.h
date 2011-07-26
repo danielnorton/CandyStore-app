@@ -7,7 +7,7 @@
 //
 
 
-@interface CandyStoreAppDelegate : NSObject <UIApplicationDelegate, UITabBarDelegate>
+@interface CandyStoreAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;

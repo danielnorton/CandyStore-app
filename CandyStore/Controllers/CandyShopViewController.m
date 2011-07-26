@@ -11,4 +11,9 @@
 @implementation CandyShopViewController
 
 
+#pragma mark UIViewController
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+	return YES;
+}
+
 @end

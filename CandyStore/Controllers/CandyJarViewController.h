@@ -8,5 +8,9 @@
 
 
 @interface CandyJarViewController : UIViewController
+<UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
+
+@property (nonatomic, retain) IBOutlet UIWebView *welcomeView;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end

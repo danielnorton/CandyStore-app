@@ -18,8 +18,6 @@
 		9B56B96313D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
 		9B56B96413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94313D9ED5300A65543 /* CoreGraphics.framework */; };
 		9B56B96C13D9ED5300A65543 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B56B96A13D9ED5300A65543 /* InfoPlist.strings */; };
-		9B56B96E13D9ED5300A65543 /* CandyStoreTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 9B56B96D13D9ED5300A65543 /* CandyStoreTests.h */; };
-		9B56B97013D9ED5300A65543 /* CandyStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B56B96F13D9ED5300A65543 /* CandyStoreTests.m */; };
 		9B56B98013D9EDF000A65543 /* CandyStoreAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B56B97C13D9EDF000A65543 /* CandyStoreAppDelegate.m */; };
 		9B64117C13DDCE880099007A /* CandyJarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B64117A13DDCE880099007A /* CandyJarViewController.xib */; };
 		9B64117F13DDCE950099007A /* CandyShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B64117D13DDCE950099007A /* CandyShopViewController.xib */; };
@@ -35,11 +33,18 @@
 		9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119213DDEE660099007A /* shopTab@2x.png */; };
 		9B64119B13DDEE660099007A /* smallJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119313DDEE660099007A /* smallJarTab.png */; };
 		9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119413DDEE660099007A /* smallJarTab@2x.png */; };
+		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
+		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
 		9BF34F0413D9F18200C47028 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0213D9F18100C47028 /* appIcon.png */; };
 		9BF34F0513D9F18200C47028 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0313D9F18100C47028 /* appIcon@2x.png */; };
+		9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */; };
+		9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */; };
+		9BF5ED8813DE23A200C93BF5 /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8713DE23A200C93BF5 /* welcome */; };
+		9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */; };
+		9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +71,6 @@
 		9B56B96013D9ED5300A65543 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9B56B96913D9ED5300A65543 /* CandyStoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CandyStoreTests-Info.plist"; sourceTree = "<group>"; };
 		9B56B96B13D9ED5300A65543 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9B56B96D13D9ED5300A65543 /* CandyStoreTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CandyStoreTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		9B56B96F13D9ED5300A65543 /* CandyStoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CandyStoreTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B56B97B13D9EDF000A65543 /* CandyStoreAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CandyStoreAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B56B97C13D9EDF000A65543 /* CandyStoreAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CandyStoreAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9B64117B13DDCE880099007A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CandyJarViewController.xib; sourceTree = "<group>"; };
@@ -87,11 +90,24 @@
 		9B64119213DDEE660099007A /* shopTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopTab@2x.png"; sourceTree = "<group>"; };
 		9B64119313DDEE660099007A /* smallJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallJarTab.png; sourceTree = "<group>"; };
 		9B64119413DDEE660099007A /* smallJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallJarTab@2x.png"; sourceTree = "<group>"; };
+		9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopServiceTests.h; sourceTree = "<group>"; };
+		9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopServiceTests.m; sourceTree = "<group>"; };
+		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
+		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
+		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
+		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsIcon@2x.png"; sourceTree = "<group>"; };
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF34F0213D9F18100C47028 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		9BF34F0313D9F18100C47028 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
+		9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopService.h; sourceTree = "<group>"; };
+		9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopService.m; sourceTree = "<group>"; };
+		9BF5ED8713DE23A200C93BF5 /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
+		9BF5ED8A13DE255D00C93BF5 /* UIViewController+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+popup.h"; sourceTree = "<group>"; };
+		9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+popup.m"; sourceTree = "<group>"; };
+		9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ExchangeSubscriptionNotificationService.h; sourceTree = "<group>"; };
+		9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +138,7 @@
 		9B56B93013D9ED5300A65543 = {
 			isa = PBXGroup;
 			children = (
+				9BF5ED8913DE251600C93BF5 /* Category */,
 				9B56B94513D9ED5300A65543 /* CandyStore */,
 				9B56B96713D9ED5300A65543 /* CandyStoreTests */,
 				9B56B93E13D9ED5300A65543 /* Frameworks */,
@@ -152,9 +169,11 @@
 		9B56B94513D9ED5300A65543 /* CandyStore */ = {
 			isa = PBXGroup;
 			children = (
+				9BF5ED8713DE23A200C93BF5 /* welcome */,
 				9B64118C13DDEE650099007A /* images */,
 				9B56B97A13D9EDF000A65543 /* Application */,
 				9B56B97D13D9EDF000A65543 /* Controllers */,
+				9B64119D13DDF0D00099007A /* Services */,
 				9B56B97913D9EDBA00A65543 /* en.lproj */,
 				9B56B94613D9ED5300A65543 /* Supporting Files */,
 			);
@@ -179,8 +198,10 @@
 		9B56B96713D9ED5300A65543 /* CandyStoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				9B56B96D13D9ED5300A65543 /* CandyStoreTests.h */,
-				9B56B96F13D9ED5300A65543 /* CandyStoreTests.m */,
+				9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */,
+				9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */,
+				9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */,
+				9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */,
 				9B56B96813D9ED5300A65543 /* Supporting Files */,
 			);
 			path = CandyStoreTests;
@@ -242,6 +263,29 @@
 				9B64119413DDEE660099007A /* smallJarTab@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		9B64119D13DDF0D00099007A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */,
+				9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */,
+				9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */,
+				9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9BF5ED8913DE251600C93BF5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */,
+				9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */,
+				9BF5ED8A13DE255D00C93BF5 /* UIViewController+popup.h */,
+				9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */,
+			);
+			name = Category;
+			path = CandyStore/Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +376,7 @@
 				9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */,
 				9B64119B13DDEE660099007A /* smallJarTab.png in Resources */,
 				9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */,
+				9BF5ED8813DE23A200C93BF5 /* welcome in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +385,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B56B96C13D9ED5300A65543 /* InfoPlist.strings in Resources */,
-				9B56B96E13D9ED5300A65543 /* CandyStoreTests.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +416,10 @@
 				9B64118513DDCF020099007A /* CandyJarViewController.m in Sources */,
 				9B64118813DDCF110099007A /* CandyShopViewController.m in Sources */,
 				9B64118B13DDCF200099007A /* CandyExchangeViewController.m in Sources */,
+				9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */,
+				9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */,
+				9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */,
+				9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +427,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B56B97013D9ED5300A65543 /* CandyStoreTests.m in Sources */,
+				9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */,
+				9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

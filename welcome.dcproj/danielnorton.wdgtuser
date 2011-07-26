@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentSplitViewGeometry</key>
+	<dict>
+		<key>ContentSplitViewConfig</key>
+		<integer>8</integer>
+		<key>SplitViewConfig</key>
+		<integer>1</integer>
+		<key>_indexOfCollapsedView</key>
+		<integer>0</integer>
+		<key>sizes</key>
+		<array>
+			<string>{{0, 0}, {1031, 548}}</string>
+			<string>{{0, 558}, {1031, 284}}</string>
+		</array>
+	</dict>
+	<key>ContentViewType</key>
+	<integer>0</integer>
+	<key>DeploymentOptions</key>
+	<dict>
+		<key>Date</key>
+		<date>2011-07-25T22:19:46Z</date>
+		<key>Destination</key>
+		<string>localhost.default</string>
+		<key>EmailToNotifyAddress</key>
+		<string>daniel.norton@brimstead.com</string>
+		<key>Path</key>
+		<string>welcome</string>
+		<key>enableSimulation</key>
+		<true/>
+		<key>simulatedHost</key>
+		<string>Daniels-Lappy.local</string>
+	</dict>
+	<key>Desktop</key>
+	<dict>
+		<key>Objects view last selections</key>
+		<array>
+			<array>
+				<integer>0</integer>
+			</array>
+		</array>
+	</dict>
+	<key>Last selected product type</key>
+	<string>MobileWeb</string>
+	<key>MainSplitViewGeometry</key>
+	<dict>
+		<key>_indexOfCollapsedView</key>
+		<integer>0</integer>
+		<key>sizes</key>
+		<array>
+			<string>{{0, 0}, {244, 880}}</string>
+			<string>{{245, 0}, {1200, 880}}</string>
+		</array>
+	</dict>
+	<key>MainWindowFrame</key>
+	<string>31 277 1444 901 0 0 1920 1178 </string>
+	<key>MobileWeb</key>
+	<dict>
+		<key>Objects view expanded items</key>
+		<array>
+			<array>
+				<integer>0</integer>
+			</array>
+			<array>
+				<integer>0</integer>
+				<integer>0</integer>
+			</array>
+		</array>
+		<key>Objects view last selections</key>
+		<array/>
+	</dict>
+	<key>NavigatorSplitViewGeometry</key>
+	<dict>
+		<key>ContentSplitViewConfig</key>
+		<integer>9</integer>
+		<key>SplitViewConfig</key>
+		<integer>3</integer>
+		<key>_indexOfCollapsedView</key>
+		<integer>0</integer>
+		<key>sizes</key>
+		<array>
+			<string>{{0, 0}, {246, 479}}</string>
+			<string>{{0, 489}, {246, 370}}</string>
+		</array>
+	</dict>
+</dict>
+</plist>

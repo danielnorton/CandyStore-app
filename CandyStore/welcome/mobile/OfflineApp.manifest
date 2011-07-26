@@ -1,0 +1,13 @@
+CACHE MANIFEST
+
+CACHE:
+../Images/backgroundStripes.png
+../Images/welcomeIcon@2x.png
+../index.html
+Images/backgroundStripes.png
+Images/WebClipIcon.png
+main.css
+main.js
+Parts/parts.js
+../Parts/core/external/sizzle_c.js
+../Parts/license.txt
