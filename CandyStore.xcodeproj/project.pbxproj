@@ -37,6 +37,13 @@
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
+		9BCE6CDD13E0BD7C00C58AB0 /* ModelCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */; };
+		9BCE6CDF13E0BDB800C58AB0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCE6CDE13E0BDB800C58AB0 /* CoreData.framework */; };
+		9BCE6CE213E0BF6800C58AB0 /* CandyStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */; };
+		9BCE6CE713E0C45200C58AB0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCE6CE613E0C45200C58AB0 /* StoreKit.framework */; };
+		9BCE6CEA13E0C5D700C58AB0 /* ProductBuilderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CE913E0C5D700C58AB0 /* ProductBuilderService.m */; };
+		9BCE6CF213E0CB9400C58AB0 /* RepositoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */; };
+		9BCE6CF513E0CBC000C58AB0 /* ProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */; };
 		9BEA0D6A13DF6D9500880ACD /* AppProductRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
@@ -118,6 +125,18 @@
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
 		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
+		9BCE6CDA13E0BD7C00C58AB0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCore.h; sourceTree = "<group>"; };
+		9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCore.m; sourceTree = "<group>"; };
+		9BCE6CDE13E0BDB800C58AB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9BCE6CE113E0BF6800C58AB0 /* CandyStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CandyStore.xcdatamodel; sourceTree = "<group>"; };
+		9BCE6CE613E0C45200C58AB0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9BCE6CE813E0C5D700C58AB0 /* ProductBuilderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductBuilderService.h; sourceTree = "<group>"; };
+		9BCE6CE913E0C5D700C58AB0 /* ProductBuilderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductBuilderService.m; sourceTree = "<group>"; };
+		9BCE6CF013E0CB9400C58AB0 /* RepositoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryBase.h; sourceTree = "<group>"; };
+		9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryBase.m; sourceTree = "<group>"; };
+		9BCE6CF313E0CBC000C58AB0 /* ProductRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductRepository.h; sourceTree = "<group>"; };
+		9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductRepository.m; sourceTree = "<group>"; };
 		9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteService.h; sourceTree = "<group>"; };
 		9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteService.m; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
@@ -171,6 +190,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCE6CE713E0C45200C58AB0 /* StoreKit.framework in Frameworks */,
+				9BCE6CDF13E0BDB800C58AB0 /* CoreData.framework in Frameworks */,
 				9BF7619413DFDF6F00B7B70E /* SystemConfiguration.framework in Frameworks */,
 				9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */,
 				9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */,
@@ -219,6 +240,8 @@
 				9B56B94313D9ED5300A65543 /* CoreGraphics.framework */,
 				9B56B96013D9ED5300A65543 /* SenTestingKit.framework */,
 				9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */,
+				9BCE6CDE13E0BDB800C58AB0 /* CoreData.framework */,
+				9BCE6CE613E0C45200C58AB0 /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,6 +255,8 @@
 				9B56B97A13D9EDF000A65543 /* Application */,
 				9B56B97D13D9EDF000A65543 /* Controllers */,
 				9B64119D13DDF0D00099007A /* Services */,
+				9BCE6CD813E0BD0400C58AB0 /* Model */,
+				9BCE6CEF13E0CB9400C58AB0 /* Repository */,
 				9B56B97913D9EDBA00A65543 /* en.lproj */,
 				9B56B94613D9ED5300A65543 /* Supporting Files */,
 				9BF7617313DFDD9D00B7B70E /* Third Party */,
@@ -348,8 +373,32 @@
 				9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */,
 				9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */,
 				9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */,
+				9BCE6CE813E0C5D700C58AB0 /* ProductBuilderService.h */,
+				9BCE6CE913E0C5D700C58AB0 /* ProductBuilderService.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9BCE6CD813E0BD0400C58AB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BCE6CDA13E0BD7C00C58AB0 /* Model.h */,
+				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
+				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
+				9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9BCE6CEF13E0CB9400C58AB0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				9BCE6CF013E0CB9400C58AB0 /* RepositoryBase.h */,
+				9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */,
+				9BCE6CF313E0CBC000C58AB0 /* ProductRepository.h */,
+				9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		9BF5ED8913DE251600C93BF5 /* Category */ = {
@@ -568,6 +617,11 @@
 				9BF7618D13DFDD9D00B7B70E /* SBJsonBase.m in Sources */,
 				9BF7618E13DFDD9D00B7B70E /* SBJsonParser.m in Sources */,
 				9BF7618F13DFDD9D00B7B70E /* SBJsonWriter.m in Sources */,
+				9BCE6CDD13E0BD7C00C58AB0 /* ModelCore.m in Sources */,
+				9BCE6CE213E0BF6800C58AB0 /* CandyStore.xcdatamodeld in Sources */,
+				9BCE6CEA13E0C5D700C58AB0 /* ProductBuilderService.m in Sources */,
+				9BCE6CF213E0CB9400C58AB0 /* RepositoryBase.m in Sources */,
+				9BCE6CF513E0CBC000C58AB0 /* ProductRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,6 +831,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9BCE6CE113E0BF6800C58AB0 /* CandyStore.xcdatamodel */,
+			);
+			currentVersion = 9BCE6CE113E0BF6800C58AB0 /* CandyStore.xcdatamodel */;
+			path = CandyStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B56B93213D9ED5300A65543 /* Project object */;
 }

@@ -20,8 +20,6 @@
 
 @implementation AppProductRemoteService
 
-@synthesize delegate;
-
 
 #pragma mark -
 #pragma mark RemoteServiceBase

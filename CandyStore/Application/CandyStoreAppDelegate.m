@@ -13,6 +13,7 @@
 #import "UIApplication+delegate.h"
 #import "NSObject+popup.h"
 #import "HTTPRequestService.h"
+#import "Model.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -20,6 +21,8 @@
 
 
 @interface CandyStoreAppDelegate()
+
+@property (nonatomic, retain) ProductBuilderService *productBuilderService;
 
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
@@ -33,6 +36,7 @@
 @synthesize window;
 @synthesize tabBarController;
 @synthesize internetReach;
+@synthesize productBuilderService;
 
 
 #pragma mark -
@@ -41,6 +45,7 @@
 	[window release];
 	[tabBarController release];
 	[internetReach release];
+	[productBuilderService release];
     [super dealloc];
 }
 
@@ -87,6 +92,18 @@
 }
 
 
+#pragma mark ProductBuilderServiceDelegate
+- (void)productBuilderService:(ProductBuilderService *)sender didUpdateContext:(NSManagedObjectContext *)context {
+	
+	// TODO:
+}
+
+- (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
+	
+	// TODO:
+}
+
+
 #pragma mark -
 #pragma mark CandyStoreAppDelegate
 #pragma mark Public Messages
@@ -109,6 +126,21 @@
 	return (internetReach.currentReachabilityStatus != NotReachable);
 }
 
+- (void)updateProducts {
+	
+	// if the local service exists and it is not in status unknown or idle, just quit
+	if (productBuilderService && (
+								  (productBuilderService.status != ProductBuilderServiceStatusUnknown)
+								  && (productBuilderService.status != ProductBuilderServiceStatusIdle)
+								  )
+		) return;
+	
+	ProductBuilderService *service = [[ProductBuilderService alloc] init];
+	[self setProductBuilderService:service];
+	[service setDelegate:self];
+	[service beginBuildingProducts:[ModelCore sharedManager].managedObjectContext];
+	[service release];
+}
 
 #pragma mark Private Extension
 - (void)reachabilityChanged:(NSNotification *)note {
