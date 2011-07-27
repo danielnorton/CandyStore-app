@@ -6,10 +6,17 @@
 //  Copyright 2011 Firefly Logic. All rights reserved.
 //
 
+#import "Reachability.h"
 
 @interface CandyStoreAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
+@property (nonatomic, readonly) Reachability *internetReach;
+
+- (BOOL)canReachInternet;
+
+
 @end
+

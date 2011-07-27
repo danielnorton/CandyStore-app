@@ -1,5 +1,5 @@
 //
-//  UIViewController+popup.h
+//  NSObject+popup.h
 // 
 //
 //  Created by Daniel Norton on 10/19/10.
@@ -7,7 +7,7 @@
 //
 
 
-@interface UIViewController(popup)
+@interface NSObject(popup)
 - (void)popup:(NSString *)message;
 - (void)popup:(NSString *)message withDelegate:(id<UIAlertViewDelegate>)delegate;
 @end

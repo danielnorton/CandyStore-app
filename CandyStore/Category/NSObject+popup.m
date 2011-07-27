@@ -1,15 +1,15 @@
 //
-//  UIViewController+popup.m
+//  NSObject+popup.m
 // 
 //
 //  Created by Daniel Norton on 10/19/10.
 //  Copyright 2011 Firefly Logic. All rights reserved.
 //
 
-#import "UIViewController+popup.h"
+#import "NSObject+popup.h"
 #import "UIApplication+delegate.h"
 
-@implementation UIViewController(popup)
+@implementation NSObject(popup)
 
 - (void)popup:(NSString *)message {
 	[self popup:message withDelegate:nil];

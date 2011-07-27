@@ -36,8 +36,7 @@
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
-		9BEA0D6A13DF6D9500880ACD /* IAPIdentifiersRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */; };
-		9BEA0D6E13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */; };
+		9BEA0D6A13DF6D9500880ACD /* AppProductRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
@@ -46,9 +45,24 @@
 		9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */; };
 		9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */; };
 		9BF5ED8813DE23A200C93BF5 /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8713DE23A200C93BF5 /* welcome */; };
-		9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */; };
+		9BF5ED8C13DE255D00C93BF5 /* NSObject+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */; };
 		9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */; };
 		9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */; };
+		9BF7616813DFDC2C00B7B70E /* EndpointService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7615E13DFDC2C00B7B70E /* EndpointService.m */; };
+		9BF7616913DFDC2C00B7B70E /* HTTPMultipartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616013DFDC2C00B7B70E /* HTTPMultipartBuilder.m */; };
+		9BF7616A13DFDC2C00B7B70E /* HTTPRequestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616213DFDC2C00B7B70E /* HTTPRequestService.m */; };
+		9BF7616B13DFDC2C00B7B70E /* RemoteServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616413DFDC2C00B7B70E /* RemoteServiceBase.m */; };
+		9BF7616C13DFDC2C00B7B70E /* AttachmentTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616713DFDC2C00B7B70E /* AttachmentTransfer.m */; };
+		9BF7616F13DFDCDB00B7B70E /* NSDictionary+join.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616E13DFDCDB00B7B70E /* NSDictionary+join.m */; };
+		9BF7617213DFDD4F00B7B70E /* NSURLRequest+cert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617113DFDD4F00B7B70E /* NSURLRequest+cert.m */; };
+		9BF7618A13DFDD9D00B7B70E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617613DFDD9D00B7B70E /* Reachability.m */; };
+		9BF7618B13DFDD9D00B7B70E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617A13DFDD9D00B7B70E /* NSObject+SBJSON.m */; };
+		9BF7618C13DFDD9D00B7B70E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617C13DFDD9D00B7B70E /* NSString+SBJSON.m */; };
+		9BF7618D13DFDD9D00B7B70E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617E13DFDD9D00B7B70E /* SBJsonBase.m */; };
+		9BF7618E13DFDD9D00B7B70E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7618013DFDD9D00B7B70E /* SBJsonParser.m */; };
+		9BF7618F13DFDD9D00B7B70E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7618213DFDD9D00B7B70E /* SBJsonWriter.m */; };
+		9BF7619413DFDF6F00B7B70E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */; };
+		9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,10 +115,8 @@
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
 		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
-		9BEA0D6813DF6D9500880ACD /* IAPIdentifiersRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPIdentifiersRemoteService.h; sourceTree = "<group>"; };
-		9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPIdentifiersRemoteService.m; sourceTree = "<group>"; };
-		9BEA0D6C13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPIdentifiersRemoteServiceTests.h; sourceTree = "<group>"; };
-		9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPIdentifiersRemoteServiceTests.m; sourceTree = "<group>"; };
+		9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteService.h; sourceTree = "<group>"; };
+		9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteService.m; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsIcon@2x.png"; sourceTree = "<group>"; };
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -113,12 +125,42 @@
 		9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopService.h; sourceTree = "<group>"; };
 		9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopService.m; sourceTree = "<group>"; };
 		9BF5ED8713DE23A200C93BF5 /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
-		9BF5ED8A13DE255D00C93BF5 /* UIViewController+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+popup.h"; sourceTree = "<group>"; };
-		9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+popup.m"; sourceTree = "<group>"; };
+		9BF5ED8A13DE255D00C93BF5 /* NSObject+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+popup.h"; sourceTree = "<group>"; };
+		9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+popup.m"; sourceTree = "<group>"; };
 		9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationService.h; sourceTree = "<group>"; };
 		9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationService.m; sourceTree = "<group>"; };
 		9BF7615413DF915C00B7B70E /* NSObject+waitForCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+waitForCompletion.h"; sourceTree = "<group>"; };
 		9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+waitForCompletion.m"; sourceTree = "<group>"; };
+		9BF7615D13DFDC2C00B7B70E /* EndpointService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndpointService.h; sourceTree = "<group>"; };
+		9BF7615E13DFDC2C00B7B70E /* EndpointService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndpointService.m; sourceTree = "<group>"; };
+		9BF7615F13DFDC2C00B7B70E /* HTTPMultipartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPMultipartBuilder.h; sourceTree = "<group>"; };
+		9BF7616013DFDC2C00B7B70E /* HTTPMultipartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPMultipartBuilder.m; sourceTree = "<group>"; };
+		9BF7616113DFDC2C00B7B70E /* HTTPRequestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequestService.h; sourceTree = "<group>"; };
+		9BF7616213DFDC2C00B7B70E /* HTTPRequestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestService.m; sourceTree = "<group>"; };
+		9BF7616313DFDC2C00B7B70E /* RemoteServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteServiceBase.h; sourceTree = "<group>"; };
+		9BF7616413DFDC2C00B7B70E /* RemoteServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteServiceBase.m; sourceTree = "<group>"; };
+		9BF7616613DFDC2C00B7B70E /* AttachmentTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentTransfer.h; sourceTree = "<group>"; };
+		9BF7616713DFDC2C00B7B70E /* AttachmentTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentTransfer.m; sourceTree = "<group>"; };
+		9BF7616D13DFDCDA00B7B70E /* NSDictionary+join.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+join.h"; sourceTree = "<group>"; };
+		9BF7616E13DFDCDB00B7B70E /* NSDictionary+join.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+join.m"; sourceTree = "<group>"; };
+		9BF7617013DFDD4F00B7B70E /* NSURLRequest+cert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+cert.h"; sourceTree = "<group>"; };
+		9BF7617113DFDD4F00B7B70E /* NSURLRequest+cert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+cert.m"; sourceTree = "<group>"; };
+		9BF7617513DFDD9D00B7B70E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		9BF7617613DFDD9D00B7B70E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		9BF7617813DFDD9D00B7B70E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		9BF7617913DFDD9D00B7B70E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		9BF7617A13DFDD9D00B7B70E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		9BF7617B13DFDD9D00B7B70E /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		9BF7617C13DFDD9D00B7B70E /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		9BF7617D13DFDD9D00B7B70E /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		9BF7617E13DFDD9D00B7B70E /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		9BF7617F13DFDD9D00B7B70E /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		9BF7618013DFDD9D00B7B70E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		9BF7618113DFDD9D00B7B70E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		9BF7618213DFDD9D00B7B70E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9BF761DE13DFF36400B7B70E /* AppProductRemoteServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceTests.h; sourceTree = "<group>"; };
+		9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF7619413DFDF6F00B7B70E /* SystemConfiguration.framework in Frameworks */,
 				9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */,
 				9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */,
 				9B56B94413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */,
@@ -149,7 +192,6 @@
 		9B56B93013D9ED5300A65543 = {
 			isa = PBXGroup;
 			children = (
-				9BF5ED8913DE251600C93BF5 /* Category */,
 				9B56B94513D9ED5300A65543 /* CandyStore */,
 				9B56B96713D9ED5300A65543 /* CandyStoreTests */,
 				9B56B93E13D9ED5300A65543 /* Frameworks */,
@@ -173,6 +215,7 @@
 				9B56B94113D9ED5300A65543 /* Foundation.framework */,
 				9B56B94313D9ED5300A65543 /* CoreGraphics.framework */,
 				9B56B96013D9ED5300A65543 /* SenTestingKit.framework */,
+				9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,12 +224,14 @@
 			isa = PBXGroup;
 			children = (
 				9BF5ED8713DE23A200C93BF5 /* welcome */,
+				9BF5ED8913DE251600C93BF5 /* Category */,
 				9B64118C13DDEE650099007A /* images */,
 				9B56B97A13D9EDF000A65543 /* Application */,
 				9B56B97D13D9EDF000A65543 /* Controllers */,
 				9B64119D13DDF0D00099007A /* Services */,
 				9B56B97913D9EDBA00A65543 /* en.lproj */,
 				9B56B94613D9ED5300A65543 /* Supporting Files */,
+				9BF7617313DFDD9D00B7B70E /* Third Party */,
 			);
 			path = CandyStore;
 			sourceTree = "<group>";
@@ -216,8 +261,8 @@
 				9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */,
 				9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */,
 				9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */,
-				9BEA0D6C13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.h */,
-				9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */,
+				9BF761DE13DFF36400B7B70E /* AppProductRemoteServiceTests.h */,
+				9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */,
 			);
 			path = CandyStoreTests;
 			sourceTree = "<group>";
@@ -283,12 +328,21 @@
 		9B64119D13DDF0D00099007A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9BF7616513DFDC2C00B7B70E /* TransferObjects */,
+				9BF7615D13DFDC2C00B7B70E /* EndpointService.h */,
+				9BF7615E13DFDC2C00B7B70E /* EndpointService.m */,
+				9BF7615F13DFDC2C00B7B70E /* HTTPMultipartBuilder.h */,
+				9BF7616013DFDC2C00B7B70E /* HTTPMultipartBuilder.m */,
+				9BF7616113DFDC2C00B7B70E /* HTTPRequestService.h */,
+				9BF7616213DFDC2C00B7B70E /* HTTPRequestService.m */,
+				9BF7616313DFDC2C00B7B70E /* RemoteServiceBase.h */,
+				9BF7616413DFDC2C00B7B70E /* RemoteServiceBase.m */,
 				9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */,
 				9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */,
 				9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */,
 				9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */,
-				9BEA0D6813DF6D9500880ACD /* IAPIdentifiersRemoteService.h */,
-				9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */,
+				9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */,
+				9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,11 +352,14 @@
 			children = (
 				9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */,
 				9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */,
-				9BF5ED8A13DE255D00C93BF5 /* UIViewController+popup.h */,
-				9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */,
+				9BF5ED8A13DE255D00C93BF5 /* NSObject+popup.h */,
+				9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */,
+				9BF7616D13DFDCDA00B7B70E /* NSDictionary+join.h */,
+				9BF7616E13DFDCDB00B7B70E /* NSDictionary+join.m */,
+				9BF7617013DFDD4F00B7B70E /* NSURLRequest+cert.h */,
+				9BF7617113DFDD4F00B7B70E /* NSURLRequest+cert.m */,
 			);
-			name = Category;
-			path = CandyStore/Category;
+			path = Category;
 			sourceTree = "<group>";
 		};
 		9BF7615213DF911600B7B70E /* Category */ = {
@@ -312,6 +369,51 @@
 				9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		9BF7616513DFDC2C00B7B70E /* TransferObjects */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7616613DFDC2C00B7B70E /* AttachmentTransfer.h */,
+				9BF7616713DFDC2C00B7B70E /* AttachmentTransfer.m */,
+			);
+			path = TransferObjects;
+			sourceTree = "<group>";
+		};
+		9BF7617313DFDD9D00B7B70E /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7617413DFDD9D00B7B70E /* Apple */,
+				9BF7617713DFDD9D00B7B70E /* JSON */,
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		9BF7617413DFDD9D00B7B70E /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7617513DFDD9D00B7B70E /* Reachability.h */,
+				9BF7617613DFDD9D00B7B70E /* Reachability.m */,
+			);
+			path = Apple;
+			sourceTree = "<group>";
+		};
+		9BF7617713DFDD9D00B7B70E /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7617813DFDD9D00B7B70E /* JSON.h */,
+				9BF7617913DFDD9D00B7B70E /* NSObject+SBJSON.h */,
+				9BF7617A13DFDD9D00B7B70E /* NSObject+SBJSON.m */,
+				9BF7617B13DFDD9D00B7B70E /* NSString+SBJSON.h */,
+				9BF7617C13DFDD9D00B7B70E /* NSString+SBJSON.m */,
+				9BF7617D13DFDD9D00B7B70E /* SBJsonBase.h */,
+				9BF7617E13DFDD9D00B7B70E /* SBJsonBase.m */,
+				9BF7617F13DFDD9D00B7B70E /* SBJsonParser.h */,
+				9BF7618013DFDD9D00B7B70E /* SBJsonParser.m */,
+				9BF7618113DFDD9D00B7B70E /* SBJsonWriter.h */,
+				9BF7618213DFDD9D00B7B70E /* SBJsonWriter.m */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,10 +546,23 @@
 				9B64118813DDCF110099007A /* CandyShopViewController.m in Sources */,
 				9B64118B13DDCF200099007A /* CandyExchangeViewController.m in Sources */,
 				9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */,
-				9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */,
+				9BF5ED8C13DE255D00C93BF5 /* NSObject+popup.m in Sources */,
 				9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */,
 				9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */,
-				9BEA0D6A13DF6D9500880ACD /* IAPIdentifiersRemoteService.m in Sources */,
+				9BEA0D6A13DF6D9500880ACD /* AppProductRemoteService.m in Sources */,
+				9BF7616813DFDC2C00B7B70E /* EndpointService.m in Sources */,
+				9BF7616913DFDC2C00B7B70E /* HTTPMultipartBuilder.m in Sources */,
+				9BF7616A13DFDC2C00B7B70E /* HTTPRequestService.m in Sources */,
+				9BF7616B13DFDC2C00B7B70E /* RemoteServiceBase.m in Sources */,
+				9BF7616C13DFDC2C00B7B70E /* AttachmentTransfer.m in Sources */,
+				9BF7616F13DFDCDB00B7B70E /* NSDictionary+join.m in Sources */,
+				9BF7617213DFDD4F00B7B70E /* NSURLRequest+cert.m in Sources */,
+				9BF7618A13DFDD9D00B7B70E /* Reachability.m in Sources */,
+				9BF7618B13DFDD9D00B7B70E /* NSObject+SBJSON.m in Sources */,
+				9BF7618C13DFDD9D00B7B70E /* NSString+SBJSON.m in Sources */,
+				9BF7618D13DFDD9D00B7B70E /* SBJsonBase.m in Sources */,
+				9BF7618E13DFDD9D00B7B70E /* SBJsonParser.m in Sources */,
+				9BF7618F13DFDD9D00B7B70E /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,8 +572,8 @@
 			files = (
 				9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */,
 				9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */,
-				9BEA0D6E13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m in Sources */,
 				9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */,
+				9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
