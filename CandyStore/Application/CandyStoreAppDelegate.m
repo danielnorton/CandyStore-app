@@ -12,6 +12,7 @@
 #import "NSObject+popup.h"
 #import "UIApplication+delegate.h"
 #import "NSObject+popup.h"
+#import "HTTPRequestService.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -63,6 +64,11 @@
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
 	[service reset];
 	[service release];
+	
+	[HTTPRequestService setReachabilityTest:^BOOL(void) {
+		
+		return [self canReachInternet];
+	}];
 }
 
 

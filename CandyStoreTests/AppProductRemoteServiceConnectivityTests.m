@@ -1,23 +1,24 @@
 //
-//  AppProductRemoteServiceTests.m
+//  AppProductRemoteServiceConnectivityTests.m
 //  CandyStore
 //
-//  Created by Daniel Norton on 7/26/11.
+//  Created by Daniel Norton on 7/27/11.
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import "AppProductRemoteServiceTests.h"
+#import "AppProductRemoteServiceConnectivityTests.h"
 #import "NSObject+waitForCompletion.h"
+#import "HTTPRequestService.h"
 
 
-@interface AppProductRemoteServiceTests()
+@interface AppProductRemoteServiceConnectivityTests()
 
 @property (nonatomic, retain) NSArray *products;
 
 @end
 
 
-@implementation AppProductRemoteServiceTests
+@implementation AppProductRemoteServiceConnectivityTests
 
 @synthesize products;
 
@@ -55,15 +56,21 @@
 
 
 #pragma mark -
-#pragma mark AppProductRemoteServiceTests
+#pragma mark AppProductRemoteServiceConnectivityTests
 #pragma mark Tests
 - (void)setUp {
+	
+	// Wait for other async tests to finish. :(
+	[self waitForCompletion:5.0f doneTest:^BOOL(void) {
+		
+		return NO;
+	}];
 	
 	[self setProducts:nil];
 	
 	[HTTPRequestService setReachabilityTest:^BOOL(void) {
 		
-		return YES;
+		return NO;
 	}];
 	
 	AppProductRemoteService *service = [[AppProductRemoteService alloc] init];
@@ -77,9 +84,9 @@
 	}];
 }
 
-- (void)testShouldGetProducts {
+- (void)testShouldNotGetProducts {
 	
-	STAssertNotNil(products, @"Didn't retreive products.");
+	STAssertNil(products, @"Shouldn't retreive products.");
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
 		9B56B94413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94313D9ED5300A65543 /* CoreGraphics.framework */; };
@@ -76,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
+		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B56B93F13D9ED5300A65543 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B56B94113D9ED5300A65543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +266,8 @@
 				9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */,
 				9BF761DE13DFF36400B7B70E /* AppProductRemoteServiceTests.h */,
 				9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */,
+				9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */,
+				9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */,
 			);
 			path = CandyStoreTests;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */,
 				9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */,
 				9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */,
+				9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

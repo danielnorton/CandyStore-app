@@ -8,6 +8,7 @@
 
 #import "AttachmentTransfer.h"
 
+typedef BOOL (^ReachabilityTest)();
 
 typedef enum {
 	HTTPRequestServiceMethodUnknown,
@@ -48,6 +49,9 @@ typedef enum {
 @property (nonatomic, readonly) HTTPRequestServiceReturnType returnType;
 @property (nonatomic, readonly) NSURL *responseUrl;
 @property (nonatomic, retain) id userData;
+
++ (void)setReachabilityTest:(ReachabilityTest)test;
++ (ReachabilityTest)reachabilityTest;
 
 - (void)beginRequest:(NSString *)path
 			  method:(HTTPRequestServiceMethod)method

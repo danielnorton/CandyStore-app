@@ -9,8 +9,6 @@
 #import "HTTPRequestService.h"
 #import "JSON.h"
 #import "NSDictionary+join.h"
-#import "CandyStoreAppDelegate.h"
-#import "UIApplication+delegate.h"
 #import "HTTPMultipartBuilder.h"
 #import "NSURLRequest+cert.h"
 
@@ -54,6 +52,8 @@
 @synthesize userData;
 @synthesize connection;
 @synthesize receivedData;
+
+ReachabilityTest _reachabilityTest = nil;
 
 #pragma mark -
 #pragma mark NSObject
@@ -144,6 +144,20 @@
 
 #pragma mark -
 #pragma mark HTTPRequestService
++ (void)setReachabilityTest:(ReachabilityTest)test {
+
+	if ([test isEqual:_reachabilityTest]) return;
+		
+	Block_copy(test);
+	Block_release(_reachabilityTest);
+	_reachabilityTest = test;
+}
+
++ (ReachabilityTest)reachabilityTest {
+	
+	return _reachabilityTest;
+}
+
 - (void)beginRequest:(NSString *)path
 			  method:(HTTPRequestServiceMethod)method
 			  params:(NSDictionary *)params
@@ -160,8 +174,8 @@
 	
 	[self retain];
 	
-	CandyStoreAppDelegate *app = [UIApplication thisApp];
-	if (![app canReachInternet]) {
+	ReachabilityTest test = [HTTPRequestService reachabilityTest];
+	if (test && !test()) {
 		[self notifyDelegateDidFinish:NO];
 		return;
 	}
