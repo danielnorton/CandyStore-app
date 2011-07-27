@@ -33,8 +33,11 @@
 		9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119213DDEE660099007A /* shopTab@2x.png */; };
 		9B64119B13DDEE660099007A /* smallJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119313DDEE660099007A /* smallJarTab.png */; };
 		9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119413DDEE660099007A /* smallJarTab@2x.png */; };
+		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
+		9BEA0D6A13DF6D9500880ACD /* IAPIdentifiersRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */; };
+		9BEA0D6E13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
@@ -45,6 +48,7 @@
 		9BF5ED8813DE23A200C93BF5 /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8713DE23A200C93BF5 /* welcome */; };
 		9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */; };
 		9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */; };
+		9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,10 +96,15 @@
 		9B64119413DDEE660099007A /* smallJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallJarTab@2x.png"; sourceTree = "<group>"; };
 		9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopServiceTests.h; sourceTree = "<group>"; };
 		9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopServiceTests.m; sourceTree = "<group>"; };
-		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
+		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
 		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
+		9BEA0D6813DF6D9500880ACD /* IAPIdentifiersRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPIdentifiersRemoteService.h; sourceTree = "<group>"; };
+		9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPIdentifiersRemoteService.m; sourceTree = "<group>"; };
+		9BEA0D6C13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPIdentifiersRemoteServiceTests.h; sourceTree = "<group>"; };
+		9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPIdentifiersRemoteServiceTests.m; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsIcon@2x.png"; sourceTree = "<group>"; };
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -106,8 +115,10 @@
 		9BF5ED8713DE23A200C93BF5 /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
 		9BF5ED8A13DE255D00C93BF5 /* UIViewController+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+popup.h"; sourceTree = "<group>"; };
 		9BF5ED8B13DE255D00C93BF5 /* UIViewController+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+popup.m"; sourceTree = "<group>"; };
-		9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ExchangeSubscriptionNotificationService.h; sourceTree = "<group>"; };
+		9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationService.h; sourceTree = "<group>"; };
 		9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationService.m; sourceTree = "<group>"; };
+		9BF7615413DF915C00B7B70E /* NSObject+waitForCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+waitForCompletion.h"; sourceTree = "<group>"; };
+		9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+waitForCompletion.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +201,7 @@
 				9BF34F0313D9F18100C47028 /* appIcon@2x.png */,
 				9BF34EF613D9EE4C00C47028 /* settingsIcon.png */,
 				9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */,
+				9B91BDE813DF56BE0046C8BA /* iTunesArtwork */,
 				9BF34F0013D9F12300C47028 /* LICENSE */,
 			);
 			name = "Supporting Files";
@@ -198,11 +210,14 @@
 		9B56B96713D9ED5300A65543 /* CandyStoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				9BF7615213DF911600B7B70E /* Category */,
+				9B56B96813D9ED5300A65543 /* Supporting Files */,
 				9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */,
 				9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */,
 				9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */,
 				9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */,
-				9B56B96813D9ED5300A65543 /* Supporting Files */,
+				9BEA0D6C13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.h */,
+				9BEA0D6D13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m */,
 			);
 			path = CandyStoreTests;
 			sourceTree = "<group>";
@@ -272,6 +287,8 @@
 				9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */,
 				9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */,
 				9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */,
+				9BEA0D6813DF6D9500880ACD /* IAPIdentifiersRemoteService.h */,
+				9BEA0D6913DF6D9500880ACD /* IAPIdentifiersRemoteService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -286,6 +303,15 @@
 			);
 			name = Category;
 			path = CandyStore/Category;
+			sourceTree = "<group>";
+		};
+		9BF7615213DF911600B7B70E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7615413DF915C00B7B70E /* NSObject+waitForCompletion.h */,
+				9BF7615513DF915C00B7B70E /* NSObject+waitForCompletion.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +403,7 @@
 				9B64119B13DDEE660099007A /* smallJarTab.png in Resources */,
 				9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */,
 				9BF5ED8813DE23A200C93BF5 /* welcome in Resources */,
+				9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +447,7 @@
 				9BF5ED8C13DE255D00C93BF5 /* UIViewController+popup.m in Sources */,
 				9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */,
 				9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */,
+				9BEA0D6A13DF6D9500880ACD /* IAPIdentifiersRemoteService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +457,8 @@
 			files = (
 				9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */,
 				9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */,
+				9BEA0D6E13DF6DA600880ACD /* IAPIdentifiersRemoteServiceTests.m in Sources */,
+				9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
