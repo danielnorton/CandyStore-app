@@ -8,7 +8,7 @@
 #import "ModelCore.h"
 #import "UIApplication+delegate.h"
 
-#define kUseBundleFile YES
+#define kUseBundleFile NO
 
 
 @interface ModelCore()
@@ -46,7 +46,9 @@
 	if (![super init]) return nil;
 	
 	useBundleFile = kUseBundleFile;
-	[self setFileName:[UIApplication appName]];
+	
+	NSString *name = [[UIApplication appName] stringByReplacingOccurrencesOfString:@" " withString:[NSString string]];
+	[self setFileName:name];
 	return self;
 }
 
@@ -72,6 +74,15 @@
 }
 
 #pragma mark Private Extensions
+- (NSManagedObjectModel *)managedObjectModel {
+    
+    if (managedObjectModel != nil) {
+        return managedObjectModel;
+    }
+    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    return managedObjectModel;
+}
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
     if (persistentStoreCoordinator != nil) {

@@ -3,7 +3,6 @@
 // 
 //
 //  Created by Daniel Norton on 11/19/10.
-//  Copyright 2010 Bandit Software. All rights reserved.
 //
 
 #import "HTTPRequestService.h"

@@ -16,6 +16,7 @@ typedef enum {
 	ProductBuilderServiceStatusRetreivingFromAppService,
 	ProductBuilderServiceStatusRetreivingFromAppStore,
 	ProductBuilderServiceStatusBuilding,
+	ProductBuilderServiceStatusFailed,
 	ProductBuilderServiceStatusIdle
 	
 } ProductBuilderServiceStatus;
@@ -24,7 +25,7 @@ typedef enum {
 
 @protocol ProductBuilderServiceDelegate <NSObject>
 
-- (void)productBuilderService:(ProductBuilderService *)sender didUpdateContext:(NSManagedObjectContext *)context;
+- (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender;
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender;
 
 @end

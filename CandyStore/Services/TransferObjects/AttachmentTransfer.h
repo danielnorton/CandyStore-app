@@ -3,7 +3,6 @@
 // 
 //
 //  Created by Daniel Norton on 12/10/10.
-//  Copyright 2010 Bandit Software. All rights reserved.
 //
 
 

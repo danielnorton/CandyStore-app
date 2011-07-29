@@ -1,9 +1,7 @@
 //
 //  RemoteServiceBase.m
-//  LeanKit
 //
 //  Created by Daniel Norton on 3/3/11.
-//  Copyright 2011 Bandit Software. All rights reserved.
 //
 
 #import "RemoteServiceBase.h"
@@ -97,26 +95,18 @@
 }
 
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
-
 	// must be implemented by inheritor
-}
-
-- (NSArray *)buildModelFromJson:(NSArray *)json {
-	// must be implemented by inheritor
-	return nil;
 }
 
 - (void)notifyDelegateOfFailedAuthentication {
 	
 	if (![delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
-	
 	[delegate remoteServiceDidFailAuthentication:self];
 }
 
 - (void)notifyDelegateOfTimeout {
 	
 	if (![delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
-	
 	[delegate remoteServiceDidTimeout:self];
 }
 

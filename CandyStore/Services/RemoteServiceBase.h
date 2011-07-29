@@ -1,18 +1,10 @@
 //
 //  RemoteServiceBase.h
-//  LeanKit
 //
 //  Created by Daniel Norton on 3/3/11.
-//  Copyright 2011 Bandit Software. All rights reserved.
 //
 
 #import "HTTPRequestService.h"
-
-typedef enum {
-	
-	RemoteServiceErrorExceedsWIP = 900
-	
-} RemoteServiceKnownErrorCodes;
 
 
 @class RemoteServiceBase;
@@ -37,7 +29,6 @@ typedef enum {
 
 - (void)beginRemoteCallWithPath:(NSString *)path withParams:(NSDictionary *)params withUserData:(id)userData;
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender;
-- (NSArray *)buildModelFromJson:(NSArray *)json;
 
 - (void)notifyDelegateOfFailedAuthentication;
 - (void)notifyDelegateOfTimeout;

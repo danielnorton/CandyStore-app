@@ -74,6 +74,8 @@
 		
 		return [self canReachInternet];
 	}];
+	
+	[self updateProducts];
 }
 
 
@@ -93,7 +95,7 @@
 
 
 #pragma mark ProductBuilderServiceDelegate
-- (void)productBuilderService:(ProductBuilderService *)sender didUpdateContext:(NSManagedObjectContext *)context {
+- (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender {
 	
 	// TODO:
 }
@@ -128,10 +130,11 @@
 
 - (void)updateProducts {
 	
-	// if the local service exists and it is not in status unknown or idle, just quit
+	//  just quit if the local service exists and it is not in status unknown, idle, or failed.
 	if (productBuilderService && (
 								  (productBuilderService.status != ProductBuilderServiceStatusUnknown)
 								  && (productBuilderService.status != ProductBuilderServiceStatusIdle)
+								  && (productBuilderService.status != ProductBuilderServiceStatusFailed)
 								  )
 		) return;
 	

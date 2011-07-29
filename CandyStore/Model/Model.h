@@ -7,4 +7,6 @@
 
 #import "ModelCore.h"
 
+#import "Product.h"
+#import "Product+model.h"
 
