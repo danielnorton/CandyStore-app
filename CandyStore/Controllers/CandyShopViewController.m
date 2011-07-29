@@ -6,45 +6,20 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+ #import <QuartzCore/QuartzCore.h>
 #import "CandyShopViewController.h"
 #import "Model.h"
 #import "ProductRepository.h"
-#import "CandyStoreAppDelegate.h"
-#import "UIApplication+delegate.h"
 
-
-@interface CandyShopViewController()
-
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
-@end
 
 @implementation CandyShopViewController
 
-@synthesize fetchedResultsController;
-
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[fetchedResultsController release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setFetchedResultsController:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
 	NSError *error = nil;
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSFetchedResultsController *controller = [repo controllerForAll];
@@ -52,11 +27,11 @@
 	[self setFetchedResultsController:controller];
 	[repo release];
 	
-	if (![fetchedResultsController performFetch:&error]) {
+	if ([self shouldShowRefreshingCell]) return;
+	if (![self.fetchedResultsController performFetch:&error]) {
 		
 		// TODO: handle error
-		[fetchedResultsController setDelegate:nil];
-		[self setFetchedResultsController:nil];
+		[self.fetchedResultsController setDelegate:nil];
 	}
 }
 
@@ -66,25 +41,32 @@
 
 
 #pragma mark UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	
-	return fetchedResultsController.sections.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	
-	id<NSFetchedResultsSectionInfo> info = [fetchedResultsController.sections objectAtIndex:section];
-	return [info numberOfObjects];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	Product *product = (Product *)[fetchedResultsController objectAtIndexPath:indexPath];
+	if ([self shouldShowRefreshingCell]) {
+		
+		static NSString *refreshingCellIdentifier = @"refreshingCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:refreshingCellIdentifier];
+		if (!cell) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier] autorelease];
+		}
+		
+		[self configureRefreshingCell:cell];
+		return cell;
+	}
+	
+	NSLog(@"cellForRowAtIndexPath: row:%d section:%d", indexPath.row, indexPath.section);
+	
+	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	NSString *identifier = [NSString stringWithFormat:@"%d", product.kind];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
 		
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
+		
+		[cell.imageView.layer setMasksToBounds:YES];
+		[cell.imageView.layer setCornerRadius:5.0f];
+		[cell.imageView setImage:[UIImage imageNamed:@"shopPlaceholder"]];		
 	}
 	
 	[self configureCell:cell atIndexPath:indexPath];
@@ -94,7 +76,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
-	id<NSFetchedResultsSectionInfo> info = [fetchedResultsController.sections objectAtIndex:section];
+	if ([self shouldShowRefreshingCell]) return nil;
+	
+	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
 	int sectionKind = [[info name] integerValue];
 	
 	switch (sectionKind) {
@@ -114,76 +98,37 @@
 }
 
 
-#pragma mark NSFetchedResultsControllerDelegate
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.tableView;
+#pragma mark ImageCachingServiceDelegate
+- (void)ImageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
 	
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+	[self reloadVisibleCells];
 }
 
 
-#pragma mark -
-#pragma mark CandyShopViewController
-#pragma mark IBAction
-- (IBAction)updateProducts:(id)sender {
-	
-	CandyStoreAppDelegate *app = [UIApplication thisApp];
-	[app updateProducts];
-}
-
-
-#pragma mark Private Extension
+#pragma RefreshingTableViewController
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-	Product *product = (Product *)[fetchedResultsController objectAtIndexPath:indexPath];
+	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	[cell.textLabel setText:product.title];
 	[cell.detailTextLabel setText:product.subTitle];
+	
+	ImageCachingService *service = [[ImageCachingService alloc] init];
+	UIImage *image = [service cachedImageAtPath:product.imagePath];
+	if (!image) {
+		
+		[service setDelegate:self];
+		[service beginLoadingImageAtPath:product.imagePath withUserData:indexPath];
+		
+	} else {
+		
+		[cell.imageView setImage:image];
+	}
+	
+	[service release];
 }
 
 
 @end
+
 

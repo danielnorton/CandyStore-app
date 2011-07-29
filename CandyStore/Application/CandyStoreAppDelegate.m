@@ -35,6 +35,7 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize candyShopViewController;
 @synthesize internetReach;
 @synthesize productBuilderService;
 
@@ -44,6 +45,7 @@
 - (void)dealloc {
 	[window release];
 	[tabBarController release];
+	[candyShopViewController release];
 	[internetReach release];
 	[productBuilderService release];
     [super dealloc];
@@ -92,38 +94,25 @@
 #pragma mark ProductBuilderServiceDelegate
 - (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender {
 	
-	// TODO:
+	[candyShopViewController completeRefreshing];
 }
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
-	// TODO:
+	[candyShopViewController enableWithLoadingCellMessage:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
 }
 
 
 #pragma mark -
 #pragma mark CandyStoreAppDelegate
 #pragma mark Public Messages
-- (void)alertUserHasNotPurchasedExchange {
-	
-	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
-	
-	if (!service.shouldNotify) {
-		
-		[service release];
-		return;
-	}
-	
-	service.counter++;
-	[tabBarController popup:service.message];
-	[service release];
-}
-
 - (BOOL)canReachInternet {
 	return (internetReach.currentReachabilityStatus != NotReachable);
 }
 
 - (void)updateProducts {
+	
+	[candyShopViewController beginRefreshing];
 	
 	//  just quit if the local service exists and it is not in status unknown, idle, or failed.
 	if (productBuilderService && (
@@ -140,7 +129,30 @@
 	[service release];
 }
 
+
+#pragma mark IBAction
+- (IBAction)updateProducts:(id)sender {
+	
+	[self updateProducts];
+}
+
+
 #pragma mark Private Extension
+- (void)alertUserHasNotPurchasedExchange {
+	
+	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
+	
+	if (!service.shouldNotify) {
+		
+		[service release];
+		return;
+	}
+	
+	service.counter++;
+	[tabBarController popup:service.message];
+	[service release];
+}
+
 - (void)reachabilityChanged:(NSNotification *)note {
 	
 	if ([self canReachInternet]) return;

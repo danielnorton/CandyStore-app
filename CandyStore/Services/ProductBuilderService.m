@@ -9,6 +9,8 @@
 #import "ProductBuilderService.h"
 #import "Model.h"
 #import "ProductRepository.h"
+#import "ImageCachingService.h"
+#import "EndpointService.h"
 
 
 #define kKeyBigCandyJar @"bigcandyjar"
@@ -108,6 +110,7 @@
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
 	
 	NSError *error = nil;
+	[ImageCachingService purge];
 	BOOL purged = [repo purge:&error];
 	if (!purged || error) {
 		
@@ -125,7 +128,9 @@
 			NSString *imageKey = [UIScreen mainScreen].scale == 2.0f
 			? @"retina_image"
 			: @"image";
-			NSString *imagePath = [item objectForKey:imageKey];
+			NSString *imagePath = [EndpointService serviceFullPathForRelativePath:[item objectForKey:imageKey]];
+			
+			[ImageCachingService beginLoadingImageAtPath:imagePath];
 			
 			ProductKind kind = [self productKindFromServerKey:[item objectForKey:@"key"]];
 			

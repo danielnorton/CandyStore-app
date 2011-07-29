@@ -8,6 +8,7 @@
 
 @interface EndpointService : NSObject
 
++ (NSString *)serviceFullPathForRelativePath:(NSString *)relativePath;
 + (NSString *)appProductsPath;
 
 @end

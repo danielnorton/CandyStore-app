@@ -8,6 +8,8 @@
 
 #import "Reachability.h"
 #import "ProductBuilderService.h"
+#import "CandyShopViewController.h"
+
 
 @interface CandyStoreAppDelegate : NSObject
 <UIApplicationDelegate, UITabBarControllerDelegate,
@@ -16,6 +18,7 @@ ProductBuilderServiceDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet CandyShopViewController *candyShopViewController;
 
 @property (nonatomic, readonly) Reachability *internetReach;
 
