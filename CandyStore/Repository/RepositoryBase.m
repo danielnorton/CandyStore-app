@@ -13,6 +13,7 @@
 @synthesize managedObjectContext;
 @synthesize typeName;
 @synthesize defaultSortDescriptors;
+@synthesize defaultSectionNameKeyPath;
 @synthesize keyName;
 
 #pragma mark -
@@ -21,6 +22,7 @@
 	[managedObjectContext release];
 	[typeName release];
 	[defaultSortDescriptors release];
+	[defaultSectionNameKeyPath release];
 	[keyName release];
 	[super dealloc];
 }
@@ -85,7 +87,7 @@
 	NSFetchedResultsController *fetchedResultsController =
 	[[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
 										 managedObjectContext:managedObjectContext
-										   sectionNameKeyPath:nil
+										   sectionNameKeyPath:defaultSectionNameKeyPath
 													cacheName:nil] autorelease];
 	[fetchRequest release];
 	return fetchedResultsController;

@@ -11,6 +11,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSString *typeName;
 @property (nonatomic, retain) NSArray *defaultSortDescriptors;
+@property (nonatomic, retain) NSString *defaultSectionNameKeyPath;
 @property (nonatomic, retain) NSString *keyName;
 
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext;

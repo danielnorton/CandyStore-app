@@ -10,6 +10,7 @@
 #import "NSDictionary+join.h"
 #import "HTTPMultipartBuilder.h"
 #import "NSURLRequest+cert.h"
+#import "Reachability.h"
 
 
 #define kRequestTimeout 15.0f
@@ -36,7 +37,6 @@
 
 @end
 
-
 @implementation HTTPRequestService
 
 
@@ -52,7 +52,7 @@
 @synthesize connection;
 @synthesize receivedData;
 
-ReachabilityTest _reachabilityTest = nil;
+
 
 #pragma mark -
 #pragma mark NSObject
@@ -143,20 +143,6 @@ ReachabilityTest _reachabilityTest = nil;
 
 #pragma mark -
 #pragma mark HTTPRequestService
-+ (void)setReachabilityTest:(ReachabilityTest)test {
-
-	if ([test isEqual:_reachabilityTest]) return;
-		
-	Block_copy(test);
-	Block_release(_reachabilityTest);
-	_reachabilityTest = test;
-}
-
-+ (ReachabilityTest)reachabilityTest {
-	
-	return _reachabilityTest;
-}
-
 - (void)beginRequest:(NSString *)path
 			  method:(HTTPRequestServiceMethod)method
 			  params:(NSDictionary *)params
@@ -170,14 +156,14 @@ ReachabilityTest _reachabilityTest = nil;
 			  params:(NSDictionary *)params
 	  withReturnType:(HTTPRequestServiceReturnType)expectedReturnType
 	  withAttachment:(AttachmentTransfer *)attachment {
-	
-	[self retain];
-	
-	ReachabilityTest test = [HTTPRequestService reachabilityTest];
-	if (test && !test()) {
+
+	Reachability *reach = [Reachability reachabilityForInternetConnection];
+	if ([reach currentReachabilityStatus] == NotReachable) {
 		[self notifyDelegateDidFinish:NO];
 		return;
 	}
+	
+	[self retain];
 	
 	[self setLastError:nil];
 	didFail = NO;

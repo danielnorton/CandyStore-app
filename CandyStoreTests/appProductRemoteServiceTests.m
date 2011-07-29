@@ -61,11 +61,6 @@
 	
 	[self setProducts:nil];
 	
-	[HTTPRequestService setReachabilityTest:^BOOL(void) {
-		
-		return YES;
-	}];
-	
 	AppProductRemoteService *service = [[AppProductRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginRetreiveProducts];

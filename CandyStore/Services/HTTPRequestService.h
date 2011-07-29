@@ -49,8 +49,6 @@ typedef enum {
 @property (nonatomic, readonly) NSURL *responseUrl;
 @property (nonatomic, retain) id userData;
 
-+ (void)setReachabilityTest:(ReachabilityTest)test;
-+ (ReachabilityTest)reachabilityTest;
 
 - (void)beginRequest:(NSString *)path
 			  method:(HTTPRequestServiceMethod)method

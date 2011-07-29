@@ -7,6 +7,7 @@
 //
 
 
-@interface CandyShopViewController : UIViewController
+@interface CandyShopViewController : UITableViewController
+<NSFetchedResultsControllerDelegate>
 
 @end

@@ -69,12 +69,7 @@
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
 	[service reset];
 	[service release];
-	
-	[HTTPRequestService setReachabilityTest:^BOOL(void) {
-		
-		return [self canReachInternet];
-	}];
-	
+
 	[self updateProducts];
 }
 

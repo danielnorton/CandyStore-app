@@ -17,7 +17,13 @@
 	if (![super initWithContext:aManagedObjectContext]) return nil;
 	
 	[self setTypeName:@"Product"];
-	[self setDefaultSortDescriptorsByKey:@"title"];
+	
+	NSSortDescriptor *kindSort = [NSSortDescriptor sortDescriptorWithKey:@"productKindData" ascending:YES];
+	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
+	[self setDefaultSortDescriptors:sortDescriptors];
+
+	[self setDefaultSectionNameKeyPath:@"productKindData"];
 	[self setKeyName:@"identifier"];
 	
 	return self;
