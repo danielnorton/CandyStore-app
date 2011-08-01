@@ -72,7 +72,7 @@
 	[service reset];
 	[service release];
 
-//	[self updateProducts];
+	[self updateProducts];
 }
 
 

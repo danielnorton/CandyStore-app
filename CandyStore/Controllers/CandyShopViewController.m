@@ -10,6 +10,7 @@
 #import "Model.h"
 #import "ProductRepository.h"
 #import "Style.h"
+#import "UITableViewCell+activity.h"
 
 
 @implementation CandyShopViewController
@@ -106,6 +107,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	if ([self shouldShowRefreshingCell]) return;
+	
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	if ((product.kind == ProductKindCandy) && ((indexPath.row % 2) == 1)) {
 		
@@ -122,6 +125,13 @@
 
 
 #pragma RefreshingTableViewController
+- (void)configureRefreshingCell:(UITableViewCell *)cell {
+
+	[super configureRefreshingCell:cell];
+	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleWhite];
+	[cell.textLabel setTextColor:[UIColor whiteColor]];
+}
+
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
 	ShopListItemCell *cell = (ShopListItemCell *)aCell;

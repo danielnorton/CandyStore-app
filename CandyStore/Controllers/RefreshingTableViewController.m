@@ -127,7 +127,9 @@
 	[cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
 	[cell.textLabel setText:NSLocalizedString(@"Refreshing...", @"Refreshing...")];
 	[cell.textLabel setTextColor:[UIColor lightGrayColor]];
-	[cell setActivityIndicatorAccessoryView];
+	[cell.textLabel setShadowColor:[UIColor blackColor]];
+	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)beginRefreshing {

@@ -9,12 +9,12 @@
 
 @implementation UITableViewCell(activity)
 
-- (void)setActivityIndicatorAccessoryView {
-
+- (void)setActivityIndicatorAccessoryView:(UIActivityIndicatorViewStyle)style {
+	
 	UIActivityIndicatorView *activity = (UIActivityIndicatorView *)self.accessoryView;
 	if (![activity isKindOfClass:[UIActivityIndicatorView class]]) {
 		
-		activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
 		[self setAccessoryView:activity];
 		[activity release];
 	}
@@ -23,7 +23,7 @@
 		
 		[activity startAnimating];
 	}
-
+	
 	[activity setHidesWhenStopped:NO];
 }
 
