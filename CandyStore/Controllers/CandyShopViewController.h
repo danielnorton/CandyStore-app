@@ -8,13 +8,13 @@
 
 #import "RefreshingTableViewController.h"
 #import "ImageCachingService.h"
-#import "ShopItemCell.h"
+#import "ShopListItemCell.h"
 
 
 @interface CandyShopViewController : RefreshingTableViewController
 <ImageCachingServiceDelegate>
 
-@property (nonatomic, retain) IBOutlet ShopItemCell *shopItemCell;
+@property (nonatomic, retain) IBOutlet ShopListItemCell *shopListItemCell;
 
 @end
 

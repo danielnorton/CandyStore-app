@@ -6,21 +6,21 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
- #import <QuartzCore/QuartzCore.h>
 #import "CandyShopViewController.h"
 #import "Model.h"
 #import "ProductRepository.h"
+#import "Style.h"
 
 
 @implementation CandyShopViewController
 
-@synthesize shopItemCell;
+@synthesize shopListItemCell;
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
 	
-	[shopItemCell release];
+	[shopListItemCell release];
 	[super dealloc];
 }
 
@@ -29,15 +29,17 @@
 - (void)viewDidUnload {
 	[super viewDidUnload];
 	
-	[self setShopItemCell:nil];
+	[self setShopListItemCell:nil];
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+	[self.tableView setSeparatorColor:[UIColor darkGrayColor]];
+	
 	NSError *error = nil;
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	NSFetchedResultsController *controller = [repo controllerForAll];
+	NSFetchedResultsController *controller = [repo controllerforCandyShop];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
 	[repo release];
@@ -71,13 +73,13 @@
 		return cell;
 	}
 	
-	static NSString *identifier = @"shopItemCell";
+	static NSString *identifier = @"shopListItemCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
 
-		[[NSBundle mainBundle] loadNibNamed:@"ShopItemCell" owner:self options:nil];
-		cell = shopItemCell;
-		[self setShopItemCell:nil];
+		[[NSBundle mainBundle] loadNibNamed:@"ShopListItemCell" owner:self options:nil];
+		cell = shopListItemCell;
+		[self setShopListItemCell:nil];
 	}
 	
 	[self configureCell:cell atIndexPath:indexPath];
@@ -85,11 +87,30 @@
 	return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
+	int productKind = [[info indexTitle] integerValue];
+	
+	if (productKind != ProductKindCandy) return nil;
+	
+	return NSLocalizedString(@"Candy", @"Candy");
+}
+
 
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	return 66.0f;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	if ((product.kind == ProductKindCandy) && ((indexPath.row % 2) == 1)) {
+		
+		[cell setBackgroundColor:[UIColor darkGrayStoreColor]];
+	}
 }
 
 
@@ -103,10 +124,21 @@
 #pragma RefreshingTableViewController
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
-	ShopItemCell *cell = (ShopItemCell *)aCell;
+	ShopListItemCell *cell = (ShopListItemCell *)aCell;
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	[cell.buyButton setTitle:@"$123.99" forState:UIControlStateNormal];
-	[cell.buyButton setTitle:NSLocalizedString(@"BUY NOW", @"BUY NOW") forState:UIControlStateSelected];
+	[cell.titleLabel setText:product.title];
+	
+	if (product.localizedPrice) {
+		
+		[cell.priceLabel setHidden:NO];
+		[cell.priceLabel setText:product.localizedPrice];
+		
+	} else {
+		
+		[cell.priceLabel setHidden:YES];
+		[cell.priceLabel setText:nil];
+	}
+	
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];

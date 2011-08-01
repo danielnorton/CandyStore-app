@@ -24,6 +24,7 @@
 - (void)setStatus:(ProductBuilderServiceStatus)status;
 - (void)beginAppStoreProducts:(NSSet *)identifiers;
 - (ProductKind)productKindFromServerKey:(NSString *)key;
+- (NSString *)priceFromProduct:(SKProduct *)product;
 - (void)notifyDelegateDidUpdate;
 - (void)notifyDelegateDidFail;
 
@@ -31,12 +32,22 @@
 
 @implementation ProductBuilderService
 
+NSNumberFormatter *currencyFormatter;
 
 @synthesize delegate;
 @synthesize status;
 @synthesize context;
 
 #pragma mark -
+#pragma mark NSObject
++ (void)initialize {
+
+	currencyFormatter = [[NSNumberFormatter alloc] init];
+	[currencyFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+	[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+}
+
+
 #pragma mark SKRequestDelegate
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
 	
@@ -67,10 +78,25 @@
 		SKProduct *skProduct = (SKProduct *)obj;
 		Product *product = (Product *)[repo itemForId:skProduct.productIdentifier];
 		
-		[product setPrice:skProduct.price];
-		[product setPriceLocaleIdentifier:skProduct.priceLocale.localeIdentifier];
-		[product setProductDescription:skProduct.localizedDescription];
+		NSString *localizedPrice = [self priceFromProduct:skProduct];
 		[product setTitle:skProduct.localizedTitle];
+		
+		if (product.parent) {
+			
+			[product setPrice:skProduct.price];
+			[product setLocalizedPrice:localizedPrice];
+			
+			[product.parent setTitle:skProduct.localizedTitle];
+			[product.parent setProductDescription:skProduct.localizedDescription];
+			[product.parent setPrice:nil];
+			[product.parent setLocalizedPrice:nil];
+			
+		} else {
+		
+			[product setProductDescription:skProduct.localizedDescription];			
+			[product setPrice:skProduct.price];
+			[product setLocalizedPrice:localizedPrice];
+		}
 	}];
 	
 	
@@ -134,6 +160,13 @@
 			
 			ProductKind kind = [self productKindFromServerKey:[item objectForKey:@"key"]];
 			
+			id productIdentifier = [item objectForKey:@"identifier"];
+			
+			Product *newProduct = (Product *)[repo insertNewObject];
+			[newProduct setImagePath:imagePath];
+			[newProduct setKind:kind];
+			[newProduct setIdentifier:productIdentifier];
+			
 			NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
 			if (durations) {
 				
@@ -141,22 +174,16 @@
 					
 					[identifiers addObject:key];
 					
-					Product *newProduct = (Product *)[repo insertNewObject];
-					[newProduct setImagePath:imagePath];
-					[newProduct setKind:kind];
-					[newProduct setIdentifier:key];					
-					[newProduct setSubTitle:obj];
+					Product *subscription = [repo addSubscriptionToProduct:newProduct];
+					[subscription setImagePath:imagePath];
+					[subscription setKind:kind];
+					[subscription setIdentifier:key];
+					[subscription setProductDescription:obj];
 				}];
 				
 			} else {
 				
-				id identifier = [item objectForKey:@"identifier"];
-				[identifiers addObject:identifier];
-				
-				Product *newProduct = (Product *)[repo insertNewObject];
-				[newProduct setImagePath:imagePath];
-				[newProduct setKind:kind];
-				[newProduct setIdentifier:identifier];				
+				[identifiers addObject:productIdentifier];
 			}
 		}];
 		
@@ -238,6 +265,12 @@
 	}
 	
 	return ProductKindUnknown;
+}
+
+- (NSString *)priceFromProduct:(SKProduct *)product {
+	
+	[currencyFormatter setLocale:product.priceLocale];
+	return [currencyFormatter stringFromNumber:product.price];
 }
 
 - (void)notifyDelegateDidUpdate {

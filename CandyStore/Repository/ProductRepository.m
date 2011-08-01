@@ -30,4 +30,33 @@
 }
 
 
+#pragma mark -
+#pragma mark ProductRepository
+- (Product *)addSubscriptionToProduct:(Product *)product {
+	
+	Product *newSubscription = (Product *)[self insertNewObject];
+	[product addSubscriptionsObject:newSubscription];
+	[newSubscription setParent:product];
+	
+	return newSubscription;
+}
+
+- (void)removeSubscriptionFromProduct:(Product *)subscription; {
+	
+	Product *product = subscription.parent;
+	if (!product) return;
+	
+	[product removeSubscriptionsObject:subscription];
+	[subscription setParent:nil];
+	[self.managedObjectContext deleteObject:subscription];
+}
+
+- (NSFetchedResultsController *)controllerforCandyShop {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil"];
+	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
+
 @end
+
