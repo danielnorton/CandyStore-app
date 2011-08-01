@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B21C6A813E357A900E5AD14 /* ShopItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */; };
 		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
+		9B4C3B0613E6758400ED19D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4C3B0513E6758400ED19D6 /* QuartzCore.framework */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
 		9B56B94413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94313D9ED5300A65543 /* CoreGraphics.framework */; };
@@ -49,6 +51,12 @@
 		9BCE6CF513E0CBC000C58AB0 /* ProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */; };
 		9BCE6D1813E229E100C58AB0 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6D1713E229E100C58AB0 /* Product.m */; };
 		9BCE6D1B13E22A0F00C58AB0 /* Product+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6D1A13E22A0F00C58AB0 /* Product+model.m */; };
+		9BD2EE9313E35E1400594DF1 /* ShopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */; };
+		9BD2EE9813E3674600594DF1 /* blueBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9413E3674600594DF1 /* blueBuyButton.png */; };
+		9BD2EE9913E3674600594DF1 /* blueBuyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */; };
+		9BD2EE9A13E3674600594DF1 /* greenBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9613E3674600594DF1 /* greenBuyButton.png */; };
+		9BD2EE9B13E3674600594DF1 /* greenBuyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9713E3674600594DF1 /* greenBuyButton@2x.png */; };
+		9BD2EE9E13E367D000594DF1 /* BuyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9D13E367D000594DF1 /* BuyButton.m */; };
 		9BD51DBD13E3434C009A417E /* shopPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD51DBB13E3434C009A417E /* shopPlaceholder.png */; };
 		9BD51DBE13E3434C009A417E /* shopPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD51DBC13E3434C009A417E /* shopPlaceholder@2x.png */; };
 		9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD51DC013E345D9009A417E /* ImageCachingService.m */; };
@@ -92,8 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemCell.xib; sourceTree = "<group>"; };
 		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
 		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
+		9B4C3B0513E6758400ED19D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B56B93F13D9ED5300A65543 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B56B94113D9ED5300A65543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,6 +165,14 @@
 		9BCE6D1713E229E100C58AB0 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9BCE6D1913E22A0F00C58AB0 /* Product+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Product+model.h"; sourceTree = "<group>"; };
 		9BCE6D1A13E22A0F00C58AB0 /* Product+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Product+model.m"; sourceTree = "<group>"; };
+		9BD2EE9113E35E1400594DF1 /* ShopItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemCell.h; sourceTree = "<group>"; };
+		9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemCell.m; sourceTree = "<group>"; };
+		9BD2EE9413E3674600594DF1 /* blueBuyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueBuyButton.png; sourceTree = "<group>"; };
+		9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBuyButton@2x.png"; sourceTree = "<group>"; };
+		9BD2EE9613E3674600594DF1 /* greenBuyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBuyButton.png; sourceTree = "<group>"; };
+		9BD2EE9713E3674600594DF1 /* greenBuyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenBuyButton@2x.png"; sourceTree = "<group>"; };
+		9BD2EE9C13E367D000594DF1 /* BuyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyButton.h; sourceTree = "<group>"; };
+		9BD2EE9D13E367D000594DF1 /* BuyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyButton.m; sourceTree = "<group>"; };
 		9BD51DBB13E3434C009A417E /* shopPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopPlaceholder.png; sourceTree = "<group>"; };
 		9BD51DBC13E3434C009A417E /* shopPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopPlaceholder@2x.png"; sourceTree = "<group>"; };
 		9BD51DBF13E345D9009A417E /* ImageCachingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCachingService.h; sourceTree = "<group>"; };
@@ -212,6 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4C3B0613E6758400ED19D6 /* QuartzCore.framework in Frameworks */,
 				9BCE6CE713E0C45200C58AB0 /* StoreKit.framework in Frameworks */,
 				9BCE6CDF13E0BDB800C58AB0 /* CoreData.framework in Frameworks */,
 				9BF7619413DFDF6F00B7B70E /* SystemConfiguration.framework in Frameworks */,
@@ -235,6 +254,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B21C6A313E356E200E5AD14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B21C6A513E3572C00E5AD14 /* Cells */,
+				9BD2EE9C13E367D000594DF1 /* BuyButton.h */,
+				9BD2EE9D13E367D000594DF1 /* BuyButton.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9B21C6A513E3572C00E5AD14 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9BD2EE9113E35E1400594DF1 /* ShopItemCell.h */,
+				9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9B56B93013D9ED5300A65543 = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +301,7 @@
 				9B56B96013D9ED5300A65543 /* SenTestingKit.framework */,
 				9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */,
 				9BCE6CDE13E0BDB800C58AB0 /* CoreData.framework */,
+				9B4C3B0513E6758400ED19D6 /* QuartzCore.framework */,
 				9BCE6CE613E0C45200C58AB0 /* StoreKit.framework */,
 			);
 			name = Frameworks;
@@ -276,9 +315,10 @@
 				9B64118C13DDEE650099007A /* images */,
 				9B56B97A13D9EDF000A65543 /* Application */,
 				9B56B97D13D9EDF000A65543 /* Controllers */,
-				9B64119D13DDF0D00099007A /* Services */,
+				9B21C6A313E356E200E5AD14 /* Views */,
 				9BCE6CD813E0BD0400C58AB0 /* Model */,
 				9BCE6CEF13E0CB9400C58AB0 /* Repository */,
+				9B64119D13DDF0D00099007A /* Services */,
 				9B56B97913D9EDBA00A65543 /* en.lproj */,
 				9B56B94613D9ED5300A65543 /* Supporting Files */,
 				9BF7617313DFDD9D00B7B70E /* Third Party */,
@@ -336,6 +376,7 @@
 				9B64117A13DDCE880099007A /* CandyJarViewController.xib */,
 				9B64117D13DDCE950099007A /* CandyShopViewController.xib */,
 				9B64118013DDCEA50099007A /* CandyExchangeViewController.xib */,
+				9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -377,6 +418,10 @@
 				9B64119413DDEE660099007A /* smallJarTab@2x.png */,
 				9BD51DBB13E3434C009A417E /* shopPlaceholder.png */,
 				9BD51DBC13E3434C009A417E /* shopPlaceholder@2x.png */,
+				9BD2EE9413E3674600594DF1 /* blueBuyButton.png */,
+				9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */,
+				9BD2EE9613E3674600594DF1 /* greenBuyButton.png */,
+				9BD2EE9713E3674600594DF1 /* greenBuyButton@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -606,6 +651,11 @@
 				9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */,
 				9BD51DBD13E3434C009A417E /* shopPlaceholder.png in Resources */,
 				9BD51DBE13E3434C009A417E /* shopPlaceholder@2x.png in Resources */,
+				9B21C6A813E357A900E5AD14 /* ShopItemCell.xib in Resources */,
+				9BD2EE9813E3674600594DF1 /* blueBuyButton.png in Resources */,
+				9BD2EE9913E3674600594DF1 /* blueBuyButton@2x.png in Resources */,
+				9BD2EE9A13E3674600594DF1 /* greenBuyButton.png in Resources */,
+				9BD2EE9B13E3674600594DF1 /* greenBuyButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +724,8 @@
 				9BCAA79013E3196200C92FBB /* UIViewController+barButtons.m in Sources */,
 				9BCAA79313E31AAE00C92FBB /* UITableViewCell+activity.m in Sources */,
 				9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */,
+				9BD2EE9313E35E1400594DF1 /* ShopItemCell.m in Sources */,
+				9BD2EE9E13E367D000594DF1 /* BuyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +752,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B21C6A713E357A900E5AD14 /* en */,
+			);
+			name = ShopItemCell.xib;
+			sourceTree = "<group>";
+		};
 		9B56B94813D9ED5300A65543 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

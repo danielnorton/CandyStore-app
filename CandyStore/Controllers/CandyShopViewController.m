@@ -14,9 +14,24 @@
 
 @implementation CandyShopViewController
 
+@synthesize shopItemCell;
 
 #pragma mark -
+#pragma mark NSObject
+- (void)dealloc {
+	
+	[shopItemCell release];
+	[super dealloc];
+}
+
+
 #pragma mark UIViewController
+- (void)viewDidUnload {
+	[super viewDidUnload];
+	
+	[self setShopItemCell:nil];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -48,6 +63,7 @@
 		static NSString *refreshingCellIdentifier = @"refreshingCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:refreshingCellIdentifier];
 		if (!cell) {
+			
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier] autorelease];
 		}
 		
@@ -55,18 +71,13 @@
 		return cell;
 	}
 	
-	NSLog(@"cellForRowAtIndexPath: row:%d section:%d", indexPath.row, indexPath.section);
-	
-	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	NSString *identifier = [NSString stringWithFormat:@"%d", product.kind];
+	static NSString *identifier = @"shopItemCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (!cell) {
-		
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
-		
-		[cell.imageView.layer setMasksToBounds:YES];
-		[cell.imageView.layer setCornerRadius:5.0f];
-		[cell.imageView setImage:[UIImage imageNamed:@"shopPlaceholder"]];		
+
+		[[NSBundle mainBundle] loadNibNamed:@"ShopItemCell" owner:self options:nil];
+		cell = shopItemCell;
+		[self setShopItemCell:nil];
 	}
 	
 	[self configureCell:cell atIndexPath:indexPath];
@@ -74,27 +85,11 @@
 	return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+
+#pragma mark UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if ([self shouldShowRefreshingCell]) return nil;
-	
-	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
-	int sectionKind = [[info name] integerValue];
-	
-	switch (sectionKind) {
-			
-		case ProductKindExchange:
-			return NSLocalizedString(@"Candy Exchange", @"Candy Exchange");
-			
-		case ProductKindBigCandyJar:
-			return NSLocalizedString(@"Big Candy Jar", @"Big Candy Jar");
-			
-		case ProductKindCandy:
-			return NSLocalizedString(@"Candy", @"Candy");
-			
-		default:
-			return nil;
-	}
+	return 66.0f;
 }
 
 
@@ -106,12 +101,12 @@
 
 
 #pragma RefreshingTableViewController
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
+	ShopItemCell *cell = (ShopItemCell *)aCell;
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	
-	[cell.textLabel setText:product.title];
-	[cell.detailTextLabel setText:product.subTitle];
+	[cell.buyButton setTitle:@"$123.99" forState:UIControlStateNormal];
+	[cell.buyButton setTitle:NSLocalizedString(@"BUY NOW", @"BUY NOW") forState:UIControlStateSelected];
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
@@ -122,7 +117,7 @@
 		
 	} else {
 		
-		[cell.imageView setImage:image];
+		[cell.iconView setImage:image];
 	}
 	
 	[service release];
