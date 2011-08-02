@@ -19,7 +19,7 @@
 	[self setTypeName:@"Product"];
 	
 	NSSortDescriptor *kindSort = [NSSortDescriptor sortDescriptorWithKey:@"productKindData" ascending:YES];
-	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
 	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
 	[self setDefaultSortDescriptors:sortDescriptors];
 
@@ -51,7 +51,7 @@
 	[self.managedObjectContext deleteObject:subscription];
 }
 
-- (NSFetchedResultsController *)controllerforCandyShop {
+- (NSFetchedResultsController *)controllerForCandyShop {
 	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil"];
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];

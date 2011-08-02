@@ -18,4 +18,5 @@
 	return [self.productKindData integerValue];
 }
 
+
 @end

@@ -44,7 +44,7 @@
 	
 	NSError *error = nil;
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	NSFetchedResultsController *controller = [repo controllerforCandyShop];
+	NSFetchedResultsController *controller = [repo controllerForCandyShop];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
 	[repo release];

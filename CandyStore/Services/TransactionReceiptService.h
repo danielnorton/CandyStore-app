@@ -8,6 +8,12 @@
 
 #import <StoreKit/StoreKit.h>
 
+extern NSString * const TransactionReceiptServiceNotificationProcessing;
+extern NSString * const TransactionReceiptServiceNotificationCompleted;
+extern NSString * const TransactionReceiptServiceNotificationFailed;
+extern NSString * const TransactionReceiptServiceKeyTransaction;
+
+
 @interface TransactionReceiptService : NSObject <SKPaymentTransactionObserver>
 
 - (void)beginObserving;

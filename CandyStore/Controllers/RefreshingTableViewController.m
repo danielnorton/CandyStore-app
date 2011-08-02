@@ -140,35 +140,41 @@
 	[self setBarButtonsEnabled:NO withToolbar:nil withLeftBarButtonItem:nil];
 	
 	UITableView *tableView = self.tableView;
-	
 	NSArray *sections = [fetchedResultsController sections];
-	int count = (sections.count == 0)
-	? 0
-	: sections.count - 1;
-	
 	[fetchedResultsController setDelegate:nil];
 	[tableView beginUpdates];
 	
-	NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:sections.count];
-	NSIndexSet *removeSections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, count)];
-	
-	for (int i = 0; i < sections.count; i++) {
-		
-		id<NSFetchedResultsSectionInfo> section = [sections objectAtIndex:i];
-		int j = (i == 0) ? 1 : 0;
-		for (; j < [section numberOfObjects]; j++) {
-			
-			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-			[indexPaths addObject:indexPath];
-		}		
-	}
-	
-	[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-	[tableView deleteSections:removeSections withRowAnimation:UITableViewRowAnimationFade];
-	
 	NSIndexSet *top = [NSIndexSet indexSetWithIndex:0];
-	[tableView reloadSections:top withRowAnimation:UITableViewRowAnimationNone];
 	
+	if (sections.count == 0) {
+		
+		[tableView insertSections:top withRowAnimation:UITableViewRowAnimationFade];
+		
+		NSArray *refreshRows = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+		[tableView insertRowsAtIndexPaths:refreshRows withRowAnimation:UITableViewRowAnimationFade];
+		
+	} else {
+		
+		int count = sections.count - 1;
+		NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:sections.count];
+		NSIndexSet *removeSections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, count)];
+		
+		for (int i = 0; i < sections.count; i++) {
+			
+			id<NSFetchedResultsSectionInfo> section = [sections objectAtIndex:i];
+			int j = (i == 0) ? 1 : 0;
+			for (; j < [section numberOfObjects]; j++) {
+				
+				NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+				[indexPaths addObject:indexPath];
+			}		
+		}
+		
+		[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+		[tableView deleteSections:removeSections withRowAnimation:UITableViewRowAnimationFade];
+		[tableView reloadSections:top withRowAnimation:UITableViewRowAnimationNone];
+	}
+
 	[tableView endUpdates];
 }
 

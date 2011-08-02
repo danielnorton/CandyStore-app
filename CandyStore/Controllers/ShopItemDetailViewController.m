@@ -6,8 +6,10 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+#import <StoreKit/StoreKit.h>
 #import "ShopItemDetailViewController.h"
 #import "Style.h"
+#import "TransactionReceiptService.h"
 
 
 #define kPurchaseCellHeight 66.0f
@@ -60,6 +62,32 @@
 	
 	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	[self setTitle:product.title];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	void(^reset)(NSNotification *) = ^(NSNotification *notification) {
+		
+		[self.navigationController.view setUserInteractionEnabled:YES];
+		[self.tableView reloadData];
+	};
+	
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationCompleted
+													  object:nil
+													   queue:nil
+												  usingBlock:reset];
+	
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationFailed
+													  object:nil
+													   queue:nil
+												  usingBlock:reset];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -152,8 +180,12 @@
 	[self setActiveBuyButtonIndexPath:indexPath];
 }
 
-- (void)shopItemDetailPurchaseCell:(ShopItemDetailPurchaseCell *)cell didChooseToBuyProduct:(Product *)product {
+- (void)shopItemDetailPurchaseCell:(ShopItemDetailPurchaseCell *)cell didChooseToBuyProduct:(Product *)aProduct {
 	
+	[self.navigationController.view setUserInteractionEnabled:NO];
+	
+	SKPayment *payment = [SKPayment paymentWithProductIdentifier:aProduct.identifier];
+	[[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 
@@ -207,6 +239,8 @@
 		titleLabelFrame.origin.x = kTitleLabelProductX;
 		[cell.titleLabel setFont:[UIFont productTitleFont]];
 		[cell.titleLabel setShadowColor:[UIColor productTitleShadowColor]];
+
+		[cell setProduct:product];
 		
 		[cell.iconView setHidden:NO];
 		ImageCachingService *service = [[ImageCachingService alloc] init];
@@ -242,6 +276,7 @@
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"index == %d", indexPath.row - 1];
 		Product *subscription = (Product *)[[product.subscriptions filteredSetUsingPredicate:pred] anyObject];
 		
+		[cell setProduct:subscription];
 		[cell.titleLabel setText:subscription.productDescription];
 		[cell.titleLabel setFont:[UIFont subscriptionTitleFont]];
 		[cell.titleLabel setShadowColor:[UIColor subscriptionTitleShadowColor]];

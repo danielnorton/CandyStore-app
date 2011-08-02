@@ -14,6 +14,6 @@
 
 - (Product *)addSubscriptionToProduct:(Product *)product;
 - (void)removeSubscriptionFromProduct:(Product *)subscription;
-- (NSFetchedResultsController *)controllerforCandyShop;
+- (NSFetchedResultsController *)controllerForCandyShop;
 
 @end

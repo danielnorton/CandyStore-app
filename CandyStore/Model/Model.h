@@ -10,3 +10,4 @@
 #import "Product.h"
 #import "Product+model.h"
 
+#import "Purchase.h"

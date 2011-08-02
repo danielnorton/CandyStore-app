@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B13164413E729DA00D5253A /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164313E729DA00D5253A /* Product.m */; };
 		9B13164713E72E7600D5253A /* ShopListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B13164513E72E7600D5253A /* ShopListItemCell.xib */; };
 		9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164913E730CB00D5253A /* ShopListItemCell.m */; };
 		9B13164F13E73BBA00D5253A /* UIColor+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164E13E73BBA00D5253A /* UIColor+candy.m */; };
@@ -19,6 +18,9 @@
 		9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166313E7C1AC00D5253A /* UIFont+candy.m */; };
 		9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */; };
 		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
+		9B4AE67713E851A60034A43A /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AE67613E851A60034A43A /* Product.m */; };
+		9B4AE67A13E851A70034A43A /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AE67913E851A70034A43A /* Purchase.m */; };
+		9B4AE67D13E858630034A43A /* PurchaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AE67C13E858630034A43A /* PurchaseRepository.m */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
 		9B56B94413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94313D9ED5300A65543 /* CoreGraphics.framework */; };
@@ -108,8 +110,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9B13164213E729DA00D5253A /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		9B13164313E729DA00D5253A /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9B13164613E72E7600D5253A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopListItemCell.xib; sourceTree = "<group>"; };
 		9B13164813E730CB00D5253A /* ShopListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopListItemCell.h; sourceTree = "<group>"; };
 		9B13164913E730CB00D5253A /* ShopListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopListItemCell.m; sourceTree = "<group>"; };
@@ -130,6 +130,12 @@
 		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailPurchaseCell.xib; sourceTree = "<group>"; };
 		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
 		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
+		9B4AE67513E851A60034A43A /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		9B4AE67613E851A60034A43A /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		9B4AE67813E851A70034A43A /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
+		9B4AE67913E851A70034A43A /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
+		9B4AE67B13E858630034A43A /* PurchaseRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseRepository.h; sourceTree = "<group>"; };
+		9B4AE67C13E858630034A43A /* PurchaseRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRepository.m; sourceTree = "<group>"; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B56B93F13D9ED5300A65543 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B56B94113D9ED5300A65543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -503,8 +509,10 @@
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
 				9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */,
-				9B13164213E729DA00D5253A /* Product.h */,
-				9B13164313E729DA00D5253A /* Product.m */,
+				9B4AE67813E851A70034A43A /* Purchase.h */,
+				9B4AE67913E851A70034A43A /* Purchase.m */,
+				9B4AE67513E851A60034A43A /* Product.h */,
+				9B4AE67613E851A60034A43A /* Product.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +524,8 @@
 				9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */,
 				9BCE6CF313E0CBC000C58AB0 /* ProductRepository.h */,
 				9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */,
+				9B4AE67B13E858630034A43A /* PurchaseRepository.h */,
+				9B4AE67C13E858630034A43A /* PurchaseRepository.m */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -774,7 +784,6 @@
 				9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */,
 				9BD2EE9313E35E1400594DF1 /* ShopItemDetailPurchaseCell.m in Sources */,
 				9BD2EE9E13E367D000594DF1 /* BuyButton.m in Sources */,
-				9B13164413E729DA00D5253A /* Product.m in Sources */,
 				9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */,
 				9B13164F13E73BBA00D5253A /* UIColor+candy.m in Sources */,
 				9B13165513E73C8B00D5253A /* UIColor+helpers.m in Sources */,
@@ -782,6 +791,9 @@
 				9B13165E13E74ABE00D5253A /* ShopItemDetailViewController.m in Sources */,
 				9B13166113E74B7200D5253A /* UIViewController+newWithDefaultNib.m in Sources */,
 				9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */,
+				9B4AE67713E851A60034A43A /* Product.m in Sources */,
+				9B4AE67A13E851A70034A43A /* Purchase.m in Sources */,
+				9B4AE67D13E858630034A43A /* PurchaseRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
