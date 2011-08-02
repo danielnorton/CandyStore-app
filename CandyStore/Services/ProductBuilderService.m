@@ -158,6 +158,7 @@ NSNumberFormatter *currencyFormatter;
 		[product setKind:kind];
 		[product setIndex:[NSNumber numberWithInteger:idx]];
 		[product setIsActive:YES];
+		[product setInternalKey:[item objectForKey:@"key"]];
 		
 		NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
 		if (durations) {

@@ -19,4 +19,8 @@
 - (NSFetchedResultsController *)controllerForCandyShop;
 - (void)setAllProductsInactive;
 
+- (Purchase *)addPurchaseToProduct:(Product *)product;
+- (void)removePurchaseFromProduct:(Purchase *)purchase;
+- (NSFetchedResultsController *)controllerForMyCandyJar;
+
 @end

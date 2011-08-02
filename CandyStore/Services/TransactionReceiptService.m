@@ -10,7 +10,6 @@
 #import "TransactionReceiptService.h"
 #import "Model.h"
 #import "ProductRepository.h"
-#import "PurchaseRepository.h"
 
 
 NSString * const TransactionReceiptServiceNotificationProcessing = @"TransactionReceiptServiceNotificationProcessing";
@@ -48,25 +47,23 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 		if ((transaction.transactionState == SKPaymentTransactionStatePurchased)
 			|| (transaction.transactionState == SKPaymentTransactionStateRestored)) {
 			
-			ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-			PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+			ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 		
-			Product *product = (Product *)[productRepo itemForId:identifier];
+			Product *product = (Product *)[repo itemForId:identifier];
 			if (product) {
 				
-				Purchase *purchase = [purchaseRepo addPurchaseToProduct:product];
+				Purchase *purchase = [repo addPurchaseToProduct:product];
 				[purchase setTransactionIdentifier:transactionIdentifier];
 				[purchase setQuantity:[NSNumber numberWithInteger:payment.quantity]];
 			}
 			
 			NSError *error = nil;
-			if (![purchaseRepo save:&error]) {
+			if (![repo save:&error]) {
 				
 				// TODO: still thinking of what to do if this fails.
 			}
 			
-			[productRepo release];
-			[purchaseRepo release];
+			[repo release];
 			
 			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 			
@@ -75,7 +72,6 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 		} else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
 			
 			[self notifyName:TransactionReceiptServiceNotificationFailed forTransaction:transaction];
-			
 		}
 	}];
 }

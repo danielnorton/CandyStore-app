@@ -6,7 +6,6 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface ShopListItemCell : UITableViewCell
 

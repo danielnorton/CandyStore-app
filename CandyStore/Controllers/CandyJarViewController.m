@@ -8,7 +8,8 @@
 
 #import "CandyJarViewController.h"
 #import "Model.h"
-#import "PurchaseRepository.h"
+#import "ProductRepository.h"
+#import "CandyShopService.h"
 
 
 #define kWelcomeViewTag -9999
@@ -18,6 +19,8 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 - (void)loadWelcomeView;
+- (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadVisibleCells;
 
 @end
 
@@ -26,6 +29,7 @@
 
 @synthesize welcomeView;
 @synthesize tableView;
+@synthesize jarListItemCell;
 @synthesize fetchedResultsController;
 
 #pragma mark -
@@ -34,6 +38,7 @@
 	
 	[welcomeView release];
 	[tableView release];
+	[jarListItemCell release];
 	[fetchedResultsController release];
 	[super dealloc];
 }
@@ -54,12 +59,12 @@
 	[self loadWelcomeView];
 	
 	NSError *error = nil;
-	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSFetchedResultsController *controller = [repo controllerForMyCandyJar];
 	[controller setDelegate:self];
-	[self setFetchedResultsController:controller];
 	[repo release];
 	
+	[self setFetchedResultsController:controller];
 	if (![fetchedResultsController performFetch:&error]) {
 		
 		// TODO: handle error
@@ -89,6 +94,11 @@
 
 
 #pragma mark UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	
+	return fetchedResultsController.sections.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	id<NSFetchedResultsSectionInfo> info = [fetchedResultsController.sections objectAtIndex:section];
@@ -96,17 +106,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"MyCell";
 
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"JarListItemCell";
+    JarListItemCell *cell = (JarListItemCell *)[aTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+		
+		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
+		cell = self.jarListItemCell;
+		[self setJarListItemCell:nil];
     }
-
-	Purchase *purchase = (Purchase *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    [cell.textLabel setText:purchase.product.title];
-
+	
+	[self configureCell:cell atIndexPath:indexPath];
+	
     return cell;
+}
+
+
+#pragma mark UITableViewDelegate
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 115.0f;
 }
 
 
@@ -117,6 +135,74 @@
 		
 		[welcomeView setAlpha:1.0f];
 	}];
+}
+
+
+#pragma mark NSFetchedResultsControllerDelegate
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+	
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:(JarListItemCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+
+#pragma mark ImageCachingServiceDelegate
+- (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
+	
+	[self reloadVisibleCells];
+}
+
+
+#pragma mark JarListItemCellDelegate
+- (void)jarListItemCell:(JarListItemCell *)cell didEatOneProduct:(Product *)product {
+	
+	// TODO:
+}
+
+- (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
+
+	// TODO:
 }
 
 
@@ -136,4 +222,50 @@
 	[self.view addSubview:welcomeView];
 }
 
+- (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	
+	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	
+	NSNumber *count = [product valueForKeyPath:@"purchases.@count"];
+    [cell.titleLabel setText:product.title];
+	[cell.quantityLabel setText:[count stringValue]];
+
+	if (count.integerValue == 1) {
+		
+		[cell.eatButton setTitle:NSLocalizedString(@"Eat It", @"Eat It") forState:UIControlStateNormal];
+		[cell.exchangeButton setTitle:NSLocalizedString(@"Add to Exchange", @"Add to Exchange") forState:UIControlStateNormal];
+		
+	} else {
+		
+		[cell.eatButton setTitle:NSLocalizedString(@"Eat One", @"Eat One") forState:UIControlStateNormal];
+		[cell.exchangeButton setTitle:NSLocalizedString(@"Add 1 to Exchange", @"Add 1 to Exchange") forState:UIControlStateNormal];
+	}
+
+	ImageCachingService *service = [[ImageCachingService alloc] init];
+	UIImage *image = [service cachedImageAtPath:product.imagePath];
+	if (!image) {
+		
+		[service setDelegate:self];
+		[service beginLoadingImageAtPath:product.imagePath withUserData:indexPath];
+		
+	} else {
+		
+		[cell.iconView setImage:image];
+	}
+	[service release];
+}
+
+- (void)reloadVisibleCells {
+	
+	NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+	for (NSIndexPath *indexPath in visiblePaths) {
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+		[self configureCell:(JarListItemCell *)cell atIndexPath:indexPath];
+	}
+}
+
+
 @end
+

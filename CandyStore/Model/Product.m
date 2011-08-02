@@ -7,7 +7,6 @@
 //
 
 #import "Product.h"
-#import "Product.h"
 
 
 @implementation Product
@@ -20,6 +19,7 @@
 @dynamic productDescription;
 @dynamic productKindData;
 @dynamic title;
+@dynamic internalKey;
 @dynamic parent;
 @dynamic subscriptions;
 @dynamic purchases;

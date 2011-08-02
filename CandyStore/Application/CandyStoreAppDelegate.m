@@ -14,6 +14,7 @@
 #import "HTTPRequestService.h"
 #import "Model.h"
 #import "TransactionReceiptService.h"
+#import "CandyShopService.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -81,7 +82,7 @@
 	[service reset];
 	[service release];
 
-//	[self updateProducts];
+	[self updateProducts];
 }
 
 
@@ -91,10 +92,9 @@
 	int index = [aTabBarController.viewControllers indexOfObject:viewController];
 	if (index != kExchangeTabIndex) return YES;
 
-// TODO: redo this
-//	if ([CandyShopService hasExchange]) {
-//		return YES;
-//	}
+	if ([CandyShopService hasExchange]) {
+		return YES;
+	}
 	
 	[self alertUserHasNotPurchasedExchange];
 	return NO;

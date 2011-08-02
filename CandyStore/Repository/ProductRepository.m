@@ -94,6 +94,32 @@
 	}];
 }
 
+- (Purchase *)addPurchaseToProduct:(Product *)product {
+	
+	Purchase *newPurchase = (Purchase *)[NSEntityDescription insertNewObjectForEntityForName:@"Purchase"
+																	  inManagedObjectContext:self.managedObjectContext];
+	[product addPurchasesObject:newPurchase];
+	[newPurchase setProduct:product];
+	
+	return newPurchase;
+}
+
+- (void)removePurchaseFromProduct:(Purchase *)purchase {
+	
+	Product *product = purchase.product;
+	if (!product) return;
+	
+	[product removePurchasesObject:purchase];
+	[purchase setProduct:nil];
+	[self.managedObjectContext deleteObject:purchase];
+}
+
+- (NSFetchedResultsController *)controllerForMyCandyJar {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"productKindData == %d && purchases.@count > 0", ProductKindCandy];
+	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
 
 @end
 
