@@ -16,6 +16,12 @@
 
 #define kShopListItemCellHeight 66.0f
 
+@interface CandyShopViewController()
+
+- (void)resetFetchedResultsController;
+
+@end
+
 
 @implementation CandyShopViewController
 
@@ -42,14 +48,10 @@
 
 	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	
-	NSError *error = nil;
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	NSFetchedResultsController *controller = [repo controllerForCandyShop];
-	[controller setDelegate:self];
-	[self setFetchedResultsController:controller];
-	[repo release];
-	
+	[self resetFetchedResultsController];
 	if ([self shouldShowRefreshingCell]) return;
+	
+	NSError *error = nil;	
 	if (![self.fetchedResultsController performFetch:&error]) {
 		
 		// TODO: handle error
@@ -184,6 +186,24 @@
 }
 
 
-@end
+#pragma mark -
+#pragma mark CandyShopViewController
+- (void)presentDataError:(NSString *)message {
+	
+	[self enableWithLoadingCellMessage:message];
+	[self resetFetchedResultsController];
+}
 
+
+#pragma mark Private Extension
+- (void)resetFetchedResultsController {
+
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	NSFetchedResultsController *controller = [repo controllerForCandyShop];
+	[controller setDelegate:self];
+	[self setFetchedResultsController:controller];
+	[repo release];
+}
+
+@end
 

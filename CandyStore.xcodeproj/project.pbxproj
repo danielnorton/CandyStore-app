@@ -76,8 +76,6 @@
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
 		9BF34F0413D9F18200C47028 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0213D9F18100C47028 /* appIcon.png */; };
 		9BF34F0513D9F18200C47028 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0313D9F18100C47028 /* appIcon@2x.png */; };
-		9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */; };
-		9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */; };
 		9BF5ED8813DE23A200C93BF5 /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8713DE23A200C93BF5 /* welcome */; };
 		9BF5ED8C13DE255D00C93BF5 /* NSObject+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */; };
 		9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */; };
@@ -168,8 +166,6 @@
 		9B64119213DDEE660099007A /* shopTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopTab@2x.png"; sourceTree = "<group>"; };
 		9B64119313DDEE660099007A /* smallJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallJarTab.png; sourceTree = "<group>"; };
 		9B64119413DDEE660099007A /* smallJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallJarTab@2x.png"; sourceTree = "<group>"; };
-		9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopServiceTests.h; sourceTree = "<group>"; };
-		9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopServiceTests.m; sourceTree = "<group>"; };
 		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF34F0213D9F18100C47028 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		9BF34F0313D9F18100C47028 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
-		9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopService.h; sourceTree = "<group>"; };
-		9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopService.m; sourceTree = "<group>"; };
 		9BF5ED8713DE23A200C93BF5 /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
 		9BF5ED8A13DE255D00C93BF5 /* NSObject+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+popup.h"; sourceTree = "<group>"; };
 		9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+popup.m"; sourceTree = "<group>"; };
@@ -390,8 +384,6 @@
 			children = (
 				9BF7615213DF911600B7B70E /* Category */,
 				9B56B96813D9ED5300A65543 /* Supporting Files */,
-				9B6411CA13DE12B30099007A /* CandyShopServiceTests.h */,
-				9B6411CB13DE12B30099007A /* CandyShopServiceTests.m */,
 				9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */,
 				9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */,
 				9BF761DE13DFF36400B7B70E /* AppProductRemoteServiceTests.h */,
@@ -485,8 +477,6 @@
 				9BF7616213DFDC2C00B7B70E /* HTTPRequestService.m */,
 				9BF7616313DFDC2C00B7B70E /* RemoteServiceBase.h */,
 				9BF7616413DFDC2C00B7B70E /* RemoteServiceBase.m */,
-				9BF5ED8413DE14A400C93BF5 /* CandyShopService.h */,
-				9BF5ED8513DE14A400C93BF5 /* CandyShopService.m */,
 				9BF5ED9113DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.h */,
 				9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */,
 				9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */,
@@ -754,7 +744,6 @@
 				9B64118513DDCF020099007A /* CandyJarViewController.m in Sources */,
 				9B64118813DDCF110099007A /* CandyShopViewController.m in Sources */,
 				9B64118B13DDCF200099007A /* CandyExchangeViewController.m in Sources */,
-				9BF5ED8613DE14A400C93BF5 /* CandyShopService.m in Sources */,
 				9BF5ED8C13DE255D00C93BF5 /* NSObject+popup.m in Sources */,
 				9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */,
 				9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */,
@@ -801,7 +790,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BF5ED8313DE142100C93BF5 /* CandyShopServiceTests.m in Sources */,
 				9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */,
 				9BF7615613DF915C00B7B70E /* NSObject+waitForCompletion.m in Sources */,
 				9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */,

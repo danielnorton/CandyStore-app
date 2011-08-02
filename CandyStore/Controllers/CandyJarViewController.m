@@ -7,11 +7,15 @@
 //
 
 #import "CandyJarViewController.h"
-#import "CandyShopService.h"
+#import "Model.h"
+#import "PurchaseRepository.h"
+
 
 #define kWelcomeViewTag -9999
 
 @interface CandyJarViewController()
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 - (void)loadWelcomeView;
 
@@ -22,6 +26,7 @@
 
 @synthesize welcomeView;
 @synthesize tableView;
+@synthesize fetchedResultsController;
 
 #pragma mark -
 #pragma mark NSObject
@@ -29,6 +34,7 @@
 	
 	[welcomeView release];
 	[tableView release];
+	[fetchedResultsController release];
 	[super dealloc];
 }
 
@@ -46,13 +52,35 @@
 	
 	[self.view addSubview:tableView];
 	[self loadWelcomeView];
+	
+	NSError *error = nil;
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	NSFetchedResultsController *controller = [repo controllerForMyCandyJar];
+	[controller setDelegate:self];
+	[self setFetchedResultsController:controller];
+	[repo release];
+	
+	if (![fetchedResultsController performFetch:&error]) {
+		
+		// TODO: handle error
+		[fetchedResultsController setDelegate:nil];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 		
 	[self.navigationController setNavigationBarHidden:YES];
-	[welcomeView setHidden:[CandyShopService hasCandy]];
+	
+	int count = [fetchedResultsController.managedObjectContext countForFetchRequest:fetchedResultsController.fetchRequest error:nil];
+	BOOL hasSome = (count > 0);
+	BOOL wasHidden = !welcomeView.isHidden;
+	[welcomeView setHidden:hasSome];
+	
+	if (wasHidden) {
+		
+		[tableView reloadData];
+	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -62,13 +90,23 @@
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 0;
+	
+	id<NSFetchedResultsSectionInfo> info = [fetchedResultsController.sections objectAtIndex:section];
+	return [info numberOfObjects];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"MyCell";
 
-#pragma mark UITableViewDelegate
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return nil;
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    }
+
+	Purchase *purchase = (Purchase *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell.textLabel setText:purchase.product.title];
+
+    return cell;
 }
 
 

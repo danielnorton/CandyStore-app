@@ -140,13 +140,15 @@
 	[self setBarButtonsEnabled:NO withToolbar:nil withLeftBarButtonItem:nil];
 	
 	UITableView *tableView = self.tableView;
-	NSArray *sections = [fetchedResultsController sections];
 	[fetchedResultsController setDelegate:nil];
+	
+	int sectionCount = [tableView numberOfSections];
+	
 	[tableView beginUpdates];
 	
 	NSIndexSet *top = [NSIndexSet indexSetWithIndex:0];
 	
-	if (sections.count == 0) {
+	if (sectionCount == 0) {
 		
 		[tableView insertSections:top withRowAnimation:UITableViewRowAnimationFade];
 		
@@ -155,19 +157,18 @@
 		
 	} else {
 		
-		int count = sections.count - 1;
-		NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:sections.count];
+		int count = sectionCount - 1;
+		NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:0];
 		NSIndexSet *removeSections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, count)];
 		
-		for (int i = 0; i < sections.count; i++) {
+		for (int i = 0; i < sectionCount; i++) {
 			
-			id<NSFetchedResultsSectionInfo> section = [sections objectAtIndex:i];
 			int j = (i == 0) ? 1 : 0;
-			for (; j < [section numberOfObjects]; j++) {
+			for (; j < [tableView numberOfRowsInSection:i]; j++) {
 				
 				NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
 				[indexPaths addObject:indexPath];
-			}		
+			}
 		}
 		
 		[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];

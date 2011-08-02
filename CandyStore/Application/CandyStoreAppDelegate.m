@@ -7,7 +7,6 @@
 //
 
 #import "CandyStoreAppDelegate.h"
-#import "CandyShopService.h"
 #import "ExchangeSubscriptionNotificationService.h"
 #import "NSObject+popup.h"
 #import "UIApplication+delegate.h"
@@ -91,10 +90,11 @@
 	
 	int index = [aTabBarController.viewControllers indexOfObject:viewController];
 	if (index != kExchangeTabIndex) return YES;
-	
-	if ([CandyShopService hasExchange]) {
-		return YES;
-	}
+
+// TODO: redo this
+//	if ([CandyShopService hasExchange]) {
+//		return YES;
+//	}
 	
 	[self alertUserHasNotPurchasedExchange];
 	return NO;
@@ -109,7 +109,7 @@
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
-	[candyShopViewController enableWithLoadingCellMessage:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
+	[candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
 }
 
 
