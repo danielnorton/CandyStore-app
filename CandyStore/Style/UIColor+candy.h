@@ -10,5 +10,8 @@
 
 + (UIColor *)darkGrayStoreColor;
 + (UIColor *)lightGrayStoreColor;
++ (UIColor *)shopTableSeperatorColor;
++ (UIColor *)productTitleShadowColor;
++ (UIColor *)subscriptionTitleShadowColor;
 
 @end

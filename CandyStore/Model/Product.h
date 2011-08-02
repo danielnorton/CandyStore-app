@@ -14,6 +14,7 @@
 @interface Product : NSManagedObject {
 @private
 }
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSDecimalNumber * price;

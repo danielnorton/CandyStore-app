@@ -19,4 +19,16 @@
 	return [UIColor colorFrom255Red:173 green:173 blue:176];
 }
 
++ (UIColor *)shopTableSeperatorColor {
+	return [UIColor darkGrayColor];
+}
+
++ (UIColor *)productTitleShadowColor {
+	return [self whiteColor];
+}
+
++ (UIColor *)subscriptionTitleShadowColor {
+	return [self lightGrayStoreColor];
+}
+
 @end

@@ -11,6 +11,10 @@
 #import "ProductRepository.h"
 #import "Style.h"
 #import "UITableViewCell+activity.h"
+#import "UIViewController+newWithDefaultNib.h"
+#import "ShopItemDetailViewController.h"
+
+#define kShopListItemCellHeight 66.0f
 
 
 @implementation CandyShopViewController
@@ -36,7 +40,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[self.tableView setSeparatorColor:[UIColor darkGrayColor]];
+	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	
 	NSError *error = nil;
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
@@ -90,6 +94,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
+	if	(self.fetchedResultsController.sections.count == 0) return nil;
+	
 	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
 	int productKind = [[info indexTitle] integerValue];
 	
@@ -102,7 +108,7 @@
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	return 66.0f;
+	return kShopListItemCellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,9 +122,21 @@
 	}
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	ShopItemDetailViewController *controller = [ShopItemDetailViewController newWithDefaultNib];
+	[controller setProduct:product];
+	
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
+}
+
 
 #pragma mark ImageCachingServiceDelegate
-- (void)ImageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
+- (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
 	
 	[self reloadVisibleCells];
 }
@@ -130,6 +148,7 @@
 	[super configureRefreshingCell:cell];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleWhite];
 	[cell.textLabel setTextColor:[UIColor whiteColor]];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
@@ -137,6 +156,7 @@
 	ShopListItemCell *cell = (ShopListItemCell *)aCell;
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell.titleLabel setText:product.title];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	
 	if (product.localizedPrice) {
 		
@@ -148,8 +168,7 @@
 		[cell.priceLabel setHidden:YES];
 		[cell.priceLabel setText:nil];
 	}
-	
-	
+		
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
 	if (!image) {
@@ -161,7 +180,6 @@
 		
 		[cell.iconView setImage:image];
 	}
-	
 	[service release];
 }
 

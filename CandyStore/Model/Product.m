@@ -11,6 +11,7 @@
 
 
 @implementation Product
+@dynamic index;
 @dynamic identifier;
 @dynamic imagePath;
 @dynamic price;

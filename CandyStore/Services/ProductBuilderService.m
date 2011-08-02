@@ -166,10 +166,12 @@ NSNumberFormatter *currencyFormatter;
 			[newProduct setImagePath:imagePath];
 			[newProduct setKind:kind];
 			[newProduct setIdentifier:productIdentifier];
+			[newProduct setIndex:[NSNumber numberWithInteger:idx]];
 			
 			NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
 			if (durations) {
 				
+				__block int subscriptionIndex = 0;
 				[durations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 					
 					[identifiers addObject:key];
@@ -179,6 +181,8 @@ NSNumberFormatter *currencyFormatter;
 					[subscription setKind:kind];
 					[subscription setIdentifier:key];
 					[subscription setProductDescription:obj];
+					[subscription setIndex:[NSNumber numberWithInteger:subscriptionIndex]];
+					subscriptionIndex++;
 				}];
 				
 			} else {

@@ -3,6 +3,7 @@
     <entity name="Product" representedClassName="Product">
         <attribute name="identifier" optional="YES" attributeType="String"/>
         <attribute name="imagePath" optional="YES" attributeType="String"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32"/>
         <attribute name="localizedPrice" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Decimal"/>
         <attribute name="productDescription" optional="YES" attributeType="String"/>
@@ -12,6 +13,6 @@
         <relationship name="subscriptions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Product" inverseName="parent" inverseEntity="Product"/>
     </entity>
     <elements>
-        <element name="Product" positionX="-2511" positionY="-801" width="128" height="180"/>
+        <element name="Product" positionX="-2511" positionY="-801" width="128" height="195"/>
     </elements>
 </model>

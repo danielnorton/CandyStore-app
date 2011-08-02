@@ -12,7 +12,12 @@
 		9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164913E730CB00D5253A /* ShopListItemCell.m */; };
 		9B13164F13E73BBA00D5253A /* UIColor+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164E13E73BBA00D5253A /* UIColor+candy.m */; };
 		9B13165513E73C8B00D5253A /* UIColor+helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13165413E73C8B00D5253A /* UIColor+helpers.m */; };
-		9B21C6A813E357A900E5AD14 /* ShopItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */; };
+		9B13165813E7480700D5253A /* TransactionReceiptService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13165713E7480700D5253A /* TransactionReceiptService.m */; };
+		9B13165B13E74AA700D5253A /* ShopItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B13165913E74AA700D5253A /* ShopItemDetailViewController.xib */; };
+		9B13165E13E74ABE00D5253A /* ShopItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13165D13E74ABE00D5253A /* ShopItemDetailViewController.m */; };
+		9B13166113E74B7200D5253A /* UIViewController+newWithDefaultNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */; };
+		9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166313E7C1AC00D5253A /* UIFont+candy.m */; };
+		9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */; };
 		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
@@ -54,7 +59,7 @@
 		9BCE6CF213E0CB9400C58AB0 /* RepositoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */; };
 		9BCE6CF513E0CBC000C58AB0 /* ProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */; };
 		9BCE6D1B13E22A0F00C58AB0 /* Product+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6D1A13E22A0F00C58AB0 /* Product+model.m */; };
-		9BD2EE9313E35E1400594DF1 /* ShopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */; };
+		9BD2EE9313E35E1400594DF1 /* ShopItemDetailPurchaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9213E35E1400594DF1 /* ShopItemDetailPurchaseCell.m */; };
 		9BD2EE9813E3674600594DF1 /* blueBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9413E3674600594DF1 /* blueBuyButton.png */; };
 		9BD2EE9913E3674600594DF1 /* blueBuyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */; };
 		9BD2EE9A13E3674600594DF1 /* greenBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD2EE9613E3674600594DF1 /* greenBuyButton.png */; };
@@ -113,7 +118,16 @@
 		9B13164E13E73BBA00D5253A /* UIColor+candy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+candy.m"; sourceTree = "<group>"; };
 		9B13165313E73C8B00D5253A /* UIColor+helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+helpers.h"; sourceTree = "<group>"; };
 		9B13165413E73C8B00D5253A /* UIColor+helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+helpers.m"; sourceTree = "<group>"; };
-		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemCell.xib; sourceTree = "<group>"; };
+		9B13165613E7480700D5253A /* TransactionReceiptService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionReceiptService.h; sourceTree = "<group>"; };
+		9B13165713E7480700D5253A /* TransactionReceiptService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceiptService.m; sourceTree = "<group>"; };
+		9B13165A13E74AA700D5253A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailViewController.xib; sourceTree = "<group>"; };
+		9B13165C13E74ABD00D5253A /* ShopItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemDetailViewController.h; sourceTree = "<group>"; };
+		9B13165D13E74ABE00D5253A /* ShopItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemDetailViewController.m; sourceTree = "<group>"; };
+		9B13165F13E74B7200D5253A /* UIViewController+newWithDefaultNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+newWithDefaultNib.h"; sourceTree = "<group>"; };
+		9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+newWithDefaultNib.m"; sourceTree = "<group>"; };
+		9B13166213E7C1AC00D5253A /* UIFont+candy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+candy.h"; sourceTree = "<group>"; };
+		9B13166313E7C1AC00D5253A /* UIFont+candy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+candy.m"; sourceTree = "<group>"; };
+		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailPurchaseCell.xib; sourceTree = "<group>"; };
 		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
 		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,8 +189,8 @@
 		9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductRepository.m; sourceTree = "<group>"; };
 		9BCE6D1913E22A0F00C58AB0 /* Product+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Product+model.h"; sourceTree = "<group>"; };
 		9BCE6D1A13E22A0F00C58AB0 /* Product+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Product+model.m"; sourceTree = "<group>"; };
-		9BD2EE9113E35E1400594DF1 /* ShopItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemCell.h; sourceTree = "<group>"; };
-		9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemCell.m; sourceTree = "<group>"; };
+		9BD2EE9113E35E1400594DF1 /* ShopItemDetailPurchaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemDetailPurchaseCell.h; sourceTree = "<group>"; };
+		9BD2EE9213E35E1400594DF1 /* ShopItemDetailPurchaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemDetailPurchaseCell.m; sourceTree = "<group>"; };
 		9BD2EE9413E3674600594DF1 /* blueBuyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueBuyButton.png; sourceTree = "<group>"; };
 		9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBuyButton@2x.png"; sourceTree = "<group>"; };
 		9BD2EE9613E3674600594DF1 /* greenBuyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBuyButton.png; sourceTree = "<group>"; };
@@ -269,6 +283,8 @@
 				9B13164C13E73BA500D5253A /* Style.h */,
 				9B13164D13E73BBA00D5253A /* UIColor+candy.h */,
 				9B13164E13E73BBA00D5253A /* UIColor+candy.m */,
+				9B13166213E7C1AC00D5253A /* UIFont+candy.h */,
+				9B13166313E7C1AC00D5253A /* UIFont+candy.m */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -286,8 +302,8 @@
 		9B21C6A513E3572C00E5AD14 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9BD2EE9113E35E1400594DF1 /* ShopItemCell.h */,
-				9BD2EE9213E35E1400594DF1 /* ShopItemCell.m */,
+				9BD2EE9113E35E1400594DF1 /* ShopItemDetailPurchaseCell.h */,
+				9BD2EE9213E35E1400594DF1 /* ShopItemDetailPurchaseCell.m */,
 				9B13164813E730CB00D5253A /* ShopListItemCell.h */,
 				9B13164913E730CB00D5253A /* ShopListItemCell.m */,
 			);
@@ -397,8 +413,9 @@
 				9B64117A13DDCE880099007A /* CandyJarViewController.xib */,
 				9B64117D13DDCE950099007A /* CandyShopViewController.xib */,
 				9B64118013DDCEA50099007A /* CandyExchangeViewController.xib */,
-				9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */,
+				9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */,
 				9B13164513E72E7600D5253A /* ShopListItemCell.xib */,
+				9B13165913E74AA700D5253A /* ShopItemDetailViewController.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -423,6 +440,8 @@
 				9B64118A13DDCF200099007A /* CandyExchangeViewController.m */,
 				9BCAA78A13E316EF00C92FBB /* RefreshingTableViewController.h */,
 				9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */,
+				9B13165C13E74ABD00D5253A /* ShopItemDetailViewController.h */,
+				9B13165D13E74ABE00D5253A /* ShopItemDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -470,6 +489,8 @@
 				9BCE6CE913E0C5D700C58AB0 /* ProductBuilderService.m */,
 				9BD51DBF13E345D9009A417E /* ImageCachingService.h */,
 				9BD51DC013E345D9009A417E /* ImageCachingService.m */,
+				9B13165613E7480700D5253A /* TransactionReceiptService.h */,
+				9B13165713E7480700D5253A /* TransactionReceiptService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -525,6 +546,8 @@
 				9BCAA79213E31AAD00C92FBB /* UITableViewCell+activity.m */,
 				9B13165313E73C8B00D5253A /* UIColor+helpers.h */,
 				9B13165413E73C8B00D5253A /* UIColor+helpers.m */,
+				9B13165F13E74B7200D5253A /* UIViewController+newWithDefaultNib.h */,
+				9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -675,12 +698,13 @@
 				9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */,
 				9BD51DBD13E3434C009A417E /* shopPlaceholder.png in Resources */,
 				9BD51DBE13E3434C009A417E /* shopPlaceholder@2x.png in Resources */,
-				9B21C6A813E357A900E5AD14 /* ShopItemCell.xib in Resources */,
+				9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */,
 				9BD2EE9813E3674600594DF1 /* blueBuyButton.png in Resources */,
 				9BD2EE9913E3674600594DF1 /* blueBuyButton@2x.png in Resources */,
 				9BD2EE9A13E3674600594DF1 /* greenBuyButton.png in Resources */,
 				9BD2EE9B13E3674600594DF1 /* greenBuyButton@2x.png in Resources */,
 				9B13164713E72E7600D5253A /* ShopListItemCell.xib in Resources */,
+				9B13165B13E74AA700D5253A /* ShopItemDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,12 +772,16 @@
 				9BCAA79013E3196200C92FBB /* UIViewController+barButtons.m in Sources */,
 				9BCAA79313E31AAE00C92FBB /* UITableViewCell+activity.m in Sources */,
 				9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */,
-				9BD2EE9313E35E1400594DF1 /* ShopItemCell.m in Sources */,
+				9BD2EE9313E35E1400594DF1 /* ShopItemDetailPurchaseCell.m in Sources */,
 				9BD2EE9E13E367D000594DF1 /* BuyButton.m in Sources */,
 				9B13164413E729DA00D5253A /* Product.m in Sources */,
 				9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */,
 				9B13164F13E73BBA00D5253A /* UIColor+candy.m in Sources */,
 				9B13165513E73C8B00D5253A /* UIColor+helpers.m in Sources */,
+				9B13165813E7480700D5253A /* TransactionReceiptService.m in Sources */,
+				9B13165E13E74ABE00D5253A /* ShopItemDetailViewController.m in Sources */,
+				9B13166113E74B7200D5253A /* UIViewController+newWithDefaultNib.m in Sources */,
+				9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,12 +816,20 @@
 			name = ShopListItemCell.xib;
 			sourceTree = "<group>";
 		};
-		9B21C6A613E357A900E5AD14 /* ShopItemCell.xib */ = {
+		9B13165913E74AA700D5253A /* ShopItemDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B13165A13E74AA700D5253A /* en */,
+			);
+			name = ShopItemDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9B21C6A713E357A900E5AD14 /* en */,
 			);
-			name = ShopItemCell.xib;
+			name = ShopItemDetailPurchaseCell.xib;
 			sourceTree = "<group>";
 		};
 		9B56B94813D9ED5300A65543 /* InfoPlist.strings */ = {

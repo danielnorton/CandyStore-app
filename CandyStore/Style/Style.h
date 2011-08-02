@@ -7,4 +7,4 @@
 //
 
 #import "UIColor+candy.h"
-
+#import "UIFont+candy.h"

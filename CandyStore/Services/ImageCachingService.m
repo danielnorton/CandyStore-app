@@ -232,7 +232,7 @@
 	
 	if (![delegate conformsToProtocol:@protocol(ImageCachingServiceDelegate)]) return;
 	
-	[delegate ImageCachingService:self didLoadImage:image fromPath:path withUserData:userData];
+	[delegate imageCachingService:self didLoadImage:image fromPath:path withUserData:userData];
 }
 
 

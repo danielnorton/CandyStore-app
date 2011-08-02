@@ -10,7 +10,7 @@
 
 @protocol ImageCachingServiceDelegate <NSObject>
 
-- (void)ImageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData;
+- (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData;
 
 @end
 

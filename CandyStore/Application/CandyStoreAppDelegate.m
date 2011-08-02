@@ -14,6 +14,7 @@
 #import "NSObject+popup.h"
 #import "HTTPRequestService.h"
 #import "Model.h"
+#import "TransactionReceiptService.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -23,6 +24,7 @@
 @interface CandyStoreAppDelegate()
 
 @property (nonatomic, retain) ProductBuilderService *productBuilderService;
+@property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
 
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
@@ -38,6 +40,7 @@
 @synthesize candyShopViewController;
 @synthesize internetReach;
 @synthesize productBuilderService;
+@synthesize transactionReceiptService;
 
 
 #pragma mark -
@@ -48,6 +51,7 @@
 	[candyShopViewController release];
 	[internetReach release];
 	[productBuilderService release];
+	[transactionReceiptService release];
     [super dealloc];
 }
 
@@ -58,8 +62,14 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 	internetReach = [[Reachability reachabilityForInternetConnection] retain];
 	[internetReach startNotifer];
-	
 	[self reachabilityChanged:nil];
+	
+	
+	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
+	[self setTransactionReceiptService:transService];
+	[transService beginObserving];
+	[transService release];
+	
 	
 	[window setRootViewController:tabBarController];
 	[window makeKeyAndVisible];
@@ -72,7 +82,7 @@
 	[service reset];
 	[service release];
 
-	[self updateProducts];
+//	[self updateProducts];
 }
 
 
