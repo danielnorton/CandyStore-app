@@ -11,7 +11,12 @@
 + (UIColor *)darkGrayStoreColor;
 + (UIColor *)lightGrayStoreColor;
 + (UIColor *)shopTableSeperatorColor;
-+ (UIColor *)productTitleShadowColor;
++ (UIColor *)modelTitleTextColor;
++ (UIColor *)modelTitleShadowColor;
 + (UIColor *)subscriptionTitleShadowColor;
++ (UIColor *)buyButtonTextColor;
++ (UIColor *)buyButtonShadowColor;
++ (UIColor *)refreshingTitleTextColor;
++ (UIColor *)refreshingTitleShadowColor;
 
 @end

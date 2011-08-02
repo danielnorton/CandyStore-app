@@ -37,11 +37,6 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 		
 		[self notifyName:TransactionReceiptServiceNotificationProcessing forTransaction:transaction];
 		
-		NSString *identifier = transaction.payment.productIdentifier;
-		NSString *transactionIdentifier = transaction.transactionIdentifier;
-//		NSData *receipt = transaction.transactionReceipt;
-		SKPayment *payment = transaction.payment;
-		
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(transaction.transactionState == SKPaymentTransactionStatePurchasing)];
 		
 		if ((transaction.transactionState == SKPaymentTransactionStatePurchased)
@@ -49,12 +44,18 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			
 			ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 		
+			NSString *identifier = transaction.payment.productIdentifier;
+			NSString *transactionIdentifier = transaction.transactionIdentifier;
+			NSData *receipt = transaction.transactionReceipt;
+			SKPayment *payment = transaction.payment;
+			
 			Product *product = (Product *)[repo itemForId:identifier];
 			if (product) {
 				
 				Purchase *purchase = [repo addPurchaseToProduct:product];
 				[purchase setTransactionIdentifier:transactionIdentifier];
 				[purchase setQuantity:[NSNumber numberWithInteger:payment.quantity]];
+				[purchase setReceipt:receipt];
 			}
 			
 			NSError *error = nil;

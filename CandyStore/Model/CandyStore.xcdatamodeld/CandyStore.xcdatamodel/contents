@@ -17,11 +17,12 @@
     </entity>
     <entity name="Purchase" representedClassName="Purchase">
         <attribute name="quantity" optional="YES" attributeType="Integer 32"/>
+        <attribute name="receipt" optional="YES" attributeType="Binary"/>
         <attribute name="transactionIdentifier" optional="YES" attributeType="String"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="purchases" inverseEntity="Product"/>
     </entity>
     <elements>
-        <element name="Product" positionX="-2511" positionY="-801" width="128" height="240"/>
-        <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="90"/>
+        <element name="Product" positionX="-2511" positionY="-801" width="128" height="225"/>
+        <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="105"/>
     </elements>
 </model>

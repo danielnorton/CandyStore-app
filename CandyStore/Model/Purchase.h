@@ -14,8 +14,9 @@
 @interface Purchase : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * transactionIdentifier;
 @property (nonatomic, retain) NSNumber * quantity;
+@property (nonatomic, retain) NSString * transactionIdentifier;
+@property (nonatomic, retain) NSData * receipt;
 @property (nonatomic, retain) Product *product;
 
 @end

@@ -17,7 +17,7 @@
 + (UIFont *)subscriptionTitleFont {
 	return [UIFont systemFontOfSize:16.0f];
 }
-+ (UIFont *)productTitleFont {
++ (UIFont *)modelTitleFont {
 	return [UIFont boldSystemFontOfSize:20.0f];
 }
 

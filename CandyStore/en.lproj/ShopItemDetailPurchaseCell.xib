@@ -102,6 +102,7 @@
 								<string key="NSFrame">{{223, 21}, {80, 25}}</string>
 								<reference key="NSSuperview" ref="564601356"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:222</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -153,7 +154,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="564601356"/>
-				<string key="IBUIReuseIdentifier">shopItemDetailPurchaseCell</string>
+				<string key="IBUIReuseIdentifier">ShopItemDetailPurchaseCell</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

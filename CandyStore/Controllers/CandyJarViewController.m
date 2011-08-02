@@ -81,6 +81,7 @@
 	BOOL hasSome = (count > 0);
 	BOOL wasHidden = !welcomeView.isHidden;
 	[welcomeView setHidden:hasSome];
+	[tableView setHidden:!hasSome];
 	
 	if (wasHidden) {
 		

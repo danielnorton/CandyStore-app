@@ -11,8 +11,9 @@
 
 
 @implementation Purchase
-@dynamic transactionIdentifier;
 @dynamic quantity;
+@dynamic transactionIdentifier;
+@dynamic receipt;
 @dynamic product;
 
 @end

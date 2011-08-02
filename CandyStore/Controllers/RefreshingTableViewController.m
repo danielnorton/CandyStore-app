@@ -9,6 +9,7 @@
 #import "RefreshingTableViewController.h"
 #import "UIViewController+barButtons.h"
 #import "UITableViewCell+activity.h"
+#import "Style.h"
 
 
 @implementation RefreshingTableViewController
@@ -124,11 +125,11 @@
 
 - (void)configureRefreshingCell:(UITableViewCell *)cell {
 	
-	[cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
+	[cell.textLabel setFont:[UIFont modelTitleFont]];
 	[cell.textLabel setText:NSLocalizedString(@"Refreshing...", @"Refreshing...")];
-	[cell.textLabel setTextColor:[UIColor lightGrayColor]];
-	[cell.textLabel setShadowColor:[UIColor blackColor]];
-	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+	[cell.textLabel setTextColor:[UIColor refreshingTitleTextColor]];
+	[cell.textLabel setShadowColor:[UIColor refreshingTitleShadowColor]];
+	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
 }
 

@@ -6,8 +6,10 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import "BuyButton.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BuyButton.h"
+#import "Style.h"
+
 
 @interface BuyButton()
 
@@ -96,8 +98,8 @@
 	[self setBackgroundImage:blue forState:UIControlStateNormal];
 	[self setBackgroundImage:green forState:UIControlStateSelected];
 	
-	[self.titleLabel setTextColor:[UIColor whiteColor]];
-	[self.titleLabel setShadowColor:[UIColor blackColor]];
+	[self.titleLabel setTextColor:[UIColor buyButtonTextColor]];
+	[self.titleLabel setShadowColor:[UIColor buyButtonShadowColor]];
 	[self.titleLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
 }
 

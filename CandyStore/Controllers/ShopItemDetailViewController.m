@@ -92,6 +92,10 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+	return YES;
+}
+
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -167,6 +171,12 @@
 	[self setActiveBuyButtonIndexPath:nil];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	
+	UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+	return [view autorelease];
+}
+
 
 #pragma mark ImageCachingServiceDelegate
 - (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
@@ -239,8 +249,8 @@
 	if (indexPath.row == 0) {
 		
 		titleLabelFrame.origin.x = kTitleLabelProductX;
-		[cell.titleLabel setFont:[UIFont productTitleFont]];
-		[cell.titleLabel setShadowColor:[UIColor productTitleShadowColor]];
+		[cell.titleLabel setFont:[UIFont modelTitleFont]];
+		[cell.titleLabel setShadowColor:[UIColor modelTitleShadowColor]];
 
 		[cell setProduct:product];
 		

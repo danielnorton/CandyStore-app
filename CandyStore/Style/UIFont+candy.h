@@ -11,6 +11,6 @@
 
 + (UIFont *)productDescriptionFont;
 + (UIFont *)subscriptionTitleFont;
-+ (UIFont *)productTitleFont;
++ (UIFont *)modelTitleFont;
 
 @end

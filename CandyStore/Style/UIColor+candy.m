@@ -12,23 +12,43 @@
 @implementation UIColor(candy)
 
 + (UIColor *)darkGrayStoreColor {
-	return [UIColor colorFrom255Red:152 green:152 blue:156];
+	return [self colorFrom255Red:152 green:152 blue:156];
 }
 
 + (UIColor *)lightGrayStoreColor {
-	return [UIColor colorFrom255Red:173 green:173 blue:176];
+	return [self colorFrom255Red:173 green:173 blue:176];
 }
 
 + (UIColor *)shopTableSeperatorColor {
-	return [UIColor darkGrayColor];
+	return [self darkGrayColor];
 }
 
-+ (UIColor *)productTitleShadowColor {
-	return [self whiteColor];
++ (UIColor *)modelTitleTextColor {
+	return [self blackColor];
+}
+
++ (UIColor *)modelTitleShadowColor {
+	return [self colorFrom255Red:194 green:194 blue:194];
 }
 
 + (UIColor *)subscriptionTitleShadowColor {
 	return [self lightGrayStoreColor];
+}
+
++ (UIColor *)buyButtonTextColor {
+	return [self whiteColor];
+}
+
++ (UIColor *)buyButtonShadowColor {
+	return [self blackColor];
+}
+
++ (UIColor *)refreshingTitleTextColor {
+	return [self darkGrayColor];
+}
+
++ (UIColor *)refreshingTitleShadowColor {
+	return [self modelTitleShadowColor];
 }
 
 @end

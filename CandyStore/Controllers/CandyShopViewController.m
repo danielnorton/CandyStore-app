@@ -149,7 +149,6 @@
 
 	[super configureRefreshingCell:cell];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleWhite];
-	[cell.textLabel setTextColor:[UIColor whiteColor]];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
