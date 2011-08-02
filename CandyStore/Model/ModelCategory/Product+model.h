@@ -21,5 +21,6 @@ typedef enum {
 @interface Product(model)
 
 @property (nonatomic, assign) ProductKind kind;
+@property (nonatomic, assign) BOOL isActive;
 
 @end

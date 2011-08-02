@@ -12,8 +12,11 @@
 
 @interface ProductRepository : RepositoryBase
 
+- (Product *)addOrRetreiveProductFromIdentifer:(NSString *)productIdentifier;
 - (Product *)addSubscriptionToProduct:(Product *)product;
+- (Product *)addOrUpdateSubscriptionFromIdentifer:(NSString *)subscriptionIdentifier toProduct:(Product *)product;
 - (void)removeSubscriptionFromProduct:(Product *)subscription;
 - (NSFetchedResultsController *)controllerForCandyShop;
+- (void)setAllProductsInactive;
 
 @end

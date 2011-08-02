@@ -18,5 +18,13 @@
 	return [self.productKindData integerValue];
 }
 
+- (void)setIsActive:(BOOL)active {
+	[self setIsActiveData:[NSNumber numberWithBool:active]];
+}
+
+- (BOOL)isActive {
+	return [self.isActiveData boolValue];
+}
+
 
 @end

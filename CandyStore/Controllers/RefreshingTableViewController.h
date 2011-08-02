@@ -27,6 +27,7 @@ typedef enum {
 - (void)beginRefreshing;
 - (void)completeRefreshing;
 - (void)enableWithLoadingCellMessage:(NSString *)message;
+- (void)enableWithLoadingCellMessage:(NSString *)message withAccessory:(UITableViewCellAccessoryType)accessory;
 - (void)reloadVisibleCells;
 
 @end

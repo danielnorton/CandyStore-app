@@ -134,77 +134,67 @@ NSNumberFormatter *currencyFormatter;
 	[self setStatus:ProductBuilderServiceStatusBuilding];
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
+	[repo setAllProductsInactive];
+	
+	NSMutableSet *identifiers = [[NSMutableSet alloc] initWithCapacity:0];
+	
+	[theProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		
+		NSDictionary *item = (NSDictionary *)obj;
+		
+		NSString *imageKey = [UIScreen mainScreen].scale == 2.0f
+		? @"retina_image"
+		: @"image";
+		NSString *imagePath = [EndpointService serviceFullPathForRelativePath:[item objectForKey:imageKey]];
+		
+		[ImageCachingService beginLoadingImageAtPath:imagePath];
+		
+		ProductKind kind = [self productKindFromServerKey:[item objectForKey:@"key"]];
+		
+		id productIdentifier = [item objectForKey:@"identifier"];
+		
+		Product *product = [repo addOrRetreiveProductFromIdentifer:productIdentifier];
+		[product setImagePath:imagePath];
+		[product setKind:kind];
+		[product setIndex:[NSNumber numberWithInteger:idx]];
+		[product setIsActive:YES];
+		
+		NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
+		if (durations) {
+			
+			__block int subscriptionIndex = 0;
+			[durations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+				
+				[identifiers addObject:key];
+				
+				Product *subscription = [repo addOrUpdateSubscriptionFromIdentifer:key toProduct:product];
+				[subscription setImagePath:imagePath];
+				[subscription setKind:kind];
+				[subscription setProductDescription:obj];
+				[subscription setIndex:[NSNumber numberWithInteger:subscriptionIndex]];
+				subscriptionIndex++;
+				[subscription setIsActive:YES];
+			}];
+			
+		} else {
+			
+			[identifiers addObject:productIdentifier];
+		}
+	}];
 	
 	NSError *error = nil;
-	[ImageCachingService purge];
-	BOOL purged = [repo purge:&error];
-	if (!purged || error) {
+	BOOL save = [repo save:&error];
+	if (!save || error) {
 		
 		[context rollback];
 		[self notifyDelegateDidFail];
 		
 	} else {
-	
-		NSMutableSet *identifiers = [[NSMutableSet alloc] initWithCapacity:0];
 		
-		[theProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			
-			NSDictionary *item = (NSDictionary *)obj;
-			
-			NSString *imageKey = [UIScreen mainScreen].scale == 2.0f
-			? @"retina_image"
-			: @"image";
-			NSString *imagePath = [EndpointService serviceFullPathForRelativePath:[item objectForKey:imageKey]];
-			
-			[ImageCachingService beginLoadingImageAtPath:imagePath];
-			
-			ProductKind kind = [self productKindFromServerKey:[item objectForKey:@"key"]];
-			
-			id productIdentifier = [item objectForKey:@"identifier"];
-			
-			Product *newProduct = (Product *)[repo insertNewObject];
-			[newProduct setImagePath:imagePath];
-			[newProduct setKind:kind];
-			[newProduct setIdentifier:productIdentifier];
-			[newProduct setIndex:[NSNumber numberWithInteger:idx]];
-			
-			NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
-			if (durations) {
-				
-				__block int subscriptionIndex = 0;
-				[durations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-					
-					[identifiers addObject:key];
-					
-					Product *subscription = [repo addSubscriptionToProduct:newProduct];
-					[subscription setImagePath:imagePath];
-					[subscription setKind:kind];
-					[subscription setIdentifier:key];
-					[subscription setProductDescription:obj];
-					[subscription setIndex:[NSNumber numberWithInteger:subscriptionIndex]];
-					subscriptionIndex++;
-				}];
-				
-			} else {
-				
-				[identifiers addObject:productIdentifier];
-			}
-		}];
-		
-		error = nil;
-		BOOL save = [repo save:&error];
-		if (!save || error) {
-			
-			[context rollback];
-			[self notifyDelegateDidFail];
-			
-		} else {
-			
-			[self beginAppStoreProducts:identifiers];
-		}
-		
-		[identifiers release];
+		[self beginAppStoreProducts:identifiers];
 	}
+	
+	[identifiers release];
 	
 	[repo release];
 }

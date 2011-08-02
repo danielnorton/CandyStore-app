@@ -4,6 +4,7 @@
         <attribute name="identifier" optional="YES" attributeType="String"/>
         <attribute name="imagePath" optional="YES" attributeType="String"/>
         <attribute name="index" optional="YES" attributeType="Integer 32"/>
+        <attribute name="isActiveData" optional="YES" attributeType="Boolean"/>
         <attribute name="localizedPrice" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Decimal"/>
         <attribute name="productDescription" optional="YES" attributeType="String"/>
@@ -19,7 +20,7 @@
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="purchases" inverseEntity="Product"/>
     </entity>
     <elements>
-        <element name="Product" positionX="-2511" positionY="-801" width="128" height="195"/>
+        <element name="Product" positionX="-2511" positionY="-801" width="128" height="225"/>
         <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="90"/>
     </elements>
 </model>

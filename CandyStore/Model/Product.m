@@ -14,6 +14,7 @@
 @dynamic identifier;
 @dynamic imagePath;
 @dynamic index;
+@dynamic isActiveData;
 @dynamic localizedPrice;
 @dynamic price;
 @dynamic productDescription;

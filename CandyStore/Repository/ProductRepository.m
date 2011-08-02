@@ -32,13 +32,40 @@
 
 #pragma mark -
 #pragma mark ProductRepository
+- (Product *)addOrRetreiveProductFromIdentifer:(NSString *)productIdentifier {
+	
+	Product *product = (Product *)[self itemForId:productIdentifier];
+	if (!product) {
+		
+		product = (Product *)[self insertNewObject];
+		[product setIdentifier:productIdentifier];
+	}
+	
+	return product;
+}
+
 - (Product *)addSubscriptionToProduct:(Product *)product {
 	
-	Product *newSubscription = (Product *)[self insertNewObject];
-	[product addSubscriptionsObject:newSubscription];
-	[newSubscription setParent:product];
+	return [self addOrUpdateSubscriptionFromIdentifer:nil toProduct:product];
+}
+
+- (Product *)addOrUpdateSubscriptionFromIdentifer:(NSString *)subscriptionIdentifier toProduct:(Product *)product {
 	
-	return newSubscription;
+	Product *subscription = (Product *)[self itemForId:subscriptionIdentifier];
+	if (!subscription) {
+		
+		subscription = (Product *)[self insertNewObject];
+		[subscription setIdentifier:subscriptionIdentifier];
+	}
+	
+	if (![product.subscriptions containsObject:subscription]) {
+		
+		[product addSubscriptionsObject:subscription];
+	}
+	
+	[subscription setParent:product];
+	
+	return subscription;
 }
 
 - (void)removeSubscriptionFromProduct:(Product *)subscription; {
@@ -53,8 +80,18 @@
 
 - (NSFetchedResultsController *)controllerForCandyShop {
 	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil"];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil && isActiveData == 1"];
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
+- (void)setAllProductsInactive {
+
+	NSArray *all = [self fetchAll];
+	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		
+		Product *product = (Product *)obj;
+		[product setIsActive:NO];
+	}];
 }
 
 

@@ -67,21 +67,23 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
-	void(^reset)(NSNotification *) = ^(NSNotification *notification) {
-		
-		[self.navigationController.view setUserInteractionEnabled:YES];
-		[self.tableView reloadData];
-	};
-	
 	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationCompleted
 													  object:nil
 													   queue:nil
-												  usingBlock:reset];
+												  usingBlock:^(NSNotification *notification) {
+													  
+													  [self.navigationController.view setUserInteractionEnabled:YES];
+													  [self.navigationController popToRootViewControllerAnimated:YES];
+												  }];
 	
 	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationFailed
 													  object:nil
 													   queue:nil
-												  usingBlock:reset];
+												  usingBlock:^(NSNotification *notification) {
+													  
+													  [self.navigationController.view setUserInteractionEnabled:YES];
+													  [self.tableView reloadData];
+												  }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSNumber * index;
+@property (nonatomic, retain) NSNumber * isActiveData;
 @property (nonatomic, retain) NSString * localizedPrice;
 @property (nonatomic, retain) NSDecimalNumber * price;
 @property (nonatomic, retain) NSString * productDescription;

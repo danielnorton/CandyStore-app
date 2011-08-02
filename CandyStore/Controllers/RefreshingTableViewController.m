@@ -225,12 +225,18 @@
 }
 
 - (void)enableWithLoadingCellMessage:(NSString *)message {
+
+	[self enableWithLoadingCellMessage:message withAccessory:UITableViewCellAccessoryNone];
+}
+
+- (void)enableWithLoadingCellMessage:(NSString *)message withAccessory:(UITableViewCellAccessoryType)accessory {
 	
 	[self.view setUserInteractionEnabled:YES];
 	
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 	[cell.textLabel setText:message];
+	[cell clearAccessoryViewWith:accessory];
 	[self setBarButtonsEnabled:YES withToolbar:nil withLeftBarButtonItem:nil];
 }
 
