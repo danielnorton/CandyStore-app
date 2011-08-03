@@ -17,6 +17,8 @@
 		9B13166113E74B7200D5253A /* UIViewController+newWithDefaultNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */; };
 		9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166313E7C1AC00D5253A /* UIFont+candy.m */; };
 		9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */; };
+		9B24687F13E9AE63005A9F9C /* NSString+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24687E13E9AE63005A9F9C /* NSString+base64.m */; };
+		9B24688313E9AEDF005A9F9C /* Base64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24688213E9AEDF005A9F9C /* Base64Tests.m */; };
 		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
@@ -79,6 +81,7 @@
 		9BD51DBE13E3434C009A417E /* shopPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD51DBC13E3434C009A417E /* shopPlaceholder@2x.png */; };
 		9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD51DC013E345D9009A417E /* ImageCachingService.m */; };
 		9BEA0D6A13DF6D9500880ACD /* AppProductRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */; };
+		9BF16C0113E9B569002077D4 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF16C0013E9B569002077D4 /* NSData+base64.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
@@ -134,6 +137,10 @@
 		9B13166213E7C1AC00D5253A /* UIFont+candy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+candy.h"; sourceTree = "<group>"; };
 		9B13166313E7C1AC00D5253A /* UIFont+candy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+candy.m"; sourceTree = "<group>"; };
 		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailPurchaseCell.xib; sourceTree = "<group>"; };
+		9B24687D13E9AE63005A9F9C /* NSString+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+base64.h"; sourceTree = "<group>"; };
+		9B24687E13E9AE63005A9F9C /* NSString+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+base64.m"; sourceTree = "<group>"; };
+		9B24688113E9AEDF005A9F9C /* Base64Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Tests.h; sourceTree = "<group>"; };
+		9B24688213E9AEDF005A9F9C /* Base64Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Tests.m; sourceTree = "<group>"; };
 		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
 		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +233,8 @@
 		9BD51DC013E345D9009A417E /* ImageCachingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCachingService.m; sourceTree = "<group>"; };
 		9BEA0D6813DF6D9500880ACD /* AppProductRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteService.h; sourceTree = "<group>"; };
 		9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteService.m; sourceTree = "<group>"; };
+		9BF16BFF13E9B569002077D4 /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
+		9BF16C0013E9B569002077D4 /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsIcon@2x.png"; sourceTree = "<group>"; };
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -415,6 +424,8 @@
 				9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */,
 				9B9544EB13E89BA900BCF94D /* CandyShopServiceTests.h */,
 				9B9544EC13E89BA900BCF94D /* CandyShopServiceTests.m */,
+				9B24688113E9AEDF005A9F9C /* Base64Tests.h */,
+				9B24688213E9AEDF005A9F9C /* Base64Tests.m */,
 			);
 			path = CandyStoreTests;
 			sourceTree = "<group>";
@@ -582,6 +593,10 @@
 				9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */,
 				9B9544F713E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.h */,
 				9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */,
+				9B24687D13E9AE63005A9F9C /* NSString+base64.h */,
+				9B24687E13E9AE63005A9F9C /* NSString+base64.m */,
+				9BF16BFF13E9B569002077D4 /* NSData+base64.h */,
+				9BF16C0013E9B569002077D4 /* NSData+base64.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -824,6 +839,8 @@
 				9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */,
 				9B9544FC13E8FCD600BCF94D /* CandyEatingService.m in Sources */,
 				9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */,
+				9B24687F13E9AE63005A9F9C /* NSString+base64.m in Sources */,
+				9BF16C0113E9B569002077D4 /* NSData+base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +853,7 @@
 				9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */,
 				9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */,
 				9B9544ED13E89BA900BCF94D /* CandyShopServiceTests.m in Sources */,
+				9B24688313E9AEDF005A9F9C /* Base64Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
