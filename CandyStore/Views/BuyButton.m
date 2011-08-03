@@ -6,7 +6,7 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
+#import <StoreKit/StoreKit.h>
 #import "BuyButton.h"
 #import "Style.h"
 
@@ -102,7 +102,7 @@
 
 #pragma mark Private Extension
 - (void)initializeBuyButton {
-	
+		
 	UIImage *blue = [[UIImage imageNamed:@"blueBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:0.0f];
 	UIImage *green = [[UIImage imageNamed:@"greenBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:0.0f];
 	UIImage *gray = [[UIImage imageNamed:@"grayBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:0.0f];
@@ -124,6 +124,12 @@
 	[self setTitle:@" " forState:UIControlStateHighlighted];
 	
 	[self.titleLabel setFont:[UIFont buyButtonFont]];
+	
+	if (![SKPaymentQueue canMakePayments]) {
+		
+		[self setTitle:NSLocalizedString(@"DISABLED", @"DISABLED") forState:UIControlStateDisabled];
+		[self setEnabled:NO];
+	}
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+#import <StoreKit/StoreKit.h>
 #import "PurchaseRulesService.h"
 #import "ProductRepository.h"
 #import "CandyShopService.h"
@@ -18,12 +19,16 @@ NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar = @"You need t
 
 + (BOOL)shouldEnableBuyButtonForProduct:(Product *)product {
 	
+	if (![SKPaymentQueue canMakePayments]) return NO;
+	
 	if ([product.internalKey isEqualToString:InternalKeyCandy]) return YES;
 	
 	return ([self canBuyMoreProduct:product] == PurchaseRulesOK);
 }
 
 + (PurchaseRules)canBuyMoreProduct:(Product *)product {
+	
+	if (![SKPaymentQueue canMakePayments]) return PurchaseRulesPurchasesDisabled;
 	
 	if ([product.internalKey isEqualToString:InternalKeyCandy]) {
 	

@@ -15,7 +15,8 @@ typedef enum {
 	PurchaseRulesOK,
 	PurchaseRulesTooManyCandiesForSmallJar,
 	PurchaseRulesAlreadySubscribedToExchange,
-	PurchaseRulesAlreadyBoughtBigJar
+	PurchaseRulesAlreadyBoughtBigJar,
+	PurchaseRulesPurchasesDisabled
 	
 } PurchaseRules;
 
