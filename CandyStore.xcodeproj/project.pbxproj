@@ -52,6 +52,7 @@
 		9B9544F013E89BBC00BCF94D /* CandyShopService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544EF13E89BBC00BCF94D /* CandyShopService.m */; };
 		9B9544F313E8B9B800BCF94D /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F213E8B9B800BCF94D /* Purchase.m */; };
 		9B9544F613E8B9B900BCF94D /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F513E8B9B900BCF94D /* Product.m */; };
+		9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
 		9BCAA78C13E316EF00C92FBB /* RefreshingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */; };
@@ -178,6 +179,8 @@
 		9B9544F213E8B9B800BCF94D /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
 		9B9544F413E8B9B900BCF94D /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		9B9544F513E8B9B900BCF94D /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		9B9544F713E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewDelgate+emptyFooter.h"; sourceTree = "<group>"; };
+		9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewDelgate+emptyFooter.m"; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
@@ -566,6 +569,8 @@
 				9B13165413E73C8B00D5253A /* UIColor+helpers.m */,
 				9B13165F13E74B7200D5253A /* UIViewController+newWithDefaultNib.h */,
 				9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */,
+				9B9544F713E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.h */,
+				9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -804,6 +809,7 @@
 				9B9544F013E89BBC00BCF94D /* CandyShopService.m in Sources */,
 				9B9544F313E8B9B800BCF94D /* Purchase.m in Sources */,
 				9B9544F613E8B9B900BCF94D /* Product.m in Sources */,
+				9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

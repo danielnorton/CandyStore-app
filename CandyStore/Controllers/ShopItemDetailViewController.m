@@ -10,6 +10,7 @@
 #import "ShopItemDetailViewController.h"
 #import "Style.h"
 #import "TransactionReceiptService.h"
+#import "UITableViewDelgate+emptyFooter.h"
 
 
 #define kPurchaseCellHeight 66.0f
@@ -169,12 +170,6 @@
 	ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView cellForRowAtIndexPath:activeBuyButtonIndexPath];
 	[cell.buyButton setSelected:NO];
 	[self setActiveBuyButtonIndexPath:nil];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-	
-	UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-	return [view autorelease];
 }
 
 

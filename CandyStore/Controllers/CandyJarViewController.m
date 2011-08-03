@@ -10,6 +10,8 @@
 #import "Model.h"
 #import "ProductRepository.h"
 #import "CandyShopService.h"
+#import "Style.h"
+#import "UITableViewDelgate+emptyFooter.h"
 
 
 #define kWelcomeViewTag -9999
@@ -55,6 +57,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	[tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	[self.view addSubview:tableView];
 	[self loadWelcomeView];
 	
