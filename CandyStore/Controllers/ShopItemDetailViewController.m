@@ -72,7 +72,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationCompleted
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceCompletedNotification
 													  object:nil
 													   queue:nil
 												  usingBlock:^(NSNotification *notification) {
@@ -81,7 +81,7 @@
 													  [self.navigationController popToRootViewControllerAnimated:YES];
 												  }];
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationFailed
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceFailedNotification
 													  object:nil
 													   queue:nil
 												  usingBlock:^(NSNotification *notification) {

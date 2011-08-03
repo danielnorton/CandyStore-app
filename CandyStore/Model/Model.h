@@ -11,3 +11,4 @@
 #import "Product+model.h"
 
 #import "Purchase.h"
+#import "Purchase+model.h"

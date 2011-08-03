@@ -6,6 +6,7 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+#import <StoreKit/StoreKit.h>
 #import "CandyShopService.h"
 #import "Model.h"
 #import "ProductRepository.h"
@@ -34,6 +35,10 @@ NSString * const InternalKeyExchange = @"exchange";
 + (BOOL)hasExchange {
 	
 	return [self hasPurchasedInternalKey:InternalKeyExchange];
+}
+
++ (BOOL)canMakePayments {
+	return [SKPaymentQueue canMakePayments];
 }
 
 

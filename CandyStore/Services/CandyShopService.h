@@ -14,5 +14,6 @@ extern NSString * const InternalKeyExchange;
 
 + (BOOL)hasBigJar;
 + (BOOL)hasExchange;
++ (BOOL)canMakePayments;
 
 @end

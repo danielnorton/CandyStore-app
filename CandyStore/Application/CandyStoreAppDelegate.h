@@ -10,7 +10,6 @@
 #import "ProductBuilderService.h"
 #import "CandyShopViewController.h"
 
-
 @interface CandyStoreAppDelegate : NSObject
 <UIApplicationDelegate, UITabBarControllerDelegate,
 ProductBuilderServiceDelegate>
@@ -25,6 +24,7 @@ ProductBuilderServiceDelegate>
 
 - (BOOL)canReachInternet;
 - (void)updateProducts;
+
 
 @end
 

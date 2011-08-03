@@ -12,9 +12,10 @@
 #import "UIApplication+delegate.h"
 #import "NSObject+popup.h"
 #import "HTTPRequestService.h"
-#import "Model.h"
 #import "TransactionReceiptService.h"
 #import "CandyShopService.h"
+#import "Model.h"
+#import "ReceiptVerificationLocalService.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -29,7 +30,7 @@
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
 - (BOOL)shouldAlertForReachabilityChanged;
-- (void)setJarIcon;
+- (void)updateJarTabImage;
 
 @end
 
@@ -43,7 +44,6 @@
 @synthesize myJarTabBarItem;
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
-
 
 #pragma mark -
 #pragma mark NSObject
@@ -67,13 +67,20 @@
 	[internetReach startNotifer];
 	[self reachabilityChanged:nil];
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationCompleted
+	void (^updateJarFromNotification)(NSNotification *) = ^(NSNotification *notification) {
+		
+		[self updateJarTabImage];
+	};
+	
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceCompletedNotification
 													  object:nil
 													   queue:nil
-												  usingBlock:^(NSNotification *notification) {
-													  
-													  [self setJarIcon];
-												  }];
+												  usingBlock:updateJarFromNotification];
+	
+	[[NSNotificationCenter defaultCenter] addObserverForName:ReceiptVerificationDidDeletePurchaseNotification
+													  object:nil
+													   queue:nil
+												  usingBlock:updateJarFromNotification];	
 	
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
@@ -92,9 +99,9 @@
 	[service reset];
 	[service release];
 
-//	[self updateProducts];
+	[self updateJarTabImage];
 	
-	[self setJarIcon];
+//	[self updateProducts];
 }
 
 
@@ -117,6 +124,7 @@
 - (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender {
 	
 	[candyShopViewController completeRefreshing];
+	[ReceiptVerificationLocalService verifyAllPurchases];
 }
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
@@ -203,7 +211,7 @@
 	return YES;
 }
 
-- (void)setJarIcon {
+- (void)updateJarTabImage {
 	
 	UIImage *icon = [CandyShopService hasBigJar]
 	? [UIImage imageNamed:@"bigJarTab"]

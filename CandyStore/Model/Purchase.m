@@ -2,7 +2,7 @@
 //  Purchase.m
 //  CandyStore
 //
-//  Created by Daniel Norton on 8/2/11.
+//  Created by Daniel Norton on 8/3/11.
 //  Copyright (c) 2011 Daniel Norton. All rights reserved.
 //
 
@@ -12,8 +12,9 @@
 
 @implementation Purchase
 @dynamic quantity;
-@dynamic transactionIdentifier;
 @dynamic receipt;
+@dynamic transactionIdentifier;
+@dynamic isExpiredData;
 @dynamic product;
 
 @end

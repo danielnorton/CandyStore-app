@@ -21,7 +21,6 @@
 #pragma mark NSObject
 - (void)dealloc {
 
-	[delegate release];
 	[replyText release];	
 	[super dealloc];
 }

@@ -104,14 +104,6 @@
 
 #pragma mark -
 #pragma mark RefreshingTableViewController
-#pragma mark Properties
-- (void)setState:(RefreshingTableViewControllerState)aState {
-	
-	state = aState;
-	NSLog(@"state: %d", state);
-}
-
-
 #pragma mark Public Messages
 - (BOOL)shouldShowRefreshingCell {
 	

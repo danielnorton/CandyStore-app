@@ -6,9 +6,9 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import <StoreKit/StoreKit.h>
 #import "BuyButton.h"
 #import "Style.h"
+#import "CandyShopService.h"
 
 
 @interface BuyButton()
@@ -125,7 +125,7 @@
 	
 	[self.titleLabel setFont:[UIFont buyButtonFont]];
 	
-	if (![SKPaymentQueue canMakePayments]) {
+	if (![CandyShopService canMakePayments]) {
 		
 		[self setTitle:NSLocalizedString(@"DISABLED", @"DISABLED") forState:UIControlStateDisabled];
 		[self setEnabled:NO];

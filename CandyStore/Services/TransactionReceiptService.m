@@ -10,11 +10,11 @@
 #import "TransactionReceiptService.h"
 #import "Model.h"
 #import "ProductRepository.h"
+#import "ReceiptVerificationLocalService.h"
 
-
-NSString * const TransactionReceiptServiceNotificationProcessing = @"TransactionReceiptServiceNotificationProcessing";
-NSString * const TransactionReceiptServiceNotificationCompleted = @"TransactionReceiptServiceNotificationCompleted";
-NSString * const TransactionReceiptServiceNotificationFailed = @"TransactionReceiptServiceNotificationFailed";
+NSString * const TransactionReceiptServiceProcessingNotification = @"TransactionReceiptServiceProcessingNotification";
+NSString * const TransactionReceiptServiceCompletedNotification = @"TransactionReceiptServiceCompletedNotification";
+NSString * const TransactionReceiptServiceFailedNotification = @"TransactionReceiptServiceFailedNotification";
 NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptServiceKeyTransaction";
 
 
@@ -35,7 +35,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 		
 		SKPaymentTransaction *transaction = (SKPaymentTransaction *)obj;
 		
-		[self notifyName:TransactionReceiptServiceNotificationProcessing forTransaction:transaction];
+		[self notifyName:TransactionReceiptServiceProcessingNotification forTransaction:transaction];
 		
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(transaction.transactionState == SKPaymentTransactionStatePurchasing)];
 		
@@ -68,12 +68,12 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			
 			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 			
-			[self notifyName:TransactionReceiptServiceNotificationCompleted forTransaction:transaction];
+			[self notifyName:TransactionReceiptServiceCompletedNotification forTransaction:transaction];
 			
 		} else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
 			
 			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-			[self notifyName:TransactionReceiptServiceNotificationFailed forTransaction:transaction];
+			[self notifyName:TransactionReceiptServiceFailedNotification forTransaction:transaction];
 		}
 	}];
 }

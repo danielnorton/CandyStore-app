@@ -41,9 +41,10 @@
 
 	NSString *path = [EndpointService appProductsPath];
 	NSDictionary *params = [NSDictionary dictionary];
-	NSArray *userData = nil;
+	id userData = nil;
 	
 	[self setMethod:HTTPRequestServiceMethodGet];
+	[self setReturnType:HTTPRequestServiceReturnTypeJson];
 	[self beginRemoteCallWithPath:path withParams:params withUserData:userData];
 }
 

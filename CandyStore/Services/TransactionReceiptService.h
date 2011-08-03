@@ -8,9 +8,9 @@
 
 #import <StoreKit/StoreKit.h>
 
-extern NSString * const TransactionReceiptServiceNotificationProcessing;
-extern NSString * const TransactionReceiptServiceNotificationCompleted;
-extern NSString * const TransactionReceiptServiceNotificationFailed;
+extern NSString * const TransactionReceiptServiceCompletedNotification;
+extern NSString * const TransactionReceiptServiceCompletedNotification;
+extern NSString * const TransactionReceiptServiceFailedNotification;
 extern NSString * const TransactionReceiptServiceKeyTransaction;
 
 

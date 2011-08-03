@@ -109,7 +109,6 @@ NSNumberFormatter *currencyFormatter;
 		[context rollback];
 		[self notifyDelegateDidFail];
 		return;
-		
 	}
 	
 	[self notifyDelegateDidUpdate];

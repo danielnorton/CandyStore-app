@@ -10,6 +10,7 @@
 
 + (NSString *)serviceFullPathForRelativePath:(NSString *)relativePath;
 + (NSString *)appProductsPath;
++ (NSString *)receiptVerificationPath;
 
 @end
 

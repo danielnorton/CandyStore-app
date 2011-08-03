@@ -51,13 +51,16 @@
 		9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544E813E8943E00BCF94D /* JarListItemCell.xib */; };
 		9B9544ED13E89BA900BCF94D /* CandyShopServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544EC13E89BA900BCF94D /* CandyShopServiceTests.m */; };
 		9B9544F013E89BBC00BCF94D /* CandyShopService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544EF13E89BBC00BCF94D /* CandyShopService.m */; };
-		9B9544F313E8B9B800BCF94D /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F213E8B9B800BCF94D /* Purchase.m */; };
-		9B9544F613E8B9B900BCF94D /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F513E8B9B900BCF94D /* Product.m */; };
 		9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */; };
 		9B9544FC13E8FCD600BCF94D /* CandyEatingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544FB13E8FCD500BCF94D /* CandyEatingService.m */; };
 		9B9544FF13E905AE00BCF94D /* grayBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544FD13E905AE00BCF94D /* grayBuyButton.png */; };
 		9B95450013E905AE00BCF94D /* grayBuyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544FE13E905AE00BCF94D /* grayBuyButton@2x.png */; };
 		9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */; };
+		9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */; };
+		9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */; };
+		9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA613E9D9D4006A7838 /* Purchase.m */; };
+		9B99DDAA13E9D9D5006A7838 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA913E9D9D5006A7838 /* Product.m */; };
+		9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
 		9BCAA78C13E316EF00C92FBB /* RefreshingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */; };
@@ -82,6 +85,7 @@
 		9BD51DC113E345D9009A417E /* ImageCachingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD51DC013E345D9009A417E /* ImageCachingService.m */; };
 		9BEA0D6A13DF6D9500880ACD /* AppProductRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */; };
 		9BF16C0113E9B569002077D4 /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF16C0013E9B569002077D4 /* NSData+base64.m */; };
+		9BF16C0513E9B855002077D4 /* ReceiptVerificationRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF16C0413E9B855002077D4 /* ReceiptVerificationRemoteService.m */; };
 		9BF34EF813D9EE4C00C47028 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF613D9EE4C00C47028 /* settingsIcon.png */; };
 		9BF34EF913D9EE4C00C47028 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */; };
 		9BF34F0113D9F12300C47028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9BF34F0013D9F12300C47028 /* LICENSE */; };
@@ -183,10 +187,6 @@
 		9B9544EC13E89BA900BCF94D /* CandyShopServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopServiceTests.m; sourceTree = "<group>"; };
 		9B9544EE13E89BBC00BCF94D /* CandyShopService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyShopService.h; sourceTree = "<group>"; };
 		9B9544EF13E89BBC00BCF94D /* CandyShopService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyShopService.m; sourceTree = "<group>"; };
-		9B9544F113E8B9B800BCF94D /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
-		9B9544F213E8B9B800BCF94D /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
-		9B9544F413E8B9B900BCF94D /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		9B9544F513E8B9B900BCF94D /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9B9544F713E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewDelgate+emptyFooter.h"; sourceTree = "<group>"; };
 		9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewDelgate+emptyFooter.m"; sourceTree = "<group>"; };
 		9B9544FA13E8FCD500BCF94D /* CandyEatingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyEatingService.h; sourceTree = "<group>"; };
@@ -195,6 +195,16 @@
 		9B9544FE13E905AE00BCF94D /* grayBuyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayBuyButton@2x.png"; sourceTree = "<group>"; };
 		9B95450113E90ABD00BCF94D /* PurchaseRulesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseRulesService.h; sourceTree = "<group>"; };
 		9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRulesService.m; sourceTree = "<group>"; };
+		9B99DD9F13E9D685006A7838 /* ReceiptVerificationLocalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptVerificationLocalService.h; sourceTree = "<group>"; };
+		9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptVerificationLocalService.m; sourceTree = "<group>"; };
+		9B99DDA213E9D7FB006A7838 /* PurchaseRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseRepository.h; sourceTree = "<group>"; };
+		9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRepository.m; sourceTree = "<group>"; };
+		9B99DDA513E9D9D4006A7838 /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
+		9B99DDA613E9D9D4006A7838 /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
+		9B99DDA813E9D9D5006A7838 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		9B99DDA913E9D9D5006A7838 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		9B99DDAB13E9D9F2006A7838 /* Purchase+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Purchase+model.h"; sourceTree = "<group>"; };
+		9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Purchase+model.m"; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
@@ -235,6 +245,8 @@
 		9BEA0D6913DF6D9500880ACD /* AppProductRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteService.m; sourceTree = "<group>"; };
 		9BF16BFF13E9B569002077D4 /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
 		9BF16C0013E9B569002077D4 /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
+		9BF16C0313E9B855002077D4 /* ReceiptVerificationRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptVerificationRemoteService.h; sourceTree = "<group>"; };
+		9BF16C0413E9B855002077D4 /* ReceiptVerificationRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptVerificationRemoteService.m; sourceTree = "<group>"; };
 		9BF34EF613D9EE4C00C47028 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
 		9BF34EF713D9EE4C00C47028 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsIcon@2x.png"; sourceTree = "<group>"; };
 		9BF34F0013D9F12300C47028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -532,6 +544,10 @@
 				9B9544FB13E8FCD500BCF94D /* CandyEatingService.m */,
 				9B95450113E90ABD00BCF94D /* PurchaseRulesService.h */,
 				9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */,
+				9BF16C0313E9B855002077D4 /* ReceiptVerificationRemoteService.h */,
+				9BF16C0413E9B855002077D4 /* ReceiptVerificationRemoteService.m */,
+				9B99DD9F13E9D685006A7838 /* ReceiptVerificationLocalService.h */,
+				9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -544,10 +560,10 @@
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
 				9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */,
-				9B9544F413E8B9B900BCF94D /* Product.h */,
-				9B9544F513E8B9B900BCF94D /* Product.m */,
-				9B9544F113E8B9B800BCF94D /* Purchase.h */,
-				9B9544F213E8B9B800BCF94D /* Purchase.m */,
+				9B99DDA813E9D9D5006A7838 /* Product.h */,
+				9B99DDA913E9D9D5006A7838 /* Product.m */,
+				9B99DDA513E9D9D4006A7838 /* Purchase.h */,
+				9B99DDA613E9D9D4006A7838 /* Purchase.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -559,6 +575,8 @@
 				9BCE6CF113E0CB9400C58AB0 /* RepositoryBase.m */,
 				9BCE6CF313E0CBC000C58AB0 /* ProductRepository.h */,
 				9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */,
+				9B99DDA213E9D7FB006A7838 /* PurchaseRepository.h */,
+				9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -568,6 +586,8 @@
 			children = (
 				9BCE6D1913E22A0F00C58AB0 /* Product+model.h */,
 				9BCE6D1A13E22A0F00C58AB0 /* Product+model.m */,
+				9B99DDAB13E9D9F2006A7838 /* Purchase+model.h */,
+				9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */,
 			);
 			path = ModelCategory;
 			sourceTree = "<group>";
@@ -834,13 +854,17 @@
 				9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */,
 				9B9544E713E8915C00BCF94D /* JarListItemCell.m in Sources */,
 				9B9544F013E89BBC00BCF94D /* CandyShopService.m in Sources */,
-				9B9544F313E8B9B800BCF94D /* Purchase.m in Sources */,
-				9B9544F613E8B9B900BCF94D /* Product.m in Sources */,
 				9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */,
 				9B9544FC13E8FCD600BCF94D /* CandyEatingService.m in Sources */,
 				9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */,
 				9B24687F13E9AE63005A9F9C /* NSString+base64.m in Sources */,
 				9BF16C0113E9B569002077D4 /* NSData+base64.m in Sources */,
+				9BF16C0513E9B855002077D4 /* ReceiptVerificationRemoteService.m in Sources */,
+				9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */,
+				9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */,
+				9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */,
+				9B99DDAA13E9D9D5006A7838 /* Product.m in Sources */,
+				9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

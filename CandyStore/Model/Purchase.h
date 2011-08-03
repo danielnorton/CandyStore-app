@@ -2,7 +2,7 @@
 //  Purchase.h
 //  CandyStore
 //
-//  Created by Daniel Norton on 8/2/11.
+//  Created by Daniel Norton on 8/3/11.
 //  Copyright (c) 2011 Daniel Norton. All rights reserved.
 //
 
@@ -15,8 +15,9 @@
 @private
 }
 @property (nonatomic, retain) NSNumber * quantity;
-@property (nonatomic, retain) NSString * transactionIdentifier;
 @property (nonatomic, retain) NSData * receipt;
+@property (nonatomic, retain) NSString * transactionIdentifier;
+@property (nonatomic, retain) NSNumber * isExpiredData;
 @property (nonatomic, retain) Product *product;
 
 @end

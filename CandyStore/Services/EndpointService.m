@@ -9,6 +9,7 @@
 
 #define kWebServerRoot @"http://daniels-lappy.local:3000/"
 #define kWebServerProductsPath @"/products"
+#define kWebServerReceiptVerificationPath @"/verifyReceipt"
 
 @implementation EndpointService
 
@@ -22,6 +23,10 @@
 
 + (NSString *)appProductsPath {
 	return [self serviceFullPathForRelativePath:kWebServerProductsPath];
+}
+
++ (NSString *)receiptVerificationPath {
+	return [self serviceFullPathForRelativePath:kWebServerReceiptVerificationPath];
 }
 
 
