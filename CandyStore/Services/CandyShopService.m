@@ -43,7 +43,7 @@ NSString * const InternalKeyExchange = @"exchange";
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"internalKey == %@ && purchases.@count > 1", internalKey];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"internalKey == %@ && purchases.@count > 0", internalKey];
 	NSFetchRequest *request = [repo newFetchRequestWithSort:repo.defaultSortDescriptors andPredicate:pred];
 	int count = [repo.managedObjectContext countForFetchRequest:request error:nil];
 	

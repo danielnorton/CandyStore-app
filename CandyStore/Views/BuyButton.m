@@ -62,30 +62,8 @@
 	NSString *nextText = [self titleForState:nextState];
 	NSString *currentText = [self titleForState:currentState];
 
+	[super setSelected:isSelected];
 	[self resizeToLeft:currentText nextText:nextText animated:YES];
-//	CGSize newSize = [nextText sizeWithFont:self.titleLabel.font];
-//	CGSize currentSize = [currentText sizeWithFont:self.titleLabel.font];
-//	float widthDiffernce = newSize.width - currentSize.width;
-//	
-//	float newW = self.frame.size.width + widthDiffernce;
-//	float newX = self.frame.origin.x - widthDiffernce;
-//	CGRect newFrame = CGRectMake(newX, self.frame.origin.y, newW, self.frame.size.height);
-//	
-//	[self.titleLabel setAlpha:0.0f];
-//	[super setSelected:isSelected];
-//	
-//	// bug when using stretched background images with a UIButton
-//	// http://openradar.appspot.com/7290242
-//	// but this is pretty close to the App Store 'buy button'
-//	[UIView animateWithDuration:0.165f
-//					 animations:^{
-//						 
-//						 [self setFrame:newFrame];
-//					 }
-//					 completion:^(BOOL finished) {
-//						 
-//						 [self.titleLabel setAlpha:1.0f];
-//					 }];
 }
 
 

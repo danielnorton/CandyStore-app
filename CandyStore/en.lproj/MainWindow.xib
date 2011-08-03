@@ -57,12 +57,12 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="997278685">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="84659423">
-						<string key="IBUITitle">Candy Shop</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="38635236">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="482135558">
+						<string key="IBUITitle">My Candy Jar</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">shopTab.png</string>
+							<string key="NSResourceName">smallJarTab.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -74,7 +74,7 @@
 					</object>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<bool key="IBUIHorizontal">NO</bool>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="466366292">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="405382296">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -86,19 +86,13 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="724072659">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="743668775">
-								<string key="IBUITitle">Candy Shop</string>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="900466573">
-									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-									<int key="IBUIStyle">1</int>
-									<reference key="IBUINavigationItem" ref="743668775"/>
-									<int key="IBUISystemItemIdentifier">13</int>
-								</object>
+						<object class="IBUIViewController" id="1063462891">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="130595326">
+								<string key="IBUITitle"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="997278685"/>
-							<string key="IBUINibName">CandyShopViewController</string>
+							<reference key="IBUIParentViewController" ref="38635236"/>
+							<string key="IBUINibName">CandyJarViewController</string>
 							<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 								<int key="IBUIInterfaceOrientation">1</int>
 								<int key="interfaceOrientation">1</int>
@@ -107,15 +101,17 @@
 							<bool key="IBUIHorizontal">NO</bool>
 						</object>
 					</object>
+					<bool key="IBUINavigationBarHidden">YES</bool>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUINavigationController" id="38635236">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="482135558">
-							<string key="IBUITitle">My Candy Jar</string>
+					<reference ref="38635236"/>
+					<object class="IBUINavigationController" id="997278685">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="84659423">
+							<string key="IBUITitle">Candy Shop</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">smallJarTab.png</string>
+								<string key="NSResourceName">shopTab.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -127,7 +123,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="405382296">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="466366292">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{0, 0}</string>
@@ -139,13 +135,20 @@
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="1063462891">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="130595326">
-									<string key="IBUITitle"/>
+							<object class="IBUIViewController" id="724072659">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="743668775">
+									<reference key="IBUINavigationBar"/>
+									<string key="IBUITitle">Candy Shop</string>
+									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="900466573">
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<int key="IBUIStyle">1</int>
+										<reference key="IBUINavigationItem" ref="743668775"/>
+										<int key="IBUISystemItemIdentifier">13</int>
+									</object>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<reference key="IBUIParentViewController" ref="38635236"/>
-								<string key="IBUINibName">CandyJarViewController</string>
+								<reference key="IBUIParentViewController" ref="997278685"/>
+								<string key="IBUINibName">CandyShopViewController</string>
 								<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 									<int key="IBUIInterfaceOrientation">1</int>
 									<int key="interfaceOrientation">1</int>
@@ -154,9 +157,7 @@
 								<bool key="IBUIHorizontal">NO</bool>
 							</object>
 						</object>
-						<bool key="IBUINavigationBarHidden">YES</bool>
 					</object>
-					<reference ref="997278685"/>
 					<object class="IBUINavigationController" id="528703056">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="127256215">
 							<string key="IBUITitle">Candy Exchange</string>
@@ -4673,6 +4674,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">46</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">myJarTabBarItem</string>
+						<reference key="source" ref="664661524"/>
+						<reference key="destination" ref="482135558"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4916,7 +4925,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">47</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

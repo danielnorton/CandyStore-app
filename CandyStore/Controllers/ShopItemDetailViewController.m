@@ -13,6 +13,7 @@
 #import "UITableViewDelgate+emptyFooter.h"
 #import "CandyShopService.h"
 #import "PurchaseRulesService.h"
+#import "NSObject+popup.h"
 
 
 #define kPurchaseCellHeight 66.0f
@@ -191,6 +192,16 @@
 }
 
 - (void)shopItemDetailPurchaseCell:(ShopItemDetailPurchaseCell *)cell didChooseToBuyProduct:(Product *)aProduct {
+	
+	PurchaseRules rule = [PurchaseRulesService canBuyMoreProduct:aProduct];
+	if (rule == PurchaseRulesTooManyCandiesForSmallJar) {
+		
+		[cell.buyButton setSelected:NO];
+		
+		NSString *message = PurchaseRuleDescriptionTooManyCandiesForSmallJar;
+		[self popup:NSLocalizedString(message, message)];
+		return;
+	}
 	
 	[self.navigationController.view setUserInteractionEnabled:NO];
 	

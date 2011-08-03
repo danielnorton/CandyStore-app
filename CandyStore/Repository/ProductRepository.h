@@ -23,4 +23,6 @@
 - (void)removePurchaseFromProduct:(Purchase *)purchase;
 - (NSFetchedResultsController *)controllerForMyCandyJar;
 
+- (int)candyCount;
+
 @end

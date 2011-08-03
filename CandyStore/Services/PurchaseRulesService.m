@@ -10,6 +10,9 @@
 #import "ProductRepository.h"
 #import "CandyShopService.h"
 
+#define kMaxCandyForSmallJar 4
+
+NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar = @"You need to buy the Big Candy Jar in the Candy Store to buy more candy";
 
 @implementation PurchaseRulesService
 
@@ -17,26 +20,45 @@
 	
 	if ([product.internalKey isEqualToString:InternalKeyCandy]) return YES;
 	
-	return [self canBuyMoreProduct:product];
+	return ([self canBuyMoreProduct:product] == PurchaseRulesOK);
 }
 
-+ (BOOL)canBuyMoreProduct:(Product *)product {
++ (PurchaseRules)canBuyMoreProduct:(Product *)product {
 	
-	if ([product.internalKey isEqualToString:InternalKeyCandy]) return YES;
+	if ([product.internalKey isEqualToString:InternalKeyCandy]) {
 	
-	if ([product.internalKey isEqualToString:InternalKeyBigCandyJar]) return (product.purchases.count == 0);
+		if ([CandyShopService hasBigJar]) return PurchaseRulesOK;
+		
+		ProductRepository *repo = [[ProductRepository alloc] initWithContext:product.managedObjectContext];
+		int count = [repo candyCount];
+		[repo release];
+		
+		if (count >= kMaxCandyForSmallJar) return PurchaseRulesTooManyCandiesForSmallJar;
+	}
+	
+	if ([product.internalKey isEqualToString:InternalKeyBigCandyJar]) {
+		
+		if (product.purchases.count == 0) {
+			
+			return PurchaseRulesOK;
+			
+		} else {
+			
+			return PurchaseRulesAlreadyBoughtBigJar;
+		}
+	}
 	
 	// product is Exchange or subscription to Exchange.
 	// if product is the parent Product (i.e. not one
 	// of the subscriptions), return NO
 	if (!product.parent) return NO;
 	
-	__block BOOL answer = YES;
+	__block PurchaseRules answer = PurchaseRulesOK;
 	[product.parent.subscriptions enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
 		
 		Product *subscription = (Product *)obj;
 		if (subscription.purchases.count > 0) {
-			answer = NO;
+			answer = PurchaseRulesAlreadySubscribedToExchange;
 		}
 	}];
 	

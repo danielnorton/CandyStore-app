@@ -19,6 +19,7 @@ ProductBuilderServiceDelegate>
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet CandyShopViewController *candyShopViewController;
+@property (nonatomic, retain) IBOutlet UITabBarItem *myJarTabBarItem;
 
 @property (nonatomic, readonly) Reachability *internetReach;
 

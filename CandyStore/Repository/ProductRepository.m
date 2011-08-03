@@ -120,6 +120,21 @@
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
 }
 
+- (int)candyCount {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"productKindData == %d && purchases.@count > 0", ProductKindCandy];
+	NSArray *all = [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+	
+	__block int count = 0;
+	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		
+		Product *product = (Product *)obj;
+		count += product.purchases.count;
+	}];
+	
+	int answer = count;
+	return answer;
+}
 
 @end
 

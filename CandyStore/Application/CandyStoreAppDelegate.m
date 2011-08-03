@@ -29,6 +29,7 @@
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
 - (BOOL)shouldAlertForReachabilityChanged;
+- (void)setJarIcon;
 
 @end
 
@@ -39,6 +40,7 @@
 @synthesize tabBarController;
 @synthesize candyShopViewController;
 @synthesize internetReach;
+@synthesize myJarTabBarItem;
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
 
@@ -50,6 +52,7 @@
 	[tabBarController release];
 	[candyShopViewController release];
 	[internetReach release];
+	[myJarTabBarItem release];
 	[productBuilderService release];
 	[transactionReceiptService release];
     [super dealloc];
@@ -64,6 +67,13 @@
 	[internetReach startNotifer];
 	[self reachabilityChanged:nil];
 	
+	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceNotificationCompleted
+													  object:nil
+													   queue:nil
+												  usingBlock:^(NSNotification *notification) {
+													  
+													  [self setJarIcon];
+												  }];
 	
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
@@ -83,6 +93,8 @@
 	[service release];
 
 //	[self updateProducts];
+	
+	[self setJarIcon];
 }
 
 
@@ -189,6 +201,15 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	return YES;
+}
+
+- (void)setJarIcon {
+	
+	UIImage *icon = [CandyShopService hasBigJar]
+	? [UIImage imageNamed:@"bigJarTab"]
+	: [UIImage imageNamed:@"smallJarTab"];
+	
+	[myJarTabBarItem setImage:icon];
 }
 
 

@@ -8,11 +8,21 @@
 
 #import "Model.h"
 
+extern NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar;
+
+typedef enum {
+	
+	PurchaseRulesOK,
+	PurchaseRulesTooManyCandiesForSmallJar,
+	PurchaseRulesAlreadySubscribedToExchange,
+	PurchaseRulesAlreadyBoughtBigJar
+	
+} PurchaseRules;
 
 @interface PurchaseRulesService : NSObject
 
 + (BOOL)shouldEnableBuyButtonForProduct:(Product *)product;
-+ (BOOL)canBuyMoreProduct:(Product *)product;
++ (PurchaseRules)canBuyMoreProduct:(Product *)product;
 
 @end
 
