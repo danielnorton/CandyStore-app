@@ -12,6 +12,7 @@
 #import "CandyShopService.h"
 #import "Style.h"
 #import "UITableViewDelgate+emptyFooter.h"
+#import "CandyEatingService.h"
 
 
 #define kWelcomeViewTag -9999
@@ -23,6 +24,8 @@
 - (void)loadWelcomeView;
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)reloadVisibleCells;
+- (void)showHideViews;
+- (void)fetch;
 
 @end
 
@@ -61,18 +64,11 @@
 	[self.view addSubview:tableView];
 	[self loadWelcomeView];
 	
-	NSError *error = nil;
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSFetchedResultsController *controller = [repo controllerForMyCandyJar];
-	[controller setDelegate:self];
 	[repo release];
-	
 	[self setFetchedResultsController:controller];
-	if (![fetchedResultsController performFetch:&error]) {
-		
-		// TODO: handle error
-		[fetchedResultsController setDelegate:nil];
-	}
+	[self fetch];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,16 +76,7 @@
 		
 	[self.navigationController setNavigationBarHidden:YES];
 	
-	int count = [fetchedResultsController.managedObjectContext countForFetchRequest:fetchedResultsController.fetchRequest error:nil];
-	BOOL hasSome = (count > 0);
-	BOOL wasHidden = !welcomeView.isHidden;
-	[welcomeView setHidden:hasSome];
-	[tableView setHidden:!hasSome];
-	
-	if (wasHidden) {
-		
-		[tableView reloadData];
-	}
+	[self showHideViews];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -150,6 +137,8 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     
+	[self showHideViews];
+	
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -164,6 +153,8 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
+	
+	[self showHideViews];
 	
     switch(type) {
             
@@ -201,7 +192,9 @@
 #pragma mark JarListItemCellDelegate
 - (void)jarListItemCell:(JarListItemCell *)cell didEatOneProduct:(Product *)product {
 	
-	// TODO:
+	CandyEatingService *service = [[CandyEatingService alloc] init];
+	[service eatCandy:product];
+	[service release];
 }
 
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
@@ -229,12 +222,14 @@
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[cell setDelegate:self];
 	
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	NSNumber *count = [product valueForKeyPath:@"purchases.@count"];
     [cell.titleLabel setText:product.title];
 	[cell.quantityLabel setText:[count stringValue]];
+	[cell setProduct:product];
 
 	if (count.integerValue == 1) {
 		
@@ -267,6 +262,31 @@
 	for (NSIndexPath *indexPath in visiblePaths) {
 		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 		[self configureCell:(JarListItemCell *)cell atIndexPath:indexPath];
+	}
+}
+
+- (void)showHideViews {
+	
+	int count = [fetchedResultsController.managedObjectContext countForFetchRequest:fetchedResultsController.fetchRequest error:nil];
+	BOOL hasSome = (count > 0);
+	BOOL wasHidden = !welcomeView.isHidden;
+	[welcomeView setHidden:hasSome];
+	[tableView setHidden:!hasSome];
+	
+	if (wasHidden) {
+		
+		[self fetch];
+	}
+}
+
+- (void)fetch {
+	
+	NSError *error = nil;
+	[fetchedResultsController setDelegate:self];
+	if (![fetchedResultsController performFetch:&error]) {
+		
+		// TODO: handle error
+		[fetchedResultsController setDelegate:nil];
 	}
 }
 

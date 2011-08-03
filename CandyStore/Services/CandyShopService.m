@@ -10,9 +10,9 @@
 #import "Model.h"
 #import "ProductRepository.h"
 
-#define kInternalKeyCandy @"candy"
-#define kInternalKeyBigCandyJar @"bigcandyjar"
-#define kInternalKeyExchange @"exchange"
+NSString * const InternalKeyCandy = @"candy";
+NSString * const InternalKeyBigCandyJar = @"bigcandyjar";
+NSString * const InternalKeyExchange = @"exchange";
 
 
 @interface CandyShopService()
@@ -28,12 +28,12 @@
 #pragma mark CandyShopService
 + (BOOL)hasBigJar {
 	
-	return [self hasPurchasedInternalKey:kInternalKeyBigCandyJar];
+	return [self hasPurchasedInternalKey:InternalKeyBigCandyJar];
 }
 
 + (BOOL)hasExchange {
 	
-	return [self hasPurchasedInternalKey:kInternalKeyExchange];
+	return [self hasPurchasedInternalKey:InternalKeyExchange];
 }
 
 

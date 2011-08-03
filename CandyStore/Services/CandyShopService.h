@@ -6,6 +6,9 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+extern NSString * const InternalKeyCandy;
+extern NSString * const InternalKeyBigCandyJar;
+extern NSString * const InternalKeyExchange;
 
 @interface CandyShopService : NSObject
 
