@@ -16,6 +16,8 @@
 + (UIColor *)subscriptionTitleShadowColor;
 + (UIColor *)buyButtonTextColor;
 + (UIColor *)buyButtonShadowColor;
++ (UIColor *)buyButtonDisabledTextColor;
++ (UIColor *)buyButtonDisabledShadowColor;
 + (UIColor *)refreshingTitleTextColor;
 + (UIColor *)refreshingTitleShadowColor;
 

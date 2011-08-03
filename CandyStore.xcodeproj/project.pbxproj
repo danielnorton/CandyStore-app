@@ -53,6 +53,9 @@
 		9B9544F613E8B9B900BCF94D /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F513E8B9B900BCF94D /* Product.m */; };
 		9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */; };
 		9B9544FC13E8FCD600BCF94D /* CandyEatingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544FB13E8FCD500BCF94D /* CandyEatingService.m */; };
+		9B9544FF13E905AE00BCF94D /* grayBuyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544FD13E905AE00BCF94D /* grayBuyButton.png */; };
+		9B95450013E905AE00BCF94D /* grayBuyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544FE13E905AE00BCF94D /* grayBuyButton@2x.png */; };
+		9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
 		9BCAA78C13E316EF00C92FBB /* RefreshingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */; };
@@ -181,6 +184,10 @@
 		9B9544F813E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewDelgate+emptyFooter.m"; sourceTree = "<group>"; };
 		9B9544FA13E8FCD500BCF94D /* CandyEatingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandyEatingService.h; sourceTree = "<group>"; };
 		9B9544FB13E8FCD500BCF94D /* CandyEatingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyEatingService.m; sourceTree = "<group>"; };
+		9B9544FD13E905AE00BCF94D /* grayBuyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayBuyButton.png; sourceTree = "<group>"; };
+		9B9544FE13E905AE00BCF94D /* grayBuyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayBuyButton@2x.png"; sourceTree = "<group>"; };
+		9B95450113E90ABD00BCF94D /* PurchaseRulesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseRulesService.h; sourceTree = "<group>"; };
+		9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRulesService.m; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
@@ -480,6 +487,8 @@
 				9BD2EE9513E3674600594DF1 /* blueBuyButton@2x.png */,
 				9BD2EE9613E3674600594DF1 /* greenBuyButton.png */,
 				9BD2EE9713E3674600594DF1 /* greenBuyButton@2x.png */,
+				9B9544FD13E905AE00BCF94D /* grayBuyButton.png */,
+				9B9544FE13E905AE00BCF94D /* grayBuyButton@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -510,6 +519,8 @@
 				9B9544EF13E89BBC00BCF94D /* CandyShopService.m */,
 				9B9544FA13E8FCD500BCF94D /* CandyEatingService.h */,
 				9B9544FB13E8FCD500BCF94D /* CandyEatingService.m */,
+				9B95450113E90ABD00BCF94D /* PurchaseRulesService.h */,
+				9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -729,6 +740,8 @@
 				9B13164713E72E7600D5253A /* ShopListItemCell.xib in Resources */,
 				9B13165B13E74AA700D5253A /* ShopItemDetailViewController.xib in Resources */,
 				9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */,
+				9B9544FF13E905AE00BCF94D /* grayBuyButton.png in Resources */,
+				9B95450013E905AE00BCF94D /* grayBuyButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,6 +823,7 @@
 				9B9544F613E8B9B900BCF94D /* Product.m in Sources */,
 				9B9544F913E8CDDC00BCF94D /* UITableViewDelgate+emptyFooter.m in Sources */,
 				9B9544FC13E8FCD600BCF94D /* CandyEatingService.m in Sources */,
+				9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

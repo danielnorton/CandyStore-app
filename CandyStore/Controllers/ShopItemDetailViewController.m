@@ -11,6 +11,8 @@
 #import "Style.h"
 #import "TransactionReceiptService.h"
 #import "UITableViewDelgate+emptyFooter.h"
+#import "CandyShopService.h"
+#import "PurchaseRulesService.h"
 
 
 #define kPurchaseCellHeight 66.0f
@@ -29,6 +31,7 @@
 - (void)reloadVisibleCells;
 - (void)configureDescriptionCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configurePurchaseCell:(ShopItemDetailPurchaseCell *)purchaseCell atIndexPath:(NSIndexPath *)indexPath;
+- (void)setBuyButton:(BuyButton *)buyButton enabledForProduct:(Product *)product;
 
 @end
 
@@ -235,7 +238,6 @@
 - (void)configurePurchaseCell:(ShopItemDetailPurchaseCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
 	[cell setDelegate:self];
-	[cell.buyButton setTitle:NSLocalizedString(@"BUY NOW", @"BUY NOW") forState:UIControlStateSelected];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	
 	CGRect t = cell.titleLabel.frame;
@@ -274,6 +276,8 @@
 			
 			[cell.buyButton setHidden:NO];
 			[cell.buyButton setTitle:product.localizedPrice forState:UIControlStateNormal];
+			
+			[self setBuyButton:cell.buyButton enabledForProduct:product];
 		}
 		
 	} else {
@@ -290,9 +294,28 @@
 		[cell.iconView setHidden:YES];
 		[cell.buyButton setHidden:NO];
 		[cell.buyButton setTitle:subscription.localizedPrice forState:UIControlStateNormal];
+		
+		[self setBuyButton:cell.buyButton enabledForProduct:subscription];
 	}
 	
 	[cell.titleLabel setFrame:titleLabelFrame];
+}
+
+- (void)setBuyButton:(BuyButton *)buyButton enabledForProduct:(Product *)aProduct {
+	
+	BOOL isButtonEnabled = [PurchaseRulesService shouldEnableBuyButtonForProduct:aProduct];
+	[buyButton setEnabled:isButtonEnabled];
+	if (!isButtonEnabled) {
+		
+		NSString *normal = [buyButton titleForState:UIControlStateNormal];
+		NSString *disabled = [buyButton titleForState:UIControlStateDisabled];
+		[buyButton.titleLabel setFont:[UIFont buyButtonDisabledFont]];
+		[buyButton resizeToLeft:normal nextText:disabled animated:NO];
+		
+	} else {
+		
+		[buyButton.titleLabel setFont:[UIFont buyButtonFont]];
+	}
 }
 
 @end

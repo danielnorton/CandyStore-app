@@ -72,6 +72,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			
 		} else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
 			
+			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 			[self notifyName:TransactionReceiptServiceNotificationFailed forTransaction:transaction];
 		}
 	}];

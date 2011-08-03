@@ -9,6 +9,7 @@
 
 @interface BuyButton : UIButton
 
+- (void)resizeToLeft:(NSString *)currentText nextText:(NSString *)nextText animated:(BOOL)animated;
 
 @end
 

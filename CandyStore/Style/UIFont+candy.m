@@ -11,14 +11,24 @@
 @implementation UIFont(candy)
 
 + (UIFont *)productDescriptionFont {
-	return [UIFont systemFontOfSize:16.0f];
+	return [self systemFontOfSize:16.0f];
 }
 
 + (UIFont *)subscriptionTitleFont {
-	return [UIFont systemFontOfSize:16.0f];
+	return [self systemFontOfSize:16.0f];
 }
 + (UIFont *)modelTitleFont {
-	return [UIFont boldSystemFontOfSize:20.0f];
+	return [self boldSystemFontOfSize:20.0f];
 }
 
++ (UIFont *)buyButtonFont {
+	return [self boldSystemFontOfSize:15.0f];
+}
+
++ (UIFont *)buyButtonDisabledFont {
+	return [self boldSystemFontOfSize:13.0f];
+}
+
+
 @end
+

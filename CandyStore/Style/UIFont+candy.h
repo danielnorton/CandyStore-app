@@ -12,5 +12,7 @@
 + (UIFont *)productDescriptionFont;
 + (UIFont *)subscriptionTitleFont;
 + (UIFont *)modelTitleFont;
++ (UIFont *)buyButtonFont;
++ (UIFont *)buyButtonDisabledFont;
 
 @end

@@ -43,6 +43,14 @@
 	return [self blackColor];
 }
 
++ (UIColor *)buyButtonDisabledTextColor {
+	return [self colorFrom255Red:147 green:140 blue:156];
+}
+
++ (UIColor *)buyButtonDisabledShadowColor {
+	return [self clearColor];
+}
+
 + (UIColor *)refreshingTitleTextColor {
 	return [self darkGrayColor];
 }
