@@ -7,7 +7,7 @@
 //
 
 #import "CandyEatingService.h"
-#import "ProductRepository.h"
+#import "PurchaseRepository.h"
 #import "CandyShopService.h"
 
 
@@ -22,11 +22,12 @@
 	
 	Purchase *purchase = [candy.purchases anyObject];
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:candy.managedObjectContext];
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:candy.managedObjectContext];
 	[repo removePurchaseFromProduct:purchase];
 	
 	NSError *error = nil;
 	[repo save:&error];
+	[repo release];
 }
 
 

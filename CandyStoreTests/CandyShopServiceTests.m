@@ -13,7 +13,7 @@
 
 - (void)testShouldNotYetHaveBigJar {
 	
-	BOOL hasBigJar = [CandyShopService hasBigJar];
+	BOOL hasBigJar = [CandyShopService hasBigCandyJar];
 	STAssertFalse(hasBigJar, @"shop should not (yet) have big jar.");
 }
 

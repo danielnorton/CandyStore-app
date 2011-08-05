@@ -11,9 +11,9 @@
 
 
 @implementation Purchase
-@dynamic quantity;
 @dynamic receipt;
 @dynamic transactionIdentifier;
+@dynamic productIdentifier;
 @dynamic isExpiredData;
 @dynamic product;
 

@@ -11,4 +11,13 @@
 
 @interface PurchaseRepository : RepositoryBase
 
+- (BOOL)hasBigCandyJar;
+- (BOOL)hasActiveExchangeSubscription;
+- (BOOL)hasExchangeCredits;
+- (int)candyPurchaseCount;
+- (Purchase *)addOrRetreivePurchaseForProduct:(Product *)product withTransactionIdentifier:(NSString *)transactionIdentifier;
+- (void)removePurchaseFromProduct:(Purchase *)purchase;
+- (NSArray *)fetchOrphanedPurchases;
+
 @end
+

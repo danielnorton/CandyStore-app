@@ -7,6 +7,15 @@
 //
 
 #import "PurchaseRepository.h"
+#import "CandyShopService.h"
+
+
+@interface PurchaseRepository()
+
+- (BOOL)simplePredicateCountTest:(NSPredicate *)pred;
+
+@end
+
 
 @implementation PurchaseRepository
 
@@ -22,4 +31,81 @@
 	return self;
 }
 
+
+#pragma mark -
+#pragma mark PurchaseRepository
+- (BOOL)hasBigCandyJar {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.internalKey == %@", InternalKeyBigCandyJar];
+	return [self simplePredicateCountTest:pred];
+}
+
+- (BOOL)hasActiveExchangeSubscription {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"(product.parent.internalKey == %@) && (isExpiredData == 0)", InternalKeyExchange];
+	return [self simplePredicateCountTest:pred];
+}
+
+- (BOOL)hasExchangeCredits {
+
+	// TODO: implement this
+	return YES;
+}
+
+- (int)candyPurchaseCount {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData == %d", ProductKindCandy];
+	return [self simplePredicateCountTest:pred];
+}
+
+- (Purchase *)addOrRetreivePurchaseForProduct:(Product *)product withTransactionIdentifier:(NSString *)transactionIdentifier {
+	
+	Purchase *purchase = (Purchase *)[self itemForId:transactionIdentifier];
+	if (!purchase) {
+		
+		purchase = (Purchase *)[self insertNewObject];
+		[purchase setTransactionIdentifier:transactionIdentifier];
+	}
+	
+	if (![product.purchases containsObject:purchase]) {
+		
+		[product addPurchasesObject:purchase];
+	}
+	
+	[purchase setProduct:product];
+	
+	return purchase;
+}
+
+- (void)removePurchaseFromProduct:(Purchase *)purchase {
+	
+	Product *product = purchase.product;
+	if (!product) return;
+	
+	[product removePurchasesObject:purchase];
+	[purchase setProduct:nil];
+	[self.managedObjectContext deleteObject:purchase];
+}
+
+- (NSArray *)fetchOrphanedPurchases {
+
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product == nil"];
+	return [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
+
+#pragma mark Private Extension
+- (BOOL)simplePredicateCountTest:(NSPredicate *)pred {
+	
+	NSFetchRequest *request = [self newFetchRequestWithSort:self.defaultSortDescriptors andPredicate:pred];
+	int count = [self.managedObjectContext countForFetchRequest:request error:nil];
+	[request release];
+	
+	BOOL answer = (count > 0);
+	return answer;
+}
+
+
 @end
+
+

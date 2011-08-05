@@ -7,6 +7,8 @@
 //
 
 #import "ProductRepository.h"
+#import "PurchaseRepository.h"
+
 
 @implementation ProductRepository
 
@@ -78,12 +80,6 @@
 	[self.managedObjectContext deleteObject:subscription];
 }
 
-- (NSFetchedResultsController *)controllerForCandyShop {
-	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil && isActiveData == 1"];
-	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
-}
-
 - (void)setAllProductsInactive {
 
 	NSArray *all = [self fetchAll];
@@ -94,24 +90,10 @@
 	}];
 }
 
-- (Purchase *)addPurchaseToProduct:(Product *)product {
+- (NSFetchedResultsController *)controllerForCandyShop {
 	
-	Purchase *newPurchase = (Purchase *)[NSEntityDescription insertNewObjectForEntityForName:@"Purchase"
-																	  inManagedObjectContext:self.managedObjectContext];
-	[product addPurchasesObject:newPurchase];
-	[newPurchase setProduct:product];
-	
-	return newPurchase;
-}
-
-- (void)removePurchaseFromProduct:(Purchase *)purchase {
-	
-	Product *product = purchase.product;
-	if (!product) return;
-	
-	[product removePurchasesObject:purchase];
-	[purchase setProduct:nil];
-	[self.managedObjectContext deleteObject:purchase];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"parent == nil && isActiveData == 1"];
+	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
 }
 
 - (NSFetchedResultsController *)controllerForMyCandyJar {
@@ -120,21 +102,6 @@
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
 }
 
-- (int)candyCount {
-	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"productKindData == %d && purchases.@count > 0", ProductKindCandy];
-	NSArray *all = [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
-	
-	__block int count = 0;
-	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		
-		Product *product = (Product *)obj;
-		count += product.purchases.count;
-	}];
-	
-	int answer = count;
-	return answer;
-}
 
 @end
 

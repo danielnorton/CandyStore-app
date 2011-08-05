@@ -27,6 +27,7 @@
 @property (nonatomic, retain) ProductBuilderService *productBuilderService;
 @property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
 
+- (BOOL)canRestoreOrRefresh;
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
 - (BOOL)shouldAlertForReachabilityChanged;
@@ -67,20 +68,39 @@
 	[internetReach startNotifer];
 	[self reachabilityChanged:nil];
 	
-	void (^updateJarFromNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
+	void (^updateJarAndCompleteRefreshing)(NSNotification *) = ^(NSNotification *notification) {
+		
+		[candyShopViewController completeRefreshing];
 		[self updateJarTabImage];
 	};
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceCompletedNotification
-													  object:nil
-													   queue:nil
-												  usingBlock:updateJarFromNotification];
+	void (^updateJarFromNotification)(NSNotification *) = ^(NSNotification *notification) {
+		
+		[self updateJarTabImage];
+	};	
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:ReceiptVerificationDidDeletePurchaseNotification
-													  object:nil
-													   queue:nil
-												  usingBlock:updateJarFromNotification];	
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];	
+	[center addObserverForName:TransactionReceiptServiceRestoreCompletedNotification
+						object:nil
+						 queue:nil
+					usingBlock:updateJarAndCompleteRefreshing];
+	
+	[center addObserverForName:TransactionReceiptServiceRestoreFailedNotification
+						object:nil
+						 queue:nil
+					usingBlock:updateJarAndCompleteRefreshing];
+	
+	[center addObserverForName:TransactionReceiptServiceCompletedNotification
+						object:nil
+						 queue:nil
+					usingBlock:updateJarFromNotification];
+	
+	[center addObserverForName:ReceiptVerificationDidDeletePurchaseNotification
+						object:nil
+						 queue:nil
+					usingBlock:updateJarFromNotification];
+	
 	
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
@@ -95,13 +115,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	
+	[self updateJarTabImage];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+	
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
 	[service reset];
 	[service release];
 
-	[self updateJarTabImage];
-	
-//	[self updateProducts];
+	[self updateProducts];
 }
 
 
@@ -141,17 +164,13 @@
 }
 
 - (void)updateProducts {
+
+	// can be called from Candy Shop view controller and Candy Exchange view controller
+	// coordinate table animations from here
+	
+	if (![self canRestoreOrRefresh]) return;
 	
 	[candyShopViewController beginRefreshing];
-	
-	//  just quit if the local service exists and it is not in status unknown, idle, or failed.
-	if (productBuilderService && (
-								  (productBuilderService.status != ProductBuilderServiceStatusUnknown)
-								  && (productBuilderService.status != ProductBuilderServiceStatusIdle)
-								  && (productBuilderService.status != ProductBuilderServiceStatusFailed)
-								  )
-		) return;
-	
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
 	[self setProductBuilderService:service];
 	[service setDelegate:self];
@@ -166,8 +185,30 @@
 	[self updateProducts];
 }
 
+- (IBAction)restoreTransactions:(id)sender {
+	
+	// can only be called from Candy Shop view controller, but it's here for consistancy
+	
+	if (![self canRestoreOrRefresh]) return;
+	
+	[candyShopViewController beginRefreshing];
+	[transactionReceiptService restoreTransactions];
+}
+
 
 #pragma mark Private Extension
+- (BOOL)canRestoreOrRefresh {
+
+	BOOL canRefresh = (productBuilderService.status == ProductBuilderServiceStatusUnknown)
+	|| (productBuilderService.status == ProductBuilderServiceStatusIdle)
+	|| (productBuilderService.status == ProductBuilderServiceStatusFailed);
+	
+
+	BOOL canRestore = YES;
+	
+	return canRefresh && canRestore;
+}
+
 - (void)alertUserHasNotPurchasedExchange {
 	
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
@@ -213,7 +254,7 @@
 
 - (void)updateJarTabImage {
 	
-	UIImage *icon = [CandyShopService hasBigJar]
+	UIImage *icon = [CandyShopService hasBigCandyJar]
 	? [UIImage imageNamed:@"bigJarTab"]
 	: [UIImage imageNamed:@"smallJarTab"];
 	

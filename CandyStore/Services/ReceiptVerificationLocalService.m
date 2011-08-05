@@ -115,7 +115,7 @@ NSString * const ReceiptVerificationPurchaseKey = @"ReceiptVerificationPurchaseK
 	
 	[self notifyName:ReceiptVerificationWillDeletePurchaseNotification forPurchase:purchase];
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:purchase.managedObjectContext];
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
 	[repo removePurchaseFromProduct:purchase];
 	[repo save:nil];
 	[repo release];

@@ -9,50 +9,41 @@
 #import <StoreKit/StoreKit.h>
 #import "CandyShopService.h"
 #import "Model.h"
-#import "ProductRepository.h"
+#import "PurchaseRepository.h"
+
 
 NSString * const InternalKeyCandy = @"candy";
 NSString * const InternalKeyBigCandyJar = @"bigcandyjar";
 NSString * const InternalKeyExchange = @"exchange";
+NSString * const SubscriptionSharedSecret = @"e01d3625b9854a33b23b2578a27288d6";
 
-
-@interface CandyShopService()
-
-+ (BOOL)hasPurchasedInternalKey:(NSString *)internalKey;
-
-@end
 
 @implementation CandyShopService
 
 
 #pragma mark -
 #pragma mark CandyShopService
-+ (BOOL)hasBigJar {
++ (BOOL)hasBigCandyJar {
 	
-	return [self hasPurchasedInternalKey:InternalKeyBigCandyJar];
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	BOOL answer = [repo hasBigCandyJar];
+	[repo release];
+	
+	return answer;
 }
 
 + (BOOL)hasExchange {
 	
-	return [self hasPurchasedInternalKey:InternalKeyExchange];
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	BOOL subscribed = [repo hasActiveExchangeSubscription];
+	BOOL stuff = [repo hasExchangeCredits];
+	[repo release];
+	
+	return subscribed || stuff;
 }
 
 + (BOOL)canMakePayments {
 	return [SKPaymentQueue canMakePayments];
-}
-
-
-#pragma mark -
-#pragma mark CandyShopService
-+ (BOOL)hasPurchasedInternalKey:(NSString *)internalKey {
-	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"internalKey == %@ && purchases.@count > 0", internalKey];
-	NSFetchRequest *request = [repo newFetchRequestWithSort:repo.defaultSortDescriptors andPredicate:pred];
-	int count = [repo.managedObjectContext countForFetchRequest:request error:nil];
-	
-	return count == 1;
 }
 
 

@@ -6,7 +6,6 @@
 
 #import "EndpointService.h"
 
-
 #define kWebServerRoot @"http://daniels-lappy.local:3000/"
 #define kWebServerProductsPath @"/products"
 #define kWebServerReceiptVerificationPath @"/verifyReceipt"

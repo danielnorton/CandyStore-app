@@ -17,13 +17,13 @@
     </entity>
     <entity name="Purchase" representedClassName="Purchase">
         <attribute name="isExpiredData" attributeType="Boolean" defaultValueString="NO"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 32"/>
+        <attribute name="productIdentifier" optional="YES" attributeType="String"/>
         <attribute name="receipt" optional="YES" attributeType="Binary"/>
         <attribute name="transactionIdentifier" optional="YES" attributeType="String"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="purchases" inverseEntity="Product"/>
     </entity>
     <elements>
-        <element name="Product" positionX="-2511" positionY="-801" width="128" height="225"/>
+        <element name="Product" positionX="-2511" positionY="-801" width="128" height="240"/>
         <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="120"/>
     </elements>
 </model>

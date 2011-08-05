@@ -8,6 +8,7 @@
 
 #import "PurchaseRulesService.h"
 #import "ProductRepository.h"
+#import "PurchaseRepository.h"
 #import "CandyShopService.h"
 
 #define kMaxCandyForSmallJar 4
@@ -29,44 +30,34 @@ NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar = @"You need t
 	
 	if (![CandyShopService canMakePayments]) return PurchaseRulesPurchasesDisabled;
 	
+	PurchaseRepository *repo = [[[PurchaseRepository alloc] initWithContext:product.managedObjectContext] autorelease];
+	
+	// Candy. If user has the Big Candy Jar, they can keep buying candy.
+	// Otherwise, they are limited to the number of candies they can buy.
 	if ([product.internalKey isEqualToString:InternalKeyCandy]) {
 	
-		if ([CandyShopService hasBigJar]) return PurchaseRulesOK;
+		if ([CandyShopService hasBigCandyJar]) return PurchaseRulesOK;
 		
-		ProductRepository *repo = [[ProductRepository alloc] initWithContext:product.managedObjectContext];
-		int count = [repo candyCount];
-		[repo release];
-		
-		if (count >= kMaxCandyForSmallJar) return PurchaseRulesTooManyCandiesForSmallJar;
+		int count = [repo candyPurchaseCount];
+		return (count >= kMaxCandyForSmallJar)
+		? PurchaseRulesTooManyCandiesForSmallJar
+		: PurchaseRulesOK;
 	}
 	
+	
+	// Candy Jar
 	if ([product.internalKey isEqualToString:InternalKeyBigCandyJar]) {
 		
-		if (product.purchases.count == 0) {
-			
-			return PurchaseRulesOK;
-			
-		} else {
-			
-			return PurchaseRulesAlreadyBoughtBigJar;
-		}
+		return [repo hasBigCandyJar]
+		? PurchaseRulesAlreadyBoughtBigJar
+		: PurchaseRulesOK;
 	}
 	
-	// product is Exchange or subscription to Exchange.
-	// if product is the parent Product (i.e. not one
-	// of the subscriptions), return NO
-	if (!product.parent) return NO;
 	
-	__block PurchaseRules answer = PurchaseRulesOK;
-	[product.parent.subscriptions enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-		
-		Product *subscription = (Product *)obj;
-		if (subscription.purchases.count > 0) {
-			answer = PurchaseRulesAlreadySubscribedToExchange;
-		}
-	}];
-	
-	return answer;
+	// Exchange or subscription to Exchange.
+	return [repo hasActiveExchangeSubscription]
+	? PurchaseRulesAlreadySubscribedToExchange
+	: PurchaseRulesOK;
 }
 
 @end

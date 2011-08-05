@@ -10,19 +10,24 @@
 #import "TransactionReceiptService.h"
 #import "Model.h"
 #import "ProductRepository.h"
+#import "PurchaseRepository.h"
 #import "ReceiptVerificationLocalService.h"
 
 NSString * const TransactionReceiptServiceProcessingNotification = @"TransactionReceiptServiceProcessingNotification";
 NSString * const TransactionReceiptServiceCompletedNotification = @"TransactionReceiptServiceCompletedNotification";
 NSString * const TransactionReceiptServiceFailedNotification = @"TransactionReceiptServiceFailedNotification";
+NSString * const TransactionReceiptServiceRestoreCompletedNotification = @"TransactionReceiptServiceRestoreCompletedNotification";
+NSString * const TransactionReceiptServiceRestoreFailedNotification = @"TransactionReceiptServiceRestoreFailedNotification";
 NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptServiceKeyTransaction";
 
 
 @interface TransactionReceiptService()
 
 - (void)notifyName:(NSString *)name forTransaction:(SKPaymentTransaction *)transaction;
+- (void)notifyName:(NSString *)name;
 
 @end
+
 
 @implementation TransactionReceiptService
 
@@ -36,35 +41,41 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 		SKPaymentTransaction *transaction = (SKPaymentTransaction *)obj;
 		
 		[self notifyName:TransactionReceiptServiceProcessingNotification forTransaction:transaction];
-		
-		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(transaction.transactionState == SKPaymentTransactionStatePurchasing)];
-		
-		if ((transaction.transactionState == SKPaymentTransactionStatePurchased)
-			|| (transaction.transactionState == SKPaymentTransactionStateRestored)) {
-			
-			ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-		
-			NSString *identifier = transaction.payment.productIdentifier;
-			NSString *transactionIdentifier = transaction.transactionIdentifier;
-			NSData *receipt = transaction.transactionReceipt;
-			SKPayment *payment = transaction.payment;
-			
-			Product *product = (Product *)[repo itemForId:identifier];
-			if (product) {
 				
-				Purchase *purchase = [repo addPurchaseToProduct:product];
-				[purchase setTransactionIdentifier:transactionIdentifier];
-				[purchase setQuantity:[NSNumber numberWithInteger:payment.quantity]];
-				[purchase setReceipt:receipt];
-			}
+		BOOL shouldProcess = ((transaction.transactionState == SKPaymentTransactionStatePurchased)
+							  || (transaction.transactionState == SKPaymentTransactionStateRestored));
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:shouldProcess];
+		if (shouldProcess) {
+			
+			NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
+			ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:context];
+			PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
+			
+			NSString *productIdentifier = transaction.payment.productIdentifier;
+			NSData *receipt = transaction.transactionReceipt;
+			
+			NSString *transactionIdentifier = transaction.originalTransaction
+			? transaction.originalTransaction.transactionIdentifier
+			: transaction.transactionIdentifier;
+			
+			NSLog(@"updating state: %d,  transactionIdentifier: %@,  productIdentifier: %@", transaction.transactionState, transactionIdentifier, productIdentifier);
+
+			Product *product = (Product *)[productRepo itemForId:productIdentifier];
+			Purchase *purchase = [purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:transactionIdentifier];
+			[purchase setProductIdentifier:productIdentifier];
+			[purchase setReceipt:receipt];
 			
 			NSError *error = nil;
-			if (![repo save:&error]) {
+			if (![productRepo save:&error]) {
 				
-				// TODO: still thinking of what to do if this fails.
+				[self notifyName:TransactionReceiptServiceFailedNotification forTransaction:transaction];
+				[purchaseRepo release];
+				[productRepo release];
+				return;
 			}
 			
-			[repo release];
+			[purchaseRepo release];
+			[productRepo release];
 			
 			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 			
@@ -78,6 +89,17 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 	}];
 }
 
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+	
+	[self notifyName:TransactionReceiptServiceRestoreFailedNotification];
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+
+	[self notifyName:TransactionReceiptServiceRestoreCompletedNotification];
+}
+
+
 #pragma mark -
 #pragma mark TransactionReceiptService
 - (void)beginObserving {
@@ -88,6 +110,11 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 - (void)endObserving {
 	
 	[[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
+
+- (void)restoreTransactions {
+	
+	[[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 
@@ -101,6 +128,13 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 	[[NSNotificationCenter defaultCenter] postNotificationName:name
 														object:self
 													  userInfo:dict];
+}
+
+- (void)notifyName:(NSString *)name {
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:name
+														object:self
+													  userInfo:nil];
 }
 
 

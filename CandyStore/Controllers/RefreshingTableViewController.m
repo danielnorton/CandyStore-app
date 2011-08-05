@@ -130,7 +130,7 @@
 	[self.view setUserInteractionEnabled:NO];
 	
 	[self setState:RefreshingTableViewControllerStateRefresing];
-	[self setBarButtonsEnabled:NO withToolbar:nil withLeftBarButtonItem:nil];
+	[self setBarButtonsEnabled:NO withToolbar:nil];
 	
 	UITableView *tableView = self.tableView;
 	[fetchedResultsController setDelegate:nil];
@@ -215,7 +215,7 @@
 	
 	[self.tableView endUpdates];
 	
-	[self setBarButtonsEnabled:YES withToolbar:nil withLeftBarButtonItem:nil];
+	[self setBarButtonsEnabled:YES withToolbar:nil];
 }
 
 - (void)enableWithLoadingCellMessage:(NSString *)message {
@@ -231,7 +231,7 @@
 	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 	[cell.textLabel setText:message];
 	[cell clearAccessoryViewWith:accessory];
-	[self setBarButtonsEnabled:YES withToolbar:nil withLeftBarButtonItem:nil];
+	[self setBarButtonsEnabled:YES withToolbar:nil];
 }
 
 - (void)reloadVisibleCells {

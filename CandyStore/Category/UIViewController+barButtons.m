@@ -18,17 +18,7 @@
 	[back release];
 }
 
-- (void)setBarButtonsEnabled:(BOOL)enabled withToolbar:(UIToolbar *)toolbar withLeftBarButtonItem:(UIBarButtonItem *)left {
-	
-	if (enabled) {
-		
-		[self.navigationItem setLeftBarButtonItem:nil];
-		
-	} else {
-		
-		[self.navigationItem setLeftBarButtonItem:left];
-		[left setEnabled:enabled];
-	}
+- (void)setBarButtonsEnabled:(BOOL)enabled withToolbar:(UIToolbar *)toolbar {
 	
 	[self.navigationItem.leftBarButtonItem setEnabled:enabled];
 	[self.navigationItem.rightBarButtonItem setEnabled:enabled];

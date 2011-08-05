@@ -39,4 +39,5 @@ typedef enum {
 
 - (void)beginBuildingProducts:(NSManagedObjectContext *)context;
 
+
 @end

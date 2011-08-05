@@ -8,6 +8,6 @@
 @interface UIViewController(barButtons)
 
 - (void)setBackButtonTitle:(NSString *)aTitle;
-- (void)setBarButtonsEnabled:(BOOL)enabled withToolbar:(UIToolbar *)toolbar withLeftBarButtonItem:(UIBarButtonItem *)left;
+- (void)setBarButtonsEnabled:(BOOL)enabled withToolbar:(UIToolbar *)toolbar;
 
 @end

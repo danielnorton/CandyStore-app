@@ -38,7 +38,7 @@
 		
 		code = ReceiptVerificationRemoteServiceCodeFailedInvalidLocalData;
 		
-	} else if ((code != ReceiptVerificationRemoteServiceCodeSuccess) && (![purchase.product.internalKey isEqualToString:InternalKeyExchange])) {
+	} else if ((code != ReceiptVerificationRemoteServiceCodeSuccess) && (![purchase.product.parent.internalKey isEqualToString:InternalKeyExchange])) {
 	
 		code = ReceiptVerificationRemoteServiceCodeFailedNonAutoRenewSubscription;
 	}
@@ -61,7 +61,12 @@
 	
 	NSString *path = [EndpointService receiptVerificationPath];
 	NSString *encoded = [NSString base64StringFromData:purchase.receipt length:purchase.receipt.length];
-	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:encoded, @"receipt", nil];
+	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:encoded, @"receipt", nil];
+	
+	if ([purchase.product.parent.internalKey isEqualToString:InternalKeyExchange]) {
+		
+		[params setObject:SubscriptionSharedSecret forKey:@"sharedSecret"];
+	}
 	
 	[self setMethod:HTTPRequestServiceMethodPost];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];

@@ -9,10 +9,11 @@
 extern NSString * const InternalKeyCandy;
 extern NSString * const InternalKeyBigCandyJar;
 extern NSString * const InternalKeyExchange;
+extern NSString * const SubscriptionSharedSecret;
 
 @interface CandyShopService : NSObject
 
-+ (BOOL)hasBigJar;
++ (BOOL)hasBigCandyJar;
 + (BOOL)hasExchange;
 + (BOOL)canMakePayments;
 

@@ -9,6 +9,7 @@
 #import "ProductBuilderService.h"
 #import "Model.h"
 #import "ProductRepository.h"
+#import "PurchaseRepository.h"
 #import "ImageCachingService.h"
 #import "EndpointService.h"
 
@@ -25,6 +26,7 @@
 - (void)beginAppStoreProducts:(NSSet *)identifiers;
 - (ProductKind)productKindFromServerKey:(NSString *)key;
 - (NSString *)priceFromProduct:(SKProduct *)product;
+- (void)linkOrphanedPurchases;
 - (void)notifyDelegateDidUpdate;
 - (void)notifyDelegateDidFail;
 
@@ -99,6 +101,7 @@ NSNumberFormatter *currencyFormatter;
 		}
 	}];
 	
+	[self linkOrphanedPurchases];
 	
 	NSError *error = nil;
 	BOOL save = [repo save:&error];
@@ -265,6 +268,26 @@ NSNumberFormatter *currencyFormatter;
 	
 	[currencyFormatter setLocale:product.priceLocale];
 	return [currencyFormatter stringFromNumber:product.price];
+}
+
+- (void)linkOrphanedPurchases {
+	
+	// Happens when transactions are dequeued by TransactionReceiptService before
+	// products are downloaded in this service.
+	
+	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
+	ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:context];
+	
+	NSArray *orphans = [purchaseRepo fetchOrphanedPurchases];
+	[orphans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		
+		Purchase *purchase = (Purchase *)obj;
+		Product *product = [productRepo addOrRetreiveProductFromIdentifer:purchase.productIdentifier];
+		[purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:purchase.transactionIdentifier];
+	}];
+	
+	[purchaseRepo release];
+	[productRepo release];
 }
 
 - (void)notifyDelegateDidUpdate {
