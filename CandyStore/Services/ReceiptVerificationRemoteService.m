@@ -29,7 +29,7 @@
 	
 	NSDictionary *response = [sender.json objectAtIndex:0];
 	ReceiptVerificationRemoteServiceCode code = [[response objectForKey:@"code"] integerValue];
-	NSString *transactionId = [response objectForKey:@"transactionId"];
+	NSString *transactionId = [response objectForKey:@"transactionIdentifier"];
 	
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	Purchase *purchase = (Purchase *)[context objectWithID:sender.userData];
@@ -61,14 +61,11 @@
 	
 	NSString *path = [EndpointService receiptVerificationPath];
 	NSString *encoded = [NSString base64StringFromData:purchase.receipt length:purchase.receipt.length];
-	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:encoded, @"receipt", nil];
+	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+							encoded, @"receipt",
+							purchase.product.internalKey, @"type", nil];
 	
-	if ([purchase.product.parent.internalKey isEqualToString:InternalKeyExchange]) {
-		
-		[params setObject:SubscriptionSharedSecret forKey:@"sharedSecret"];
-	}
-	
-	[self setMethod:HTTPRequestServiceMethodPost];
+	[self setMethod:HTTPRequestServiceMethodJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];
 	[self beginRemoteCallWithPath:path withParams:params withUserData:purchase.objectID];
 }

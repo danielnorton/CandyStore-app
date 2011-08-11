@@ -15,7 +15,6 @@
 NSString * const InternalKeyCandy = @"candy";
 NSString * const InternalKeyBigCandyJar = @"bigcandyjar";
 NSString * const InternalKeyExchange = @"exchange";
-NSString * const SubscriptionSharedSecret = @"e01d3625b9854a33b23b2578a27288d6";
 
 
 @implementation CandyShopService
