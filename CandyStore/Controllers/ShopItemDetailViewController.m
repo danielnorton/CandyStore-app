@@ -86,6 +86,12 @@
 													   queue:nil
 												  usingBlock:^(NSNotification *notification) {
 													  
+													  SKPaymentTransaction *transaction = [[notification userInfo] objectForKey:TransactionReceiptServiceKeyTransaction];
+													  if (transaction.error.code == -1001) {
+														  
+														  [self popup:transaction.error.localizedDescription];
+													  }
+													  
 													  [self.navigationController.view setUserInteractionEnabled:YES];
 													  [self.tableView reloadData];
 												  }];
