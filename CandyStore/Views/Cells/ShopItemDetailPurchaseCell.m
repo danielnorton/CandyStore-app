@@ -48,11 +48,23 @@
 	
 		[self notifyDelegateDidChooseToBuy];
 	}
+	
+	[self resizeTitleFromBuyButton];
 }
 
 
 #pragma mark -
 #pragma mark ShopItemDetailPurchaseCell
+- (void)resizeTitleFromBuyButton {
+	
+	CGRect t = titleLabel.frame;
+	CGRect b = buyButton.frame;
+	float w = b.origin.x - t.origin.x - 10.0f;
+	CGRect newT = CGRectMake(t.origin.x, t.origin.y, w, t.size.height);
+	[titleLabel setFrame:newT];
+}
+
+
 #pragma mark Private Extension
 - (void)notifyDelegateDidPresentBuyButton {
 	

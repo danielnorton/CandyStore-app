@@ -28,6 +28,8 @@
 @property (nonatomic, assign) Product *product;
 @property (nonatomic, assign) id<ShopItemDetailPurchaseCellDelegate> delegate;
 
+- (void)resizeTitleFromBuyButton;
+
 
 @end
 

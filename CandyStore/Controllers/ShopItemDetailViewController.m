@@ -173,6 +173,7 @@
 	
 	ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView cellForRowAtIndexPath:activeBuyButtonIndexPath];
 	[cell.buyButton setSelected:NO];
+	[cell resizeTitleFromBuyButton];
 	[self setActiveBuyButtonIndexPath:nil];
 }
 

@@ -47,7 +47,7 @@
 }
 
 
-#pragma mark UITableViewCell
+#pragma mark UIControl
 - (void)setSelected:(BOOL)isSelected {
 
 	UIControlState currentState = isSelected
