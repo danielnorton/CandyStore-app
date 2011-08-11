@@ -2,7 +2,7 @@
 //  Product.h
 //  CandyStore
 //
-//  Created by Daniel Norton on 8/3/11.
+//  Created by Daniel Norton on 8/11/11.
 //  Copyright (c) 2011 Daniel Norton. All rights reserved.
 //
 
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) Product *parent;
 @property (nonatomic, retain) NSSet *purchases;
 @property (nonatomic, retain) NSSet *subscriptions;
+@property (nonatomic, retain) NSManagedObject *exchangeItem;
 @end
 
 @interface Product (CoreDataGeneratedAccessors)

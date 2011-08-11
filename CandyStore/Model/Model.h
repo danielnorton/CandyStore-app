@@ -12,3 +12,6 @@
 
 #import "Purchase.h"
 #import "Purchase+model.h"
+
+#import "ExchangeItem.h"
+

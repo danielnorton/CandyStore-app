@@ -2,7 +2,7 @@
 //  Product.m
 //  CandyStore
 //
-//  Created by Daniel Norton on 8/3/11.
+//  Created by Daniel Norton on 8/11/11.
 //  Copyright (c) 2011 Daniel Norton. All rights reserved.
 //
 
@@ -25,5 +25,6 @@
 @dynamic parent;
 @dynamic purchases;
 @dynamic subscriptions;
+@dynamic exchangeItem;
 
 @end

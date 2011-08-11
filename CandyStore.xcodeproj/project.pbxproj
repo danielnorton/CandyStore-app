@@ -46,6 +46,8 @@
 		9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119213DDEE660099007A /* shopTab@2x.png */; };
 		9B64119B13DDEE660099007A /* smallJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119313DDEE660099007A /* smallJarTab.png */; };
 		9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119413DDEE660099007A /* smallJarTab@2x.png */; };
+		9B6695CD13F4989A00275BE1 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695CC13F4989A00275BE1 /* Product.m */; };
+		9B6695D013F4989B00275BE1 /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695CF13F4989B00275BE1 /* ExchangeItem.m */; };
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9B9544E713E8915C00BCF94D /* JarListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544E613E8915C00BCF94D /* JarListItemCell.m */; };
 		9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544E813E8943E00BCF94D /* JarListItemCell.xib */; };
@@ -59,7 +61,6 @@
 		9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */; };
 		9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */; };
 		9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA613E9D9D4006A7838 /* Purchase.m */; };
-		9B99DDAA13E9D9D5006A7838 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA913E9D9D5006A7838 /* Product.m */; };
 		9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
@@ -179,6 +180,11 @@
 		9B64119213DDEE660099007A /* shopTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopTab@2x.png"; sourceTree = "<group>"; };
 		9B64119313DDEE660099007A /* smallJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallJarTab.png; sourceTree = "<group>"; };
 		9B64119413DDEE660099007A /* smallJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallJarTab@2x.png"; sourceTree = "<group>"; };
+		9B6695C913F4969700275BE1 /* CandyStore_Exchange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CandyStore_Exchange.xcdatamodel; sourceTree = "<group>"; };
+		9B6695CB13F4989A00275BE1 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		9B6695CC13F4989A00275BE1 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		9B6695CE13F4989B00275BE1 /* ExchangeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItem.h; sourceTree = "<group>"; };
+		9B6695CF13F4989B00275BE1 /* ExchangeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItem.m; sourceTree = "<group>"; };
 		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9B9544E513E8915C00BCF94D /* JarListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JarListItemCell.h; sourceTree = "<group>"; };
 		9B9544E613E8915C00BCF94D /* JarListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JarListItemCell.m; sourceTree = "<group>"; };
@@ -201,8 +207,6 @@
 		9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRepository.m; sourceTree = "<group>"; };
 		9B99DDA513E9D9D4006A7838 /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
 		9B99DDA613E9D9D4006A7838 /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
-		9B99DDA813E9D9D5006A7838 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		9B99DDA913E9D9D5006A7838 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9B99DDAB13E9D9F2006A7838 /* Purchase+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Purchase+model.h"; sourceTree = "<group>"; };
 		9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Purchase+model.m"; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
@@ -560,10 +564,12 @@
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
 				9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */,
-				9B99DDA813E9D9D5006A7838 /* Product.h */,
-				9B99DDA913E9D9D5006A7838 /* Product.m */,
 				9B99DDA513E9D9D4006A7838 /* Purchase.h */,
 				9B99DDA613E9D9D4006A7838 /* Purchase.m */,
+				9B6695CE13F4989B00275BE1 /* ExchangeItem.h */,
+				9B6695CF13F4989B00275BE1 /* ExchangeItem.m */,
+				9B6695CB13F4989A00275BE1 /* Product.h */,
+				9B6695CC13F4989A00275BE1 /* Product.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -863,8 +869,9 @@
 				9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */,
 				9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */,
 				9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */,
-				9B99DDAA13E9D9D5006A7838 /* Product.m in Sources */,
 				9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */,
+				9B6695CD13F4989A00275BE1 /* Product.m in Sources */,
+				9B6695D013F4989B00275BE1 /* ExchangeItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,9 +1119,10 @@
 		9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9B6695C913F4969700275BE1 /* CandyStore_Exchange.xcdatamodel */,
 				9BCE6CE113E0BF6800C58AB0 /* CandyStore.xcdatamodel */,
 			);
-			currentVersion = 9BCE6CE113E0BF6800C58AB0 /* CandyStore.xcdatamodel */;
+			currentVersion = 9B6695C913F4969700275BE1 /* CandyStore_Exchange.xcdatamodel */;
 			path = CandyStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
