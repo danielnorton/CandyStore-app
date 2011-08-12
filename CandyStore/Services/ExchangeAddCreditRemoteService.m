@@ -25,13 +25,15 @@
 @implementation ExchangeAddCreditRemoteService
 
 
+@synthesize code;
+
 #pragma mark -
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 		
 	NSDictionary *response = [sender.json objectAtIndex:0];
-	int code = [[response objectForKey:@"code"] integerValue];
-	if (code != 0) {
+	code = [[response objectForKey:@"code"] integerValue];
+	if (code != ReceiptVerificationRemoteServiceCodeSuccess) {
 		
 		[self notifyDelegateFailedAdding];
 		return;
@@ -93,7 +95,7 @@
 	
 	[self setMethod:HTTPRequestServiceMethodPutJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];
-	[self beginRemoteCallWithPath:path withParams:params withUserData:purchase.objectID];	
+	[self beginRemoteCallWithPath:path withParams:params withUserData:purchase.objectID];
 }
 
 

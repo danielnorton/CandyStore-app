@@ -11,18 +11,35 @@
 #import "ExchangeItemRepository.h"
 #import "Style.h"
 #import "CandyShopService.h"
+#import "UIApplication+delegate.h"
+#import "CandyStoreAppDelegate.h"
+#import "NSObject+popup.h"
+#import "UITableViewCell+activity.h"
+#import "NSObject+remoteErrorToApp.h"
+
+
+@interface CandyExchangeViewController()
+
+@property (nonatomic, retain) NSIndexPath *waitingIndexPath;
+@property (nonatomic, readonly) BOOL hasCredits;
+
+- (void)finishCredit;
+
+@end
 
 
 @implementation CandyExchangeViewController
 
 @synthesize exchangeListItemCell;
 
+@synthesize waitingIndexPath;
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
 	
 	[exchangeListItemCell release];
+	[waitingIndexPath release];
 	[super dealloc];
 }
 
@@ -75,6 +92,14 @@
 }
 
 #pragma mark UITableViewDelegate
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (indexPath.section == 0) return nil;
+	if (![self hasCredits]) return nil;
+	
+	return indexPath;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	return [ExchangeListItemCell defaultHeight];
@@ -93,6 +118,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	[self setWaitingIndexPath:indexPath];
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
+	[cell setActivityIndicatorAnimating:YES];
+	[self.navigationController.view setUserInteractionEnabled:NO];
+	
+	ExchangeItem *exchangeItem = (ExchangeItem *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	Product *product = exchangeItem.product;
+	
+	ExchangeUseCreditRemoteService *service = [[ExchangeUseCreditRemoteService alloc] init];
+	[service setDelegate:self];
+	[service beginUseCreditForProduct:product];
+	[service release];
 }
 
 
@@ -121,6 +160,12 @@
 		[cell.titleLabel setText:product.title];
 	}
 	
+	UITableViewCellSelectionStyle style = ((indexPath.section == 0) || ![self hasCredits])
+	? UITableViewCellSelectionStyleNone
+	: UITableViewCellSelectionStyleGray;
+	
+	[cell setSelectionStyle:style];
+	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
 	if (!image) {
@@ -145,4 +190,55 @@
 }
 
 
+#pragma mark RemoteServiceDelegate
+- (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
+	
+	[self finishCredit];
+	[self passFailedAuthenticationNotificationToAppDelegate:sender];
+}
+
+- (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
+	
+	[self finishCredit];
+	[self passTimeoutNotificationToAppDelegate:sender];
+}
+
+
+#pragma mark ExchangeUseCreditRemoteServiceDelegate
+- (void)exchangeUseCreditRemoteServiceDidUseCredit:(ExchangeUseCreditRemoteService *)sender {
+
+	[self finishCredit];
+	
+	CandyStoreAppDelegate *app = [UIApplication thisApp];
+	[app updateExchange];
+}
+
+- (void)exchangeUseCreditRemoteServiceFailedUsingCredit:(ExchangeUseCreditRemoteService *)sender {
+	
+	[self finishCredit];
+	[self popup:NSLocalizedString(@"An error occurred while using a credit", @"An error occurred while using a credit")];
+}
+
+
+#pragma mark -
+#pragma mark CandyExchangeViewController
+#pragma mark Private Extension
+- (BOOL)hasCredits {
+	
+	ExchangeItemRepository *repo = [[ExchangeItemRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	ExchangeItem *item = [repo creditsItem];
+	[repo release];
+	return [item.quantityAvailable integerValue] > 0;
+}
+
+- (void)finishCredit {
+	
+	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:waitingIndexPath];
+	[cell clearAccessoryViewWith:UITableViewCellAccessoryNone];
+	[self setWaitingIndexPath:nil];	
+	[self.navigationController.view setUserInteractionEnabled:YES];
+}
+
+
 @end
+

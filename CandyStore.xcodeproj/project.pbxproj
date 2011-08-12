@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0B3A7613F538D800B89121 /* ExchangeUseCreditRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */; };
 		9B13164713E72E7600D5253A /* ShopListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B13164513E72E7600D5253A /* ShopListItemCell.xib */; };
 		9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164913E730CB00D5253A /* ShopListItemCell.m */; };
 		9B13164F13E73BBA00D5253A /* UIColor+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164E13E73BBA00D5253A /* UIColor+candy.m */; };
@@ -132,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B0B3A7413F538D700B89121 /* ExchangeUseCreditRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeUseCreditRemoteService.h; sourceTree = "<group>"; };
+		9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeUseCreditRemoteService.m; sourceTree = "<group>"; };
 		9B13164613E72E7600D5253A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopListItemCell.xib; sourceTree = "<group>"; };
 		9B13164813E730CB00D5253A /* ShopListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopListItemCell.h; sourceTree = "<group>"; };
 		9B13164913E730CB00D5253A /* ShopListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopListItemCell.m; sourceTree = "<group>"; };
@@ -157,7 +160,7 @@
 		9B14CE0913F4F69E00FA2534 /* ExchangeRefreshingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeRefreshingService.m; sourceTree = "<group>"; };
 		9B14CE0B13F4F98100FA2534 /* ExchangeAvailableItemsRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAvailableItemsRemoteService.h; sourceTree = "<group>"; };
 		9B14CE0C13F4F98100FA2534 /* ExchangeAvailableItemsRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeAvailableItemsRemoteService.m; sourceTree = "<group>"; };
-		9B14CE0E13F4FBF900FA2534 /* NSObject+remoteErrorToApp.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSObject+remoteErrorToApp.h"; sourceTree = "<group>"; };
+		9B14CE0E13F4FBF900FA2534 /* NSObject+remoteErrorToApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+remoteErrorToApp.h"; sourceTree = "<group>"; };
 		9B14CE0F13F4FBF900FA2534 /* NSObject+remoteErrorToApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+remoteErrorToApp.m"; sourceTree = "<group>"; };
 		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailPurchaseCell.xib; sourceTree = "<group>"; };
 		9B24687D13E9AE63005A9F9C /* NSString+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+base64.h"; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				9B14CE0C13F4F98100FA2534 /* ExchangeAvailableItemsRemoteService.m */,
 				9B14CE0813F4F69D00FA2534 /* ExchangeRefreshingService.h */,
 				9B14CE0913F4F69E00FA2534 /* ExchangeRefreshingService.m */,
+				9B0B3A7413F538D700B89121 /* ExchangeUseCreditRemoteService.h */,
+				9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -918,6 +923,7 @@
 				9B14CE0A13F4F69F00FA2534 /* ExchangeRefreshingService.m in Sources */,
 				9B14CE0D13F4F98200FA2534 /* ExchangeAvailableItemsRemoteService.m in Sources */,
 				9B14CE1013F4FBF900FA2534 /* NSObject+remoteErrorToApp.m in Sources */,
+				9B0B3A7613F538D800B89121 /* ExchangeUseCreditRemoteService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

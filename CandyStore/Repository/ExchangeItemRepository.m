@@ -25,6 +25,8 @@
 	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
 	[self setDefaultSortDescriptors:sortDescriptors];
 	
+	[self setDefaultSectionNameKeyPath:@"product.productKindData"];
+	
 	return self;
 }
 

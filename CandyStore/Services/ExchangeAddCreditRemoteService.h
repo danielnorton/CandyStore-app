@@ -8,6 +8,7 @@
 
 #import "RemoteServiceBase.h"
 #import "Model.h"
+#import "ReceiptVerificationRemoteService.h"
 
 
 @class ExchangeAddCreditRemoteService;
@@ -23,6 +24,8 @@
 
 
 @interface ExchangeAddCreditRemoteService : RemoteServiceBase
+
+@property (nonatomic, readonly) ReceiptVerificationRemoteServiceCode code;
 
 - (void)beginAddingCreditFromPurchase:(Purchase *)purchase;
 

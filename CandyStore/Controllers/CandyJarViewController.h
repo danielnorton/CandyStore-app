@@ -8,11 +8,14 @@
 
 #import "JarListItemCell.h"
 #import "ImageCachingService.h"
+#import "ExchangeAddCreditRemoteService.h"
+
 
 @interface CandyJarViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate,
 NSFetchedResultsControllerDelegate, ImageCachingServiceDelegate,
-JarListItemCellDelegate>
+JarListItemCellDelegate, ExchangeAddCreditRemoteServiceDelegate>
+
 
 @property (nonatomic, retain) IBOutlet UIWebView *welcomeView;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
