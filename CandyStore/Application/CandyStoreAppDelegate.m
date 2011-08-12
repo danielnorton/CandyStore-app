@@ -16,6 +16,7 @@
 #import "CandyShopService.h"
 #import "Model.h"
 #import "ReceiptVerificationLocalService.h"
+#import "ProductRepository.h"
 
 
 #define kReachabiltyMaxNotify 3
@@ -113,6 +114,15 @@
 	[self setTransactionReceiptService:transService];
 	[transService beginObserving];
 	[transService release];
+	
+	
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	int count = [repo count];
+	[repo release];
+	if (count == 0) {
+		
+		[self updateProducts];
+	}
 	
 	
 	[window setRootViewController:tabBarController];

@@ -16,8 +16,6 @@
 #import "ExchangeAddCreditRemoteService.h"
 
 
-#define kWelcomeViewTag -9999
-
 @interface CandyJarViewController()
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -65,6 +63,11 @@
 	
 	[tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	[self.view addSubview:tableView];
+	
+	[welcomeView setAlpha:0.0f];
+	[welcomeView setOpaque:NO];
+	[tableView setAlpha:0.0f];
+	
 	[self loadWelcomeView];
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
@@ -110,6 +113,34 @@
 		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
 		cell = self.jarListItemCell;
 		[self setJarListItemCell:nil];
+		
+		[cell.exchangeButton.titleLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+		[cell.exchangeButton setTitleColor:[UIColor buyButtonTextColor] forState:UIControlStateNormal];
+		[cell.exchangeButton setTitleShadowColor:[UIColor buyButtonShadowColor] forState:UIControlStateNormal];
+		
+		[cell.exchangeButton setTitleColor:[UIColor buyButtonDisabledTextColor] forState:UIControlStateDisabled];
+		[cell.exchangeButton setTitleShadowColor:[UIColor buyButtonDisabledShadowColor] forState:UIControlStateDisabled];
+		
+		[cell.eatButton.titleLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+		[cell.eatButton setTitleColor:[UIColor buyButtonTextColor] forState:UIControlStateNormal];
+		[cell.eatButton setTitleShadowColor:[UIColor buyButtonShadowColor] forState:UIControlStateNormal];
+		
+		[cell.eatButton setTitleColor:[UIColor buyButtonDisabledTextColor] forState:UIControlStateDisabled];
+		[cell.eatButton setTitleShadowColor:[UIColor buyButtonDisabledShadowColor] forState:UIControlStateDisabled];
+		
+		UIImage *blue = [[UIImage imageNamed:@"blueBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
+		UIImage *green = [[UIImage imageNamed:@"greenBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
+		UIImage *gray = [[UIImage imageNamed:@"grayBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
+		
+		[cell.exchangeButton setBackgroundColor:[UIColor clearColor]];
+		[cell.exchangeButton setBackgroundImage:blue forState:UIControlStateNormal];
+		[cell.exchangeButton setBackgroundImage:green forState:UIControlStateSelected];
+		[cell.exchangeButton setBackgroundImage:gray forState:UIControlStateDisabled];
+		
+		[cell.eatButton setBackgroundColor:[UIColor clearColor]];
+		[cell.eatButton setBackgroundImage:blue forState:UIControlStateNormal];
+		[cell.eatButton setBackgroundImage:green forState:UIControlStateSelected];
+		[cell.eatButton setBackgroundImage:gray forState:UIControlStateDisabled];
     }
 	
 	[self configureCell:cell atIndexPath:indexPath];
@@ -135,10 +166,7 @@
 #pragma mark UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	
-	[UIView animateWithDuration:0.33f animations:^(void) {
-		
-		[welcomeView setAlpha:1.0f];
-	}];
+	[self showHideViews];
 }
 
 
@@ -226,17 +254,13 @@
 	if (newEnable != shouldEnableExchangeButtons) {
 		
 		[self setShouldEnableExchangeButtons:newEnable];
-		[self reloadVisibleCells];
+		[self.tableView reloadData];
 	}
 }
 
 
 #pragma mark Private Extension
 - (void)loadWelcomeView {
-	
-	[welcomeView setTag:kWelcomeViewTag];
-	[welcomeView setAlpha:0.0f];
-	[welcomeView setHidden:YES];
 	
 	NSBundle *main = [NSBundle mainBundle];
 	NSURL *url = [main URLForResource:@"index" withExtension:@"html" subdirectory:@"welcome"];
@@ -268,7 +292,6 @@
 	}
 	
 	[cell.exchangeButton setEnabled:shouldEnableExchangeButtons];
-	
 
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
@@ -296,12 +319,24 @@
 - (void)showHideViews {
 	
 	int count = [fetchedResultsController.managedObjectContext countForFetchRequest:fetchedResultsController.fetchRequest error:nil];
-	BOOL hasSome = (count > 0);
-	BOOL wasHidden = !welcomeView.isHidden;
-	[welcomeView setHidden:hasSome];
-	[tableView setHidden:!hasSome];
+	BOOL shouldShowWelcome = (count == 0);
+	float duration = 0.5f;
 	
-	if (wasHidden) {
+	float welcome = shouldShowWelcome
+	? 1.0f
+	: 0.0f;
+	
+	float table = shouldShowWelcome
+	? 0.0f
+	: 1.0f;
+	
+	[UIView animateWithDuration:duration animations:^(void) {
+		
+		[welcomeView setAlpha:welcome];
+		[tableView setAlpha:table];
+	}];
+	
+	if (!shouldShowWelcome) {
 		
 		[self fetch];
 	}

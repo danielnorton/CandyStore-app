@@ -17,7 +17,7 @@
 @property (nonatomic, assign) int verifications;
 
 - (void)deleteFailedPurchase:(Purchase *)purchase;
-- (void)markPurchaseAsExpired:(Purchase *)purchase;
+- (void)markPurchase:(Purchase *)purchase asExpired:(BOOL)expired;
 - (void)decrementVerificationCount;
 - (void)notifyDelegateDidDeletePurchase;
 - (void)notifyDelegateDidComplete;
@@ -60,13 +60,14 @@
 			
 		case ReceiptVerificationRemoteServiceCodeSubscriptionExpired: {
 			
-			[self markPurchaseAsExpired:purchase];
+			[self markPurchase:purchase asExpired:YES];
 			break;
 		}
 			
 		case ReceiptVerificationRemoteServiceCodeSuccess:
 		default: {
 			
+			[self markPurchase:purchase asExpired:NO];
 			break;
 		}
 	}
@@ -112,9 +113,9 @@
 	[self notifyDelegateDidDeletePurchase];
 }
 
-- (void)markPurchaseAsExpired:(Purchase *)purchase {
+- (void)markPurchase:(Purchase *)purchase asExpired:(BOOL)expired {
 
-	[purchase setIsExpired:YES];
+	[purchase setIsExpired:expired];
 	[purchase.managedObjectContext save:nil];
 }
 
