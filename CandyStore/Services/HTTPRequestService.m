@@ -171,19 +171,38 @@
 	
 	NSMutableURLRequest *request;
 	switch (method) {
-		case HTTPRequestServiceMethodPost:
+			
+		case HTTPRequestServiceMethodPost: {
+			
 			request = [self newRequestForPOST:path params:params];
 			break;
-		case HTTPRequestServiceMethodPut:
+		}
+			
+		case HTTPRequestServiceMethodPut: {
+			
 			request = [self newRequestForPUT:path params:params andAttachment:attachment];
 			break;
-		case HTTPRequestServiceMethodJson:
+		}
+			
+		case HTTPRequestServiceMethodPostJson: {
+			
 			request = [self newRequestForJSON:path params:params];
 			break;
+		}
+			
+		case HTTPRequestServiceMethodPutJson: {
+			
+			request = [self newRequestForJSON:path params:params];
+			[request setHTTPMethod:@"PUT"];
+			break;
+		}
+
 		case HTTPRequestServiceMethodGet:
-		default:
+		default: {
+
 			request = [self newRequestForGET:path params:params];
 			break;
+		}
 	}
 	
 	NSURLConnection *aConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];

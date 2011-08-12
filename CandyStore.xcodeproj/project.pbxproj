@@ -16,6 +16,7 @@
 		9B13165E13E74ABE00D5253A /* ShopItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13165D13E74ABE00D5253A /* ShopItemDetailViewController.m */; };
 		9B13166113E74B7200D5253A /* UIViewController+newWithDefaultNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */; };
 		9B13166413E7C1AD00D5253A /* UIFont+candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13166313E7C1AC00D5253A /* UIFont+candy.m */; };
+		9B14CE0313F4C1A600FA2534 /* ExchangeItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B14CE0213F4C1A600FA2534 /* ExchangeItemRepository.m */; };
 		9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */; };
 		9B24687F13E9AE63005A9F9C /* NSString+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24687E13E9AE63005A9F9C /* NSString+base64.m */; };
 		9B24688313E9AEDF005A9F9C /* Base64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24688213E9AEDF005A9F9C /* Base64Tests.m */; };
@@ -50,6 +51,7 @@
 		9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */; };
 		9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695DB13F4AE2E00275BE1 /* Product.m */; };
 		9B6695DF13F4AE3000275BE1 /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695DE13F4AE2F00275BE1 /* ExchangeItem.m */; };
+		9B6695EA13F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695E913F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.m */; };
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9B9544E713E8915C00BCF94D /* JarListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544E613E8915C00BCF94D /* JarListItemCell.m */; };
 		9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544E813E8943E00BCF94D /* JarListItemCell.xib */; };
@@ -143,6 +145,8 @@
 		9B13166013E74B7200D5253A /* UIViewController+newWithDefaultNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+newWithDefaultNib.m"; sourceTree = "<group>"; };
 		9B13166213E7C1AC00D5253A /* UIFont+candy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+candy.h"; sourceTree = "<group>"; };
 		9B13166313E7C1AC00D5253A /* UIFont+candy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+candy.m"; sourceTree = "<group>"; };
+		9B14CE0113F4C1A600FA2534 /* ExchangeItemRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItemRepository.h; sourceTree = "<group>"; };
+		9B14CE0213F4C1A600FA2534 /* ExchangeItemRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItemRepository.m; sourceTree = "<group>"; };
 		9B21C6A713E357A900E5AD14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopItemDetailPurchaseCell.xib; sourceTree = "<group>"; };
 		9B24687D13E9AE63005A9F9C /* NSString+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+base64.h"; sourceTree = "<group>"; };
 		9B24687E13E9AE63005A9F9C /* NSString+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+base64.m"; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 		9B6695DB13F4AE2E00275BE1 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9B6695DD13F4AE2F00275BE1 /* ExchangeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItem.h; sourceTree = "<group>"; };
 		9B6695DE13F4AE2F00275BE1 /* ExchangeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItem.m; sourceTree = "<group>"; };
+		9B6695E813F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAddCreditRemoteService.h; sourceTree = "<group>"; };
+		9B6695E913F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeAddCreditRemoteService.m; sourceTree = "<group>"; };
 		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9B9544E513E8915C00BCF94D /* JarListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JarListItemCell.h; sourceTree = "<group>"; };
 		9B9544E613E8915C00BCF94D /* JarListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JarListItemCell.m; sourceTree = "<group>"; };
@@ -560,6 +566,8 @@
 				9BF16C0413E9B855002077D4 /* ReceiptVerificationRemoteService.m */,
 				9B99DD9F13E9D685006A7838 /* ReceiptVerificationLocalService.h */,
 				9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */,
+				9B6695E813F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.h */,
+				9B6695E913F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -591,6 +599,8 @@
 				9BCE6CF413E0CBC000C58AB0 /* ProductRepository.m */,
 				9B99DDA213E9D7FB006A7838 /* PurchaseRepository.h */,
 				9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */,
+				9B14CE0113F4C1A600FA2534 /* ExchangeItemRepository.h */,
+				9B14CE0213F4C1A600FA2534 /* ExchangeItemRepository.m */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -882,6 +892,8 @@
 				9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */,
 				9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */,
 				9B6695DF13F4AE3000275BE1 /* ExchangeItem.m in Sources */,
+				9B6695EA13F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.m in Sources */,
+				9B14CE0313F4C1A600FA2534 /* ExchangeItemRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "CandyShopService.h"
 #import "Model.h"
 #import "PurchaseRepository.h"
+#import "ExchangeItemRepository.h"
 
 
 NSString * const InternalKeyCandy = @"candy";
@@ -33,12 +34,17 @@ NSString * const InternalKeyExchange = @"exchange";
 
 + (BOOL)hasExchange {
 	
-	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	BOOL subscribed = [repo hasActiveExchangeSubscription];
-	BOOL stuff = [repo hasExchangeCredits];
-	[repo release];
+	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
+	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
+	BOOL isSubscribed = [purchaseRepo hasActiveExchangeSubscription];
+	[purchaseRepo release];
 	
-	return subscribed || stuff;
+	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
+	ExchangeItem *credits = [exchangeRepo creditsItem];
+	[exchangeRepo release];
+	BOOL hasCredits = credits.quantityAvailable > 0;
+	
+	return isSubscribed || hasCredits;
 }
 
 + (BOOL)canMakePayments {

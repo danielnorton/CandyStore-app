@@ -13,11 +13,11 @@
 
 - (BOOL)hasBigCandyJar;
 - (BOOL)hasActiveExchangeSubscription;
-- (BOOL)hasExchangeCredits;
 - (int)candyPurchaseCount;
 - (Purchase *)addOrRetreivePurchaseForProduct:(Product *)product withTransactionIdentifier:(NSString *)transactionIdentifier;
 - (void)removePurchaseFromProduct:(Purchase *)purchase;
 - (NSArray *)fetchOrphanedPurchases;
+- (NSData *)exchangeReceipt;
 
 @end
 

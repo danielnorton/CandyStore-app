@@ -11,7 +11,7 @@
 #import "PurchaseRepository.h"
 #import "CandyShopService.h"
 
-#define kMaxCandyForSmallJar 4
+#define kMaxCandyForSmallJar 20
 
 NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar = @"You need to buy the Big Candy Jar in the Candy Store to buy more candy";
 

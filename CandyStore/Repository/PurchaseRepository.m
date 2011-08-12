@@ -46,12 +46,6 @@
 	return [self simplePredicateCountTest:pred];
 }
 
-- (BOOL)hasExchangeCredits {
-
-	// TODO: implement this
-	return YES;
-}
-
 - (int)candyPurchaseCount {
 	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData == %d", ProductKindCandy];
@@ -95,6 +89,18 @@
 
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product == nil"];
 	return [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
+- (NSData *)exchangeReceipt {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData == %d", ProductKindExchange];
+	NSArray *all = [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+	if (all.count == 0) {
+		return nil;
+	}
+	
+	Purchase *purchase = (Purchase *)[all lastObject];
+	return purchase.receipt;
 }
 
 

@@ -13,6 +13,7 @@
 #import "Style.h"
 #import "UITableViewDelgate+emptyFooter.h"
 #import "CandyEatingService.h"
+#import "ExchangeAddCreditRemoteService.h"
 
 
 #define kWelcomeViewTag -9999
@@ -36,6 +37,7 @@
 @synthesize tableView;
 @synthesize jarListItemCell;
 @synthesize fetchedResultsController;
+@synthesize shouldEnableExchangeButtons;
 
 #pragma mark -
 #pragma mark NSObject
@@ -77,6 +79,13 @@
 	[self.navigationController setNavigationBarHidden:YES];
 	
 	[self showHideViews];
+	
+	BOOL newEnable = [CandyShopService hasExchange];
+	if (newEnable != shouldEnableExchangeButtons) {
+		
+		[self setShouldEnableExchangeButtons:newEnable];
+		[self reloadVisibleCells];
+	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -207,7 +216,9 @@
 
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
 
-	// TODO:
+	ExchangeAddCreditRemoteService *service = [[ExchangeAddCreditRemoteService alloc] init];
+	[service beginAddingCreditFromPurchase:[product.purchases anyObject]];
+	[service release];
 }
 
 
@@ -248,6 +259,9 @@
 		[cell.eatButton setTitle:NSLocalizedString(@"Eat One", @"Eat One") forState:UIControlStateNormal];
 		[cell.exchangeButton setTitle:NSLocalizedString(@"Add 1 to Exchange", @"Add 1 to Exchange") forState:UIControlStateNormal];
 	}
+	
+	[cell.exchangeButton setEnabled:shouldEnableExchangeButtons];
+	
 
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];

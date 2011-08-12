@@ -19,5 +19,6 @@
 - (void)setAllProductsInactive;
 - (NSFetchedResultsController *)controllerForCandyShop;
 - (NSFetchedResultsController *)controllerForMyCandyJar;
+- (NSArray *)fetchProductsForProductKind:(ProductKind)kind;
 
 @end

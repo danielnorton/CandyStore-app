@@ -7,14 +7,14 @@
 
 #import "AttachmentTransfer.h"
 
-typedef BOOL (^ReachabilityTest)();
 
 typedef enum {
 	HTTPRequestServiceMethodUnknown,
 	HTTPRequestServiceMethodPost,
 	HTTPRequestServiceMethodGet,
 	HTTPRequestServiceMethodPut,
-	HTTPRequestServiceMethodJson
+	HTTPRequestServiceMethodPostJson,
+	HTTPRequestServiceMethodPutJson
 } HTTPRequestServiceMethod;
 
 

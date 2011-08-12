@@ -65,7 +65,7 @@
 							encoded, @"receipt",
 							purchase.product.internalKey, @"type", nil];
 	
-	[self setMethod:HTTPRequestServiceMethodJson];
+	[self setMethod:HTTPRequestServiceMethodPostJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];
 	[self beginRemoteCallWithPath:path withParams:params withUserData:purchase.objectID];
 }

@@ -102,6 +102,12 @@
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
 }
 
+- (NSArray *)fetchProductsForProductKind:(ProductKind)kind {
+
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"productKindData == %d", kind];
+	return [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
 
 @end
 

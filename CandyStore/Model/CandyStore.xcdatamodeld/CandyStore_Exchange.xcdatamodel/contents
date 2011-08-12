@@ -28,8 +28,8 @@
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="purchases" inverseEntity="Product"/>
     </entity>
     <elements>
+        <element name="ExchangeItem" positionX="-2351" positionY="-801" width="128" height="75"/>
         <element name="Product" positionX="-2511" positionY="-801" width="128" height="240"/>
         <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="120"/>
-        <element name="ExchangeItem" positionX="-2511" positionY="-900" width="128" height="75"/>
     </elements>
 </model>
