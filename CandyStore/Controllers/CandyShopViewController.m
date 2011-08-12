@@ -10,17 +10,10 @@
 #import "Model.h"
 #import "ProductRepository.h"
 #import "Style.h"
-#import "UITableViewCell+activity.h"
 #import "UIViewController+newWithDefaultNib.h"
 #import "ShopItemDetailViewController.h"
+#import "UITableViewCell+activity.h"
 
-#define kShopListItemCellHeight 66.0f
-
-@interface CandyShopViewController()
-
-- (void)resetFetchedResultsController;
-
-@end
 
 
 @implementation CandyShopViewController
@@ -43,22 +36,6 @@
 	[self setShopListItemCell:nil];
 }
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-
-	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
-	
-	[self resetFetchedResultsController];
-	if ([self shouldShowRefreshingCell]) return;
-	
-	NSError *error = nil;	
-	if (![self.fetchedResultsController performFetch:&error]) {
-		
-		// TODO: handle error
-		[self.fetchedResultsController setDelegate:nil];
-	}
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
 	return YES;
 }
@@ -69,15 +46,7 @@
 	
 	if ([self shouldShowRefreshingCell]) {
 		
-		static NSString *refreshingCellIdentifier = @"refreshingCell";
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:refreshingCellIdentifier];
-		if (!cell) {
-			
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier] autorelease];
-		}
-		
-		[self configureRefreshingCell:cell];
-		return cell;
+		return [self refreshingCellForTableView:tableView];
 	}
 	
 	static NSString *identifier = @"shopListItemCell";
@@ -110,7 +79,7 @@
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	return kShopListItemCellHeight;
+	return [ShopListItemCell defaultHeight];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,19 +114,11 @@
 
 
 #pragma RefreshingTableViewController
-- (void)configureRefreshingCell:(UITableViewCell *)cell {
-
-	[super configureRefreshingCell:cell];
-	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleWhite];
-	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-}
-
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
 	ShopListItemCell *cell = (ShopListItemCell *)aCell;
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell.titleLabel setText:product.title];
-	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	
 	if (product.localizedPrice) {
 		
@@ -184,17 +145,6 @@
 	[service release];
 }
 
-
-#pragma mark -
-#pragma mark CandyShopViewController
-- (void)presentDataError:(NSString *)message {
-	
-	[self enableWithLoadingCellMessage:message];
-	[self resetFetchedResultsController];
-}
-
-
-#pragma mark Private Extension
 - (void)resetFetchedResultsController {
 
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];

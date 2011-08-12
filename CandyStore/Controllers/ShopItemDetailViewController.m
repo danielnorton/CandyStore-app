@@ -256,7 +256,6 @@
 - (void)configurePurchaseCell:(ShopItemDetailPurchaseCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 
 	[cell setDelegate:self];
-	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	
 	CGRect t = cell.titleLabel.frame;
 	CGRect titleLabelFrame = CGRectMake(0.0f, t.origin.y, t.size.width, t.size.height);

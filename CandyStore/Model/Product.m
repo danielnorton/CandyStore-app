@@ -7,6 +7,7 @@
 //
 
 #import "Product.h"
+#import "ExchangeItem.h"
 #import "Product.h"
 #import "Purchase.h"
 
@@ -22,9 +23,9 @@
 @dynamic productDescription;
 @dynamic productKindData;
 @dynamic title;
+@dynamic exchangeItem;
 @dynamic parent;
 @dynamic purchases;
 @dynamic subscriptions;
-@dynamic exchangeItem;
 
 @end

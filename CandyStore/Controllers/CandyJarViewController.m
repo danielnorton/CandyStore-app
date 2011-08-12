@@ -118,6 +118,14 @@
 	return 115.0f;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if ((indexPath.row % 2) == 1) {
+		
+		[cell setBackgroundColor:[UIColor darkGrayStoreColor]];
+	}
+}
+
 
 #pragma mark UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -221,7 +229,6 @@
 
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	[cell setDelegate:self];
 	
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];

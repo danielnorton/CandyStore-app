@@ -16,7 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet ShopListItemCell *shopListItemCell;
 
-- (void)presentDataError:(NSString *)message;
 
 @end
 

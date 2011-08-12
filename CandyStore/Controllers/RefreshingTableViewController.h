@@ -22,6 +22,7 @@ typedef enum {
 @property (nonatomic, assign) RefreshingTableViewControllerState state;
 @property (nonatomic, readonly) BOOL shouldShowRefreshingCell;
 
+- (UITableViewCell *)refreshingCellForTableView:(UITableView *)tableView;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureRefreshingCell:(UITableViewCell *)cell;
 - (void)beginRefreshing;
@@ -29,5 +30,7 @@ typedef enum {
 - (void)enableWithLoadingCellMessage:(NSString *)message;
 - (void)enableWithLoadingCellMessage:(NSString *)message withAccessory:(UITableViewCellAccessoryType)accessory;
 - (void)reloadVisibleCells;
+- (void)presentDataError:(NSString *)message;
+- (void)resetFetchedResultsController;
 
 @end

@@ -55,7 +55,11 @@
 - (int)candyPurchaseCount {
 	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData == %d", ProductKindCandy];
-	return [self simplePredicateCountTest:pred];
+	NSFetchRequest *request = [self newFetchRequestWithSort:self.defaultSortDescriptors andPredicate:pred];
+	int count = [self.managedObjectContext countForFetchRequest:request error:nil];
+	[request release];
+	
+	return count;
 }
 
 - (Purchase *)addOrRetreivePurchaseForProduct:(Product *)product withTransactionIdentifier:(NSString *)transactionIdentifier {

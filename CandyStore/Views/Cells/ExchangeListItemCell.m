@@ -1,32 +1,32 @@
 //
-//  ShopListItemCell.m
+//  ExchangeListItemCell.m
 //  CandyStore
 //
-//  Created by Daniel Norton on 8/1/11.
+//  Created by Daniel Norton on 8/11/11.
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import "ShopListItemCell.h"
+#import "ExchangeListItemCell.h"
 
-@implementation ShopListItemCell
+@implementation ExchangeListItemCell
 
 @synthesize titleLabel;
-@synthesize priceLabel;
+@synthesize quantityLabel;
 @synthesize iconView;
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
-
+	
 	[titleLabel release];
-	[priceLabel release];
+	[quantityLabel release];
 	[iconView release];
 	[super dealloc];
 }
 
 
 #pragma mark -
-#pragma mark ShopListItemCell
+#pragma mark ExchangeListItemCell
 + (float)defaultHeight {
 	return 66.0f;
 }

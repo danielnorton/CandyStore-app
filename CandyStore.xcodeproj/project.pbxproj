@@ -46,8 +46,10 @@
 		9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119213DDEE660099007A /* shopTab@2x.png */; };
 		9B64119B13DDEE660099007A /* smallJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119313DDEE660099007A /* smallJarTab.png */; };
 		9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119413DDEE660099007A /* smallJarTab@2x.png */; };
-		9B6695CD13F4989A00275BE1 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695CC13F4989A00275BE1 /* Product.m */; };
-		9B6695D013F4989B00275BE1 /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695CF13F4989B00275BE1 /* ExchangeItem.m */; };
+		9B6695D613F49B6A00275BE1 /* ExchangeListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B6695D413F49B6A00275BE1 /* ExchangeListItemCell.xib */; };
+		9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */; };
+		9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695DB13F4AE2E00275BE1 /* Product.m */; };
+		9B6695DF13F4AE3000275BE1 /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695DE13F4AE2F00275BE1 /* ExchangeItem.m */; };
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9B9544E713E8915C00BCF94D /* JarListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544E613E8915C00BCF94D /* JarListItemCell.m */; };
 		9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544E813E8943E00BCF94D /* JarListItemCell.xib */; };
@@ -181,10 +183,13 @@
 		9B64119313DDEE660099007A /* smallJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallJarTab.png; sourceTree = "<group>"; };
 		9B64119413DDEE660099007A /* smallJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallJarTab@2x.png"; sourceTree = "<group>"; };
 		9B6695C913F4969700275BE1 /* CandyStore_Exchange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CandyStore_Exchange.xcdatamodel; sourceTree = "<group>"; };
-		9B6695CB13F4989A00275BE1 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		9B6695CC13F4989A00275BE1 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		9B6695CE13F4989B00275BE1 /* ExchangeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItem.h; sourceTree = "<group>"; };
-		9B6695CF13F4989B00275BE1 /* ExchangeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItem.m; sourceTree = "<group>"; };
+		9B6695D513F49B6A00275BE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ExchangeListItemCell.xib; sourceTree = "<group>"; };
+		9B6695D713F49B9E00275BE1 /* ExchangeListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeListItemCell.h; sourceTree = "<group>"; };
+		9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeListItemCell.m; sourceTree = "<group>"; };
+		9B6695DA13F4AE2E00275BE1 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		9B6695DB13F4AE2E00275BE1 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		9B6695DD13F4AE2F00275BE1 /* ExchangeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItem.h; sourceTree = "<group>"; };
+		9B6695DE13F4AE2F00275BE1 /* ExchangeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItem.m; sourceTree = "<group>"; };
 		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9B9544E513E8915C00BCF94D /* JarListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JarListItemCell.h; sourceTree = "<group>"; };
 		9B9544E613E8915C00BCF94D /* JarListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JarListItemCell.m; sourceTree = "<group>"; };
@@ -354,6 +359,8 @@
 				9B13164913E730CB00D5253A /* ShopListItemCell.m */,
 				9B9544E513E8915C00BCF94D /* JarListItemCell.h */,
 				9B9544E613E8915C00BCF94D /* JarListItemCell.m */,
+				9B6695D713F49B9E00275BE1 /* ExchangeListItemCell.h */,
+				9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -467,6 +474,7 @@
 				9B13164513E72E7600D5253A /* ShopListItemCell.xib */,
 				9B13165913E74AA700D5253A /* ShopItemDetailViewController.xib */,
 				9B9544E813E8943E00BCF94D /* JarListItemCell.xib */,
+				9B6695D413F49B6A00275BE1 /* ExchangeListItemCell.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -564,12 +572,12 @@
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
 				9BCE6CE013E0BF6800C58AB0 /* CandyStore.xcdatamodeld */,
+				9B6695DD13F4AE2F00275BE1 /* ExchangeItem.h */,
+				9B6695DE13F4AE2F00275BE1 /* ExchangeItem.m */,
+				9B6695DA13F4AE2E00275BE1 /* Product.h */,
+				9B6695DB13F4AE2E00275BE1 /* Product.m */,
 				9B99DDA513E9D9D4006A7838 /* Purchase.h */,
 				9B99DDA613E9D9D4006A7838 /* Purchase.m */,
-				9B6695CE13F4989B00275BE1 /* ExchangeItem.h */,
-				9B6695CF13F4989B00275BE1 /* ExchangeItem.m */,
-				9B6695CB13F4989A00275BE1 /* Product.h */,
-				9B6695CC13F4989A00275BE1 /* Product.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -783,6 +791,7 @@
 				9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */,
 				9B9544FF13E905AE00BCF94D /* grayBuyButton.png in Resources */,
 				9B95450013E905AE00BCF94D /* grayBuyButton@2x.png in Resources */,
+				9B6695D613F49B6A00275BE1 /* ExchangeListItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,8 +879,9 @@
 				9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */,
 				9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */,
 				9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */,
-				9B6695CD13F4989A00275BE1 /* Product.m in Sources */,
-				9B6695D013F4989B00275BE1 /* ExchangeItem.m in Sources */,
+				9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */,
+				9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */,
+				9B6695DF13F4AE3000275BE1 /* ExchangeItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +981,14 @@
 				9B64118113DDCEA50099007A /* en */,
 			);
 			name = CandyExchangeViewController.xib;
+			sourceTree = "<group>";
+		};
+		9B6695D413F49B6A00275BE1 /* ExchangeListItemCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B6695D513F49B6A00275BE1 /* en */,
+			);
+			name = ExchangeListItemCell.xib;
 			sourceTree = "<group>";
 		};
 		9B9544E813E8943E00BCF94D /* JarListItemCell.xib */ = {

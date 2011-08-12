@@ -33,6 +33,22 @@
 	[self setFetchedResultsController:nil];
 }
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
+	
+	[self resetFetchedResultsController];
+	if ([self shouldShowRefreshingCell]) return;
+	
+	NSError *error = nil;	
+	if (![self.fetchedResultsController performFetch:&error]) {
+		
+		// TODO: handle error
+		[self.fetchedResultsController setDelegate:nil];
+	}
+}
+
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -111,6 +127,19 @@
 	|| (state == RefreshingTableViewControllerStateFailed);
 }
 
+- (UITableViewCell *)refreshingCellForTableView:(UITableView *)tableView {
+	
+	static NSString *refreshingCellIdentifier = @"refreshingCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:refreshingCellIdentifier];
+	if (!cell) {
+		
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier] autorelease];
+	}
+	
+	[self configureRefreshingCell:cell];
+	return cell;
+}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	// no-op: leave it to inheritor
 }
@@ -123,6 +152,7 @@
 	[cell.textLabel setShadowColor:[UIColor refreshingTitleShadowColor]];
 	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (void)beginRefreshing {
@@ -241,6 +271,16 @@
 		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 		[self configureCell:cell atIndexPath:indexPath];
 	}
+}
+
+- (void)presentDataError:(NSString *)message {
+	
+	[self enableWithLoadingCellMessage:message];
+	[self resetFetchedResultsController];
+}
+
+- (void)resetFetchedResultsController {
+	// inheritor should implement
 }
 
 

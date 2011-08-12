@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Product, Purchase;
+@class ExchangeItem, Product, Purchase;
 
 @interface Product : NSManagedObject {
 @private
@@ -24,10 +24,10 @@
 @property (nonatomic, retain) NSString * productDescription;
 @property (nonatomic, retain) NSNumber * productKindData;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) ExchangeItem *exchangeItem;
 @property (nonatomic, retain) Product *parent;
 @property (nonatomic, retain) NSSet *purchases;
 @property (nonatomic, retain) NSSet *subscriptions;
-@property (nonatomic, retain) NSManagedObject *exchangeItem;
 @end
 
 @interface Product (CoreDataGeneratedAccessors)

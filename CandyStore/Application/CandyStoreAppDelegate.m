@@ -41,6 +41,7 @@
 @synthesize window;
 @synthesize tabBarController;
 @synthesize candyShopViewController;
+@synthesize candyExchangeViewController;
 @synthesize internetReach;
 @synthesize myJarTabBarItem;
 @synthesize productBuilderService;
@@ -52,6 +53,7 @@
 	[window release];
 	[tabBarController release];
 	[candyShopViewController release];
+	[candyExchangeViewController release];
 	[internetReach release];
 	[myJarTabBarItem release];
 	[productBuilderService release];
@@ -148,6 +150,7 @@
 	
 	[candyShopViewController completeRefreshing];
 	[ReceiptVerificationLocalService verifyAllPurchases];
+	[self updateExchange];
 }
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
@@ -165,12 +168,14 @@
 
 - (void)updateProducts {
 
-	// can be called from Candy Shop view controller and Candy Exchange view controller
+	// can be called from Candy Shop view controller and waking App Delegate
 	// coordinate table animations from here
 	
 	if (![self canRestoreOrRefresh]) return;
 	
 	[candyShopViewController beginRefreshing];
+	[candyExchangeViewController beginRefreshing];
+	
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
 	[self setProductBuilderService:service];
 	[service setDelegate:self];
@@ -178,11 +183,23 @@
 	[service release];
 }
 
+- (void)updateExchange {
+	
+	if (![self canRestoreOrRefresh]) return;
+	
+	
+}
+
 
 #pragma mark IBAction
 - (IBAction)updateProducts:(id)sender {
 	
 	[self updateProducts];
+}
+
+- (IBAction)updateExchange:(id)sender {
+	
+	[self updateExchange];
 }
 
 - (IBAction)restoreTransactions:(id)sender {
