@@ -27,7 +27,9 @@
 @property (nonatomic, retain) ProductBuilderService *productBuilderService;
 @property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
 @property (nonatomic, retain) ExchangeRefreshingService *exchangeRefreshingService;
+@property (nonatomic, retain) ReceiptVerificationLocalService *receiptVerificationLocalService;
 
+- (void)verifyPurchases;
 - (BOOL)canRestoreOrRefresh;
 - (void)alertUserHasNotPurchasedExchange;
 - (void)reachabilityChanged:(NSNotification *)note;
@@ -49,6 +51,7 @@
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
 @synthesize exchangeRefreshingService;
+@synthesize receiptVerificationLocalService;
 
 #pragma mark -
 #pragma mark NSObject
@@ -63,6 +66,7 @@
 	[productBuilderService release];
 	[transactionReceiptService release];
 	[exchangeRefreshingService release];
+	[receiptVerificationLocalService release];
     [super dealloc];
 }
 
@@ -78,13 +82,13 @@
 		
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
-		[candyJarViewController setShouldEnableExchangeButtons:[CandyShopService canAddToExchangeCredits]];
+		[candyJarViewController resetShouldEnableExchangeButtons];
 		[self updateProducts];
 	};
 	
 	void (^respondToReceiptPurchaseNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
-		[candyJarViewController setShouldEnableExchangeButtons:[CandyShopService canAddToExchangeCredits]];
+		[candyJarViewController resetShouldEnableExchangeButtons];
 		[self updateJarTabImage];
 	};	
 	
@@ -100,11 +104,6 @@
 					usingBlock:respondToReceiptRestoreNotification];
 	
 	[center addObserverForName:TransactionReceiptServiceCompletedNotification
-						object:nil
-						 queue:nil
-					usingBlock:respondToReceiptPurchaseNotification];
-	
-	[center addObserverForName:ReceiptVerificationDidDeletePurchaseNotification
 						object:nil
 						 queue:nil
 					usingBlock:respondToReceiptPurchaseNotification];
@@ -154,7 +153,8 @@
 - (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender {
 	
 	[candyShopViewController completeRefreshing];
-	[ReceiptVerificationLocalService verifyAllPurchases];
+	[self updateJarTabImage];
+	[self verifyPurchases];
 }
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
@@ -183,6 +183,19 @@
 - (void)exchangeRefreshingServiceFailedRefresh:(ExchangeRefreshingService *)sender {
 	
 	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
+}
+
+
+#pragma mark ReceiptVerificationLocalServiceDelegate
+- (void)receiptVerificationLocalServiceDidDeletePurchase:(ReceiptVerificationLocalService *)sender {
+	
+	[self updateJarTabImage];
+}
+
+- (void)receiptVerificationLocalServiceDidComplete:(ReceiptVerificationLocalService *)sender {
+	
+	[candyJarViewController resetShouldEnableExchangeButtons];
+	[self updateExchange];
 }
 
 
@@ -248,6 +261,15 @@
 
 
 #pragma mark Private Extension
+- (void)verifyPurchases {
+
+	ReceiptVerificationLocalService *service = [[ReceiptVerificationLocalService alloc] init];
+	[service setDelegate:self];
+	[self setReceiptVerificationLocalService:service];
+	[service verifyAllPurchases];
+	[service release];
+}
+
 - (BOOL)canRestoreOrRefresh {
 
 	BOOL canRefreshProducts = (productBuilderService.status == ProductBuilderServiceStatusUnknown)

@@ -21,6 +21,7 @@
 @interface CandyJarViewController()
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, assign) BOOL shouldEnableExchangeButtons;
 
 - (void)loadWelcomeView;
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -80,12 +81,7 @@
 	
 	[self showHideViews];
 	
-	BOOL newEnable = [CandyShopService canAddToExchangeCredits];
-	if (newEnable != shouldEnableExchangeButtons) {
-		
-		[self setShouldEnableExchangeButtons:newEnable];
-		[self reloadVisibleCells];
-	}
+	[self resetShouldEnableExchangeButtons];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -224,6 +220,17 @@
 
 #pragma mark -
 #pragma mark CandyJarViewController
+- (void)resetShouldEnableExchangeButtons {
+	
+	BOOL newEnable = [CandyShopService canAddToExchangeCredits];
+	if (newEnable != shouldEnableExchangeButtons) {
+		
+		[self setShouldEnableExchangeButtons:newEnable];
+		[self reloadVisibleCells];
+	}
+}
+
+
 #pragma mark Private Extension
 - (void)loadWelcomeView {
 	

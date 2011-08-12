@@ -13,12 +13,13 @@
 #import "CandyJarViewController.h"
 #import "ExchangeRefreshingService.h"
 #import "RemoteServiceBase.h"
+#import "ReceiptVerificationLocalService.h"
 
 
 @interface CandyStoreAppDelegate : NSObject
 <UIApplicationDelegate, UITabBarControllerDelegate,
 ProductBuilderServiceDelegate, ExchangeRefreshingServiceDelegate,
-RemoteServiceDelegate>
+RemoteServiceDelegate, ReceiptVerificationLocalServiceDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;

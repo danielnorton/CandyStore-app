@@ -18,5 +18,8 @@ JarListItemCellDelegate>
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet JarListItemCell *jarListItemCell;
 
-@property (nonatomic, assign) BOOL shouldEnableExchangeButtons;
+- (void)resetShouldEnableExchangeButtons;
+
+
 @end
+

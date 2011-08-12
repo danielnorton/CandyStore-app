@@ -12,19 +12,15 @@
 #import "NSObject+remoteErrorToApp.h"
 
 
-NSString * const ReceiptVerificationDidVerifyPurchaseNotification = @"ReceiptVerificationDidVerifyPurchaseNotification";
-NSString * const ReceiptVerificationWillDeletePurchaseNotification = @"ReceiptVerificationWillDeletePurchaseNotification";
-NSString * const ReceiptVerificationDidDeletePurchaseNotification = @"ReceiptVerificationDidDeletePurchaseNotification";
-NSString * const ReceiptVerificationWillExpireSubscriptionPurchaseNotification = @"ReceiptVerificationWillExpireSubscriptionPurchaseNotification";
-NSString * const ReceiptVerificationDidExpireSubscriptionPurchaseNotification = @"ReceiptVerificationDidExpireSubscriptionPurchaseNotification";
-NSString * const ReceiptVerificationPurchaseKey = @"ReceiptVerificationPurchaseKey";
-
-
 @interface ReceiptVerificationLocalService()
+
+@property (nonatomic, assign) int verifications;
 
 - (void)deleteFailedPurchase:(Purchase *)purchase;
 - (void)markPurchaseAsExpired:(Purchase *)purchase;
-- (void)notifyName:(NSString *)name forPurchase:(Purchase *)purchase;
+- (void)decrementVerificationCount;
+- (void)notifyDelegateDidDeletePurchase;
+- (void)notifyDelegateDidComplete;
 
 @end
 
@@ -32,18 +28,20 @@ NSString * const ReceiptVerificationPurchaseKey = @"ReceiptVerificationPurchaseK
 @implementation ReceiptVerificationLocalService
 
 
+@synthesize delegate;
+@synthesize verifications;
+
+
 #pragma mark -
 #pragma mark RemoteServiceDelegate
 - (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
 	
 	[self passFailedAuthenticationNotificationToAppDelegate:sender];
-	[self release];
 }
 
 - (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
 	
 	[self passTimeoutNotificationToAppDelegate:sender];
-	[self release];
 }
 
 
@@ -66,90 +64,79 @@ NSString * const ReceiptVerificationPurchaseKey = @"ReceiptVerificationPurchaseK
 			break;
 		}
 			
-		case ReceiptVerificationRemoteServiceCodeSuccess: {
+		case ReceiptVerificationRemoteServiceCodeSuccess:
+		default: {
 			
-			[self notifyName:ReceiptVerificationDidVerifyPurchaseNotification forPurchase:purchase];
 			break;
 		}
-			
-		default:
-			break;
 	}
 	
-	[self release];
+	[self decrementVerificationCount];
 }
 
 - (void)receiptVerificationRemoteService:(ReceiptVerificationRemoteService *)sender
 					  didFailForPurchase:(Purchase *)purchase {
 	
-	[self release];
+	[self decrementVerificationCount];
 }
 
 
 #pragma mark -
 #pragma mark ReceiptVerificationLocalService
-+ (void)verifyAllPurchases {
-
+- (void)verifyAllPurchases {
+	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	NSArray *all = [repo fetchAll]; 
+	NSArray *all = [repo fetchAll];
+	verifications = all.count;
 	[repo release];
 	
 	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
-		ReceiptVerificationLocalService *onesie = [[ReceiptVerificationLocalService alloc] init];
 		Purchase *purchase = (Purchase *)obj;
-		[onesie verifyPurchase:purchase];
-		[onesie release];
+		ReceiptVerificationRemoteService *service = [[ReceiptVerificationRemoteService alloc] init];
+		[service setDelegate:self];
+		[service beginVerifyPurchase:purchase];
+		[service release];
 	}];
-}
-
-- (void)verifyPurchase:(Purchase *)purchase {
-	
-	[self retain];
-	
-	ReceiptVerificationRemoteService *service = [[ReceiptVerificationRemoteService alloc] init];
-	[service setDelegate:self];
-	[service beginVerifyPurchase:purchase];
-	[service release];
 }
 
 
 #pragma mark Private Extension
 - (void)deleteFailedPurchase:(Purchase *)purchase {
 	
-	[self notifyName:ReceiptVerificationWillDeletePurchaseNotification forPurchase:purchase];
-	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
 	[repo removePurchaseFromProduct:purchase];
 	[repo save:nil];
 	[repo release];
 	
-	[self notifyName:ReceiptVerificationDidDeletePurchaseNotification forPurchase:nil];
+	[self notifyDelegateDidDeletePurchase];
 }
 
 - (void)markPurchaseAsExpired:(Purchase *)purchase {
 
-	[self notifyName:ReceiptVerificationWillExpireSubscriptionPurchaseNotification forPurchase:purchase];
-	
 	[purchase setIsExpired:YES];
 	[purchase.managedObjectContext save:nil];
-	
-	[self notifyName:ReceiptVerificationDidExpireSubscriptionPurchaseNotification forPurchase:purchase];
 }
 
-- (void)notifyName:(NSString *)name forPurchase:(Purchase *)purchase {
+- (void)decrementVerificationCount {
 	
-	NSDictionary *dict = nil;
-	if (purchase) {
+	verifications--;
+	if (verifications <= 0) {
 		
-		dict = [NSDictionary dictionaryWithObjectsAndKeys:
-				purchase, ReceiptVerificationPurchaseKey
-				, nil];
+		[self notifyDelegateDidComplete];
 	}
+}
+
+- (void)notifyDelegateDidDeletePurchase {
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:name
-														object:self
-													  userInfo:dict];
+	if (![delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
+	[delegate receiptVerificationLocalServiceDidDeletePurchase:self];
+}
+
+- (void)notifyDelegateDidComplete {
+	
+	if (![delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
+	[delegate receiptVerificationLocalServiceDidComplete:self];
 }
 
 

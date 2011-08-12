@@ -8,19 +8,22 @@
 
 #import "ReceiptVerificationRemoteService.h"
 
-extern NSString * const ReceiptVerificationDidVerifyPurchaseNotification;
-extern NSString * const ReceiptVerificationWillDeletePurchaseNotification;
-extern NSString * const ReceiptVerificationDidDeletePurchaseNotification;
-extern NSString * const ReceiptVerificationWillExpireSubscriptionPurchaseNotification;
-extern NSString * const ReceiptVerificationDidExpireSubscriptionPurchaseNotification;
-extern NSString * const ReceiptVerificationPurchaseKey;
+
+@class ReceiptVerificationLocalService;
+
+@protocol ReceiptVerificationLocalServiceDelegate <NSObject>
+
+- (void)receiptVerificationLocalServiceDidDeletePurchase:(ReceiptVerificationLocalService *)sender;
+- (void)receiptVerificationLocalServiceDidComplete:(ReceiptVerificationLocalService *)sender;
+
+@end
 
 
 @interface ReceiptVerificationLocalService : NSObject
 <ReceiptVerificationRemoteServiceDelegate>
 
+@property (nonatomic, assign) id<ReceiptVerificationLocalServiceDelegate> delegate;
 
-+ (void)verifyAllPurchases;
-- (void)verifyPurchase:(Purchase *)purchase;
+- (void)verifyAllPurchases;
 
 @end
