@@ -15,7 +15,6 @@
 - (Product *)addOrRetreiveProductFromIdentifer:(NSString *)productIdentifier;
 - (Product *)addSubscriptionToProduct:(Product *)product;
 - (Product *)addOrUpdateSubscriptionFromIdentifer:(NSString *)subscriptionIdentifier toProduct:(Product *)product;
-- (void)removeSubscriptionFromProduct:(Product *)subscription;
 - (void)setAllProductsInactive;
 - (NSFetchedResultsController *)controllerForCandyShop;
 - (NSFetchedResultsController *)controllerForMyCandyJar;

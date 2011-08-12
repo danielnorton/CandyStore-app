@@ -8,8 +8,9 @@
 
 #import "CandyExchangeViewController.h"
 #import "Model.h"
-#import "ProductRepository.h"
+#import "ExchangeItemRepository.h"
 #import "Style.h"
+#import "CandyShopService.h"
 
 
 @implementation CandyExchangeViewController
@@ -61,6 +62,18 @@
 	return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+	if	(self.fetchedResultsController.sections.count == 0) return nil;
+	
+	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
+	int productKind = [[info indexTitle] integerValue];
+	
+	if (productKind != ProductKindCandy) return nil;
+	
+	return NSLocalizedString(@"Candy", @"Candy");
+}
+
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
@@ -94,9 +107,19 @@
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
 	ExchangeListItemCell *cell = (ExchangeListItemCell *)aCell;
-	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	[cell.titleLabel setText:product.title];
-	[cell.quantityLabel setText:[product.exchangeItem.quantityAvailable stringValue]];
+	ExchangeItem *exchangeItem = (ExchangeItem *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	Product *product = exchangeItem.product;
+	
+	[cell.quantityLabel setText:[exchangeItem.quantityAvailable stringValue]];
+	
+	if ([product.internalKey isEqualToString:InternalKeyExchange]) {
+		
+		[cell.titleLabel setText:NSLocalizedString(@"Available Credits", @"Available Credits")];
+		
+	} else {
+		
+		[cell.titleLabel setText:product.title];
+	}
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
@@ -114,8 +137,8 @@
 
 - (void)resetFetchedResultsController {
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	NSFetchedResultsController *controller = [repo controllerForCandyShop];
+	ExchangeItemRepository *repo = [[ExchangeItemRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	NSFetchedResultsController *controller = [repo controllerForExchangeView];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
 	[repo release];

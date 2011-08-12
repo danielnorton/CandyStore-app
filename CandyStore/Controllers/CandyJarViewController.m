@@ -80,7 +80,7 @@
 	
 	[self showHideViews];
 	
-	BOOL newEnable = [CandyShopService hasExchange];
+	BOOL newEnable = [CandyShopService canAddToExchangeCredits];
 	if (newEnable != shouldEnableExchangeButtons) {
 		
 		[self setShouldEnableExchangeButtons:newEnable];

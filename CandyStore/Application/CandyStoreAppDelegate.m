@@ -26,6 +26,7 @@
 
 @property (nonatomic, retain) ProductBuilderService *productBuilderService;
 @property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
+@property (nonatomic, retain) ExchangeRefreshingService *exchangeRefreshingService;
 
 - (BOOL)canRestoreOrRefresh;
 - (void)alertUserHasNotPurchasedExchange;
@@ -40,24 +41,28 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize candyJarViewController;
 @synthesize candyShopViewController;
 @synthesize candyExchangeViewController;
 @synthesize internetReach;
 @synthesize myJarTabBarItem;
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
+@synthesize exchangeRefreshingService;
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
 	[window release];
 	[tabBarController release];
+	[candyJarViewController release];
 	[candyShopViewController release];
 	[candyExchangeViewController release];
 	[internetReach release];
 	[myJarTabBarItem release];
 	[productBuilderService release];
 	[transactionReceiptService release];
+	[exchangeRefreshingService release];
     [super dealloc];
 }
 
@@ -71,14 +76,15 @@
 	[self reachabilityChanged:nil];
 	
 		
-	void (^updateJarAndCompleteRefreshing)(NSNotification *) = ^(NSNotification *notification) {
+	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
-		[candyShopViewController completeRefreshing];
-		[self updateJarTabImage];
+		[candyJarViewController setShouldEnableExchangeButtons:[CandyShopService canAddToExchangeCredits]];
+		[self updateProducts];
 	};
 	
-	void (^updateJarFromNotification)(NSNotification *) = ^(NSNotification *notification) {
+	void (^respondToReceiptPurchaseNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
+		[candyJarViewController setShouldEnableExchangeButtons:[CandyShopService canAddToExchangeCredits]];
 		[self updateJarTabImage];
 	};	
 	
@@ -86,22 +92,22 @@
 	[center addObserverForName:TransactionReceiptServiceRestoreCompletedNotification
 						object:nil
 						 queue:nil
-					usingBlock:updateJarAndCompleteRefreshing];
+					usingBlock:respondToReceiptRestoreNotification];
 	
 	[center addObserverForName:TransactionReceiptServiceRestoreFailedNotification
 						object:nil
 						 queue:nil
-					usingBlock:updateJarAndCompleteRefreshing];
+					usingBlock:respondToReceiptRestoreNotification];
 	
 	[center addObserverForName:TransactionReceiptServiceCompletedNotification
 						object:nil
 						 queue:nil
-					usingBlock:updateJarFromNotification];
+					usingBlock:respondToReceiptPurchaseNotification];
 	
 	[center addObserverForName:ReceiptVerificationDidDeletePurchaseNotification
 						object:nil
 						 queue:nil
-					usingBlock:updateJarFromNotification];
+					usingBlock:respondToReceiptPurchaseNotification];
 	
 	
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
@@ -136,11 +142,10 @@
 	int index = [aTabBarController.viewControllers indexOfObject:viewController];
 	if (index != kExchangeTabIndex) return YES;
 
-	if ([CandyShopService hasExchange]) {
-		return YES;
-	}
+	if ([CandyShopService canSeeExchangeTab]) return YES;
 	
 	[self alertUserHasNotPurchasedExchange];
+	
 	return NO;
 }
 
@@ -150,12 +155,34 @@
 	
 	[candyShopViewController completeRefreshing];
 	[ReceiptVerificationLocalService verifyAllPurchases];
-	[self updateExchange];
 }
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
 	[candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
+}
+
+
+#pragma mark RemoteServiceDelegate
+- (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
+	[self popup:NSLocalizedString(@"Candy Store server authentication failed",
+								  @"Candy Store server authentication failed")];
+}
+
+- (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
+	[self popup:NSLocalizedString(@"Request timed out", @"Request timed out")];
+}
+
+
+#pragma mark ExchangeRefreshingServiceDelegate
+- (void)exchangeRefreshingServiceDidRefresh:(ExchangeRefreshingService *)sender {
+	
+	[candyExchangeViewController completeRefreshing];
+}
+
+- (void)exchangeRefreshingServiceFailedRefresh:(ExchangeRefreshingService *)sender {
+	
+	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
 }
 
 
@@ -177,8 +204,8 @@
 	[candyExchangeViewController beginRefreshing];
 	
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
-	[self setProductBuilderService:service];
 	[service setDelegate:self];
+	[self setProductBuilderService:service];
 	[service beginBuildingProducts:[ModelCore sharedManager].managedObjectContext];
 	[service release];
 }
@@ -187,7 +214,13 @@
 	
 	if (![self canRestoreOrRefresh]) return;
 	
+	[candyExchangeViewController beginRefreshing];
 	
+	ExchangeRefreshingService *service = [[ExchangeRefreshingService alloc] init];
+	[service setDelegate:self];
+	[self setExchangeRefreshingService:service];
+	[service beginRefreshing];
+	[service release];
 }
 
 
@@ -209,6 +242,7 @@
 	if (![self canRestoreOrRefresh]) return;
 	
 	[candyShopViewController beginRefreshing];
+	[candyExchangeViewController beginRefreshing];
 	[transactionReceiptService restoreTransactions];
 }
 
@@ -216,14 +250,15 @@
 #pragma mark Private Extension
 - (BOOL)canRestoreOrRefresh {
 
-	BOOL canRefresh = (productBuilderService.status == ProductBuilderServiceStatusUnknown)
+	BOOL canRefreshProducts = (productBuilderService.status == ProductBuilderServiceStatusUnknown)
 	|| (productBuilderService.status == ProductBuilderServiceStatusIdle)
 	|| (productBuilderService.status == ProductBuilderServiceStatusFailed);
-	
 
-	BOOL canRestore = YES;
-	
-	return canRefresh && canRestore;
+	BOOL canRefreshExchange = (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusUnknown)
+	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusIdle)
+	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusFailed);
+
+	return canRefreshProducts && canRefreshExchange;
 }
 
 - (void)alertUserHasNotPurchasedExchange {

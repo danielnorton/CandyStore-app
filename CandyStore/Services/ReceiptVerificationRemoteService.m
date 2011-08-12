@@ -61,9 +61,14 @@
 	
 	NSString *path = [EndpointService receiptVerificationPath];
 	NSString *encoded = [NSString base64StringFromData:purchase.receipt length:purchase.receipt.length];
+	
+	NSString *internalKey = purchase.product.parent
+	? purchase.product.parent.internalKey
+	: purchase.product.internalKey;
+	
 	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
 							encoded, @"receipt",
-							purchase.product.internalKey, @"type", nil];
+							internalKey, @"type", nil];
 	
 	[self setMethod:HTTPRequestServiceMethodPostJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];

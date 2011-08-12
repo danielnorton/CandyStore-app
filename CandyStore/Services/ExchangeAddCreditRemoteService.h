@@ -14,10 +14,10 @@
 
 @protocol ExchangeAddCreditRemoteServiceDelegate <NSObject, RemoteServiceDelegate>
 
-- (void)exchangeAddCreditRemoteServiceDidAddCredit:(ExchangeAddCreditRemoteService *)sender;
+- (void)exchangeAddCreditRemoteServiceFailedAddingCredit:(ExchangeAddCreditRemoteService *)sender;
 
 @optional
-- (void)exchangeAddCreditRemoteServiceFailedAddingCredit:(ExchangeAddCreditRemoteService *)sender;
+- (void)exchangeAddCreditRemoteServiceDidAddCredit:(ExchangeAddCreditRemoteService *)sender;
 
 @end
 

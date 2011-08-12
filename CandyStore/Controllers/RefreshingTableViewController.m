@@ -153,6 +153,9 @@
 	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	[cell.textLabel setMinimumFontSize:10.0f];
+	[cell.textLabel setAdjustsFontSizeToFitWidth:YES];
+	[cell.textLabel setLineBreakMode:UILineBreakModeClip];
 }
 
 - (void)beginRefreshing {

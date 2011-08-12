@@ -61,6 +61,32 @@
 	return [all lastObject];
 }
 
+- (NSFetchedResultsController *)controllerForExchangeView {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData != %d", ProductKindBigCandyJar];
+	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
+}
+
+- (ExchangeItem *)createOrUpdateExchangeItemForProductIdentifier:(NSString *)productIdentifier {
+	
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.identifier == %@", productIdentifier];
+	NSArray *all = [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
+	ExchangeItem *item = (all.count > 0)
+	? (ExchangeItem *)[all lastObject]
+	: nil;
+	
+	if (!item) {
+		
+		item = (ExchangeItem *)[self insertNewObject];
+		
+		ProductRepository *repo = [[ProductRepository alloc] initWithContext:self.managedObjectContext];
+		Product *product = (Product *)[repo itemForId:productIdentifier];
+		[item setProduct:product];
+		[product setExchangeItem:item];
+	}
+	
+	return item;
+}
 
 @end
 

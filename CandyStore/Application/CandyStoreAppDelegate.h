@@ -10,15 +10,19 @@
 #import "ProductBuilderService.h"
 #import "CandyShopViewController.h"
 #import "CandyExchangeViewController.h"
+#import "CandyJarViewController.h"
+#import "ExchangeRefreshingService.h"
+#import "RemoteServiceBase.h"
 
 
 @interface CandyStoreAppDelegate : NSObject
 <UIApplicationDelegate, UITabBarControllerDelegate,
-ProductBuilderServiceDelegate>
-
+ProductBuilderServiceDelegate, ExchangeRefreshingServiceDelegate,
+RemoteServiceDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet CandyJarViewController *candyJarViewController;
 @property (nonatomic, retain) IBOutlet CandyShopViewController *candyShopViewController;
 @property (nonatomic, retain) IBOutlet CandyExchangeViewController *candyExchangeViewController;
 @property (nonatomic, retain) IBOutlet UITabBarItem *myJarTabBarItem;

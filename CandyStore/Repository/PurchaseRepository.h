@@ -17,7 +17,7 @@
 - (Purchase *)addOrRetreivePurchaseForProduct:(Product *)product withTransactionIdentifier:(NSString *)transactionIdentifier;
 - (void)removePurchaseFromProduct:(Purchase *)purchase;
 - (NSArray *)fetchOrphanedPurchases;
-- (NSData *)exchangeReceipt;
+- (Purchase *)exchangePurchase;
 
 @end
 

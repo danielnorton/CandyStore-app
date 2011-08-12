@@ -17,11 +17,5 @@
 	STAssertFalse(hasBigJar, @"shop should not (yet) have big jar.");
 }
 
-- (void)testShouldNotYetHaveExchange {
-	
-	BOOL hasExchange = [CandyShopService hasExchange];
-	STAssertFalse(hasExchange, @"shop should not (yet) have exchange.");
-}
-
 
 @end

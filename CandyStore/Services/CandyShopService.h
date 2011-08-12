@@ -14,7 +14,8 @@ extern NSString * const InternalKeyExchange;
 @interface CandyShopService : NSObject
 
 + (BOOL)hasBigCandyJar;
-+ (BOOL)hasExchange;
++ (BOOL)canSeeExchangeTab;
++ (BOOL)canAddToExchangeCredits;
 + (BOOL)canMakePayments;
 
 @end

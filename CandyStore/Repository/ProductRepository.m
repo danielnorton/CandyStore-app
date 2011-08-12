@@ -70,16 +70,6 @@
 	return subscription;
 }
 
-- (void)removeSubscriptionFromProduct:(Product *)subscription; {
-	
-	Product *product = subscription.parent;
-	if (!product) return;
-	
-	[product removeSubscriptionsObject:subscription];
-	[subscription setParent:nil];
-	[self.managedObjectContext deleteObject:subscription];
-}
-
 - (void)setAllProductsInactive {
 
 	NSArray *all = [self fetchAll];

@@ -72,7 +72,7 @@
 	
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
-	NSData *exchangeReceipt = [repo exchangeReceipt];
+	NSData *exchangeReceipt = [repo exchangePurchase].receipt;
 	[repo release];
 	
 	if (!exchangeReceipt) return;
@@ -101,14 +101,14 @@
 - (void)notifyDelegateSucceededAdding {
 	
 	id<ExchangeAddCreditRemoteServiceDelegate> del = (id<ExchangeAddCreditRemoteServiceDelegate>)self.delegate;
-	if (![del conformsToProtocol:@protocol(ExchangeAddCreditRemoteServiceDelegate)]) return;
+	if (![del respondsToSelector:@selector(exchangeAddCreditRemoteServiceDidAddCredit:)]) return;
 	[del exchangeAddCreditRemoteServiceDidAddCredit:self];
 }
 
 - (void)notifyDelegateFailedAdding {
 	
 	id<ExchangeAddCreditRemoteServiceDelegate> del = (id<ExchangeAddCreditRemoteServiceDelegate>)self.delegate;
-	if (![del respondsToSelector:@selector(exchangeAddCreditRemoteServiceFailedAddingCredit:)]) return;
+	if (![del conformsToProtocol:@protocol(ExchangeAddCreditRemoteServiceDelegate)]) return;
 	[del exchangeAddCreditRemoteServiceFailedAddingCredit:self];
 }
 

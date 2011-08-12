@@ -9,6 +9,8 @@
 #import "ReceiptVerificationLocalService.h"
 #import "PurchaseRepository.h"
 #import "ProductRepository.h"
+#import "NSObject+remoteErrorToApp.h"
+
 
 NSString * const ReceiptVerificationDidVerifyPurchaseNotification = @"ReceiptVerificationDidVerifyPurchaseNotification";
 NSString * const ReceiptVerificationWillDeletePurchaseNotification = @"ReceiptVerificationWillDeletePurchaseNotification";
@@ -34,11 +36,13 @@ NSString * const ReceiptVerificationPurchaseKey = @"ReceiptVerificationPurchaseK
 #pragma mark RemoteServiceDelegate
 - (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
 	
+	[self passFailedAuthenticationNotificationToAppDelegate:sender];
 	[self release];
 }
 
 - (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
 	
+	[self passTimeoutNotificationToAppDelegate:sender];
 	[self release];
 }
 

@@ -13,7 +13,8 @@
 
 - (ExchangeItem *)setOrCreateCreditsFromQuantity:(int)quantity;
 - (ExchangeItem *)creditsItem;
-
+- (NSFetchedResultsController *)controllerForExchangeView;
+- (ExchangeItem *)createOrUpdateExchangeItemForProductIdentifier:(NSString *)productIdentifier;
 
 @end
 

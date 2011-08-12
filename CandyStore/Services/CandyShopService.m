@@ -32,19 +32,27 @@ NSString * const InternalKeyExchange = @"exchange";
 	return answer;
 }
 
-+ (BOOL)hasExchange {
++ (BOOL)canSeeExchangeTab {
+	
+	if ([self canAddToExchangeCredits]) return YES;
 	
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
-	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
-	BOOL isSubscribed = [purchaseRepo hasActiveExchangeSubscription];
-	[purchaseRepo release];
-	
 	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
 	ExchangeItem *credits = [exchangeRepo creditsItem];
 	[exchangeRepo release];
 	BOOL hasCredits = credits.quantityAvailable > 0;
 	
-	return isSubscribed || hasCredits;
+	return hasCredits;
+}
+
++ (BOOL)canAddToExchangeCredits {
+
+	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
+	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
+	BOOL isSubscribed = [purchaseRepo hasActiveExchangeSubscription];
+	[purchaseRepo release];
+	
+	return isSubscribed;
 }
 
 + (BOOL)canMakePayments {

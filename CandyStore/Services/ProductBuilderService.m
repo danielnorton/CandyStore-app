@@ -12,6 +12,7 @@
 #import "PurchaseRepository.h"
 #import "ImageCachingService.h"
 #import "EndpointService.h"
+#import "NSObject+remoteErrorToApp.h"
 
 
 #define kKeyBigCandyJar @"bigcandyjar"
@@ -71,8 +72,8 @@ NSNumberFormatter *currencyFormatter;
 	[response.invalidProductIdentifiers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		NSString *invalidIdentifier = (NSString *)obj;
-		id product = [repo itemForId:invalidIdentifier];
-		[context deleteObject:product];
+		Product *product = (Product *)[repo itemForId:invalidIdentifier];
+		[product setIsActive:NO];
 	}];
 	
 	[response.products enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -122,11 +123,13 @@ NSNumberFormatter *currencyFormatter;
 - (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
 	
 	[self notifyDelegateDidFail];
+	[self passFailedAuthenticationNotificationToAppDelegate:sender];
 }
 
 - (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
 	
 	[self notifyDelegateDidFail];
+	[self passTimeoutNotificationToAppDelegate:sender];
 }
 
 
@@ -213,7 +216,6 @@ NSNumberFormatter *currencyFormatter;
 - (void)beginBuildingProducts:(NSManagedObjectContext *)aContext {
 
 	[self setStatus:ProductBuilderServiceStatusRetreivingFromAppService];
-	
 	[self setContext:aContext];
 	
 	AppProductRemoteService *service = [[AppProductRemoteService alloc] init];

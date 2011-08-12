@@ -44,8 +44,9 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 				
 		BOOL shouldProcess = ((transaction.transactionState == SKPaymentTransactionStatePurchased)
 							  || (transaction.transactionState == SKPaymentTransactionStateRestored));
-		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:shouldProcess];
 		if (shouldProcess) {
+			
+			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 			
 			NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 			ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:context];
@@ -58,7 +59,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			? transaction.originalTransaction.transactionIdentifier
 			: transaction.transactionIdentifier;
 			
-			NSLog(@"updating state: %d,  transactionIdentifier: %@,  productIdentifier: %@", transaction.transactionState, transactionIdentifier, productIdentifier);
+			NSLog(@"transaction state: %d,  transactionIdentifier: %@,  productIdentifier: %@", transaction.transactionState, transactionIdentifier, productIdentifier);
 
 			Product *product = (Product *)[productRepo itemForId:productIdentifier];
 			Purchase *purchase = [purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:transactionIdentifier];
@@ -120,6 +121,8 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 
 #pragma mark Private Extension
 - (void)notifyName:(NSString *)name forTransaction:(SKPaymentTransaction *)transaction {
+	
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 						  transaction, TransactionReceiptServiceKeyTransaction
