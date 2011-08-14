@@ -332,7 +332,6 @@
 	[buyButton setEnabled:isButtonEnabled];
 	if (!isButtonEnabled) {
 		
-		NSString *normal = [buyButton titleForState:UIControlStateNormal];
 		NSString *disabled = [buyButton titleForState:UIControlStateDisabled];
 		[buyButton.titleLabel setFont:[UIFont buyButtonDisabledFont]];
 		[buyButton resizeToLeft:disabled nextText:disabled animated:NO];

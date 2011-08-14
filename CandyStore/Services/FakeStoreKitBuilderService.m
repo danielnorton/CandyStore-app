@@ -62,6 +62,24 @@
 	[product setProductDescription:@"Delicious blue candy to buy and \"eat\" in your app"];
 	
 	
+	product = (Product *)[repo itemForId:@"com.brimstead.candystore.redcandy"];
+	[product setLocalizedPrice:@"$0.99"];
+	[product setTitle:@"Red Candy"];
+	[product setProductDescription:@"Delicious red candy to buy and \"eat\" in your app"];
+	
+	
+	product = (Product *)[repo itemForId:@"com.brimstead.candystore.purplecandy"];
+	[product setLocalizedPrice:@"$0.99"];
+	[product setTitle:@"Purple Candy"];
+	[product setProductDescription:@"Delicious purple candy to buy and \"eat\" in your app"];
+	
+	
+	product = (Product *)[repo itemForId:@"com.brimstead.candystore.greencandy"];
+	[product setLocalizedPrice:@"$0.99"];
+	[product setTitle:@"Green Candy"];
+	[product setProductDescription:@"Delicious green candy to buy and \"eat\" in your app"];
+	
+	
 	product = (Product *)[repo itemForId:@"com.brimstead.candystore.bigcandyjar"];
 	[product setLocalizedPrice:@"$1.99"];
 	[product setTitle:@"Big Candy Jar"];
