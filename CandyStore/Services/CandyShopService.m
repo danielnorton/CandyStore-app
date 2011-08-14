@@ -6,11 +6,14 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+#import <TargetConditionals.h>
 #import <StoreKit/StoreKit.h>
 #import "CandyShopService.h"
 #import "Model.h"
 #import "PurchaseRepository.h"
 #import "ExchangeItemRepository.h"
+
+#define kKeyUseStoreKit @"KeyUseStoreKit"
 
 
 NSString * const InternalKeyCandy = @"candy";
@@ -22,7 +25,32 @@ NSString * const InternalKeyExchange = @"exchange";
 
 
 #pragma mark -
+#pragma mark NSObject
++ (void)initialize {
+	
+	BOOL enabled = YES;
+	
+#if TARGET_IPHONE_SIMULATOR
+	
+	enabled = NO;
+	
+#endif
+	
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:kKeyUseStoreKit];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+#pragma mark -
 #pragma mark CandyShopService
++ (BOOL)isStoreKitEnabled {
+	
+	NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyUseStoreKit];
+	return enabled
+	? [enabled boolValue]
+	: NO;
+}
+
 + (BOOL)hasBigCandyJar {
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
@@ -40,7 +68,7 @@ NSString * const InternalKeyExchange = @"exchange";
 	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
 	ExchangeItem *credits = [exchangeRepo creditsItem];
 	[exchangeRepo release];
-	BOOL hasCredits = credits.quantityAvailable > 0;
+	BOOL hasCredits = [credits.quantityAvailable integerValue] > 0;
 	
 	return hasCredits;
 }
@@ -56,6 +84,9 @@ NSString * const InternalKeyExchange = @"exchange";
 }
 
 + (BOOL)canMakePayments {
+	
+	if (![self isStoreKitEnabled]) return YES;
+	
 	return [SKPaymentQueue canMakePayments];
 }
 

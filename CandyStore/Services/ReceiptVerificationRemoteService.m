@@ -44,6 +44,7 @@
 	}
 	
 	[self notifyDelegateDidReceiveCode:code forPurchase:purchase];
+	[self setDelegate:nil];
 }
 
 - (void)notifyDelegateOfFailure:(HTTPRequestService *)sender {
@@ -52,6 +53,7 @@
 	Purchase *purchase = (Purchase *)[context objectWithID:sender.userData];
 	
 	[self notifyDelegateDidFailVerificationForPurchase:purchase];
+	[self setDelegate:nil];
 }
 
 

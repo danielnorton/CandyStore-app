@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B09BD1C13F7810F0052BC3D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B09BD1B13F7810F0052BC3D /* AboutViewController.m */; };
+		9B09BD2013F781360052BC3D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B09BD1E13F781360052BC3D /* AboutViewController.xib */; };
+		9B09BD2713F78F840052BC3D /* aboutLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B09BD2513F78F840052BC3D /* aboutLogo.png */; };
+		9B09BD2813F78F840052BC3D /* aboutLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B09BD2613F78F840052BC3D /* aboutLogo@2x.png */; };
 		9B0B3A7613F538D800B89121 /* ExchangeUseCreditRemoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */; };
 		9B13164713E72E7600D5253A /* ShopListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B13164513E72E7600D5253A /* ShopListItemCell.xib */; };
 		9B13164A13E730CB00D5253A /* ShopListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B13164913E730CB00D5253A /* ShopListItemCell.m */; };
@@ -25,7 +29,10 @@
 		9B21C6A813E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B21C6A613E357A900E5AD14 /* ShopItemDetailPurchaseCell.xib */; };
 		9B24687F13E9AE63005A9F9C /* NSString+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24687E13E9AE63005A9F9C /* NSString+base64.m */; };
 		9B24688313E9AEDF005A9F9C /* Base64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B24688213E9AEDF005A9F9C /* Base64Tests.m */; };
+		9B341CD113F7A79A0047A3C2 /* FakeStoreKitBuilderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B341CD013F7A79A0047A3C2 /* FakeStoreKitBuilderService.m */; };
 		9B39C60113E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */; };
+		9B500C9613F79BE800261661 /* exchangeTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B500C9413F79BE800261661 /* exchangeTab@2x.png */; };
+		9B500C9713F79BE800261661 /* exchangeTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B500C9513F79BE800261661 /* exchangeTab.png */; };
 		9B56B94013D9ED5300A65543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B93F13D9ED5300A65543 /* UIKit.framework */; };
 		9B56B94213D9ED5300A65543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94113D9ED5300A65543 /* Foundation.framework */; };
 		9B56B94413D9ED5300A65543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B56B94313D9ED5300A65543 /* CoreGraphics.framework */; };
@@ -46,8 +53,6 @@
 		9B64118B13DDCF200099007A /* CandyExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64118A13DDCF200099007A /* CandyExchangeViewController.m */; };
 		9B64119513DDEE660099007A /* bigJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64118D13DDEE660099007A /* bigJarTab.png */; };
 		9B64119613DDEE660099007A /* bigJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64118E13DDEE660099007A /* bigJarTab@2x.png */; };
-		9B64119713DDEE660099007A /* exchangeTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64118F13DDEE660099007A /* exchangeTab.png */; };
-		9B64119813DDEE660099007A /* exchangeTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119013DDEE660099007A /* exchangeTab@2x.png */; };
 		9B64119913DDEE660099007A /* shopTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119113DDEE660099007A /* shopTab.png */; };
 		9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119213DDEE660099007A /* shopTab@2x.png */; };
 		9B64119B13DDEE660099007A /* smallJarTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119313DDEE660099007A /* smallJarTab.png */; };
@@ -133,6 +138,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B09BD1A13F7810F0052BC3D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		9B09BD1B13F7810F0052BC3D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		9B09BD1F13F781360052BC3D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = AboutViewController.xib; sourceTree = "<group>"; };
+		9B09BD2513F78F840052BC3D /* aboutLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutLogo.png; sourceTree = "<group>"; };
+		9B09BD2613F78F840052BC3D /* aboutLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutLogo@2x.png"; sourceTree = "<group>"; };
 		9B0B3A7413F538D700B89121 /* ExchangeUseCreditRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeUseCreditRemoteService.h; sourceTree = "<group>"; };
 		9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeUseCreditRemoteService.m; sourceTree = "<group>"; };
 		9B13164613E72E7600D5253A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShopListItemCell.xib; sourceTree = "<group>"; };
@@ -167,8 +177,12 @@
 		9B24687E13E9AE63005A9F9C /* NSString+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+base64.m"; sourceTree = "<group>"; };
 		9B24688113E9AEDF005A9F9C /* Base64Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Tests.h; sourceTree = "<group>"; };
 		9B24688213E9AEDF005A9F9C /* Base64Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Tests.m; sourceTree = "<group>"; };
+		9B341CCF13F7A79A0047A3C2 /* FakeStoreKitBuilderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeStoreKitBuilderService.h; sourceTree = "<group>"; };
+		9B341CD013F7A79A0047A3C2 /* FakeStoreKitBuilderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeStoreKitBuilderService.m; sourceTree = "<group>"; };
 		9B39C5FF13E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceConnectivityTests.h; sourceTree = "<group>"; };
 		9B39C60013E0734C00685A10 /* AppProductRemoteServiceConnectivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceConnectivityTests.m; sourceTree = "<group>"; };
+		9B500C9413F79BE800261661 /* exchangeTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exchangeTab@2x.png"; sourceTree = "<group>"; };
+		9B500C9513F79BE800261661 /* exchangeTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exchangeTab.png; sourceTree = "<group>"; };
 		9B56B93B13D9ED5300A65543 /* CandyStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandyStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B56B93F13D9ED5300A65543 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9B56B94113D9ED5300A65543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -195,8 +209,6 @@
 		9B64118A13DDCF200099007A /* CandyExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandyExchangeViewController.m; sourceTree = "<group>"; };
 		9B64118D13DDEE660099007A /* bigJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigJarTab.png; sourceTree = "<group>"; };
 		9B64118E13DDEE660099007A /* bigJarTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigJarTab@2x.png"; sourceTree = "<group>"; };
-		9B64118F13DDEE660099007A /* exchangeTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exchangeTab.png; sourceTree = "<group>"; };
-		9B64119013DDEE660099007A /* exchangeTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exchangeTab@2x.png"; sourceTree = "<group>"; };
 		9B64119113DDEE660099007A /* shopTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopTab.png; sourceTree = "<group>"; };
 		9B64119213DDEE660099007A /* shopTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopTab@2x.png"; sourceTree = "<group>"; };
 		9B64119313DDEE660099007A /* smallJarTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallJarTab.png; sourceTree = "<group>"; };
@@ -496,6 +508,7 @@
 				9B13165913E74AA700D5253A /* ShopItemDetailViewController.xib */,
 				9B9544E813E8943E00BCF94D /* JarListItemCell.xib */,
 				9B6695D413F49B6A00275BE1 /* ExchangeListItemCell.xib */,
+				9B09BD1E13F781360052BC3D /* AboutViewController.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -522,6 +535,8 @@
 				9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */,
 				9B13165C13E74ABD00D5253A /* ShopItemDetailViewController.h */,
 				9B13165D13E74ABE00D5253A /* ShopItemDetailViewController.m */,
+				9B09BD1A13F7810F0052BC3D /* AboutViewController.h */,
+				9B09BD1B13F7810F0052BC3D /* AboutViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -529,10 +544,12 @@
 		9B64118C13DDEE650099007A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9B09BD2513F78F840052BC3D /* aboutLogo.png */,
+				9B09BD2613F78F840052BC3D /* aboutLogo@2x.png */,
 				9B64118D13DDEE660099007A /* bigJarTab.png */,
 				9B64118E13DDEE660099007A /* bigJarTab@2x.png */,
-				9B64118F13DDEE660099007A /* exchangeTab.png */,
-				9B64119013DDEE660099007A /* exchangeTab@2x.png */,
+				9B500C9413F79BE800261661 /* exchangeTab@2x.png */,
+				9B500C9513F79BE800261661 /* exchangeTab.png */,
 				9B64119113DDEE660099007A /* shopTab.png */,
 				9B64119213DDEE660099007A /* shopTab@2x.png */,
 				9B64119313DDEE660099007A /* smallJarTab.png */,
@@ -591,6 +608,8 @@
 				9B14CE0913F4F69E00FA2534 /* ExchangeRefreshingService.m */,
 				9B0B3A7413F538D700B89121 /* ExchangeUseCreditRemoteService.h */,
 				9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */,
+				9B341CCF13F7A79A0047A3C2 /* FakeStoreKitBuilderService.h */,
+				9B341CD013F7A79A0047A3C2 /* FakeStoreKitBuilderService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -806,8 +825,6 @@
 				9B64118213DDCEA50099007A /* CandyExchangeViewController.xib in Resources */,
 				9B64119513DDEE660099007A /* bigJarTab.png in Resources */,
 				9B64119613DDEE660099007A /* bigJarTab@2x.png in Resources */,
-				9B64119713DDEE660099007A /* exchangeTab.png in Resources */,
-				9B64119813DDEE660099007A /* exchangeTab@2x.png in Resources */,
 				9B64119913DDEE660099007A /* shopTab.png in Resources */,
 				9B64119A13DDEE660099007A /* shopTab@2x.png in Resources */,
 				9B64119B13DDEE660099007A /* smallJarTab.png in Resources */,
@@ -827,6 +844,11 @@
 				9B9544FF13E905AE00BCF94D /* grayBuyButton.png in Resources */,
 				9B95450013E905AE00BCF94D /* grayBuyButton@2x.png in Resources */,
 				9B6695D613F49B6A00275BE1 /* ExchangeListItemCell.xib in Resources */,
+				9B09BD2013F781360052BC3D /* AboutViewController.xib in Resources */,
+				9B09BD2713F78F840052BC3D /* aboutLogo.png in Resources */,
+				9B09BD2813F78F840052BC3D /* aboutLogo@2x.png in Resources */,
+				9B500C9613F79BE800261661 /* exchangeTab@2x.png in Resources */,
+				9B500C9713F79BE800261661 /* exchangeTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +946,8 @@
 				9B14CE0D13F4F98200FA2534 /* ExchangeAvailableItemsRemoteService.m in Sources */,
 				9B14CE1013F4FBF900FA2534 /* NSObject+remoteErrorToApp.m in Sources */,
 				9B0B3A7613F538D800B89121 /* ExchangeUseCreditRemoteService.m in Sources */,
+				9B09BD1C13F7810F0052BC3D /* AboutViewController.m in Sources */,
+				9B341CD113F7A79A0047A3C2 /* FakeStoreKitBuilderService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +975,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B09BD1E13F781360052BC3D /* AboutViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B09BD1F13F781360052BC3D /* en */,
+			);
+			name = AboutViewController.xib;
+			sourceTree = "<group>";
+		};
 		9B13164513E72E7600D5253A /* ShopListItemCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

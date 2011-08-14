@@ -11,7 +11,6 @@
         <attribute name="internalKey" optional="YES" attributeType="String"/>
         <attribute name="isActiveData" optional="YES" attributeType="Boolean"/>
         <attribute name="localizedPrice" optional="YES" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="Decimal"/>
         <attribute name="productDescription" optional="YES" attributeType="String"/>
         <attribute name="productKindData" optional="YES" attributeType="Integer 32"/>
         <attribute name="title" optional="YES" attributeType="String"/>

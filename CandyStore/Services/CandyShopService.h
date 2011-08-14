@@ -13,6 +13,7 @@ extern NSString * const InternalKeyExchange;
 
 @interface CandyShopService : NSObject
 
++ (BOOL)isStoreKitEnabled;
 + (BOOL)hasBigCandyJar;
 + (BOOL)canSeeExchangeTab;
 + (BOOL)canAddToExchangeCredits;

@@ -20,7 +20,6 @@
 @property (nonatomic, retain) NSString * internalKey;
 @property (nonatomic, retain) NSNumber * isActiveData;
 @property (nonatomic, retain) NSString * localizedPrice;
-@property (nonatomic, retain) NSDecimalNumber * price;
 @property (nonatomic, retain) NSString * productDescription;
 @property (nonatomic, retain) NSNumber * productKindData;
 @property (nonatomic, retain) NSString * title;

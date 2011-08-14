@@ -170,6 +170,7 @@
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
 	[candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
+	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
 }
 
 
@@ -226,6 +227,7 @@
 	[candyShopViewController beginRefreshing];
 	[candyExchangeViewController beginRefreshing];
 	
+	[productBuilderService setDelegate:nil];
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
 	[service setDelegate:self];
 	[self setProductBuilderService:service];
@@ -239,6 +241,7 @@
 	
 	[candyExchangeViewController beginRefreshing];
 	
+	[exchangeRefreshingService setDelegate:nil];
 	ExchangeRefreshingService *service = [[ExchangeRefreshingService alloc] init];
 	[service setDelegate:self];
 	[self setExchangeRefreshingService:service];
@@ -273,6 +276,7 @@
 #pragma mark Private Extension
 - (void)verifyPurchases {
 
+	[receiptVerificationLocalService setDelegate:nil];
 	ReceiptVerificationLocalService *service = [[ReceiptVerificationLocalService alloc] init];
 	[service setDelegate:self];
 	[self setReceiptVerificationLocalService:service];

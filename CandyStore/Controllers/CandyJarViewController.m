@@ -17,6 +17,8 @@
 #import "NSObject+remoteErrorToApp.h"
 #import "UIApplication+delegate.h"
 #import "CandyStoreAppDelegate.h"
+#import "AboutViewController.h"
+#import "UIViewController+newWithDefaultNib.h"
 
 
 @interface CandyJarViewController()
@@ -65,7 +67,6 @@
 	[super viewDidLoad];
 	
 	[tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
-	[self.view addSubview:tableView];
 	
 	[welcomeView setAlpha:0.0f];
 	[welcomeView setOpaque:NO];
@@ -294,6 +295,15 @@
 }
 
 
+#pragma mark IBAction
+- (IBAction)didTapAboutButton:(id)sender {
+
+	AboutViewController *about = [AboutViewController newWithDefaultNib];
+	[about setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+	[self presentModalViewController:about animated:YES];
+}
+
+
 #pragma mark Private Extension
 - (void)loadWelcomeView {
 	
@@ -301,7 +311,6 @@
 	NSURL *url = [main URLForResource:@"index" withExtension:@"html" subdirectory:@"welcome"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	[welcomeView loadRequest:request];
-	[self.view addSubview:welcomeView];
 }
 
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {

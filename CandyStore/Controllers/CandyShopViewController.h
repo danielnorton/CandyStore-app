@@ -15,7 +15,7 @@
 <ImageCachingServiceDelegate>
 
 @property (nonatomic, retain) IBOutlet ShopListItemCell *shopListItemCell;
-
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *restoreButton;
 
 @end
 

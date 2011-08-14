@@ -9,6 +9,7 @@
 #import "Model.h"
 
 extern NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar;
+NSString * const PurchaseRuleDescriptionPurchaseRulesPurchasesDisabled;
 
 typedef enum {
 	

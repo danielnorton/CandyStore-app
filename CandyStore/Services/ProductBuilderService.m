@@ -13,11 +13,9 @@
 #import "ImageCachingService.h"
 #import "EndpointService.h"
 #import "NSObject+remoteErrorToApp.h"
+#import "CandyShopService.h"
+#import "FakeStoreKitBuilderService.h"
 
-
-#define kKeyBigCandyJar @"bigcandyjar"
-#define kKeyExchange @"exchange"
-#define kKeyCandy @"candy"
 
 
 @interface ProductBuilderService()
@@ -28,6 +26,7 @@
 - (ProductKind)productKindFromServerKey:(NSString *)key;
 - (NSString *)priceFromProduct:(SKProduct *)product;
 - (void)linkOrphanedPurchases;
+- (void)buildFakeStoreKitProducts;
 - (void)notifyDelegateDidUpdate;
 - (void)notifyDelegateDidFail;
 
@@ -82,23 +81,18 @@ NSNumberFormatter *currencyFormatter;
 		Product *product = (Product *)[repo itemForId:skProduct.productIdentifier];
 		
 		NSString *localizedPrice = [self priceFromProduct:skProduct];
+		[product setLocalizedPrice:localizedPrice];
 		[product setTitle:skProduct.localizedTitle];
 		
 		if (product.parent) {
 			
-			[product setPrice:skProduct.price];
-			[product setLocalizedPrice:localizedPrice];
-			
 			[product.parent setTitle:skProduct.localizedTitle];
 			[product.parent setProductDescription:skProduct.localizedDescription];
-			[product.parent setPrice:nil];
 			[product.parent setLocalizedPrice:nil];
 			
 		} else {
-		
-			[product setProductDescription:skProduct.localizedDescription];			
-			[product setPrice:skProduct.price];
-			[product setLocalizedPrice:localizedPrice];
+			
+			[product setProductDescription:skProduct.localizedDescription];
 		}
 	}];
 	
@@ -137,6 +131,8 @@ NSNumberFormatter *currencyFormatter;
 - (void)appProductRemoteService:(AppProductRemoteService *)sender didCompleteRetreiveProducts:(NSArray *)theProducts {
 	
 	[self setStatus:ProductBuilderServiceStatusBuilding];
+	
+	[ImageCachingService purge];
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
 	[repo setAllProductsInactive];
@@ -197,7 +193,15 @@ NSNumberFormatter *currencyFormatter;
 		
 	} else {
 		
-		[self beginAppStoreProducts:identifiers];
+		if ([CandyShopService isStoreKitEnabled]) {
+			
+			[self beginAppStoreProducts:identifiers];
+			
+		} else {
+			
+			[self buildFakeStoreKitProducts];
+		}
+		
 	}
 	
 	[identifiers release];
@@ -251,15 +255,15 @@ NSNumberFormatter *currencyFormatter;
 
 - (ProductKind)productKindFromServerKey:(NSString *)key {
 	
-	if ([key isEqualToString:kKeyBigCandyJar]) {
+	if ([key isEqualToString:InternalKeyBigCandyJar]) {
 		return ProductKindBigCandyJar;
 	}
 	
-	if ([key isEqualToString:kKeyExchange]) {
+	if ([key isEqualToString:InternalKeyExchange]) {
 		return ProductKindExchange;
 	}
 	
-	if ([key isEqualToString:kKeyCandy]) {
+	if ([key isEqualToString:InternalKeyCandy]) {
 		return ProductKindCandy;
 	}
 	
@@ -290,6 +294,16 @@ NSNumberFormatter *currencyFormatter;
 	
 	[purchaseRepo release];
 	[productRepo release];
+}
+
+- (void)buildFakeStoreKitProducts {
+	
+	
+	FakeStoreKitBuilderService *service = [[FakeStoreKitBuilderService alloc] init];
+	[service buildFakesForContext:context];
+	[service release];
+	
+	[self notifyDelegateDidUpdate];
 }
 
 - (void)notifyDelegateDidUpdate {

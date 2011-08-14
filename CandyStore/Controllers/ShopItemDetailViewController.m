@@ -208,6 +208,14 @@
 		NSString *message = PurchaseRuleDescriptionTooManyCandiesForSmallJar;
 		[self popup:NSLocalizedString(message, message)];
 		return;
+		
+	} else if (rule == PurchaseRulesPurchasesDisabled) {
+		
+		[cell.buyButton setSelected:NO];
+		
+		NSString *message = PurchaseRuleDescriptionPurchaseRulesPurchasesDisabled;
+		[self popup:NSLocalizedString(message, message)];
+		return;
 	}
 	
 	[self.navigationController.view setUserInteractionEnabled:NO];
@@ -327,7 +335,7 @@
 		NSString *normal = [buyButton titleForState:UIControlStateNormal];
 		NSString *disabled = [buyButton titleForState:UIControlStateDisabled];
 		[buyButton.titleLabel setFont:[UIFont buyButtonDisabledFont]];
-		[buyButton resizeToLeft:normal nextText:disabled animated:NO];
+		[buyButton resizeToLeft:disabled nextText:disabled animated:NO];
 		
 	} else {
 		

@@ -13,18 +13,21 @@
 #import "UIViewController+newWithDefaultNib.h"
 #import "ShopItemDetailViewController.h"
 #import "UITableViewCell+activity.h"
-
+#import "CandyShopService.h"
 
 
 @implementation CandyShopViewController
 
 @synthesize shopListItemCell;
+@synthesize restoreButton;
+
 
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
 	
 	[shopListItemCell release];
+	[restoreButton release];
 	[super dealloc];
 }
 
@@ -34,6 +37,13 @@
 	[super viewDidUnload];
 	
 	[self setShopListItemCell:nil];
+	[self setRestoreButton:nil];
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	[restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -117,6 +127,8 @@
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)indexPath {
 	
 	ShopListItemCell *cell = (ShopListItemCell *)aCell;
+	if (![cell isKindOfClass:[ShopListItemCell class]]) return;
+		  
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell.titleLabel setText:product.title];
 	
@@ -143,6 +155,15 @@
 		[cell.iconView setImage:image];
 	}
 	[service release];
+}
+
+- (void)completeRefreshing {
+	[super completeRefreshing];
+	
+	if (restoreButton.isEnabled) {
+		
+		[restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
+	}
 }
 
 - (void)resetFetchedResultsController {

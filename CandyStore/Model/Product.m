@@ -19,7 +19,6 @@
 @dynamic internalKey;
 @dynamic isActiveData;
 @dynamic localizedPrice;
-@dynamic price;
 @dynamic productDescription;
 @dynamic productKindData;
 @dynamic title;

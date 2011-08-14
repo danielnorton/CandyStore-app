@@ -13,6 +13,7 @@
 #import "NSString+base64.h"
 #import "NSData+base64.h"
 #import "CandyShopService.h"
+#import "ReceiptVerificationRemoteService.h"
 
 
 @interface ExchangeUseCreditRemoteService()
@@ -32,7 +33,10 @@
 	
 	NSDictionary *response = [sender.json objectAtIndex:0];
 	int code = [[response valueForKey:@"code"] integerValue];
-	if (code != 0) {
+	
+	if (
+		(code != ReceiptVerificationRemoteServiceCodeSuccess)
+		&& (code != ReceiptVerificationRemoteServiceCodeSubscriptionExpired)) {
 		
 		[self notifyDelegateFailedUsing];
 		return;
