@@ -87,12 +87,6 @@
 		[self updateProducts];
 	};
 	
-	void (^respondToReceiptPurchaseNotification)(NSNotification *) = ^(NSNotification *notification) {
-		
-		[candyJarViewController resetShouldEnableExchangeButtons];
-		[self updateJarTabImage];
-	};	
-	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];	
 	[center addObserverForName:TransactionReceiptServiceRestoreCompletedNotification
 						object:nil
@@ -107,7 +101,11 @@
 	[center addObserverForName:TransactionReceiptServiceCompletedNotification
 						object:nil
 						 queue:nil
-					usingBlock:respondToReceiptPurchaseNotification];
+					usingBlock:^(NSNotification *notification) {
+						
+						[candyJarViewController resetShouldEnableExchangeButtons];
+						[self updateJarTabImage];
+					}];
 	
 	
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
@@ -308,7 +306,7 @@
 	if ([self canReachInternet]) return;
 	if (![self shouldAlertForReachabilityChanged]) return;
 	
-	[self popup:@"Internet connectivity is not available. Some features will be disabled."];
+	[self popup:NSLocalizedString(@"Internet connectivity is not available. Some features will be disabled.", nil)];
 }
 
 - (BOOL)shouldAlertForReachabilityChanged {
