@@ -17,6 +17,9 @@
 #import "FakeStoreKitBuilderService.h"
 
 
+#define kProductBuilderServiceLastUpdate @"ProductBuilderServiceLastUpdate"
+#define kProductBuilderServiceLastUpdateInterval -120.0
+
 
 @interface ProductBuilderService()
 
@@ -217,8 +220,29 @@ NSNumberFormatter *currencyFormatter;
 
 #pragma mark -
 #pragma mark ProductBuilderService
+#pragma mark Class Messages
++ (BOOL)hasSignificantTimePassedSinceLastUpdate {
+	
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	int count = [repo count];
+	[repo release];
+	if (count == 0) {
+		
+		return YES;
+	}
+	
+	NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:kProductBuilderServiceLastUpdate];
+	NSTimeInterval elapsed = [lastUpdate timeIntervalSinceNow];
+	return (elapsed <= kProductBuilderServiceLastUpdateInterval);
+}
+
+
+#pragma mark Instance Messages
 - (void)beginBuildingProducts:(NSManagedObjectContext *)aContext {
 
+	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kProductBuilderServiceLastUpdate];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
 	[self setStatus:ProductBuilderServiceStatusRetreivingFromAppService];
 	[self setContext:aContext];
 	

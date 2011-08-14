@@ -65,7 +65,11 @@
 
 - (NSFetchedResultsController *)controllerForExchangeView {
 	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData != %d", ProductKindBigCandyJar];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:
+						 @"((product.productKindData == %d) || (product.productKindData == %d && quantityAvailable > 0))"
+						 , ProductKindExchange
+						 , ProductKindCandy];
+	
 	return [self controllerWithSort:self.defaultSortDescriptors andPredicate:pred];
 }
 

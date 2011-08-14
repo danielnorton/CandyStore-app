@@ -37,6 +37,7 @@ typedef enum {
 @property (nonatomic, readonly) ProductBuilderServiceStatus status;
 @property (nonatomic, readonly) NSManagedObjectContext *context;
 
++ (BOOL)hasSignificantTimePassedSinceLastUpdate;
 - (void)beginBuildingProducts:(NSManagedObjectContext *)context;
 
 

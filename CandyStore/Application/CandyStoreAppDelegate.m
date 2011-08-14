@@ -115,16 +115,6 @@
 	[transService beginObserving];
 	[transService release];
 	
-	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	int count = [repo count];
-	[repo release];
-	if (count == 0) {
-		
-		[self updateProducts];
-	}
-	
-	
 	[window setRootViewController:tabBarController];
 	[window makeKeyAndVisible];
     return YES;
@@ -132,16 +122,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	
-	[self updateJarTabImage];
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-	
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
 	[service reset];
 	[service release];
 
-	[self updateProducts];
+	[self updateJarTabImage];
+	
+	if ([ProductBuilderService hasSignificantTimePassedSinceLastUpdate]) {
+		
+		[self updateProducts];
+	}
 }
 
 
@@ -162,7 +152,6 @@
 #pragma mark ProductBuilderServiceDelegate
 - (void)productBuilderServiceDidUpdate:(ProductBuilderService *)sender {
 	
-	[candyShopViewController completeRefreshing];
 	[self updateJarTabImage];
 	[self verifyPurchases];
 }
@@ -200,11 +189,13 @@
 #pragma mark ReceiptVerificationLocalServiceDelegate
 - (void)receiptVerificationLocalServiceDidDeletePurchase:(ReceiptVerificationLocalService *)sender {
 	
+	[candyShopViewController completeRefreshing];
 	[self updateJarTabImage];
 }
 
 - (void)receiptVerificationLocalServiceDidComplete:(ReceiptVerificationLocalService *)sender {
 	
+	[candyShopViewController completeRefreshing];
 	[candyJarViewController resetShouldEnableExchangeButtons];
 	[self updateExchange];
 }
