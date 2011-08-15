@@ -209,8 +209,8 @@
 
 	[self finishCredit];
 	
-	CandyStoreAppDelegate *app = [UIApplication thisApp];
-	[app updateExchange];
+//	CandyStoreAppDelegate *app = [UIApplication thisApp];
+//	[app updateExchange];
 }
 
 - (void)exchangeUseCreditRemoteServiceFailedUsingCredit:(ExchangeUseCreditRemoteService *)sender {

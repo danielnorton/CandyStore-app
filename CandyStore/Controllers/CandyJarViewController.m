@@ -277,8 +277,8 @@
 
 - (void)exchangeAddCreditRemoteServiceDidAddCredit:(ExchangeAddCreditRemoteService *)sender {
 	
-	CandyStoreAppDelegate *app = [UIApplication thisApp];
-	[app updateExchange];
+//	CandyStoreAppDelegate *app = [UIApplication thisApp];
+//	[app updateExchange];
 }
 
 

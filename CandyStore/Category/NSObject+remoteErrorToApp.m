@@ -14,14 +14,14 @@
 
 - (void)passFailedAuthenticationNotificationToAppDelegate {
 	
-	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
-	[delegate remoteServiceDidFailAuthentication:self];
+//	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
+//	[delegate remoteServiceDidFailAuthentication:self];
 }
 
 - (void)passTimeoutNotificationToAppDelegate {
 
-	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
-	[delegate remoteServiceDidTimeout:self];
+//	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
+//	[delegate remoteServiceDidTimeout:self];
 }
 
 @end
