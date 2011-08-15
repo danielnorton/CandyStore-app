@@ -108,9 +108,14 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	ShopItemDetailViewController *controller = [ShopItemDetailViewController newWithDefaultNib];
-	[controller setProduct:product];
 	
+	
+	
+	ShopItemDetailViewController *controller =
+	[[ShopItemDetailViewController alloc] initWithNibName:@"ShopItemDetailViewController" bundle:nil];
+	
+	[controller setProduct:product];
+
 	[self.navigationController pushViewController:controller animated:YES];
 	[controller release];
 }
