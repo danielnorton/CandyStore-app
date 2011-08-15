@@ -46,8 +46,8 @@
 	[repo setOrCreateCreditsFromQuantity:newCreditCount];
 	
 	Purchase *purchase = (Purchase *)[context objectWithID:sender.userData];
-	
 	[context deleteObject:purchase];
+	[repo release];
 	
 	NSError *error = nil;
 	if (![context save:&error]) {

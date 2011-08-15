@@ -87,6 +87,7 @@
 		
 		ProductRepository *repo = [[ProductRepository alloc] initWithContext:self.managedObjectContext];
 		Product *product = (Product *)[repo itemForId:productIdentifier];
+		[repo release];
 		[item setProduct:product];
 		[product setExchangeItem:item];
 	}

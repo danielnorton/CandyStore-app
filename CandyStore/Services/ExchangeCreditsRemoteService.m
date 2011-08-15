@@ -41,6 +41,7 @@
 	
 	int newCreditCount = [[response valueForKeyPath:@"credits"] integerValue];
 	[repo setOrCreateCreditsFromQuantity:newCreditCount];
+	[repo release];
 	
 	NSError *error = nil;
 	if (![context save:&error]) {

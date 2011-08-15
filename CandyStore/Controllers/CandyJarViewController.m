@@ -301,6 +301,7 @@
 	AboutViewController *about = [AboutViewController newWithDefaultNib];
 	[about setModalTransitionStyle:UIModalTransitionStylePartialCurl];
 	[self presentModalViewController:about animated:YES];
+	[about release];
 }
 
 
