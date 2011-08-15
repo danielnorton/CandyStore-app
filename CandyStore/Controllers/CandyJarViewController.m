@@ -298,7 +298,7 @@
 #pragma mark IBAction
 - (IBAction)didTapAboutButton:(id)sender {
 
-	AboutViewController *about = [AboutViewController newWithDefaultNib];
+	AboutViewController *about = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
 	[about setModalTransitionStyle:UIModalTransitionStylePartialCurl];
 	[self presentModalViewController:about animated:YES];
 	[about release];
