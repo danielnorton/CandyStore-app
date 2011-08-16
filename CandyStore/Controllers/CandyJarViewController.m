@@ -293,7 +293,7 @@
 	
 	[cell setDelegate:self];
 	
-	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+	Product *product = (Product *)[fetchedResultsController objectAtIndexPath:indexPath];
 	
 	NSNumber *count = [product valueForKeyPath:@"purchases.@count"];
     [cell.titleLabel setText:product.title];
@@ -368,7 +368,6 @@
 	[fetchedResultsController setDelegate:self];
 	if (![fetchedResultsController performFetch:&error]) {
 		
-		// TODO: handle error
 		[fetchedResultsController setDelegate:nil];
 	}
 }

@@ -53,7 +53,6 @@
 		9B64119C13DDEE660099007A /* smallJarTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B64119413DDEE660099007A /* smallJarTab@2x.png */; };
 		9B6695D613F49B6A00275BE1 /* ExchangeListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B6695D413F49B6A00275BE1 /* ExchangeListItemCell.xib */; };
 		9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */; };
-		9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6695DB13F4AE2E00275BE1 /* Product.m */; };
 		9B91BDE913DF56BE0046C8BA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9B91BDE813DF56BE0046C8BA /* iTunesArtwork */; };
 		9B9544E713E8915C00BCF94D /* JarListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9544E613E8915C00BCF94D /* JarListItemCell.m */; };
 		9B9544EA13E8943E00BCF94D /* JarListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9544E813E8943E00BCF94D /* JarListItemCell.xib */; };
@@ -66,7 +65,6 @@
 		9B95450313E90ABE00BCF94D /* PurchaseRulesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B95450213E90ABE00BCF94D /* PurchaseRulesService.m */; };
 		9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */; };
 		9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */; };
-		9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA613E9D9D4006A7838 /* Purchase.m */; };
 		9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
@@ -196,8 +194,6 @@
 		9B6695D513F49B6A00275BE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ExchangeListItemCell.xib; sourceTree = "<group>"; };
 		9B6695D713F49B9E00275BE1 /* ExchangeListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeListItemCell.h; sourceTree = "<group>"; };
 		9B6695D813F49B9E00275BE1 /* ExchangeListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeListItemCell.m; sourceTree = "<group>"; };
-		9B6695DA13F4AE2E00275BE1 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		9B6695DB13F4AE2E00275BE1 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		9B6695E813F4B4FF00275BE1 /* ExchangeAddCreditRemoteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeAddCreditRemoteService.h; sourceTree = "<group>"; };
 		9B91BDE813DF56BE0046C8BA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9B9544E513E8915C00BCF94D /* JarListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JarListItemCell.h; sourceTree = "<group>"; };
@@ -219,8 +215,6 @@
 		9B99DDA013E9D685006A7838 /* ReceiptVerificationLocalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptVerificationLocalService.m; sourceTree = "<group>"; };
 		9B99DDA213E9D7FB006A7838 /* PurchaseRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseRepository.h; sourceTree = "<group>"; };
 		9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseRepository.m; sourceTree = "<group>"; };
-		9B99DDA513E9D9D4006A7838 /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
-		9B99DDA613E9D9D4006A7838 /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
 		9B99DDAB13E9D9F2006A7838 /* Purchase+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Purchase+model.h"; sourceTree = "<group>"; };
 		9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Purchase+model.m"; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
@@ -587,10 +581,6 @@
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
 				9BB8CA9813FAEDC0003F545E /* CandyStore.xcdatamodel */,
-				9B6695DA13F4AE2E00275BE1 /* Product.h */,
-				9B6695DB13F4AE2E00275BE1 /* Product.m */,
-				9B99DDA513E9D9D4006A7838 /* Purchase.h */,
-				9B99DDA613E9D9D4006A7838 /* Purchase.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -893,10 +883,8 @@
 				9BF16C0513E9B855002077D4 /* ReceiptVerificationRemoteService.m in Sources */,
 				9B99DDA113E9D685006A7838 /* ReceiptVerificationLocalService.m in Sources */,
 				9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */,
-				9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */,
 				9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */,
 				9B6695D913F49B9E00275BE1 /* ExchangeListItemCell.m in Sources */,
-				9B6695DC13F4AE2E00275BE1 /* Product.m in Sources */,
 				9B14CE1013F4FBF900FA2534 /* NSObject+remoteErrorToApp.m in Sources */,
 				9B09BD1C13F7810F0052BC3D /* AboutViewController.m in Sources */,
 				9B341CD113F7A79A0047A3C2 /* FakeStoreKitBuilderService.m in Sources */,
