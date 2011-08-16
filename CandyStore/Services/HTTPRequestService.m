@@ -18,7 +18,6 @@
 
 @interface HTTPRequestService()
 
-@property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) NSMutableData *receivedData;
 
 - (void)setJson:(NSArray *)value;
@@ -49,7 +48,6 @@
 @synthesize returnType;
 @synthesize responseUrl;
 @synthesize userData;
-@synthesize connection;
 @synthesize receivedData;
 
 
@@ -62,21 +60,20 @@
 	[lastError release];
 	[responseUrl release];
 	[userData release];
-	[connection release];
 	[receivedData release];
 	[super dealloc];
 }
 
 
 #pragma mark NSURLConnection delegate
-- (void)connection:(NSURLConnection *)aConnection didSendBodyData:(NSInteger)bytesWritten
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 	
 	float percent = (totalBytesWritten * 1.0f) / (totalBytesExpectedToWrite * 1.0f);
 	[self notifyDelegateOfPercentage:percent];
 }
 
-- (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	
 	responseUrl = [[response URL] retain];
 	 
@@ -87,12 +84,12 @@
 	[receivedData setLength:0];
 }
 
-- (void)connection:(NSURLConnection *)aConnection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	
 	[receivedData appendData:data];
 }
 
-- (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)anError {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)anError {
 
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
@@ -112,13 +109,13 @@
 			break;
 	}
 	
-	[self setConnection:nil];
+	[connection release];
 	[self setReceivedData:nil];
 	[self notifyDelegateDidFinish:NO];
 	[self release];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
@@ -134,7 +131,7 @@
 		}
 	}
 	
-	[self setConnection:nil];
+	[connection release];
 	[self setReceivedData:nil];
 	[self release];
 }
@@ -204,16 +201,14 @@
 		}
 	}
 	
-	NSURLConnection *aConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[request release];
 	
-	if (aConnection) {
+	if (connection) {
 		
 		NSMutableData *data = [[NSMutableData alloc] init];
 		[self setReceivedData:data];
 		[data release];
-		[self setConnection:aConnection];
-		[aConnection release];
 		
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 		[connection start];
