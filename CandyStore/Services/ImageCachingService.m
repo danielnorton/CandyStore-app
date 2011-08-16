@@ -1,5 +1,5 @@
 //
-//  ImageLoadingService.m
+//  ImageCachingService.m
 //
 //  Created by Daniel Norton on 3/15/11.
 //
@@ -39,7 +39,6 @@
 #pragma mark NSObject
 - (void)dealloc {
 	
-	[delegate release];
 	[connection release];
 	[receivedData release];
 	[remotePath release];
@@ -97,7 +96,7 @@
 
 
 #pragma mark -
-#pragma mark ImageLoadingService
+#pragma mark ImageCachingService
 + (void)beginLoadingImageAtPath:(NSString *)path {
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
