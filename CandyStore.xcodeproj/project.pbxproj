@@ -68,7 +68,6 @@
 		9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
-		9BB8CA9913FAEDC0003F545E /* CandyStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8CA9813FAEDC0003F545E /* CandyStore.xcdatamodel */; };
 		9BCAA78C13E316EF00C92FBB /* RefreshingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */; };
 		9BCAA79013E3196200C92FBB /* UIViewController+barButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78F13E3196200C92FBB /* UIViewController+barButtons.m */; };
 		9BCAA79313E31AAE00C92FBB /* UITableViewCell+activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA79213E31AAD00C92FBB /* UITableViewCell+activity.m */; };
@@ -115,6 +114,7 @@
 		9BF7618F13DFDD9D00B7B70E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7618213DFDD9D00B7B70E /* SBJsonWriter.m */; };
 		9BF7619413DFDF6F00B7B70E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */; };
 		9BF761E013DFF36400B7B70E /* AppProductRemoteServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */; };
+		9BFF6B4F13FAFC7200982285 /* CandyStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BFF6B4D13FAFC7200982285 /* CandyStore.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,7 +221,6 @@
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
 		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
-		9BB8CA9813FAEDC0003F545E /* CandyStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CandyStore.xcdatamodel; sourceTree = "<group>"; };
 		9BCAA78A13E316EF00C92FBB /* RefreshingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingTableViewController.h; sourceTree = "<group>"; };
 		9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingTableViewController.m; sourceTree = "<group>"; };
 		9BCAA78E13E3196200C92FBB /* UIViewController+barButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+barButtons.h"; sourceTree = "<group>"; };
@@ -301,6 +300,7 @@
 		9BF7619313DFDF6F00B7B70E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9BF761DE13DFF36400B7B70E /* AppProductRemoteServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProductRemoteServiceTests.h; sourceTree = "<group>"; };
 		9BF761DF13DFF36400B7B70E /* AppProductRemoteServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProductRemoteServiceTests.m; sourceTree = "<group>"; };
+		9BFF6B4E13FAFC7200982285 /* CandyStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CandyStore.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,7 +580,7 @@
 				9BCE6CDA13E0BD7C00C58AB0 /* Model.h */,
 				9BCE6CDB13E0BD7C00C58AB0 /* ModelCore.h */,
 				9BCE6CDC13E0BD7C00C58AB0 /* ModelCore.m */,
-				9BB8CA9813FAEDC0003F545E /* CandyStore.xcdatamodel */,
+				9BFF6B4D13FAFC7200982285 /* CandyStore.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -888,7 +888,7 @@
 				9B14CE1013F4FBF900FA2534 /* NSObject+remoteErrorToApp.m in Sources */,
 				9B09BD1C13F7810F0052BC3D /* AboutViewController.m in Sources */,
 				9B341CD113F7A79A0047A3C2 /* FakeStoreKitBuilderService.m in Sources */,
-				9BB8CA9913FAEDC0003F545E /* CandyStore.xcdatamodel in Sources */,
+				9BFF6B4F13FAFC7200982285 /* CandyStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,6 +1147,18 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9BFF6B4D13FAFC7200982285 /* CandyStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9BFF6B4E13FAFC7200982285 /* CandyStore.xcdatamodel */,
+			);
+			path = CandyStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B56B93213D9ED5300A65543 /* Project object */;
 }

@@ -7,6 +7,7 @@
         <attribute name="internalKey" optional="YES" attributeType="String"/>
         <attribute name="isActiveData" optional="YES" attributeType="Boolean"/>
         <attribute name="localizedPrice" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Decimal"/>
         <attribute name="productDescription" optional="YES" attributeType="String"/>
         <attribute name="productKindData" optional="YES" attributeType="Integer 32"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -22,7 +23,7 @@
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="purchases" inverseEntity="Product"/>
     </entity>
     <elements>
-        <element name="Product" positionX="-2511" positionY="-801" width="128" height="225"/>
+        <element name="Product" positionX="-2511" positionY="-801" width="128" height="240"/>
         <element name="Purchase" positionX="-2684" positionY="-801" width="128" height="120"/>
     </elements>
 </model>
