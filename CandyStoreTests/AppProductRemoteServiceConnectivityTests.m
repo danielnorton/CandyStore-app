@@ -8,7 +8,6 @@
 
 #import "AppProductRemoteServiceConnectivityTests.h"
 #import "NSObject+waitForCompletion.h"
-#import "HTTPRequestService.h"
 
 
 @interface AppProductRemoteServiceConnectivityTests()
