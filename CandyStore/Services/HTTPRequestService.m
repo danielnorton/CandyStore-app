@@ -57,7 +57,6 @@
 #pragma mark -
 #pragma mark NSObject
 - (void)dealloc {
-	[delegate release];
 	[json release];
 	[rawReturn release];
 	[lastError release];
