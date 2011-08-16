@@ -7,7 +7,6 @@
 //
 
 #import "Product.h"
-#import "ExchangeItem.h"
 #import "Product.h"
 #import "Purchase.h"
 

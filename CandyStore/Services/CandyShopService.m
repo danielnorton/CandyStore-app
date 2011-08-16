@@ -11,7 +11,6 @@
 #import "CandyShopService.h"
 #import "Model.h"
 #import "PurchaseRepository.h"
-#import "ExchangeItemRepository.h"
 
 #define kKeyUseStoreKit @"KeyUseStoreKit"
 
@@ -62,15 +61,16 @@ NSString * const InternalKeyExchange = @"exchange";
 
 + (BOOL)canSeeExchangeTab {
 	
-	if ([self canAddToExchangeCredits]) return YES;
-	
-	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
-	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
-	ExchangeItem *credits = [exchangeRepo creditsItem];
-	[exchangeRepo release];
-	BOOL hasCredits = [credits.quantityAvailable integerValue] > 0;
-	
-	return hasCredits;
+//	if ([self canAddToExchangeCredits]) return YES;
+//	
+//	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
+//	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
+//	ExchangeItem *credits = [exchangeRepo creditsItem];
+//	[exchangeRepo release];
+//	BOOL hasCredits = [credits.quantityAvailable integerValue] > 0;
+//	
+//	return hasCredits;
+	return YES;
 }
 
 + (BOOL)canAddToExchangeCredits {

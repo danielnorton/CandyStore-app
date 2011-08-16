@@ -10,7 +10,6 @@
 #import "Model.h"
 #import "ProductRepository.h"
 #import "PurchaseRepository.h"
-#import "ExchangeItemRepository.h"
 #import "NSData+base64.h"
 
 

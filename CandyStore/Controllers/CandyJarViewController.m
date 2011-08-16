@@ -244,10 +244,6 @@
 
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
 
-	ExchangeAddCreditRemoteService *service = [[ExchangeAddCreditRemoteService alloc] init];
-	[service beginAddingCreditFromPurchase:[product.purchases anyObject]];
-	[service setDelegate:self];
-	[service release];
 }
 
 
@@ -258,27 +254,6 @@
 
 - (void)remoteServiceDidTimeout:(RemoteServiceBase *)sender {
 	[self passTimeoutNotificationToAppDelegate:sender];
-}
-
-
-#pragma mark ExchangeAddCreditRemoteServiceDelegate
-- (void)exchangeAddCreditRemoteServiceFailedAddingCredit:(ExchangeAddCreditRemoteService *)sender {
-
-	if (sender.code == ReceiptVerificationRemoteServiceCodeSubscriptionExpired) {
-		
-		NSString *message = @"Your Exchange subscription may have expired. Try refreshing the Candy Shop.";
-		[self popup:NSLocalizedString(message, message)];
-		
-	} else {
-		
-		[self popup:NSLocalizedString(@"An error occurred while adding a credit to Exchange", @"An error occurred while adding a credit to Exchange")];
-	}
-}
-
-- (void)exchangeAddCreditRemoteServiceDidAddCredit:(ExchangeAddCreditRemoteService *)sender {
-	
-	CandyStoreAppDelegate *app = [UIApplication thisApp];
-	[app updateExchange];
 }
 
 

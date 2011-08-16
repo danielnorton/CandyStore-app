@@ -26,7 +26,6 @@
 
 @property (nonatomic, retain) ProductBuilderService *productBuilderService;
 @property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
-@property (nonatomic, retain) ExchangeRefreshingService *exchangeRefreshingService;
 @property (nonatomic, retain) ReceiptVerificationLocalService *receiptVerificationLocalService;
 
 - (void)verifyPurchases;
@@ -45,12 +44,10 @@
 @synthesize tabBarController;
 @synthesize candyJarViewController;
 @synthesize candyShopViewController;
-@synthesize candyExchangeViewController;
 @synthesize internetReach;
 @synthesize myJarTabBarItem;
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
-@synthesize exchangeRefreshingService;
 @synthesize receiptVerificationLocalService;
 
 #pragma mark -
@@ -60,12 +57,10 @@
 	[tabBarController release];
 	[candyJarViewController release];
 	[candyShopViewController release];
-	[candyExchangeViewController release];
 	[internetReach release];
 	[myJarTabBarItem release];
 	[productBuilderService release];
 	[transactionReceiptService release];
-	[exchangeRefreshingService release];
 	[receiptVerificationLocalService release];
     [super dealloc];
 }
@@ -156,7 +151,7 @@
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
 	[candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
-	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
+//	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
 }
 
 
@@ -170,17 +165,6 @@
 	[self popup:NSLocalizedString(@"Request timed out", @"Request timed out")];
 }
 
-
-#pragma mark ExchangeRefreshingServiceDelegate
-- (void)exchangeRefreshingServiceDidRefresh:(ExchangeRefreshingService *)sender {
-	
-	[candyExchangeViewController completeRefreshing];
-}
-
-- (void)exchangeRefreshingServiceFailedRefresh:(ExchangeRefreshingService *)sender {
-	
-	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
-}
 
 
 #pragma mark ReceiptVerificationLocalServiceDelegate
@@ -213,7 +197,7 @@
 	if (![self canRestoreOrRefresh]) return;
 	
 	[candyShopViewController beginRefreshing];
-	[candyExchangeViewController beginRefreshing];
+//	[candyExchangeViewController beginRefreshing];
 	
 	[productBuilderService setDelegate:nil];
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
@@ -225,16 +209,6 @@
 
 - (void)updateExchange {
 	
-	if (![self canRestoreOrRefresh]) return;
-	
-	[candyExchangeViewController beginRefreshing];
-	
-	[exchangeRefreshingService setDelegate:nil];
-	ExchangeRefreshingService *service = [[ExchangeRefreshingService alloc] init];
-	[service setDelegate:self];
-	[self setExchangeRefreshingService:service];
-	[service beginRefreshing];
-	[service release];
 }
 
 
@@ -256,7 +230,6 @@
 	if (![self canRestoreOrRefresh]) return;
 	
 	[candyShopViewController beginRefreshing];
-	[candyExchangeViewController beginRefreshing];
 	[transactionReceiptService restoreTransactions];
 }
 
@@ -278,11 +251,7 @@
 	|| (productBuilderService.status == ProductBuilderServiceStatusIdle)
 	|| (productBuilderService.status == ProductBuilderServiceStatusFailed);
 
-	BOOL canRefreshExchange = (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusUnknown)
-	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusIdle)
-	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusFailed);
-
-	return canRefreshProducts && canRefreshExchange;
+	return canRefreshProducts;
 }
 
 - (void)alertUserHasNotPurchasedExchange {
