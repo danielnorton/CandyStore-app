@@ -39,7 +39,7 @@ typedef enum {
 
 @interface HTTPRequestService : NSObject
 
-@property (nonatomic, retain) id<HTTPRequestServiceDelegate> delegate;
+@property (nonatomic, assign) id<HTTPRequestServiceDelegate> delegate;
 @property (nonatomic, readonly) NSArray *json;
 @property (nonatomic, readonly) NSString *rawReturn;
 @property (nonatomic, readonly) NSError *lastError;

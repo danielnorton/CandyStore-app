@@ -11,7 +11,6 @@
 #import "NSObject+popup.h"
 #import "UIApplication+delegate.h"
 #import "NSObject+popup.h"
-#import "HTTPRequestService.h"
 #import "TransactionReceiptService.h"
 #import "CandyShopService.h"
 #import "Model.h"
