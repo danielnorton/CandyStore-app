@@ -11,13 +11,6 @@
 #import "UIApplication+delegate.h"
 
 
-@interface AboutViewController()
-
-- (void)dismissMe;
-
-@end
-
-
 @implementation AboutViewController
 
 
@@ -61,19 +54,6 @@
 	? storeOn
 	: storeOff;
 	[storeKitLabel setText:storeMessage];
-	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissMe)];
-	[self.view addGestureRecognizer:tap];
-	[tap release];
-}
-
-
-#pragma mark -
-#pragma mark AboutViewController
-#pragma mark Private Extension
-- (void)dismissMe {
-	
-	[self dismissModalViewControllerAnimated:YES];
 }
 
 
