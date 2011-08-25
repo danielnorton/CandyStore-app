@@ -16,6 +16,7 @@
 
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext;
 - (NSManagedObject *)itemForId:(id)modelId;
+- (NSManagedObject *)getOrAddItemForId:(id)modelId;
 - (NSArray *)fetchAll;
 - (NSArray *)fetchForSort:(NSArray *)sortDescriptors andPredicate:(NSPredicate *)predicate;
 - (NSFetchedResultsController *)controllerForAll;
