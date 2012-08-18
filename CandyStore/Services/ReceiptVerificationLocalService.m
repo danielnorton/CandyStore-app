@@ -90,7 +90,13 @@
 	NSArray *all = [repo fetchAll];
 	verifications = all.count;
 	[repo release];
-	
+
+	if (all.count == 0) {
+
+		[self notifyDelegateDidComplete];
+		return;
+	}
+
 	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		Purchase *purchase = (Purchase *)obj;
