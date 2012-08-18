@@ -6,7 +6,6 @@
 //  Copyright 2011 Firefly Logic. All rights reserved.
 //
 
-#import "Reachability.h"
 #import "ProductBuilderService.h"
 #import "CandyShopViewController.h"
 #import "CandyExchangeViewController.h"
@@ -28,9 +27,6 @@ RemoteServiceDelegate, ReceiptVerificationLocalServiceDelegate>
 @property (nonatomic, retain) IBOutlet CandyExchangeViewController *candyExchangeViewController;
 @property (nonatomic, retain) IBOutlet UITabBarItem *myJarTabBarItem;
 
-@property (nonatomic, readonly) Reachability *internetReach;
-
-- (BOOL)canReachInternet;
 - (void)updateProducts;
 - (void)updateExchange;
 

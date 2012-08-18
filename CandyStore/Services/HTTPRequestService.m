@@ -10,7 +10,6 @@
 #import "NSDictionary+join.h"
 #import "HTTPMultipartBuilder.h"
 #import "NSURLRequest+cert.h"
-#import "Reachability.h"
 
 
 #define kRequestTimeout 15.0f
@@ -153,12 +152,6 @@
 	  withReturnType:(HTTPRequestServiceReturnType)expectedReturnType
 	  withAttachment:(AttachmentTransfer *)attachment {
 
-	Reachability *reach = [Reachability reachabilityForInternetConnection];
-	if ([reach currentReachabilityStatus] == NotReachable) {
-		[self notifyDelegateDidFinish:NO];
-		return;
-	}
-	
 	[self retain];
 	
 	[self setLastError:nil];

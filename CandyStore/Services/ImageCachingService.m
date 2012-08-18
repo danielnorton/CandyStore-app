@@ -5,7 +5,6 @@
 //
 
 #import "ImageCachingService.h"
-#import "Reachability.h"
 
 
 @interface ImageCachingService()
@@ -160,11 +159,6 @@
 
 - (void)beginLoadingImageAtPath:(NSString *)path withUserData:(id)userData {
 	
-	Reachability *reach = [Reachability reachabilityForInternetConnection];
-	if ([reach currentReachabilityStatus] == NotReachable) {
-		return;
-	}
-
 	[self retain];
 	
 	isResponseFromNetworkCache = YES;

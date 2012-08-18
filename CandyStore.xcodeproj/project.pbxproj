@@ -117,7 +117,6 @@
 		9BF7616C13DFDC2C00B7B70E /* AttachmentTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616713DFDC2C00B7B70E /* AttachmentTransfer.m */; };
 		9BF7616F13DFDCDB00B7B70E /* NSDictionary+join.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7616E13DFDCDB00B7B70E /* NSDictionary+join.m */; };
 		9BF7617213DFDD4F00B7B70E /* NSURLRequest+cert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617113DFDD4F00B7B70E /* NSURLRequest+cert.m */; };
-		9BF7618A13DFDD9D00B7B70E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617613DFDD9D00B7B70E /* Reachability.m */; };
 		9BF7618B13DFDD9D00B7B70E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617A13DFDD9D00B7B70E /* NSObject+SBJSON.m */; };
 		9BF7618C13DFDD9D00B7B70E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617C13DFDD9D00B7B70E /* NSString+SBJSON.m */; };
 		9BF7618D13DFDD9D00B7B70E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7617E13DFDD9D00B7B70E /* SBJsonBase.m */; };
@@ -315,8 +314,6 @@
 		9BF7616E13DFDCDB00B7B70E /* NSDictionary+join.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+join.m"; sourceTree = "<group>"; };
 		9BF7617013DFDD4F00B7B70E /* NSURLRequest+cert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+cert.h"; sourceTree = "<group>"; };
 		9BF7617113DFDD4F00B7B70E /* NSURLRequest+cert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+cert.m"; sourceTree = "<group>"; };
-		9BF7617513DFDD9D00B7B70E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		9BF7617613DFDD9D00B7B70E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9BF7617813DFDD9D00B7B70E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		9BF7617913DFDD9D00B7B70E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		9BF7617A13DFDD9D00B7B70E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -710,19 +707,9 @@
 		9BF7617313DFDD9D00B7B70E /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				9BF7617413DFDD9D00B7B70E /* Apple */,
 				9BF7617713DFDD9D00B7B70E /* JSON */,
 			);
 			path = "Third Party";
-			sourceTree = "<group>";
-		};
-		9BF7617413DFDD9D00B7B70E /* Apple */ = {
-			isa = PBXGroup;
-			children = (
-				9BF7617513DFDD9D00B7B70E /* Reachability.h */,
-				9BF7617613DFDD9D00B7B70E /* Reachability.m */,
-			);
-			path = Apple;
 			sourceTree = "<group>";
 		};
 		9BF7617713DFDD9D00B7B70E /* JSON */ = {
@@ -899,7 +886,6 @@
 				9BF7616C13DFDC2C00B7B70E /* AttachmentTransfer.m in Sources */,
 				9BF7616F13DFDCDB00B7B70E /* NSDictionary+join.m in Sources */,
 				9BF7617213DFDD4F00B7B70E /* NSURLRequest+cert.m in Sources */,
-				9BF7618A13DFDD9D00B7B70E /* Reachability.m in Sources */,
 				9BF7618B13DFDD9D00B7B70E /* NSObject+SBJSON.m in Sources */,
 				9BF7618C13DFDD9D00B7B70E /* NSString+SBJSON.m in Sources */,
 				9BF7618D13DFDD9D00B7B70E /* SBJsonBase.m in Sources */,

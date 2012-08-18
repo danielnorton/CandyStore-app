@@ -18,7 +18,6 @@
 #import "ProductRepository.h"
 
 
-#define kReachabiltyMaxNotify 3
 #define kExchangeTabIndex 2
 
 
@@ -32,8 +31,6 @@
 - (void)verifyPurchases;
 - (BOOL)canRestoreOrRefresh;
 - (void)alertUserHasNotPurchasedExchange;
-- (void)reachabilityChanged:(NSNotification *)note;
-- (BOOL)shouldAlertForReachabilityChanged;
 - (void)updateJarTabImage;
 
 @end
@@ -46,7 +43,6 @@
 @synthesize candyJarViewController;
 @synthesize candyShopViewController;
 @synthesize candyExchangeViewController;
-@synthesize internetReach;
 @synthesize myJarTabBarItem;
 @synthesize productBuilderService;
 @synthesize transactionReceiptService;
@@ -61,7 +57,6 @@
 	[candyJarViewController release];
 	[candyShopViewController release];
 	[candyExchangeViewController release];
-	[internetReach release];
 	[myJarTabBarItem release];
 	[productBuilderService release];
 	[transactionReceiptService release];
@@ -74,12 +69,6 @@
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-	internetReach = [[Reachability reachabilityForInternetConnection] retain];
-	[internetReach startNotifer];
-	[self reachabilityChanged:nil];
-	
-		
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
 		[candyJarViewController resetShouldEnableExchangeButtons];
@@ -201,10 +190,6 @@
 #pragma mark -
 #pragma mark CandyStoreAppDelegate
 #pragma mark Public Messages
-- (BOOL)canReachInternet {
-	return (internetReach.currentReachabilityStatus != NotReachable);
-}
-
 - (void)updateProducts {
 
 	// can be called from Candy Shop view controller and waking App Delegate
@@ -298,34 +283,6 @@
 	service.counter++;
 	[tabBarController popup:service.message];
 	[service release];
-}
-
-- (void)reachabilityChanged:(NSNotification *)note {
-	
-	if ([self canReachInternet]) return;
-	if (![self shouldAlertForReachabilityChanged]) return;
-	
-	[self popup:NSLocalizedString(@"Internet connectivity is not available. Some features will be disabled.", nil)];
-}
-
-- (BOOL)shouldAlertForReachabilityChanged {
-	
-	static BOOL hasNotifiedThisRun = NO;
-	
-	if (hasNotifiedThisRun) return NO;
-	
-	hasNotifiedThisRun = YES;
-	
-	NSString *const notifyKey = @"ReachabilityNotifyKey";
-	int count = [[[NSUserDefaults standardUserDefaults] objectForKey:notifyKey] integerValue];
-	if (count >= kReachabiltyMaxNotify) return NO;
-	
-	count++;
-	NSString *countObject = [NSString stringWithFormat:@"%i", count];
-	[[NSUserDefaults standardUserDefaults] setObject:countObject forKey:notifyKey];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	
-	return YES;
 }
 
 - (void)updateJarTabImage {
