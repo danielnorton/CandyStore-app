@@ -10,8 +10,7 @@
 #import "ExchangeItemRepository.h"
 #import "PurchaseRepository.h"
 #import "EndpointService.h"
-#import "NSString+base64.h"
-#import "NSData+base64.h"
+#import "NSData+Base64.h"
 #import "CandyShopService.h"
 #import "ReceiptVerificationRemoteService.h"
 
@@ -54,7 +53,7 @@
 	
 	NSString *transactionIdentifier = [response valueForKeyPath:@"candy.transactionIdentifier"];
 	NSString *rawReceipt = [response valueForKeyPath:@"candy.receipt"];
-	NSData *receipt = [NSData base64DataFromString:rawReceipt];
+	NSData *receipt = [NSData dataFromBase64String:rawReceipt];
 	
 	Product *product = (Product *)[context objectWithID:sender.userData];
 	int newQuantityAvailable = [product.exchangeItem.quantityAvailable integerValue];
@@ -107,7 +106,7 @@
 	
 	
 	NSString *path = [EndpointService exchangePath];
-	NSString *exchangeEncoded = [NSString base64StringFromData:exchangeReceipt length:exchangeReceipt.length];
+	NSString *exchangeEncoded = [exchangeReceipt base64EncodedString];
 	NSDictionary *exchangeTransfer = [NSDictionary dictionaryWithObject:exchangeEncoded forKey:@"receipt"];
 	
 	NSDictionary *candyTransfer = [NSDictionary dictionaryWithObjectsAndKeys:

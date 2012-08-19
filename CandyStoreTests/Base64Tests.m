@@ -7,8 +7,7 @@
 //
 
 #import "Base64Tests.h"
-#import "NSString+base64.h"
-#import "NSData+base64.h"
+#import "NSData+Base64.h"
 
 
 NSString * const TestString = @"{"
@@ -74,14 +73,13 @@ NSString * const TestEncoded = @"eyJzaWduYXR1cmUiID0gIkFqb2lOVWxxR2h5VGx5VFFaeml
 - (void)testShouldConvertToBase64 {
 	
 	NSData *data = [TestString dataUsingEncoding:[NSString defaultCStringEncoding]];
-	int length = data.length;
-	NSString *encoded = [NSString base64StringFromData:data length:length];
+	NSString *encoded = [data base64EncodedString];
 	STAssertEqualObjects(encoded, TestEncoded, nil);
 }
 
 - (void)testShouldConvertFromBase64 {
 	
-	NSData *data = [NSData base64DataFromString:TestEncoded];
+	NSData *data = [NSData dataFromBase64String:TestEncoded];
 	NSString *unencoded = [[NSString alloc] initWithData:data encoding:[NSString defaultCStringEncoding]];
 	STAssertEqualObjects(unencoded, TestString, nil);
 }

@@ -8,7 +8,7 @@
 
 #import "ExchangeAddCreditRemoteService.h"
 #import "EndpointService.h"
-#import "NSString+base64.h"
+#import "NSData+Base64.h"
 #import "PurchaseRepository.h"
 #import "ExchangeItemRepository.h"
 #import "CandyShopService.h"
@@ -81,10 +81,10 @@
 	
 	
 	NSString *path = [EndpointService exchangePath];
-	NSString *exchangeEncoded = [NSString base64StringFromData:exchangeReceipt length:exchangeReceipt.length];
+	NSString *exchangeEncoded = [exchangeReceipt base64EncodedString];
 	NSDictionary *exchangeTransfer = [NSDictionary dictionaryWithObject:exchangeEncoded forKey:@"receipt"];
 	
-	NSString *candyEncoded = [NSString base64StringFromData:purchase.receipt length:purchase.receipt.length];
+	NSString *candyEncoded = [purchase.receipt base64EncodedString];
 	NSDictionary *candyTransfer = [NSDictionary dictionaryWithObjectsAndKeys:
 								   candyEncoded, @"receipt",
 								   purchase.productIdentifier, @"productIdentifier", nil];

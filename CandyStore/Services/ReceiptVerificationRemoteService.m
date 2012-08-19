@@ -9,7 +9,7 @@
 #import "ReceiptVerificationRemoteService.h"
 #import "EndpointService.h"
 #import "CandyShopService.h"
-#import "NSString+base64.h"
+#import "NSData+Base64.h"
 
 
 @interface ReceiptVerificationRemoteService()
@@ -60,7 +60,7 @@
 - (void)beginVerifyPurchase:(Purchase *)purchase {
 	
 	NSString *path = [EndpointService receiptVerificationPath];
-	NSString *encoded = [NSString base64StringFromData:purchase.receipt length:purchase.receipt.length];
+	NSString *encoded = [purchase.receipt base64EncodedString];
 	
 	NSString *internalKey = purchase.product.parent
 	? purchase.product.parent.internalKey

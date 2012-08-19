@@ -6,7 +6,7 @@
 //
 
 #import "HTTPRequestService.h"
-#import "JSON.h"
+#import "SBJson.h"
 #import "NSDictionary+join.h"
 #import "HTTPMultipartBuilder.h"
 #import "NSURLRequest+cert.h"
