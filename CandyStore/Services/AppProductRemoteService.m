@@ -40,7 +40,7 @@
 - (void)beginRetreiveProducts {
 
 	NSString *path = [EndpointService appProductsPath];
-	NSDictionary *params = [NSDictionary dictionary];
+	NSDictionary *params = @{};
 	id userData = nil;
 	
 	[self setMethod:HTTPRequestServiceMethodGet];

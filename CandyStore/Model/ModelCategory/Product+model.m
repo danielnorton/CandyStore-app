@@ -11,7 +11,7 @@
 @implementation Product(model)
 
 - (void)setKind:(ProductKind)aKind {
-	[self setProductKindData:[NSNumber numberWithInteger:aKind]];
+	[self setProductKindData:@(aKind)];
 }
 
 - (ProductKind)kind {
@@ -19,7 +19,7 @@
 }
 
 - (void)setIsActive:(BOOL)active {
-	[self setIsActiveData:[NSNumber numberWithBool:active]];
+	[self setIsActiveData:@(active)];
 }
 
 - (BOOL)isActive {

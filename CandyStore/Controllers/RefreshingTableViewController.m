@@ -54,7 +54,7 @@
 	
 	if ([self shouldShowRefreshingCell]) return 1;
 	
-	id<NSFetchedResultsSectionInfo> info = [fetchedResultsController.sections objectAtIndex:section];
+	id<NSFetchedResultsSectionInfo> info = (fetchedResultsController.sections)[section];
 	return [info numberOfObjects];
 }
 
@@ -87,11 +87,11 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -99,8 +99,8 @@
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -145,9 +145,9 @@
 	[cell.textLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
 	[cell setActivityIndicatorAccessoryView:UIActivityIndicatorViewStyleGray];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-	[cell.textLabel setMinimumFontSize:10.0f];
+	[cell.textLabel setMinimumScaleFactor:0.5f];
 	[cell.textLabel setAdjustsFontSizeToFitWidth:YES];
-	[cell.textLabel setLineBreakMode:UILineBreakModeClip];
+	[cell.textLabel setLineBreakMode:NSLineBreakByClipping];
 }
 
 - (void)beginRefreshing {
@@ -170,7 +170,7 @@
 		
 		[tableView insertSections:top withRowAnimation:UITableViewRowAnimationFade];
 		
-		NSArray *refreshRows = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+		NSArray *refreshRows = @[[NSIndexPath indexPathForRow:0 inSection:0]];
 		[tableView insertRowsAtIndexPaths:refreshRows withRowAnimation:UITableViewRowAnimationFade];
 		
 	} else {
@@ -223,7 +223,7 @@
 	
 	for (int i = 0; i < sections.count; i++) {
 		
-		id<NSFetchedResultsSectionInfo> section = [sections objectAtIndex:i];
+		id<NSFetchedResultsSectionInfo> section = sections[i];
 		int j = (i == 0) ? 1 : 0;
 		for (; j < [section numberOfObjects]; j++) {
 			

@@ -61,8 +61,8 @@
 #pragma mark AboutViewController
 #pragma mark Private Extension
 - (void)dismissMe {
-	
-	[self dismissModalViewControllerAnimated:YES];
+
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

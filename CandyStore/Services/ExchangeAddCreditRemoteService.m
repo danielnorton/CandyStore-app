@@ -31,8 +31,8 @@
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 		
-	NSDictionary *response = [sender.json objectAtIndex:0];
-	code = [[response objectForKey:@"code"] integerValue];
+	NSDictionary *response = (sender.json)[0];
+	code = [response[@"code"] integerValue];
 	if (code != ReceiptVerificationRemoteServiceCodeSuccess) {
 		
 		[self notifyDelegateFailedAdding];
@@ -80,16 +80,14 @@
 	
 	NSString *path = [EndpointService exchangePath];
 	NSString *exchangeEncoded = [exchangeReceipt base64EncodedString];
-	NSDictionary *exchangeTransfer = [NSDictionary dictionaryWithObject:exchangeEncoded forKey:@"receipt"];
+	NSDictionary *exchangeTransfer = @{@"receipt": exchangeEncoded};
 	
 	NSString *candyEncoded = [purchase.receipt base64EncodedString];
-	NSDictionary *candyTransfer = [NSDictionary dictionaryWithObjectsAndKeys:
-								   candyEncoded, @"receipt",
-								   purchase.productIdentifier, @"productIdentifier", nil];
+	NSDictionary *candyTransfer = @{@"receipt": candyEncoded,
+								   @"productIdentifier": purchase.productIdentifier};
 	
-	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-							exchangeTransfer, @"exchange",
-							candyTransfer, @"candy", nil];
+	NSDictionary *params = @{@"exchange": exchangeTransfer,
+							@"candy": candyTransfer};
 	
 	[self setMethod:HTTPRequestServiceMethodPutJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];

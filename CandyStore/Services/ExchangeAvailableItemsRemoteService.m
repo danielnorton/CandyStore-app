@@ -35,8 +35,8 @@
 	[response enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		NSDictionary *itemJson = (NSDictionary *)obj;
-		NSString *productIdentifer = [itemJson objectForKey:@"key"];
-		NSNumber *quantity = [itemJson objectForKey:@"value"];
+		NSString *productIdentifer = itemJson[@"key"];
+		NSNumber *quantity = itemJson[@"value"];
 		
 		ExchangeItem *item = [repo createOrUpdateExchangeItemForProductIdentifier:productIdentifer];
 		[item setQuantityAvailable:quantity];

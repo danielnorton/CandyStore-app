@@ -265,7 +265,7 @@
 	NSData *postData = [paramsString dataUsingEncoding:NSUTF8StringEncoding];
 	[request setHTTPBody:postData];
 	
-	NSString *length = [[NSNumber numberWithInteger:paramsString.length] stringValue];
+	NSString *length = [NSString stringWithFormat:@"%i", paramsString.length];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:length forHTTPHeaderField:@"Content-Length"];
 	
@@ -276,7 +276,7 @@
 	id data = [raw JSONValue];
 	if (!data) return nil;
 	if ([data isKindOfClass:[NSArray class]]) return data;
-	return [NSArray arrayWithObject:data];
+	return @[data];
 }
 
 - (void)notifyDelegateDidFinish:(BOOL)success {

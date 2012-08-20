@@ -20,7 +20,7 @@
 	
 	NSSortDescriptor *kindSort = [NSSortDescriptor sortDescriptorWithKey:@"product.productKindData" ascending:YES];
 	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"product.index" ascending:YES];
-	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
+	NSArray *sortDescriptors = @[kindSort, titleSort];
 	[self setDefaultSortDescriptors:sortDescriptors];
 	
 	[self setDefaultSectionNameKeyPath:@"product.productKindData"];
@@ -49,7 +49,7 @@
 		[product setExchangeItem:item];
 	}
 	
-	[item setQuantityAvailable:[NSNumber numberWithInteger:quantity]];
+	[item setQuantityAvailable:@(quantity)];
 	return item;
 }
 

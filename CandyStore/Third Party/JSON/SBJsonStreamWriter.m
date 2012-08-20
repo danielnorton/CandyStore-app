@@ -54,8 +54,8 @@ static NSNumber *kNegativeInfinity;
 	kNotANumber = [NSDecimalNumber notANumber];
     kPositiveInfinity = [NSNumber numberWithDouble:+INFINITY];
     kNegativeInfinity = [NSNumber numberWithDouble:-INFINITY];
-    kTrue = [NSNumber numberWithBool:YES];
-    kFalse = [NSNumber numberWithBool:NO];
+    kTrue = @YES;
+    kFalse = @NO;
 }
 
 #pragma mark Housekeeping
@@ -102,7 +102,7 @@ static NSNumber *kNegativeInfinity;
 
 		if (![self writeString:k])
 			return NO;
-		if (![self writeValue:[dict objectForKey:k]])
+		if (![self writeValue:dict[k]])
 			return NO;
 	}
 
@@ -284,7 +284,7 @@ static const char *strForChar(int c) {
 	[state appendSeparator:self];
 	if (humanReadable) [state appendWhitespace:self];
 
-	NSMutableData *buf = [cache objectForKey:string];
+	NSMutableData *buf = cache[string];
 	if (!buf) {
 
         NSUInteger len = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
@@ -311,7 +311,7 @@ static const char *strForChar(int c) {
             [buf appendBytes:utf8 + written length:i - written];
 
         [buf appendBytes:"\"" length:1];
-        [cache setObject:buf forKey:string];
+        cache[string] = buf;
     }
 
 	[delegate writer:self appendBytes:[buf bytes] length:[buf length]];

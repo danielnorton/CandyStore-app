@@ -36,7 +36,7 @@ NSString * const InternalKeyExchange = @"exchange";
 	
 #endif
 	
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:kKeyUseStoreKit];
+	[[NSUserDefaults standardUserDefaults] setObject:@(enabled) forKey:kKeyUseStoreKit];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 

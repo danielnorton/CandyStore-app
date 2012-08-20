@@ -26,7 +26,7 @@
 	? aCounter
 	: 0;
 	
-	NSNumber *state = [NSNumber numberWithInteger:marker];
+	NSNumber *state = @(marker);
 	[[NSUserDefaults standardUserDefaults] setObject:state forKey:kExchangeNotifyCounterKey];
 }
 

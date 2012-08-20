@@ -28,8 +28,8 @@
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 	
-	NSDictionary *response = [sender.json objectAtIndex:0];
-	int code = [[response objectForKey:@"code"] integerValue];
+	NSDictionary *response = (sender.json)[0];
+	int code = [response[@"code"] integerValue];
 	if (code != 0) {
 		
 		[self notifyDelegateFailedRefreshing];

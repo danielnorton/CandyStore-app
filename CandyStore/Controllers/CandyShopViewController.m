@@ -68,7 +68,7 @@
 	
 	if	(self.fetchedResultsController.sections.count == 0) return nil;
 	
-	id<NSFetchedResultsSectionInfo> info = [self.fetchedResultsController.sections objectAtIndex:section];
+	id<NSFetchedResultsSectionInfo> info = (self.fetchedResultsController.sections)[section];
 	int productKind = [[info indexTitle] integerValue];
 	
 	if (productKind != ProductKindCandy) return nil;

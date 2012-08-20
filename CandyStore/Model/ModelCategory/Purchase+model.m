@@ -11,7 +11,7 @@
 @implementation Purchase(model)
 
 - (void)setIsExpired:(BOOL)expired {
-	[self setIsExpiredData:[NSNumber numberWithBool:expired]];
+	[self setIsExpiredData:@(expired)];
 }
 
 - (BOOL)isExpired {

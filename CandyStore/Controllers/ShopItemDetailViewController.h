@@ -6,12 +6,13 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
+#import <StoreKit/StoreKit.h>
 #import "Model.h"
 #import "ShopItemDetailPurchaseCell.h"
 #import "ImageCachingService.h"
 
 @interface ShopItemDetailViewController : UITableViewController
-<ImageCachingServiceDelegate, ShopItemDetailPurchaseCellDelegate>
+<ImageCachingServiceDelegate, ShopItemDetailPurchaseCellDelegate, SKProductsRequestDelegate>
 
 @property (nonatomic, strong) IBOutlet ShopItemDetailPurchaseCell *purchaseCell;
 @property (nonatomic, unsafe_unretained) Product *product;

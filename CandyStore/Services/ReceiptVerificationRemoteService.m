@@ -27,9 +27,9 @@
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 	
-	NSDictionary *response = [sender.json objectAtIndex:0];
-	ReceiptVerificationRemoteServiceCode code = [[response objectForKey:@"code"] integerValue];
-	NSString *transactionId = [response objectForKey:@"transactionIdentifier"];
+	NSDictionary *response = (sender.json)[0];
+	ReceiptVerificationRemoteServiceCode code = [response[@"code"] integerValue];
+	NSString *transactionId = response[@"transactionIdentifier"];
 	
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	Purchase *purchase = (Purchase *)[context objectWithID:sender.userData];
@@ -66,9 +66,8 @@
 	? purchase.product.parent.internalKey
 	: purchase.product.internalKey;
 	
-	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-							encoded, @"receipt",
-							internalKey, @"type", nil];
+	NSDictionary *params = @{@"receipt": encoded,
+							@"type": internalKey};
 	
 	[self setMethod:HTTPRequestServiceMethodPostJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];

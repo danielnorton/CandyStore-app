@@ -120,9 +120,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-						  transaction, TransactionReceiptServiceKeyTransaction
-						  , nil];
+	NSDictionary *dict = @{TransactionReceiptServiceKeyTransaction: transaction};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:name
 														object:self

@@ -25,7 +25,7 @@
 			[resultString appendString:seperator];
 		}
 		
-		[resultString appendFormat:@"%@=%@", key, [self objectForKey:key]];
+		[resultString appendFormat:@"%@=%@", key, self[key]];
 	}];
 	
 	return resultString;

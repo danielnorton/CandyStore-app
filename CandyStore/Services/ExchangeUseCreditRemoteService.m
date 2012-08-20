@@ -30,7 +30,7 @@
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 	
-	NSDictionary *response = [sender.json objectAtIndex:0];
+	NSDictionary *response = (sender.json)[0];
 	int code = [[response valueForKey:@"code"] integerValue];
 	
 	if (
@@ -48,7 +48,7 @@
 	
 	int newQuantity = [credits.quantityAvailable integerValue];
 	newQuantity--;
-	[credits setQuantityAvailable:[NSNumber numberWithInteger:newQuantity]];
+	[credits setQuantityAvailable:@(newQuantity)];
 	
 	NSString *transactionIdentifier = [response valueForKeyPath:@"candy.transactionIdentifier"];
 	NSString *rawReceipt = [response valueForKeyPath:@"candy.receipt"];
@@ -57,7 +57,7 @@
 	Product *product = (Product *)[context objectWithID:sender.userData];
 	int newQuantityAvailable = [product.exchangeItem.quantityAvailable integerValue];
 	newQuantityAvailable--;
-	[product.exchangeItem setQuantityAvailable:[NSNumber numberWithInteger:newQuantityAvailable]];
+	[product.exchangeItem setQuantityAvailable:@(newQuantityAvailable)];
 	
 	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
 	Purchase *purchase = [purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:transactionIdentifier];
@@ -104,14 +104,12 @@
 	
 	NSString *path = [EndpointService exchangePath];
 	NSString *exchangeEncoded = [exchangeReceipt base64EncodedString];
-	NSDictionary *exchangeTransfer = [NSDictionary dictionaryWithObject:exchangeEncoded forKey:@"receipt"];
+	NSDictionary *exchangeTransfer = @{@"receipt": exchangeEncoded};
 	
-	NSDictionary *candyTransfer = [NSDictionary dictionaryWithObjectsAndKeys:
-								   product.identifier, @"productIdentifier", nil];
+	NSDictionary *candyTransfer = @{@"productIdentifier": product.identifier};
 	
-	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-							exchangeTransfer, @"exchange",
-							candyTransfer, @"candy", nil];
+	NSDictionary *params = @{@"exchange": exchangeTransfer,
+							@"candy": candyTransfer};
 	
 	[self setMethod:HTTPRequestServiceMethodPostJson];
 	[self setReturnType:HTTPRequestServiceReturnTypeJson];

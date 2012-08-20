@@ -86,7 +86,7 @@
 	
 	NSString *contentDisposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key];
 	[data appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
-	[data appendData:[[parameters objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding]];
+	[data appendData:[parameters[key] dataUsingEncoding:NSUTF8StringEncoding]];
 
 	NSString *format = isLastParam ? kMultipartFormatEndLast : kMultipartFormatEnd;
 	[data appendData:[[NSString stringWithFormat:format, boundary] dataUsingEncoding:NSUTF8StringEncoding]];

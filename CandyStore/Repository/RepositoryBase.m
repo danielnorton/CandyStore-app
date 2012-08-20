@@ -171,7 +171,7 @@
 - (void)setDefaultSortDescriptorsByKey:(NSString *)defaultSortKey ascending:(BOOL)ascending {
 	
 	NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:defaultSortKey ascending:ascending];
-	NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+	NSArray *sortDescriptors = @[sortDescriptor];
 	[self setDefaultSortDescriptors:sortDescriptors];
 }
 

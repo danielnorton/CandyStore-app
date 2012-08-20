@@ -20,7 +20,7 @@
 	
 	NSSortDescriptor *kindSort = [NSSortDescriptor sortDescriptorWithKey:@"productKindData" ascending:YES];
 	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
-	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
+	NSArray *sortDescriptors = @[kindSort, titleSort];
 	[self setDefaultSortDescriptors:sortDescriptors];
 
 	[self setDefaultSectionNameKeyPath:@"productKindData"];

@@ -77,7 +77,7 @@
 													   queue:nil
 												  usingBlock:^(NSNotification *notification) {
 													  
-													  SKPaymentTransaction *transaction = [[notification userInfo] objectForKey:TransactionReceiptServiceKeyTransaction];
+													  SKPaymentTransaction *transaction = [notification userInfo][TransactionReceiptServiceKeyTransaction];
 													  if (transaction.error.code == -1001) {
 														  
 														  [self popup:transaction.error.localizedDescription];
@@ -151,7 +151,7 @@
 	
 		CGSize size = [product.productDescription sizeWithFont:[UIFont productDescriptionFont]
 											 constrainedToSize:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)
-												 lineBreakMode:UILineBreakModeWordWrap];
+												 lineBreakMode:NSLineBreakByWordWrapping];
 		
 		float answer = size.height + kDescriptionPadding;
 		return answer > kMinimumDescriptionHeight
@@ -174,6 +174,13 @@
 	[self setActiveBuyButtonIndexPath:nil];
 }
 
+
+#pragma mark SKProductsRequestDelegate
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+
+	SKPayment *payment = [SKPayment paymentWithProduct:response.products.lastObject];
+	[[SKPaymentQueue defaultQueue] addPayment:payment];
+}
 
 #pragma mark ImageCachingServiceDelegate
 - (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
@@ -211,8 +218,10 @@
 	
 	[self.navigationController.view setUserInteractionEnabled:NO];
 	
-	SKPayment *payment = [SKPayment paymentWithProductIdentifier:aProduct.identifier];
-	[[SKPaymentQueue defaultQueue] addPayment:payment];
+	NSSet *set = [NSSet setWithObject:aProduct.identifier];
+	SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+	[request setDelegate:self];
+	[request start];
 }
 
 

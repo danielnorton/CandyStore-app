@@ -147,22 +147,22 @@ NSNumberFormatter *currencyFormatter;
 		NSString *imageKey = [UIScreen mainScreen].scale == 2.0f
 		? @"retina_image"
 		: @"image";
-		NSString *imagePath = [EndpointService serviceFullPathForRelativePath:[item objectForKey:imageKey]];
+		NSString *imagePath = [EndpointService serviceFullPathForRelativePath:item[imageKey]];
 		
 		[ImageCachingService beginLoadingImageAtPath:imagePath];
 		
-		ProductKind kind = [self productKindFromServerKey:[item objectForKey:@"key"]];
+		ProductKind kind = [self productKindFromServerKey:item[@"key"]];
 		
-		id productIdentifier = [item objectForKey:@"identifier"];
+		id productIdentifier = item[@"identifier"];
 		
 		Product *product = [repo addOrRetreiveProductFromIdentifer:productIdentifier];
 		[product setImagePath:imagePath];
 		[product setKind:kind];
 		[product setIndex:[NSNumber numberWithInteger:idx]];
 		[product setIsActive:YES];
-		[product setInternalKey:[item objectForKey:@"key"]];
+		[product setInternalKey:item[@"key"]];
 		
-		NSDictionary *durations = (NSDictionary *)[item objectForKey:@"durations"];
+		NSDictionary *durations = (NSDictionary *)item[@"durations"];
 		if (durations) {
 			
 			__block int subscriptionIndex = 0;
@@ -174,7 +174,7 @@ NSNumberFormatter *currencyFormatter;
 				[subscription setImagePath:imagePath];
 				[subscription setKind:kind];
 				[subscription setProductDescription:obj];
-				[subscription setIndex:[NSNumber numberWithInteger:subscriptionIndex]];
+				[subscription setIndex:@(subscriptionIndex)];
 				subscriptionIndex++;
 				[subscription setIsActive:YES];
 			}];
