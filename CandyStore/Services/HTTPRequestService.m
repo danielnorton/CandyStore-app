@@ -10,6 +10,7 @@
 #import "NSDictionary+join.h"
 #import "HTTPMultipartBuilder.h"
 #import "NSURLRequest+cert.h"
+#import "SelfReferenceService.h"
 
 
 #define kRequestTimeout 15.0f
@@ -111,7 +112,7 @@
 	[connection release];
 	[self setReceivedData:nil];
 	[self notifyDelegateDidFinish:NO];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -132,7 +133,7 @@
 	
 	[connection release];
 	[self setReceivedData:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 
@@ -152,7 +153,7 @@
 	  withReturnType:(HTTPRequestServiceReturnType)expectedReturnType
 	  withAttachment:(AttachmentTransfer *)attachment {
 
-	[self retain];
+	[SelfReferenceService add:self];
 	
 	[self setLastError:nil];
 	didFail = NO;

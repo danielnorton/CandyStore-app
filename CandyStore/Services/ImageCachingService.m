@@ -5,6 +5,7 @@
 //
 
 #import "ImageCachingService.h"
+#import "SelfReferenceService.h"
 
 
 @interface ImageCachingService()
@@ -73,7 +74,7 @@
 
 	[self setConnection:nil];
 	[self setReceivedData:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
@@ -90,7 +91,7 @@
 	
 	[self setConnection:nil];
 	[self setReceivedData:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 
@@ -159,7 +160,7 @@
 
 - (void)beginLoadingImageAtPath:(NSString *)path withUserData:(id)userData {
 	
-	[self retain];
+	[SelfReferenceService add:self];
 	
 	isResponseFromNetworkCache = YES;
 	

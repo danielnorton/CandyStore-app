@@ -5,6 +5,8 @@
 //
 
 #import "RemoteServiceBase.h"
+#import "SelfReferenceService.h"
+
 
 @implementation RemoteServiceBase
 
@@ -57,7 +59,7 @@
 	}
 	
 	[sender setDelegate:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 - (void)httpRequestServiceDidTimeout:(HTTPRequestService *)sender {
@@ -65,7 +67,7 @@
 	[self notifyDelegateOfTimeout];
 	
 	[sender setDelegate:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 }
 
 - (BOOL)httpRequestServiceShouldContinueAfterHttpCode:(HTTPRequestService *)sender {
@@ -73,7 +75,7 @@
 	[self notifyDelegateOfFailedAuthentication];
 	
 	[sender setDelegate:nil];
-	[self release];
+	[SelfReferenceService remove:self];
 	
 	return NO;
 }
@@ -83,7 +85,7 @@
 #pragma mark RemoteServiceBase
 - (void)beginRemoteCallWithPath:(NSString *)path withParams:(NSDictionary *)params withUserData:(id)userData {
 	
-	[self retain];
+	[SelfReferenceService add:self];
 	
 	HTTPRequestService *service = [[HTTPRequestService alloc] init];
 	[service setDelegate:self];

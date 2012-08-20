@@ -130,6 +130,8 @@
 		9BF47B7F15E0B0920039788E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF47B6815E0B0920039788E /* SBJsonWriter.m */; };
 		9BF47B8015E0B0920039788E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF47B6815E0B0920039788E /* SBJsonWriter.m */; };
 		9BF47B8115E0B0960039788E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF47B4E15E0AA040039788E /* NSData+Base64.m */; };
+		9BF47B8815E1DF3C0039788E /* SelfReferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF47B8715E1DF3B0039788E /* SelfReferenceService.m */; };
+		9BF47B8915E1DF3C0039788E /* SelfReferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF47B8715E1DF3B0039788E /* SelfReferenceService.m */; };
 		9BF5ED8813DE23A200C93BF5 /* welcome in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8713DE23A200C93BF5 /* welcome */; };
 		9BF5ED8C13DE255D00C93BF5 /* NSObject+popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */; };
 		9BF5ED9313DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5ED9213DE29EA00C93BF5 /* ExchangeSubscriptionNotificationService.m */; };
@@ -335,6 +337,8 @@
 		9BF47B6615E0B0920039788E /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		9BF47B6715E0B0920039788E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		9BF47B6815E0B0920039788E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		9BF47B8615E1DF3A0039788E /* SelfReferenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfReferenceService.h; sourceTree = "<group>"; };
+		9BF47B8715E1DF3B0039788E /* SelfReferenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfReferenceService.m; sourceTree = "<group>"; };
 		9BF5ED8713DE23A200C93BF5 /* welcome */ = {isa = PBXFileReference; lastKnownFileType = folder; path = welcome; sourceTree = "<group>"; };
 		9BF5ED8A13DE255D00C93BF5 /* NSObject+popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+popup.h"; sourceTree = "<group>"; };
 		9BF5ED8B13DE255D00C93BF5 /* NSObject+popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+popup.m"; sourceTree = "<group>"; };
@@ -638,6 +642,8 @@
 				9B0B3A7513F538D700B89121 /* ExchangeUseCreditRemoteService.m */,
 				9B341CCF13F7A79A0047A3C2 /* FakeStoreKitBuilderService.h */,
 				9B341CD013F7A79A0047A3C2 /* FakeStoreKitBuilderService.m */,
+				9BF47B8615E1DF3A0039788E /* SelfReferenceService.h */,
+				9BF47B8715E1DF3B0039788E /* SelfReferenceService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				9BF47B7D15E0B0920039788E /* SBJsonUTF8Stream.m in Sources */,
 				9BF47B7F15E0B0920039788E /* SBJsonWriter.m in Sources */,
 				9BF47B8115E0B0960039788E /* NSData+Base64.m in Sources */,
+				9BF47B8815E1DF3C0039788E /* SelfReferenceService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1025,7 @@
 				9BF47B7C15E0B0920039788E /* SBJsonTokeniser.m in Sources */,
 				9BF47B7E15E0B0920039788E /* SBJsonUTF8Stream.m in Sources */,
 				9BF47B8015E0B0920039788E /* SBJsonWriter.m in Sources */,
+				9BF47B8915E1DF3C0039788E /* SelfReferenceService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
