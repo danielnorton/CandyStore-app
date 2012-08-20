@@ -22,6 +22,7 @@ static NSMutableArray *bucket;
 
 + (void)add:(id)object {
 	
+	if (!object) return;
 	[bucket addObject:object];
 }
 

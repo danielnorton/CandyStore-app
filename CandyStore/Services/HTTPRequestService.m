@@ -109,7 +109,7 @@
 			break;
 	}
 	
-	[connection release];
+	[SelfReferenceService remove:connection];
 	[self setReceivedData:nil];
 	[self notifyDelegateDidFinish:NO];
 	[SelfReferenceService remove:self];
@@ -131,7 +131,7 @@
 		}
 	}
 	
-	[connection release];
+	[SelfReferenceService remove:connection];
 	[self setReceivedData:nil];
 	[SelfReferenceService remove:self];
 }
@@ -196,6 +196,7 @@
 	}
 	
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	[SelfReferenceService add:connection];
 	[request release];
 	
 	if (connection) {
@@ -206,6 +207,7 @@
 		
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 		[connection start];
+		[connection release];
 		
 	} else {
 		NSLog(@"Error connecting");
