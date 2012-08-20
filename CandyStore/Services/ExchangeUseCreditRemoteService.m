@@ -45,7 +45,6 @@
 	
 	ExchangeItemRepository *exchangeItemRepo = [[ExchangeItemRepository alloc] initWithContext:context];
 	ExchangeItem *credits = [exchangeItemRepo creditsItem];
-	[exchangeItemRepo release];
 	
 	int newQuantity = [credits.quantityAvailable integerValue];
 	newQuantity--;
@@ -62,7 +61,6 @@
 	
 	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
 	Purchase *purchase = [purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:transactionIdentifier];
-	[purchaseRepo release];
 	
 	[purchase setProductIdentifier:product.identifier];
 	[purchase setReceipt:receipt];
@@ -96,7 +94,6 @@
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:product.managedObjectContext];
 	NSData *exchangeReceipt = [repo exchangePurchase].receipt;
-	[repo release];
 	
 	if (!exchangeReceipt) {
 		

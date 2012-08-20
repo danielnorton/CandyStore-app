@@ -33,9 +33,9 @@ typedef enum {
 
 @interface ProductBuilderService : NSObject <SKProductsRequestDelegate, AppProductRemoteServiceDelegate>
 
-@property (nonatomic, assign) id<ProductBuilderServiceDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<ProductBuilderServiceDelegate> delegate;
 @property (nonatomic, readonly) ProductBuilderServiceStatus status;
-@property (nonatomic, readonly) NSManagedObjectContext *context;
+@property (unsafe_unretained, nonatomic, readonly) NSManagedObjectContext *context;
 
 + (BOOL)hasSignificantTimePassedSinceLastUpdate;
 - (void)beginBuildingProducts:(NSManagedObjectContext *)context;

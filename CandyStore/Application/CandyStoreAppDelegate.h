@@ -20,12 +20,12 @@
 ProductBuilderServiceDelegate, ExchangeRefreshingServiceDelegate,
 RemoteServiceDelegate, ReceiptVerificationLocalServiceDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) IBOutlet CandyJarViewController *candyJarViewController;
-@property (nonatomic, retain) IBOutlet CandyShopViewController *candyShopViewController;
-@property (nonatomic, retain) IBOutlet CandyExchangeViewController *candyExchangeViewController;
-@property (nonatomic, retain) IBOutlet UITabBarItem *myJarTabBarItem;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, strong) IBOutlet CandyJarViewController *candyJarViewController;
+@property (nonatomic, strong) IBOutlet CandyShopViewController *candyShopViewController;
+@property (nonatomic, strong) IBOutlet CandyExchangeViewController *candyExchangeViewController;
+@property (nonatomic, strong) IBOutlet UITabBarItem *myJarTabBarItem;
 
 - (void)updateProducts;
 - (void)updateExchange;

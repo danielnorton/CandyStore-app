@@ -14,9 +14,9 @@
 	NSString *destinationFileName;
 }
 
-@property (nonatomic, retain) NSURL *localURL;
-@property (nonatomic, retain) NSString *contentType;
-@property (nonatomic, retain) NSString *parameterName;
-@property (nonatomic, retain) NSString *destinationFileName;
+@property (nonatomic, strong) NSURL *localURL;
+@property (nonatomic, strong) NSString *contentType;
+@property (nonatomic, strong) NSString *parameterName;
+@property (nonatomic, strong) NSString *destinationFileName;
 
 @end

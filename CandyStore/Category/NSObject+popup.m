@@ -16,13 +16,13 @@
 }
 
 - (void)popup:(NSString *)message withDelegate:(id<UIAlertViewDelegate>)delegate {
+
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[UIApplication appName]
 													message:message
 												   delegate:delegate
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];
-	[alert release];
 }
 
 @end

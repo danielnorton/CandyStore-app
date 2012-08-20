@@ -13,10 +13,10 @@
 
 @interface ModelCore()
 
-@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, assign) BOOL useBundleFile;
-@property (nonatomic, retain) NSString *fileName;
+@property (nonatomic, strong) NSString *fileName;
 
 - (NSString *)applicationLibraryDirectory;
 
@@ -33,15 +33,6 @@
 
 #pragma mark -
 #pragma mark NSObject
-- (void)dealloc {    
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
-	[fileName release];
-	
-    [super dealloc];
-}
-
 - (id)init {
 	if (![super init]) return nil;
 	
@@ -79,7 +70,7 @@
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];    
     return managedObjectModel;
 }
 
@@ -104,7 +95,6 @@
 				[fileManager copyItemAtPath:bundleStorePath toPath:storePath error:NULL];
 			}
 		}
-		[fileManager release];
 	}
 	
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -139,26 +129,10 @@ static ModelCore *sharedModelManager = nil;
 }
 
 +(id)allocWithZone:(NSZone *)zone {
-    return [[self sharedManager] retain];
+    return [self sharedManager];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (oneway void)release {
-    //do nothing
-}
-
-- (id)autorelease {
     return self;
 }
 

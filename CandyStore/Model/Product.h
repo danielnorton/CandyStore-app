@@ -14,19 +14,19 @@
 @interface Product : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * identifier;
-@property (nonatomic, retain) NSString * imagePath;
-@property (nonatomic, retain) NSNumber * index;
-@property (nonatomic, retain) NSString * internalKey;
-@property (nonatomic, retain) NSNumber * isActiveData;
-@property (nonatomic, retain) NSString * localizedPrice;
-@property (nonatomic, retain) NSString * productDescription;
-@property (nonatomic, retain) NSNumber * productKindData;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) ExchangeItem *exchangeItem;
-@property (nonatomic, retain) Product *parent;
-@property (nonatomic, retain) NSSet *purchases;
-@property (nonatomic, retain) NSSet *subscriptions;
+@property (nonatomic, strong) NSString * identifier;
+@property (nonatomic, strong) NSString * imagePath;
+@property (nonatomic, strong) NSNumber * index;
+@property (nonatomic, strong) NSString * internalKey;
+@property (nonatomic, strong) NSNumber * isActiveData;
+@property (nonatomic, strong) NSString * localizedPrice;
+@property (nonatomic, strong) NSString * productDescription;
+@property (nonatomic, strong) NSNumber * productKindData;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) ExchangeItem *exchangeItem;
+@property (nonatomic, strong) Product *parent;
+@property (nonatomic, strong) NSSet *purchases;
+@property (nonatomic, strong) NSSet *subscriptions;
 @end
 
 @interface Product (CoreDataGeneratedAccessors)

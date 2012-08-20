@@ -61,7 +61,6 @@ NSNumberFormatter *currencyFormatter;
 
 - (void)requestDidFinish:(SKRequest *)request {
 	
-	[request release];
 }
 
 
@@ -103,7 +102,6 @@ NSNumberFormatter *currencyFormatter;
 	
 	NSError *error = nil;
 	BOOL save = [repo save:&error];
-	[repo release];
 	
 	if (!save || error) {
 		
@@ -204,12 +202,7 @@ NSNumberFormatter *currencyFormatter;
 			
 			[self buildFakeStoreKitProducts];
 		}
-		
 	}
-	
-	[identifiers release];
-	
-	[repo release];
 }
 
 - (void)appProductRemoteServiceDidFailRetreiveProducts:(AppProductRemoteService *)sender {
@@ -225,7 +218,6 @@ NSNumberFormatter *currencyFormatter;
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	int count = [repo count];
-	[repo release];
 	if (count == 0) {
 		
 		return YES;
@@ -249,7 +241,6 @@ NSNumberFormatter *currencyFormatter;
 	AppProductRemoteService *service = [[AppProductRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginRetreiveProducts];
-	[service release];
 }
 
 
@@ -257,8 +248,6 @@ NSNumberFormatter *currencyFormatter;
 - (void)setContext:(NSManagedObjectContext *)aContext {
 	
 	if ([context isEqual:aContext]) return;
-	[aContext retain];
-	[context release];
 	context = aContext;
 }
 
@@ -316,8 +305,6 @@ NSNumberFormatter *currencyFormatter;
 		[purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:purchase.transactionIdentifier];
 	}];
 	
-	[purchaseRepo release];
-	[productRepo release];
 }
 
 - (void)buildFakeStoreKitProducts {
@@ -325,7 +312,6 @@ NSNumberFormatter *currencyFormatter;
 	
 	FakeStoreKitBuilderService *service = [[FakeStoreKitBuilderService alloc] init];
 	[service buildFakesForContext:context];
-	[service release];
 	
 	[self notifyDelegateDidUpdate];
 }

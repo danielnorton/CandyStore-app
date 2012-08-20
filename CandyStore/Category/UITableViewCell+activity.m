@@ -16,7 +16,6 @@
 		
 		activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
 		[self setAccessoryView:activity];
-		[activity release];
 	}
 	
 	if (![activity isAnimating]) {

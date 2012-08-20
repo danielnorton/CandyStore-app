@@ -32,7 +32,7 @@ NSString * const PurchaseRuleDescriptionPurchaseRulesPurchasesDisabled = @"Purch
 	if (![CandyShopService canMakePayments]) return PurchaseRulesPurchasesDisabled;
 	if (![CandyShopService isStoreKitEnabled]) return PurchaseRulesPurchasesDisabled;
 	
-	PurchaseRepository *repo = [[[PurchaseRepository alloc] initWithContext:product.managedObjectContext] autorelease];
+	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:product.managedObjectContext];
 	
 	// Candy. If user has the Big Candy Jar, they can keep buying candy.
 	// Otherwise, they are limited to the number of candies they can buy.

@@ -10,7 +10,7 @@
 @interface ExchangeSubscriptionNotificationService : NSObject
 
 @property (nonatomic, assign) int counter;
-@property (nonatomic, readonly) NSString *message;
+@property (unsafe_unretained, nonatomic, readonly) NSString *message;
 @property (nonatomic, readonly) BOOL shouldNotify;
 
 - (void)reset;

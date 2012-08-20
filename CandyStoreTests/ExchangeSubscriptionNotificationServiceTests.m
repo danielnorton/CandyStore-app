@@ -18,7 +18,6 @@
 	
 	[service reset];
 	BOOL shouldNotify = service.shouldNotify;
-	[service release];
 	
 	STAssertTrue(shouldNotify, @"should notify.");
 }
@@ -30,7 +29,6 @@
 	[service reset];
 	service.counter++;
 	BOOL shouldNotify = service.shouldNotify;
-	[service release];
 	
 	STAssertTrue(shouldNotify, @"should notify.");
 }
@@ -43,7 +41,6 @@
 	service.counter++;
 	service.counter++;
 	BOOL shouldNotify = service.shouldNotify;
-	[service release];
 	
 	STAssertFalse(shouldNotify, @"should not notify.");
 }
@@ -54,7 +51,6 @@
 	
 	[service reset];
 	NSString *message = service.message;
-	[service release];
 	
 	STAssertEqualObjects(message, @"Visit the Candy Shop to subscribe to the Candy Exchange service and swap candy", nil);
 }

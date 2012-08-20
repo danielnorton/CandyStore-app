@@ -15,17 +15,6 @@
 @synthesize iconView;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[titleLabel release];
-	[quantityLabel release];
-	[iconView release];
-	[super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark ExchangeListItemCell
 + (float)defaultHeight {
 	return 66.0f;

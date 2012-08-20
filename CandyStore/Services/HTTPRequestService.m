@@ -18,7 +18,7 @@
 
 @interface HTTPRequestService()
 
-@property (nonatomic, retain) NSMutableData *receivedData;
+@property (nonatomic, strong) NSMutableData *receivedData;
 
 - (void)setJson:(NSArray *)value;
 - (void)setLastError:(NSError *)value;
@@ -53,18 +53,6 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	[json release];
-	[rawReturn release];
-	[lastError release];
-	[responseUrl release];
-	[userData release];
-	[receivedData release];
-	[super dealloc];
-}
-
-
 #pragma mark NSURLConnection delegate
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
@@ -75,7 +63,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	
-	responseUrl = [[response URL] retain];
+	responseUrl = [response URL];
 	 
 	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
 		httpCode = [(NSHTTPURLResponse *)response statusCode];
@@ -197,17 +185,14 @@
 	
 	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[SelfReferenceService add:connection];
-	[request release];
 	
 	if (connection) {
 		
 		NSMutableData *data = [[NSMutableData alloc] init];
 		[self setReceivedData:data];
-		[data release];
 		
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 		[connection start];
-		[connection release];
 		
 	} else {
 		NSLog(@"Error connecting");
@@ -219,15 +204,11 @@
 #pragma mark Private Extension
 - (void)setJson:(NSArray *)value {
 	if ([json isEqualToArray:value]) return;
-	[value retain];
-	[json release];
 	json = value;
 }
 
 - (void)setLastError:(NSError *)value {
 	if ([lastError isEqual:value]) return;
-	[value retain];
-	[lastError release];
 	lastError = value;
 }
 
@@ -351,7 +332,7 @@
 			win = [self finishBuildingJsonResponse:payloadAsString];
 			break;
 		case HTTPRequestServiceReturnTypeHtml: {
-			rawReturn = [payloadAsString retain];
+			rawReturn = payloadAsString;
 			break;
 		}
 		default:
@@ -360,7 +341,6 @@
 
 	[self notifyDelegateDidFinish:win];
 	
-	[payloadAsString release];
 }
 
 - (BOOL)finishBuildingJsonResponse:(NSString *)rawPayload {

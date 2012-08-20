@@ -23,10 +23,10 @@
 
 @interface CandyStoreAppDelegate()
 
-@property (nonatomic, retain) ProductBuilderService *productBuilderService;
-@property (nonatomic, retain) TransactionReceiptService *transactionReceiptService;
-@property (nonatomic, retain) ExchangeRefreshingService *exchangeRefreshingService;
-@property (nonatomic, retain) ReceiptVerificationLocalService *receiptVerificationLocalService;
+@property (nonatomic, strong) ProductBuilderService *productBuilderService;
+@property (nonatomic, strong) TransactionReceiptService *transactionReceiptService;
+@property (nonatomic, strong) ExchangeRefreshingService *exchangeRefreshingService;
+@property (nonatomic, strong) ReceiptVerificationLocalService *receiptVerificationLocalService;
 
 - (void)verifyPurchases;
 - (BOOL)canRestoreOrRefresh;
@@ -50,22 +50,6 @@
 @synthesize receiptVerificationLocalService;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	[window release];
-	[tabBarController release];
-	[candyJarViewController release];
-	[candyShopViewController release];
-	[candyExchangeViewController release];
-	[myJarTabBarItem release];
-	[productBuilderService release];
-	[transactionReceiptService release];
-	[exchangeRefreshingService release];
-	[receiptVerificationLocalService release];
-    [super dealloc];
-}
-
-
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
@@ -99,7 +83,6 @@
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
 	[transService beginObserving];
-	[transService release];
 	
 	[window setRootViewController:tabBarController];
 	[window makeKeyAndVisible];
@@ -110,7 +93,6 @@
 	
 	ExchangeSubscriptionNotificationService *service = [[ExchangeSubscriptionNotificationService alloc] init];
 	[service reset];
-	[service release];
 
 	[self updateJarTabImage];
 	
@@ -205,7 +187,6 @@
 	[service setDelegate:self];
 	[self setProductBuilderService:service];
 	[service beginBuildingProducts:[ModelCore sharedManager].managedObjectContext];
-	[service release];
 }
 
 - (void)updateExchange {
@@ -219,7 +200,6 @@
 	[service setDelegate:self];
 	[self setExchangeRefreshingService:service];
 	[service beginRefreshing];
-	[service release];
 }
 
 
@@ -254,7 +234,6 @@
 	[service setDelegate:self];
 	[self setReceiptVerificationLocalService:service];
 	[service verifyAllPurchases];
-	[service release];
 }
 
 - (BOOL)canRestoreOrRefresh {
@@ -276,13 +255,11 @@
 	
 	if (!service.shouldNotify) {
 		
-		[service release];
 		return;
 	}
 	
 	service.counter++;
 	[tabBarController popup:service.message];
-	[service release];
 }
 
 - (void)updateJarTabImage {

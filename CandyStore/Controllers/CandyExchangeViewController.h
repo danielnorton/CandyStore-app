@@ -15,6 +15,6 @@
 @interface CandyExchangeViewController : RefreshingTableViewController
 <ImageCachingServiceDelegate, ExchangeUseCreditRemoteServiceDelegate>
 
-@property (nonatomic, retain) IBOutlet ExchangeListItemCell *exchangeListItemCell;
+@property (nonatomic, strong) IBOutlet ExchangeListItemCell *exchangeListItemCell;
 
 @end

@@ -33,7 +33,7 @@ typedef enum {
 @interface ExchangeRefreshingService : NSObject
 <ExchangeCreditsRemoteServiceDelegate, ExchangeAvailableItemsRemoteServiceDelegate>
 
-@property (nonatomic, assign) id<ExchangeRefreshingServiceDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<ExchangeRefreshingServiceDelegate> delegate;
 @property (nonatomic, readonly) ExchangeRefreshingServiceStatus status;
 
 - (void)beginRefreshing;

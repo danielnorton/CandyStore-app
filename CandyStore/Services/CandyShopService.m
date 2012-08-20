@@ -55,7 +55,6 @@ NSString * const InternalKeyExchange = @"exchange";
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	BOOL answer = [repo hasBigCandyJar];
-	[repo release];
 	
 	return answer;
 }
@@ -67,7 +66,6 @@ NSString * const InternalKeyExchange = @"exchange";
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
 	ExchangeItem *credits = [exchangeRepo creditsItem];
-	[exchangeRepo release];
 	BOOL hasCredits = [credits.quantityAvailable integerValue] > 0;
 	
 	return hasCredits;
@@ -78,7 +76,6 @@ NSString * const InternalKeyExchange = @"exchange";
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
 	BOOL isSubscribed = [purchaseRepo hasActiveExchangeSubscription];
-	[purchaseRepo release];
 	
 	return isSubscribed;
 }

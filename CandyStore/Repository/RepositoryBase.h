@@ -8,11 +8,11 @@
 @interface RepositoryBase : NSObject 
 
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSString *typeName;
-@property (nonatomic, retain) NSArray *defaultSortDescriptors;
-@property (nonatomic, retain) NSString *defaultSectionNameKeyPath;
-@property (nonatomic, retain) NSString *keyName;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSString *typeName;
+@property (nonatomic, strong) NSArray *defaultSortDescriptors;
+@property (nonatomic, strong) NSString *defaultSectionNameKeyPath;
+@property (nonatomic, strong) NSString *keyName;
 
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext;
 - (NSManagedObject *)itemForId:(id)modelId;

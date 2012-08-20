@@ -17,9 +17,9 @@ NSFetchedResultsControllerDelegate, ImageCachingServiceDelegate,
 JarListItemCellDelegate, ExchangeAddCreditRemoteServiceDelegate>
 
 
-@property (nonatomic, retain) IBOutlet UIWebView *welcomeView;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) IBOutlet JarListItemCell *jarListItemCell;
+@property (nonatomic, strong) IBOutlet UIWebView *welcomeView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet JarListItemCell *jarListItemCell;
 
 - (void)resetShouldEnableExchangeButtons;
 

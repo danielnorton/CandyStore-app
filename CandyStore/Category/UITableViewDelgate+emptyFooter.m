@@ -15,7 +15,7 @@
 	if (section != (tableView.numberOfSections - 1)) return nil;
 	
 	UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-	return [view autorelease];
+	return view;
 }
 
 @end

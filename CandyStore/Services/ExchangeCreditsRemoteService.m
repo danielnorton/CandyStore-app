@@ -41,7 +41,6 @@
 	
 	int newCreditCount = [[response valueForKeyPath:@"credits"] integerValue];
 	[repo setOrCreateCreditsFromQuantity:newCreditCount];
-	[repo release];
 	
 	NSError *error = nil;
 	if (![context save:&error]) {
@@ -67,7 +66,6 @@
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:context];
 	Purchase *exchange = [repo exchangePurchase];
-	[repo release];
 	
 	if (!exchange) {
 		

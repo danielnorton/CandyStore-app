@@ -14,10 +14,10 @@
 @interface Purchase : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSData * receipt;
-@property (nonatomic, retain) NSString * transactionIdentifier;
-@property (nonatomic, retain) NSString * productIdentifier;
-@property (nonatomic, retain) NSNumber * isExpiredData;
-@property (nonatomic, retain) Product *product;
+@property (nonatomic, strong) NSData * receipt;
+@property (nonatomic, strong) NSString * transactionIdentifier;
+@property (nonatomic, strong) NSString * productIdentifier;
+@property (nonatomic, strong) NSNumber * isExpiredData;
+@property (nonatomic, strong) Product *product;
 
 @end

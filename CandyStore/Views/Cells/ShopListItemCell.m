@@ -14,16 +14,6 @@
 @synthesize priceLabel;
 @synthesize iconView;
 
-#pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-
-	[titleLabel release];
-	[priceLabel release];
-	[iconView release];
-	[super dealloc];
-}
-
 
 #pragma mark -
 #pragma mark ShopListItemCell

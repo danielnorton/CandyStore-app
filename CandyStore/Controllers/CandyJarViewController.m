@@ -23,7 +23,7 @@
 
 @interface CandyJarViewController()
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, assign) BOOL shouldEnableExchangeButtons;
 
 - (void)loadWelcomeView;
@@ -44,17 +44,6 @@
 @synthesize shouldEnableExchangeButtons;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[welcomeView release];
-	[tableView release];
-	[jarListItemCell release];
-	[fetchedResultsController release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -76,7 +65,6 @@
 	
 	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSFetchedResultsController *controller = [repo controllerForMyCandyJar];
-	[repo release];
 	[self setFetchedResultsController:controller];
 	[self fetch];
 }
@@ -239,7 +227,6 @@
 	
 	CandyEatingService *service = [[CandyEatingService alloc] init];
 	[service eatCandy:product];
-	[service release];
 }
 
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
@@ -247,7 +234,6 @@
 	ExchangeAddCreditRemoteService *service = [[ExchangeAddCreditRemoteService alloc] init];
 	[service beginAddingCreditFromPurchase:[product.purchases anyObject]];
 	[service setDelegate:self];
-	[service release];
 }
 
 
@@ -301,7 +287,6 @@
 	AboutViewController *about = [AboutViewController newWithDefaultNib];
 	[about setModalTransitionStyle:UIModalTransitionStylePartialCurl];
 	[self presentModalViewController:about animated:YES];
-	[about release];
 }
 
 
@@ -349,7 +334,6 @@
 		
 		[cell.iconView setImage:image];
 	}
-	[service release];
 }
 
 - (void)reloadVisibleCells {

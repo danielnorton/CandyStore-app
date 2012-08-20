@@ -15,7 +15,6 @@
 															target:nil
 															action:nil];
 	[self.navigationItem setBackBarButtonItem:back];
-	[back release];
 }
 
 - (void)setBarButtonsEnabled:(BOOL)enabled withToolbar:(UIToolbar *)toolbar {

@@ -9,9 +9,9 @@
 
 @interface ShopListItemCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *priceLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *priceLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconView;
 
 + (float)defaultHeight;
 

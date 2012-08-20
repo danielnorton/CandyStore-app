@@ -13,7 +13,7 @@
 @interface ShopItemDetailViewController : UITableViewController
 <ImageCachingServiceDelegate, ShopItemDetailPurchaseCellDelegate>
 
-@property (nonatomic, retain) IBOutlet ShopItemDetailPurchaseCell *purchaseCell;
-@property (nonatomic, assign) Product *product;
+@property (nonatomic, strong) IBOutlet ShopItemDetailPurchaseCell *purchaseCell;
+@property (nonatomic, unsafe_unretained) Product *product;
 
 @end

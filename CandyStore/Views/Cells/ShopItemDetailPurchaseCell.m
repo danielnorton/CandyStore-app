@@ -24,17 +24,6 @@
 @synthesize delegate;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-
-	[buyButton release];
-	[titleLabel release];
-	[iconView release];
-	[super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark StoreItemCell
 #pragma mark IBAction
 - (IBAction)didTapBuyButton:(id)sender {

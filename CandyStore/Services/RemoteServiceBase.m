@@ -21,12 +21,6 @@
 
 #pragma mark -
 #pragma mark NSObject
-- (void)dealloc {
-
-	[replyText release];	
-	[super dealloc];
-}
-
 - (id)init {
 	
 	if (![super init]) return nil;
@@ -92,7 +86,6 @@
 	[service setUserData:userData];
 	
 	[service beginRequest:path method:method params:params withReturnType:returnType];
-	[service release];
 }
 
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {

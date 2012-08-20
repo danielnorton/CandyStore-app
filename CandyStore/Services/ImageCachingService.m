@@ -10,10 +10,10 @@
 
 @interface ImageCachingService()
 
-@property (nonatomic, retain) NSURLConnection *connection;
-@property (nonatomic, retain) NSMutableData *receivedData;
-@property (nonatomic, retain) NSString *remotePath;
-@property (nonatomic, retain) id callerUserData;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *receivedData;
+@property (nonatomic, strong) NSString *remotePath;
+@property (nonatomic, strong) id callerUserData;
 @property (nonatomic, readonly) int httpCode;
 
 - (NSString *)cachePath;
@@ -36,17 +36,6 @@
 @synthesize httpCode;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[connection release];
-	[receivedData release];
-	[remotePath release];
-	[callerUserData release];
-	[super dealloc];
-}
-
-
 #pragma mark NSURLConnection delegate
 - (NSCachedURLResponse *)connection:(NSURLConnection *)aConnection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
 	
@@ -105,25 +94,21 @@
 		[service beginLoadingImageAtPath:path withUserData:nil];
 	}
 	
-	[service release];
 }
 
 + (void)deleteCacheItemAtPath:(NSString *)path {
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	NSString *cachePath = [service localImagePath:path];
-	[service release];
 	
 	NSFileManager *mgr = [[NSFileManager alloc] init];
 	[mgr removeItemAtPath:cachePath error:nil];
-	[mgr release];
 }
 
 + (void)purge {
 	
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	NSString *cachePath = [service cachePath];
-	[service release];
 	
 	NSFileManager *mgr = [[NSFileManager alloc] init];
 	NSError *error = nil;
@@ -137,7 +122,6 @@
 		}];
 	}
 
-	[mgr release];
 }
 
 - (UIImage *)cachedImageAtPath:(NSString *)path {
@@ -153,7 +137,6 @@
 		image = [UIImage imageWithCGImage:unsized.CGImage scale:scale orientation:UIImageOrientationUp];
 	}
 	
-	[mgr release];
 	
 	return image;
 }
@@ -175,9 +158,7 @@
 		
 		NSMutableData *data = [[NSMutableData alloc] init];
 		[self setReceivedData:data];
-		[data release];
 		[self setConnection:aConnection];
-		[aConnection release];
 		[connection start];
 		
 	} else {
@@ -201,7 +182,6 @@
 		if (success && !error) {
 			fileExists = YES;
 		}
-		[mgr release];
 	}
 	
 	return path;

@@ -23,15 +23,6 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[shopListItemCell release];
-	[restoreButton release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -112,7 +103,6 @@
 	[controller setProduct:product];
 	
 	[self.navigationController pushViewController:controller animated:YES];
-	[controller release];
 }
 
 
@@ -154,7 +144,6 @@
 		
 		[cell.iconView setImage:image];
 	}
-	[service release];
 }
 
 - (void)completeRefreshing {
@@ -172,7 +161,6 @@
 	NSFetchedResultsController *controller = [repo controllerForCandyShop];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
-	[repo release];
 }
 
 @end

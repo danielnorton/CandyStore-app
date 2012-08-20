@@ -20,8 +20,8 @@
 
 @interface RemoteServiceBase : NSObject <HTTPRequestServiceDelegate>
 
-@property (nonatomic, assign) id<RemoteServiceDelegate> delegate;
-@property (nonatomic, retain) NSString *replyText;
+@property (nonatomic, unsafe_unretained) id<RemoteServiceDelegate> delegate;
+@property (nonatomic, strong) NSString *replyText;
 @property (nonatomic, assign) int replyCode;
 @property (nonatomic, assign) int expectedReplyCode;
 @property (nonatomic, assign) HTTPRequestServiceMethod method;

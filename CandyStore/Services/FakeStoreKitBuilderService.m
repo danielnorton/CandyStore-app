@@ -17,7 +17,7 @@
 
 @interface FakeStoreKitBuilderService()
 
-@property (nonatomic, assign) NSManagedObjectContext *context;
+@property (nonatomic, unsafe_unretained) NSManagedObjectContext *context;
 
 - (void)buildFakeProductDescriptions;
 - (void)buildFakePurchases;
@@ -102,8 +102,6 @@
 	product = (Product *)[repo itemForId:@"com.brimstead.candystore2.exchange.1yr"];
 	[product setLocalizedPrice:@"$2.99"];
 	[product setTitle:@"Candy Exchange"];
-	
-	[repo release];
 }
 
 - (void)buildFakePurchases {
@@ -142,10 +140,6 @@
 	product = (Product *)[repo itemForId:@"com.brimstead.candystore2.exchange.7day"];
 	purchase = [purchaseRepo addOrRetreivePurchaseForProduct:product withTransactionIdentifier:transactionIdentifier];
 	[purchase setReceipt:[NSData dataFromBase64String:receipt]];
-	
-
-	[repo release];
-	[purchaseRepo release];
 }
 
 

@@ -72,7 +72,6 @@
 	ExchangeCreditsRemoteService *service = [[ExchangeCreditsRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginRefreshingCreditCount];
-	[service release];
 }
 
 
@@ -90,7 +89,6 @@
 	ExchangeAvailableItemsRemoteService *service = [[ExchangeAvailableItemsRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginRefreshingAvailableItems];
-	[service release];
 }
 
 - (void)notifyDelegateDidRefresh {

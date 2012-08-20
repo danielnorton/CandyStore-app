@@ -12,7 +12,7 @@
 
 @interface AppProductRemoteServiceConnectivityTests()
 
-@property (nonatomic, retain) NSArray *products;
+@property (nonatomic, strong) NSArray *products;
 
 @end
 
@@ -23,11 +23,6 @@
 
 #pragma mark -
 #pragma mark NSObject
-- (void)dealloc {
-	
-	[products release];
-	[super dealloc];
-}
 
 
 #pragma mark RemoteServiceDelegate

@@ -18,7 +18,7 @@ typedef enum {
 @interface RefreshingTableViewController : UITableViewController
 <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, assign) RefreshingTableViewControllerState state;
 @property (nonatomic, readonly) BOOL shouldShowRefreshingCell;
 

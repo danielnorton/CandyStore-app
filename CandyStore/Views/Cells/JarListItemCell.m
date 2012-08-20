@@ -27,18 +27,6 @@
 @synthesize product;
 @synthesize delegate;
 
-#pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[titleLabel release];
-	[quantityLabel release];
-	[iconView release];
-	[eatButton release];
-	[exchangeButton release];
-	[super dealloc];
-}
-
 
 #pragma mark -
 #pragma mark JarListItemCell

@@ -70,13 +70,9 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			if (![productRepo save:&error]) {
 				
 				[self notifyName:TransactionReceiptServiceFailedNotification forTransaction:transaction];
-				[purchaseRepo release];
-				[productRepo release];
 				return;
 			}
 			
-			[purchaseRepo release];
-			[productRepo release];
 			
 			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 			

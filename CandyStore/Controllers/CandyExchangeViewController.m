@@ -20,7 +20,7 @@
 
 @interface CandyExchangeViewController()
 
-@property (nonatomic, retain) NSIndexPath *waitingIndexPath;
+@property (nonatomic, strong) NSIndexPath *waitingIndexPath;
 @property (nonatomic, readonly) BOOL hasCredits;
 
 - (void)finishCredit;
@@ -35,15 +35,6 @@
 @synthesize waitingIndexPath;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[exchangeListItemCell release];
-	[waitingIndexPath release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -131,7 +122,6 @@
 	ExchangeUseCreditRemoteService *service = [[ExchangeUseCreditRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginUseCreditForProduct:product];
-	[service release];
 }
 
 
@@ -177,7 +167,6 @@
 		
 		[cell.iconView setImage:image];
 	}
-	[service release];
 }
 
 - (void)resetFetchedResultsController {
@@ -186,7 +175,6 @@
 	NSFetchedResultsController *controller = [repo controllerForExchangeView];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
-	[repo release];
 }
 
 
@@ -227,7 +215,6 @@
 	
 	ExchangeItemRepository *repo = [[ExchangeItemRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	ExchangeItem *item = [repo creditsItem];
-	[repo release];
 	return [item.quantityAvailable integerValue] > 0;
 }
 

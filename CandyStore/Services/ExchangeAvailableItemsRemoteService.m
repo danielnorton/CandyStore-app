@@ -42,7 +42,6 @@
 		[item setQuantityAvailable:quantity];
 	}];
 	
-	[repo release];
 	
 	NSError *error = nil;
 	if (![context save:&error]) {

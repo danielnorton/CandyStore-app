@@ -17,17 +17,6 @@
 @synthesize keyName;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	[managedObjectContext release];
-	[typeName release];
-	[defaultSortDescriptors release];
-	[defaultSectionNameKeyPath release];
-	[keyName release];
-	[super dealloc];
-}
-
-#pragma mark -
 #pragma mark RepositoryBase
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext {
 	if (![super init]) return nil;
@@ -69,7 +58,6 @@
 	NSError *error = nil;
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:defaultSortDescriptors andPredicate:nil];
 	NSArray *all = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	[fetchRequest release];
 	if (error != nil) {
 		return nil;
 	}
@@ -82,7 +70,6 @@
 	NSError *error = nil;
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:sortDescriptors andPredicate:predicate];
 	NSArray *all = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	[fetchRequest release];
 	if (error != nil) {
 		return nil;
 	}
@@ -101,11 +88,10 @@
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:sortDescriptors andPredicate:predicate];
 	
 	NSFetchedResultsController *fetchedResultsController =
-	[[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
 										 managedObjectContext:managedObjectContext
 										   sectionNameKeyPath:defaultSectionNameKeyPath
-													cacheName:nil] autorelease];
-	[fetchRequest release];
+													cacheName:nil];
 	return fetchedResultsController;
 }
 
@@ -114,7 +100,6 @@
 	
 	NSError *error = nil;
 	NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
-	[fetchRequest release];
 	if (error != nil) {
 		return 0;
 	}	
@@ -155,7 +140,6 @@
 	NSError *internal = nil;
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:nil andPredicate:nil];
 	NSArray *all = [managedObjectContext executeFetchRequest:fetchRequest error:&internal];
-	[fetchRequest release];
 	if (internal) {
 		*error = internal;
 		return NO;

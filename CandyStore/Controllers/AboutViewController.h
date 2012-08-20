@@ -9,9 +9,9 @@
 
 @interface AboutViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UILabel *appNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *versionLabel;
-@property (nonatomic, retain) IBOutlet UILabel *storeKitLabel;
+@property (nonatomic, strong) IBOutlet UILabel *appNameLabel;
+@property (nonatomic, strong) IBOutlet UILabel *versionLabel;
+@property (nonatomic, strong) IBOutlet UILabel *storeKitLabel;
 
 
 @end

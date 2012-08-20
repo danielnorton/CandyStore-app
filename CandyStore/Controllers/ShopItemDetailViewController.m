@@ -26,7 +26,7 @@
 
 @interface ShopItemDetailViewController()
 
-@property (nonatomic, retain) NSIndexPath *activeBuyButtonIndexPath;
+@property (nonatomic, strong) NSIndexPath *activeBuyButtonIndexPath;
 
 - (BOOL)isLastRow:(int)row;
 - (void)reloadVisibleCells;
@@ -45,15 +45,6 @@
 @synthesize activeBuyButtonIndexPath;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[purchaseCell release];
-	[activeBuyButtonIndexPath release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -128,7 +119,7 @@
 		static NSString *cellIdentifier = @"descriptionIdentifier";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 		}
 		
 		[self configureDescriptionCell:cell atIndexPath:indexPath];
@@ -289,7 +280,6 @@
 			[cell.iconView setImage:image];
 		}
 		
-		[service release];
 
 		[cell.titleLabel setText:product.title];
 		

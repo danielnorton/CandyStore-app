@@ -20,14 +20,14 @@
 
 @interface JarListItemCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *quantityLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *iconView;
-@property (nonatomic, retain) IBOutlet UIButton *eatButton;
-@property (nonatomic, retain) IBOutlet UIButton *exchangeButton;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *quantityLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) IBOutlet UIButton *eatButton;
+@property (nonatomic, strong) IBOutlet UIButton *exchangeButton;
 
-@property (nonatomic, assign) Product *product;
+@property (nonatomic, unsafe_unretained) Product *product;
 
-@property (nonatomic, assign) id<JarListItemCellDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<JarListItemCellDelegate> delegate;
 
 @end

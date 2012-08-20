@@ -26,16 +26,6 @@
 @synthesize storeKitLabel;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[appNameLabel release];
-	[versionLabel release];
-	[storeKitLabel release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -64,7 +54,6 @@
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissMe)];
 	[self.view addGestureRecognizer:tap];
-	[tap release];
 }
 
 

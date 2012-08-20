@@ -12,7 +12,7 @@
 
 @interface AppProductRemoteServiceTests()
 
-@property (nonatomic, retain) NSArray *products;
+@property (nonatomic, strong) NSArray *products;
 
 @end
 
@@ -22,14 +22,6 @@
 @synthesize products;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[products release];
-	[super dealloc];
-}
-
-
 #pragma mark RemoteServiceDelegate
 - (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
 	
@@ -64,7 +56,6 @@
 	AppProductRemoteService *service = [[AppProductRemoteService alloc] init];
 	[service setDelegate:self];
 	[service beginRetreiveProducts];
-	[service release];
 	
 	[self waitForCompletion:1.0f doneTest:^BOOL(void) {
 		

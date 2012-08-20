@@ -21,12 +21,12 @@
 
 @interface ShopItemDetailPurchaseCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet BuyButton *buyButton;
-@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) IBOutlet BuyButton *buyButton;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconView;
 
-@property (nonatomic, assign) Product *product;
-@property (nonatomic, assign) id<ShopItemDetailPurchaseCellDelegate> delegate;
+@property (nonatomic, unsafe_unretained) Product *product;
+@property (nonatomic, unsafe_unretained) id<ShopItemDetailPurchaseCellDelegate> delegate;
 
 - (void)resizeTitleFromBuyButton;
 

@@ -9,9 +9,9 @@
 
 @interface ExchangeListItemCell : UITableViewCell
 
-@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *quantityLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *quantityLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconView;
 
 + (float)defaultHeight;
 

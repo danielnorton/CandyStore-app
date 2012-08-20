@@ -18,14 +18,6 @@
 @synthesize state;
 
 #pragma mark -
-#pragma mark NSObject
-- (void)dealloc {
-	
-	[fetchedResultsController release];
-	[super dealloc];
-}
-
-
 #pragma mark UIViewController
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -133,7 +125,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:refreshingCellIdentifier];
 	if (!cell) {
 		
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:refreshingCellIdentifier];
 	}
 	
 	[self configureRefreshingCell:cell];

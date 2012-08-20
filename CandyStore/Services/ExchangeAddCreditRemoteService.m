@@ -47,7 +47,6 @@
 	
 	Purchase *purchase = (Purchase *)[context objectWithID:sender.userData];
 	[context deleteObject:purchase];
-	[repo release];
 	
 	NSError *error = nil;
 	if (![context save:&error]) {
@@ -75,7 +74,6 @@
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
 	NSData *exchangeReceipt = [repo exchangePurchase].receipt;
-	[repo release];
 	
 	if (!exchangeReceipt) return;
 	

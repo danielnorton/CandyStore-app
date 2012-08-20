@@ -17,7 +17,7 @@
 
 @interface ImageCachingService : NSObject
 
-@property (nonatomic, assign) id<ImageCachingServiceDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<ImageCachingServiceDelegate> delegate;
 @property (nonatomic, readonly) BOOL isResponseFromNetworkCache;
 
 + (void)beginLoadingImageAtPath:(NSString *)path;

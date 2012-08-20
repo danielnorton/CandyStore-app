@@ -89,7 +89,6 @@
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSArray *all = [repo fetchAll];
 	verifications = all.count;
-	[repo release];
 
 	if (all.count == 0) {
 
@@ -103,7 +102,6 @@
 		ReceiptVerificationRemoteService *service = [[ReceiptVerificationRemoteService alloc] init];
 		[service setDelegate:self];
 		[service beginVerifyPurchase:purchase];
-		[service release];
 	}];
 }
 
@@ -114,7 +112,6 @@
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
 	[repo removePurchaseFromProduct:purchase];
 	[repo save:nil];
-	[repo release];
 	
 	[self notifyDelegateDidDeletePurchase];
 }

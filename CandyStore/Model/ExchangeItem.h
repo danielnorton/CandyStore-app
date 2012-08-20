@@ -14,7 +14,7 @@
 @interface ExchangeItem : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSNumber * quantityAvailable;
-@property (nonatomic, retain) Product *product;
+@property (nonatomic, strong) NSNumber * quantityAvailable;
+@property (nonatomic, strong) Product *product;
 
 @end

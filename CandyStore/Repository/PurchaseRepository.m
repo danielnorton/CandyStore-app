@@ -50,7 +50,6 @@
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"product.productKindData == %d", ProductKindCandy];
 	NSFetchRequest *request = [self newFetchRequestWithSort:self.defaultSortDescriptors andPredicate:pred];
 	int count = [self.managedObjectContext countForFetchRequest:request error:nil];
-	[request release];
 	
 	return count;
 }
@@ -103,7 +102,6 @@
 	
 	NSFetchRequest *request = [self newFetchRequestWithSort:self.defaultSortDescriptors andPredicate:pred];
 	int count = [self.managedObjectContext countForFetchRequest:request error:nil];
-	[request release];
 	
 	BOOL answer = (count > 0);
 	return answer;

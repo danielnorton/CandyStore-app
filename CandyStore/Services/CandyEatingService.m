@@ -27,7 +27,6 @@
 	
 	NSError *error = nil;
 	[repo save:&error];
-	[repo release];
 }
 
 

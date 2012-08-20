@@ -38,7 +38,6 @@
 		
 		ProductRepository *repo = [[ProductRepository alloc] initWithContext:self.managedObjectContext];
 		NSArray *all = [repo fetchProductsForProductKind:ProductKindExchange];
-		[repo release];
 		if (all.count == 0) {
 			return nil;
 		}
@@ -85,7 +84,6 @@
 		
 		ProductRepository *repo = [[ProductRepository alloc] initWithContext:self.managedObjectContext];
 		Product *product = (Product *)[repo itemForId:productIdentifier];
-		[repo release];
 		[item setProduct:product];
 		[product setExchangeItem:item];
 	}

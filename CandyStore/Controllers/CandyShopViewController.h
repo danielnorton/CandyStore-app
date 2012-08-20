@@ -14,8 +14,8 @@
 @interface CandyShopViewController : RefreshingTableViewController
 <ImageCachingServiceDelegate>
 
-@property (nonatomic, retain) IBOutlet ShopListItemCell *shopListItemCell;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *restoreButton;
+@property (nonatomic, strong) IBOutlet ShopListItemCell *shopListItemCell;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *restoreButton;
 
 @end
 
