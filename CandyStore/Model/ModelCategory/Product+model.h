@@ -9,14 +9,14 @@
 #import "Product.h"
 
 
-typedef enum {
+typedef NS_ENUM(uint, ProductKind) {
 	
 	ProductKindUnknown,
 	ProductKindBigCandyJar,
 	ProductKindExchange,
 	ProductKindCandy
 	
-} ProductKind;
+};
 
 @interface Product(model)
 

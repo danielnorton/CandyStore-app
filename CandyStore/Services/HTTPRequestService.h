@@ -8,21 +8,21 @@
 #import "AttachmentTransfer.h"
 
 
-typedef enum {
+typedef NS_ENUM(uint, HTTPRequestServiceMethod) {
 	HTTPRequestServiceMethodUnknown,
 	HTTPRequestServiceMethodPost,
 	HTTPRequestServiceMethodGet,
 	HTTPRequestServiceMethodPut,
 	HTTPRequestServiceMethodPostJson,
 	HTTPRequestServiceMethodPutJson
-} HTTPRequestServiceMethod;
+};
 
 
-typedef enum {
+typedef NS_ENUM(uint, HTTPRequestServiceReturnType) {
 	HTTPRequestServiceReturnTypeUnknown,
 	HTTPRequestServiceReturnTypeJson,
 	HTTPRequestServiceReturnTypeHtml,
-} HTTPRequestServiceReturnType;
+};
 
 
 @class HTTPRequestService;
@@ -39,10 +39,10 @@ typedef enum {
 
 @interface HTTPRequestService : NSObject
 
-@property (nonatomic, unsafe_unretained) id<HTTPRequestServiceDelegate> delegate;
-@property (unsafe_unretained, nonatomic, readonly) NSArray *json;
+@property (nonatomic, weak) id<HTTPRequestServiceDelegate> delegate;
+@property (weak, nonatomic, readonly) NSArray *json;
 @property (nonatomic, readonly) NSString *rawReturn;
-@property (unsafe_unretained, nonatomic, readonly) NSError *lastError;
+@property (weak, nonatomic, readonly) NSError *lastError;
 @property (nonatomic, readonly) BOOL didFail;
 @property (nonatomic, readonly) int httpCode;
 @property (nonatomic, readonly) HTTPRequestServiceReturnType returnType;

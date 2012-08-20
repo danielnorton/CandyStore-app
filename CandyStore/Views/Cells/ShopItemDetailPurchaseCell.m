@@ -8,29 +8,18 @@
 
 #import "ShopItemDetailPurchaseCell.h"
 
-@interface ShopItemDetailPurchaseCell()
-
-- (void)notifyDelegateDidPresentBuyButton;
-- (void)notifyDelegateDidChooseToBuy;
-
-@end
 
 @implementation ShopItemDetailPurchaseCell
 
-@synthesize buyButton;
-@synthesize titleLabel;
-@synthesize iconView;
-@synthesize product;
-@synthesize delegate;
 
 #pragma mark -
 #pragma mark StoreItemCell
 #pragma mark IBAction
 - (IBAction)didTapBuyButton:(id)sender {
 	
-	if (!buyButton.isSelected) {
+	if (!_buyButton.isSelected) {
 		
-		[buyButton setSelected:YES];
+		[_buyButton setSelected:YES];
 		[self notifyDelegateDidPresentBuyButton];
 		
 	} else {
@@ -46,25 +35,25 @@
 #pragma mark ShopItemDetailPurchaseCell
 - (void)resizeTitleFromBuyButton {
 	
-	CGRect t = titleLabel.frame;
-	CGRect b = buyButton.frame;
+	CGRect t = _titleLabel.frame;
+	CGRect b = _buyButton.frame;
 	float w = b.origin.x - t.origin.x - 10.0f;
 	CGRect newT = CGRectMake(t.origin.x, t.origin.y, w, t.size.height);
-	[titleLabel setFrame:newT];
+	[_titleLabel setFrame:newT];
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateDidPresentBuyButton {
 	
-	if (![delegate conformsToProtocol:@protocol(ShopItemDetailPurchaseCellDelegate)]) return;
-	[delegate shopItemDetailPurchaseCell:self didPresentBuyButtonForProduct:product];
+	if (![_delegate conformsToProtocol:@protocol(ShopItemDetailPurchaseCellDelegate)]) return;
+	[_delegate shopItemDetailPurchaseCell:self didPresentBuyButtonForProduct:_product];
 }
 
 - (void)notifyDelegateDidChooseToBuy {
 	
-	if (![delegate conformsToProtocol:@protocol(ShopItemDetailPurchaseCellDelegate)]) return;
-	[delegate shopItemDetailPurchaseCell:self didChooseToBuyProduct:product];
+	if (![_delegate conformsToProtocol:@protocol(ShopItemDetailPurchaseCellDelegate)]) return;
+	[_delegate shopItemDetailPurchaseCell:self didChooseToBuyProduct:_product];
 }
 
 @end

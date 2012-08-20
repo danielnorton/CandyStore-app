@@ -15,6 +15,6 @@
 <ImageCachingServiceDelegate, ShopItemDetailPurchaseCellDelegate, SKProductsRequestDelegate>
 
 @property (nonatomic, strong) IBOutlet ShopItemDetailPurchaseCell *purchaseCell;
-@property (nonatomic, unsafe_unretained) Product *product;
+@property (nonatomic, weak) Product *product;
 
 @end

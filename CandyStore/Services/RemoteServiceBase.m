@@ -11,23 +11,15 @@
 @implementation RemoteServiceBase
 
 
-@synthesize delegate;
-@synthesize replyText;
-@synthesize replyCode;
-@synthesize expectedReplyCode;
-@synthesize method;
-@synthesize returnType;
-
-
 #pragma mark -
 #pragma mark NSObject
 - (id)init {
 	
 	if (![super init]) return nil;
 	
-	expectedReplyCode = 200;
-	method = HTTPRequestServiceMethodPost;
-	returnType = HTTPRequestServiceReturnTypeJson;
+	_expectedReplyCode = 200;
+	_method = HTTPRequestServiceMethodPost;
+	_returnType = HTTPRequestServiceReturnTypeJson;
 	
 	return self;
 }
@@ -43,7 +35,7 @@
 		[self setReplyText:@"An error occurred while parsing the server response"];
 		[self notifyDelegateOfFailure:sender];
 		
-	} else if (replyCode != expectedReplyCode) {
+	} else if (_replyCode != _expectedReplyCode) {
 			
 		[self notifyDelegateOfFailure:sender];
 		
@@ -85,7 +77,7 @@
 	[service setDelegate:self];
 	[service setUserData:userData];
 	
-	[service beginRequest:path method:method params:params withReturnType:returnType];
+	[service beginRequest:path method:_method params:params withReturnType:_returnType];
 }
 
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
@@ -94,14 +86,14 @@
 
 - (void)notifyDelegateOfFailedAuthentication {
 	
-	if (![delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
-	[delegate remoteServiceDidFailAuthentication:self];
+	if (![_delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
+	[_delegate remoteServiceDidFailAuthentication:self];
 }
 
 - (void)notifyDelegateOfTimeout {
 	
-	if (![delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
-	[delegate remoteServiceDidTimeout:self];
+	if (![_delegate conformsToProtocol:@protocol(RemoteServiceDelegate)]) return;
+	[_delegate remoteServiceDidTimeout:self];
 }
 
 - (void)notifyDelegateOfFailure:(HTTPRequestService *)sender {

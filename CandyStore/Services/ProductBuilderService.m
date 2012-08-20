@@ -21,27 +21,9 @@
 #define kProductBuilderServiceLastUpdateInterval -120.0
 
 
-@interface ProductBuilderService()
-
-- (void)setContext:(NSManagedObjectContext *)context;
-- (void)setStatus:(ProductBuilderServiceStatus)status;
-- (void)beginAppStoreProducts:(NSSet *)identifiers;
-- (ProductKind)productKindFromServerKey:(NSString *)key;
-- (NSString *)priceFromProduct:(SKProduct *)product;
-- (void)linkOrphanedPurchases;
-- (void)buildFakeStoreKitProducts;
-- (void)notifyDelegateDidUpdate;
-- (void)notifyDelegateDidFail;
-
-@end
-
 @implementation ProductBuilderService
 
 NSNumberFormatter *currencyFormatter;
-
-@synthesize delegate;
-@synthesize status;
-@synthesize context;
 
 #pragma mark -
 #pragma mark NSObject
@@ -69,7 +51,7 @@ NSNumberFormatter *currencyFormatter;
 
 	[self setStatus:ProductBuilderServiceStatusBuilding];
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:_context];
 	[response.invalidProductIdentifiers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		NSString *invalidIdentifier = (NSString *)obj;
@@ -105,7 +87,7 @@ NSNumberFormatter *currencyFormatter;
 	
 	if (!save || error) {
 		
-		[context rollback];
+		[_context rollback];
 		[self notifyDelegateDidFail];
 		return;
 	}
@@ -135,7 +117,7 @@ NSNumberFormatter *currencyFormatter;
 	
 	[ImageCachingService purge];
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:_context];
 	[repo setAllProductsInactive];
 	
 	NSMutableSet *identifiers = [[NSMutableSet alloc] initWithCapacity:0];
@@ -189,7 +171,7 @@ NSNumberFormatter *currencyFormatter;
 	BOOL save = [repo save:&error];
 	if (!save || error) {
 		
-		[context rollback];
+		[_context rollback];
 		[self notifyDelegateDidFail];
 		
 	} else {
@@ -244,17 +226,17 @@ NSNumberFormatter *currencyFormatter;
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)setContext:(NSManagedObjectContext *)aContext {
 	
-	if ([context isEqual:aContext]) return;
-	context = aContext;
+	if ([_context isEqual:aContext]) return;
+	_context = aContext;
 }
 
 - (void)setStatus:(ProductBuilderServiceStatus)aStatus {
 	
-	status = aStatus;
-	NSLog(@"ProductBuilderService status: %d", status);
+	_status = aStatus;
+	NSLog(@"ProductBuilderService status: %d", _status);
 }
 
 - (void)beginAppStoreProducts:(NSSet *)identifiers {
@@ -294,8 +276,8 @@ NSNumberFormatter *currencyFormatter;
 	// Happens when transactions are dequeued by TransactionReceiptService before
 	// products are downloaded in this service.
 	
-	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
-	ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:context];
+	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:_context];
+	ProductRepository *productRepo = [[ProductRepository alloc] initWithContext:_context];
 	
 	NSArray *orphans = [purchaseRepo fetchOrphanedPurchases];
 	[orphans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -311,7 +293,7 @@ NSNumberFormatter *currencyFormatter;
 	
 	
 	FakeStoreKitBuilderService *service = [[FakeStoreKitBuilderService alloc] init];
-	[service buildFakesForContext:context];
+	[service buildFakesForContext:_context];
 	
 	[self notifyDelegateDidUpdate];
 }
@@ -320,16 +302,16 @@ NSNumberFormatter *currencyFormatter;
 
 	[self setStatus:ProductBuilderServiceStatusIdle];
 	
-	if (![delegate conformsToProtocol:@protocol(ProductBuilderServiceDelegate)]) return;
-	[delegate productBuilderServiceDidUpdate:self];
+	if (![_delegate conformsToProtocol:@protocol(ProductBuilderServiceDelegate)]) return;
+	[_delegate productBuilderServiceDidUpdate:self];
 }
 
 - (void)notifyDelegateDidFail {
 
 	[self setStatus:ProductBuilderServiceStatusFailed];
 	
-	if (![delegate conformsToProtocol:@protocol(ProductBuilderServiceDelegate)]) return;
-	[delegate productBuilderServiceDidFail:self];
+	if (![_delegate conformsToProtocol:@protocol(ProductBuilderServiceDelegate)]) return;
+	[_delegate productBuilderServiceDidFail:self];
 }
 
 

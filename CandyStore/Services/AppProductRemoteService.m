@@ -10,14 +10,6 @@
 #import "EndpointService.h"
 
 
-@interface AppProductRemoteService()
-
-- (void)notifyDelegateDidCompleteRetreiveProducts:(NSArray *)products;
-- (void)notifyDelegateDidFailRetreiveProducts;
-
-@end
-
-
 @implementation AppProductRemoteService
 
 
@@ -49,7 +41,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateDidCompleteRetreiveProducts:(NSArray *)products {
 
 	id<AppProductRemoteServiceDelegate> del = (id<AppProductRemoteServiceDelegate>)self.delegate;

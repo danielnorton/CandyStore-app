@@ -16,45 +16,32 @@
 @property (nonatomic, strong) id callerUserData;
 @property (nonatomic, readonly) int httpCode;
 
-- (NSString *)cachePath;
-- (NSString *)localImagePath:(NSString *)path;
-- (void)saveImage:(UIImage *)image fromPath:(NSString *)path;
-- (void)notifyDelegateOfImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData;
-
 @end
 
 
 @implementation ImageCachingService
 
 
-@synthesize delegate;
-@synthesize isResponseFromNetworkCache;
-@synthesize connection;
-@synthesize receivedData;
-@synthesize remotePath;
-@synthesize callerUserData;
-@synthesize httpCode;
-
 #pragma mark -
 #pragma mark NSURLConnection delegate
 - (NSCachedURLResponse *)connection:(NSURLConnection *)aConnection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
 	
-	isResponseFromNetworkCache = NO;
+	_isResponseFromNetworkCache = NO;
 	return cachedResponse;
 }
 
 - (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSURLResponse *)response {
 	
 	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-		httpCode = [(NSHTTPURLResponse *)response statusCode];
+		_httpCode = [(NSHTTPURLResponse *)response statusCode];
 	}
 
-	[receivedData setLength:0];
+	[_receivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)aConnection didReceiveData:(NSData *)data {
 	
-	[receivedData appendData:data];
+	[_receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)anError {
@@ -68,14 +55,14 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
 	
-	if (httpCode != 404) {
+	if (_httpCode != 404) {
 		
 		float scale = [[UIScreen mainScreen] scale];
-		UIImage *temp = [UIImage imageWithData:receivedData];
+		UIImage *temp = [UIImage imageWithData:_receivedData];
 		UIImage *image = [UIImage imageWithCGImage:[temp CGImage] scale:scale orientation:UIImageOrientationUp];
 		
-		[self saveImage:image fromPath:remotePath];
-		[self notifyDelegateOfImage:image fromPath:remotePath withUserData:callerUserData];
+		[self saveImage:image fromPath:_remotePath];
+		[self notifyDelegateOfImage:image fromPath:_remotePath withUserData:_callerUserData];
 	}
 	
 	[self setConnection:nil];
@@ -145,7 +132,7 @@
 	
 	[SelfReferenceService add:self];
 	
-	isResponseFromNetworkCache = YES;
+	_isResponseFromNetworkCache = YES;
 	
 	[self setRemotePath:path];
 	[self setCallerUserData:userData];
@@ -159,7 +146,7 @@
 		NSMutableData *data = [[NSMutableData alloc] init];
 		[self setReceivedData:data];
 		[self setConnection:aConnection];
-		[connection start];
+		[aConnection start];
 		
 	} else {
 		NSLog(@"Error connecting");
@@ -204,9 +191,9 @@
 
 - (void)notifyDelegateOfImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
 	
-	if (![delegate conformsToProtocol:@protocol(ImageCachingServiceDelegate)]) return;
+	if (![_delegate conformsToProtocol:@protocol(ImageCachingServiceDelegate)]) return;
 	
-	[delegate imageCachingService:self didLoadImage:image fromPath:path withUserData:userData];
+	[_delegate imageCachingService:self didLoadImage:image fromPath:path withUserData:userData];
 }
 
 

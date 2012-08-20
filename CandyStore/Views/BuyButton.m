@@ -100,7 +100,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)initializeBuyButton {
 		
 	UIImage *blue = [[UIImage imageNamed:@"blueBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:0.0f];

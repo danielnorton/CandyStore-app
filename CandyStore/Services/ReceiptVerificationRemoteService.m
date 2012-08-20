@@ -12,14 +12,6 @@
 #import "NSData+Base64.h"
 
 
-@interface ReceiptVerificationRemoteService()
-
-- (void)notifyDelegateDidReceiveCode:(ReceiptVerificationRemoteServiceCode)code forPurchase:(Purchase *)purchase;
-- (void)notifyDelegateDidFailVerificationForPurchase:(Purchase *)purchase;
-
-@end
-
-
 @implementation ReceiptVerificationRemoteService
 
 
@@ -75,7 +67,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateDidReceiveCode:(ReceiptVerificationRemoteServiceCode)code forPurchase:(Purchase *)purchase {
 	
 	id<ReceiptVerificationRemoteServiceDelegate> del = (id<ReceiptVerificationRemoteServiceDelegate>)self.delegate;

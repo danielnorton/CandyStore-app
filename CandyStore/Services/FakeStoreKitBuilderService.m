@@ -17,18 +17,12 @@
 
 @interface FakeStoreKitBuilderService()
 
-@property (nonatomic, unsafe_unretained) NSManagedObjectContext *context;
-
-- (void)buildFakeProductDescriptions;
-- (void)buildFakePurchases;
+@property (nonatomic, weak) NSManagedObjectContext *context;
 
 @end
 
 
 @implementation FakeStoreKitBuilderService
-
-
-@synthesize context;
 
 
 #pragma mark -
@@ -40,14 +34,14 @@
 	[self buildFakeProductDescriptions];
 	[self buildFakePurchases];
 	
-	[context save:nil];
+	[_context save:nil];
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)buildFakeProductDescriptions {
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:_context];
 	
 	
 	Product *product = (Product *)[repo itemForId:@"com.brimstead.candystore2.orangecandy"];
@@ -106,8 +100,8 @@
 
 - (void)buildFakePurchases {
 	
-	ProductRepository *repo = [[ProductRepository alloc] initWithContext:context];
-	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:_context];
+	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:_context];
 	
 	
 	NSString *transactionIdentifier = @"1000000004805264";

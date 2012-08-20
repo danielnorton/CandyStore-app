@@ -19,12 +19,8 @@
 
 @implementation AppProductRemoteServiceConnectivityTests
 
-@synthesize products;
 
 #pragma mark -
-#pragma mark NSObject
-
-
 #pragma mark RemoteServiceDelegate
 - (void)remoteServiceDidFailAuthentication:(RemoteServiceBase *)sender {
 	

@@ -14,8 +14,6 @@
 
 @implementation RefreshingTableViewController
 
-@synthesize fetchedResultsController;
-@synthesize state;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -47,14 +45,14 @@
 	
 	if ([self shouldShowRefreshingCell]) return 1;
 		
-	return fetchedResultsController.sections.count;
+	return _fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	if ([self shouldShowRefreshingCell]) return 1;
 	
-	id<NSFetchedResultsSectionInfo> info = (fetchedResultsController.sections)[section];
+	id<NSFetchedResultsSectionInfo> info = (_fetchedResultsController.sections)[section];
 	return [info numberOfObjects];
 }
 
@@ -115,8 +113,8 @@
 #pragma mark Public Messages
 - (BOOL)shouldShowRefreshingCell {
 	
-	return (state == RefreshingTableViewControllerStateRefresing)
-	|| (state == RefreshingTableViewControllerStateFailed);
+	return (_state == RefreshingTableViewControllerStateRefresing)
+	|| (_state == RefreshingTableViewControllerStateFailed);
 }
 
 - (UITableViewCell *)refreshingCellForTableView:(UITableView *)tableView {
@@ -158,7 +156,7 @@
 	[self setBarButtonsEnabled:NO withToolbar:nil];
 	
 	UITableView *tableView = self.tableView;
-	[fetchedResultsController setDelegate:nil];
+	[_fetchedResultsController setDelegate:nil];
 	
 	int sectionCount = [tableView numberOfSections];
 	
@@ -202,7 +200,7 @@
 	[self.view setUserInteractionEnabled:YES];
 	
 	NSError *error = nil;
-	[fetchedResultsController performFetch:&error];
+	[_fetchedResultsController performFetch:&error];
 	if (error) {
 		
 		[self setState:RefreshingTableViewControllerStateFailed];
@@ -214,8 +212,8 @@
 	
 	UITableView *tableView = self.tableView;
 	
-	NSArray *sections = [fetchedResultsController sections];
-	[fetchedResultsController setDelegate:self];
+	NSArray *sections = [_fetchedResultsController sections];
+	[_fetchedResultsController setDelegate:self];
 	[tableView beginUpdates];
 	
 	NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:sections.count];

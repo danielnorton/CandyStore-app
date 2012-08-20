@@ -20,36 +20,9 @@
 
 @property (nonatomic, strong) NSMutableData *receivedData;
 
-- (void)setJson:(NSArray *)value;
-- (void)setLastError:(NSError *)value;
-- (NSMutableURLRequest *)newRequestForPOST:(NSString *)relativeAPIPath params:(NSDictionary *)params;
-- (NSMutableURLRequest *)newRequestForGET:(NSString *)relativeAPIPath params:(NSDictionary *)params;
-- (NSMutableURLRequest *)newRequestForPUT:(NSString *)relativeAPIPath params:(NSDictionary *)params andAttachment:(AttachmentTransfer *)attachment;
-- (NSMutableURLRequest *)newRequestForJSON:(NSString *)path params:(NSDictionary *)params;
-- (NSArray *)topJson:(NSString *)raw;
-- (void)notifyDelegateDidFinish:(BOOL)success;
-- (void)notifyDelegateOfPercentage:(float)percentage;
-- (void)notifyDelegateOfTimeout;
-- (BOOL)askDelegateIfShouldContinue;
-- (void)finishBuildingResponse;
-- (BOOL)finishBuildingJsonResponse:(NSString *)rawPayload;
-
 @end
 
 @implementation HTTPRequestService
-
-
-@synthesize delegate;
-@synthesize json;
-@synthesize rawReturn;
-@synthesize lastError;
-@synthesize didFail;
-@synthesize httpCode;
-@synthesize returnType;
-@synthesize responseUrl;
-@synthesize userData;
-@synthesize receivedData;
-
 
 
 #pragma mark -
@@ -63,18 +36,18 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	
-	responseUrl = [response URL];
+	_responseUrl = [response URL];
 	 
 	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-		httpCode = [(NSHTTPURLResponse *)response statusCode];
+		_httpCode = [(NSHTTPURLResponse *)response statusCode];
 	}
 	
-	[receivedData setLength:0];
+	[_receivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	
-	[receivedData appendData:data];
+	[_receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)anError {
@@ -107,7 +80,7 @@
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
-	if (httpCode == 0 || httpCode == 200) {
+	if (_httpCode == 0 || _httpCode == 200) {
 		
 		[self finishBuildingResponse];
 		
@@ -144,8 +117,8 @@
 	[SelfReferenceService add:self];
 	
 	[self setLastError:nil];
-	didFail = NO;
-	returnType = expectedReturnType;
+	_didFail = NO;
+	_returnType = expectedReturnType;
 	
 	NSMutableURLRequest *request;
 	switch (method) {
@@ -201,15 +174,15 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)setJson:(NSArray *)value {
-	if ([json isEqualToArray:value]) return;
-	json = value;
+	if ([_json isEqualToArray:value]) return;
+	_json = value;
 }
 
 - (void)setLastError:(NSError *)value {
-	if ([lastError isEqual:value]) return;
-	lastError = value;
+	if ([_lastError isEqual:value]) return;
+	_lastError = value;
 }
 
 - (NSMutableURLRequest *)newRequestForPOST:(NSString *)path params:(NSDictionary *)params {
@@ -281,41 +254,41 @@
 
 - (void)notifyDelegateDidFinish:(BOOL)success {
 	
-	didFail = !success;
+	_didFail = !success;
 	
-	if (!delegate) return;
-	if (![delegate conformsToProtocol:@protocol(HTTPRequestServiceDelegate)]) return;
+	if (!_delegate) return;
+	if (![_delegate conformsToProtocol:@protocol(HTTPRequestServiceDelegate)]) return;
 	
-	[delegate httpRequestServiceDidFinish:self];
+	[_delegate httpRequestServiceDidFinish:self];
 }
 
 - (void)notifyDelegateOfTimeout {
 	
-	if (!delegate) return;
-	if (![delegate conformsToProtocol:@protocol(HTTPRequestServiceDelegate)]) return;
+	if (!_delegate) return;
+	if (![_delegate conformsToProtocol:@protocol(HTTPRequestServiceDelegate)]) return;
 	
-	[delegate httpRequestServiceDidTimeout:self];
+	[_delegate httpRequestServiceDidTimeout:self];
 }
 
 - (void)notifyDelegateOfPercentage:(float)percentage {
 	
-	if (!delegate) return;
-	if (![delegate respondsToSelector:@selector(httpRequestService:didSendPercentage:)]) return;
+	if (!_delegate) return;
+	if (![_delegate respondsToSelector:@selector(httpRequestService:didSendPercentage:)]) return;
 	
-	[delegate httpRequestService:self didSendPercentage:percentage];
+	[_delegate httpRequestService:self didSendPercentage:percentage];
 }
 
 - (BOOL)askDelegateIfShouldContinue {
 
-	if (!delegate) return YES;
-	if (![delegate respondsToSelector:@selector(httpRequestServiceShouldContinueAfterHttpCode:)]) return YES;
+	if (!_delegate) return YES;
+	if (![_delegate respondsToSelector:@selector(httpRequestServiceShouldContinueAfterHttpCode:)]) return YES;
 	
-	return [delegate httpRequestServiceShouldContinueAfterHttpCode:self];
+	return [_delegate httpRequestServiceShouldContinueAfterHttpCode:self];
 }
 
 - (void)finishBuildingResponse {
 
-	NSString *payloadAsString = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+	NSString *payloadAsString = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
 	
 //	const int max = 100;
 //	NSString *log; 
@@ -327,12 +300,12 @@
 //	NSLog(@"payload: %@", log);
 		
 	BOOL win = YES;
-	switch (returnType) {
+	switch (_returnType) {
 		case HTTPRequestServiceReturnTypeJson:
 			win = [self finishBuildingJsonResponse:payloadAsString];
 			break;
 		case HTTPRequestServiceReturnTypeHtml: {
-			rawReturn = payloadAsString;
+			_rawReturn = payloadAsString;
 			break;
 		}
 		default:

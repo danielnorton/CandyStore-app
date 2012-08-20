@@ -14,26 +14,16 @@
 #import "CandyShopService.h"
 
 
-@interface ExchangeAddCreditRemoteService()
-
-- (void)notifyDelegateSucceededAdding;
-- (void)notifyDelegateFailedAdding;
-
-@end
-
-
 @implementation ExchangeAddCreditRemoteService
 
-
-@synthesize code;
 
 #pragma mark -
 #pragma mark RemoteServiceBase
 - (void)buildModelFromSuccess:(HTTPRequestService *)sender {
 		
 	NSDictionary *response = (sender.json)[0];
-	code = [response[@"code"] integerValue];
-	if (code != ReceiptVerificationRemoteServiceCodeSuccess) {
+	_code = [response[@"code"] integerValue];
+	if (_code != ReceiptVerificationRemoteServiceCodeSuccess) {
 		
 		[self notifyDelegateFailedAdding];
 		return;
@@ -95,7 +85,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateSucceededAdding {
 	
 	id<ExchangeAddCreditRemoteServiceDelegate> del = (id<ExchangeAddCreditRemoteServiceDelegate>)self.delegate;

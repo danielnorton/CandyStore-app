@@ -12,7 +12,7 @@
 
 // these correspond to Apple's response codes
 // See In App Purchasing Programming Guide : Verifying an Auto-renewable Subscription Receipt
-typedef enum {
+typedef NS_ENUM(uint, ReceiptVerificationRemoteServiceCode) {
 	
 	ReceiptVerificationRemoteServiceCodeFailedInvalidLocalData = -2,
 	ReceiptVerificationRemoteServiceCodeFailedNonAutoRenewSubscription = -1,
@@ -24,7 +24,7 @@ typedef enum {
 	ReceiptVerificationRemoteServiceCodeReceiptServerUnavailable = 21005,
 	ReceiptVerificationRemoteServiceCodeSubscriptionExpired = 21006,
 	
-} ReceiptVerificationRemoteServiceCode;
+};
 
 
 @class ReceiptVerificationRemoteService;

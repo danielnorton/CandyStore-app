@@ -11,19 +11,7 @@
 #import "UIApplication+delegate.h"
 
 
-@interface AboutViewController()
-
-- (void)dismissMe;
-
-@end
-
-
 @implementation AboutViewController
-
-
-@synthesize appNameLabel;
-@synthesize versionLabel;
-@synthesize storeKitLabel;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -38,19 +26,19 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[appNameLabel setText:[UIApplication appName]];
+	[_appNameLabel setText:[UIApplication appName]];
 	
 	NSString *number = [UIApplication version];
 	NSString *word = NSLocalizedString(@"Version", @"Version");
 	NSString *message = [NSString stringWithFormat:@"%@: %@", word, number];
-	[versionLabel setText:message];
+	[_versionLabel setText:message];
 	
 	NSString *storeOn = NSLocalizedString(@"StoreKit is enabled", @"StoreKit is enabled");
 	NSString *storeOff = NSLocalizedString(@"StoreKit is not enabled", @"StoreKit is not enabled");
 	NSString *storeMessage = [CandyShopService isStoreKitEnabled]
 	? storeOn
 	: storeOff;
-	[storeKitLabel setText:storeMessage];
+	[_storeKitLabel setText:storeMessage];
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissMe)];
 	[self.view addGestureRecognizer:tap];
@@ -59,7 +47,7 @@
 
 #pragma mark -
 #pragma mark AboutViewController
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)dismissMe {
 
 	[self dismissViewControllerAnimated:YES completion:NULL];

@@ -11,7 +11,7 @@
 #import "ExchangeAvailableItemsRemoteService.h"
 
 
-typedef enum {
+typedef NS_ENUM(uint, ExchangeRefreshingServiceStatus) {
 	
 	ExchangeRefreshingServiceStatusUnknown,
 	ExchangeRefreshingServiceStatusCredits,
@@ -19,7 +19,7 @@ typedef enum {
 	ExchangeRefreshingServiceStatusFailed,
 	ExchangeRefreshingServiceStatusIdle
 	
-} ExchangeRefreshingServiceStatus;
+};
 
 @class ExchangeRefreshingService;
 
@@ -33,7 +33,7 @@ typedef enum {
 @interface ExchangeRefreshingService : NSObject
 <ExchangeCreditsRemoteServiceDelegate, ExchangeAvailableItemsRemoteServiceDelegate>
 
-@property (nonatomic, unsafe_unretained) id<ExchangeRefreshingServiceDelegate> delegate;
+@property (nonatomic, weak) id<ExchangeRefreshingServiceDelegate> delegate;
 @property (nonatomic, readonly) ExchangeRefreshingServiceStatus status;
 
 - (void)beginRefreshing;

@@ -26,8 +26,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *eatButton;
 @property (nonatomic, strong) IBOutlet UIButton *exchangeButton;
 
-@property (nonatomic, unsafe_unretained) Product *product;
+@property (nonatomic, weak) Product *product;
 
-@property (nonatomic, unsafe_unretained) id<JarListItemCellDelegate> delegate;
+@property (nonatomic, weak) id<JarListItemCellDelegate> delegate;
 
 @end

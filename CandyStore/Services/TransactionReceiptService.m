@@ -21,14 +21,6 @@ NSString * const TransactionReceiptServiceRestoreFailedNotification = @"Transact
 NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptServiceKeyTransaction";
 
 
-@interface TransactionReceiptService()
-
-- (void)notifyName:(NSString *)name forTransaction:(SKPaymentTransaction *)transaction;
-- (void)notifyName:(NSString *)name;
-
-@end
-
-
 @implementation TransactionReceiptService
 
 
@@ -115,7 +107,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyName:(NSString *)name forTransaction:(SKPaymentTransaction *)transaction {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

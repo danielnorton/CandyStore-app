@@ -18,9 +18,6 @@
 
 @implementation CandyShopViewController
 
-@synthesize shopListItemCell;
-@synthesize restoreButton;
-
 
 #pragma mark -
 #pragma mark UIViewController
@@ -34,7 +31,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
+	[_restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -55,7 +52,7 @@
 	if (!cell) {
 
 		[[NSBundle mainBundle] loadNibNamed:@"ShopListItemCell" owner:self options:nil];
-		cell = shopListItemCell;
+		cell = _shopListItemCell;
 		[self setShopListItemCell:nil];
 	}
 	
@@ -149,9 +146,9 @@
 - (void)completeRefreshing {
 	[super completeRefreshing];
 	
-	if (restoreButton.isEnabled) {
+	if (_restoreButton.isEnabled) {
 		
-		[restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
+		[_restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
 	}
 }
 

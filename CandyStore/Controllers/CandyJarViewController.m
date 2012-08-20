@@ -26,22 +26,11 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, assign) BOOL shouldEnableExchangeButtons;
 
-- (void)loadWelcomeView;
-- (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)reloadVisibleCells;
-- (void)showHideViews;
-- (void)fetch;
-
 @end
 
 
 @implementation CandyJarViewController
 
-@synthesize welcomeView;
-@synthesize tableView;
-@synthesize jarListItemCell;
-@synthesize fetchedResultsController;
-@synthesize shouldEnableExchangeButtons;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -55,11 +44,11 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
+	[_tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	
-	[welcomeView setAlpha:0.0f];
-	[welcomeView setOpaque:NO];
-	[tableView setAlpha:0.0f];
+	[_welcomeView setAlpha:0.0f];
+	[_welcomeView setOpaque:NO];
+	[_tableView setAlpha:0.0f];
 	
 	[self loadWelcomeView];
 	
@@ -87,12 +76,12 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	
-	return fetchedResultsController.sections.count;
+	return _fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	id<NSFetchedResultsSectionInfo> info = (fetchedResultsController.sections)[section];
+	id<NSFetchedResultsSectionInfo> info = (_fetchedResultsController.sections)[section];
 	return [info numberOfObjects];
 }
 
@@ -192,20 +181,20 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [_tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(JarListItemCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(JarListItemCell *)[_tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [_tableView insertRowsAtIndexPaths:@[newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -273,7 +262,7 @@
 - (void)resetShouldEnableExchangeButtons {
 	
 	BOOL newEnable = [CandyShopService canAddToExchangeCredits];
-	if (newEnable != shouldEnableExchangeButtons) {
+	if (newEnable != _shouldEnableExchangeButtons) {
 		
 		[self setShouldEnableExchangeButtons:newEnable];
 		[self.tableView reloadData];
@@ -290,13 +279,13 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)loadWelcomeView {
 	
 	NSBundle *main = [NSBundle mainBundle];
 	NSURL *url = [main URLForResource:@"index" withExtension:@"html" subdirectory:@"welcome"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	[welcomeView loadRequest:request];
+	[_welcomeView loadRequest:request];
 }
 
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -321,7 +310,7 @@
 		[cell.exchangeButton setTitle:NSLocalizedString(@"Add 1 to Exchange", @"Add 1 to Exchange") forState:UIControlStateNormal];
 	}
 	
-	[cell.exchangeButton setEnabled:shouldEnableExchangeButtons];
+	[cell.exchangeButton setEnabled:_shouldEnableExchangeButtons];
 
 	ImageCachingService *service = [[ImageCachingService alloc] init];
 	UIImage *image = [service cachedImageAtPath:product.imagePath];
@@ -347,7 +336,7 @@
 
 - (void)showHideViews {
 	
-	int count = [fetchedResultsController.managedObjectContext countForFetchRequest:fetchedResultsController.fetchRequest error:nil];
+	int count = [_fetchedResultsController.managedObjectContext countForFetchRequest:_fetchedResultsController.fetchRequest error:nil];
 	BOOL shouldShowWelcome = (count == 0);
 	float duration = 0.5f;
 	
@@ -361,8 +350,8 @@
 	
 	[UIView animateWithDuration:duration animations:^(void) {
 		
-		[welcomeView setAlpha:welcome];
-		[tableView setAlpha:table];
+		[_welcomeView setAlpha:welcome];
+		[_tableView setAlpha:table];
 	}];
 	
 	if (!shouldShowWelcome) {
@@ -374,11 +363,11 @@
 - (void)fetch {
 	
 	NSError *error = nil;
-	[fetchedResultsController setDelegate:self];
-	if (![fetchedResultsController performFetch:&error]) {
+	[_fetchedResultsController setDelegate:self];
+	if (![_fetchedResultsController performFetch:&error]) {
 		
 		// TODO: handle error
-		[fetchedResultsController setDelegate:nil];
+		[_fetchedResultsController setDelegate:nil];
 	}
 }
 

@@ -10,9 +10,5 @@
 
 @implementation AttachmentTransfer
 
-@synthesize localURL;
-@synthesize contentType;
-@synthesize parameterName;
-@synthesize destinationFileName;
 
 @end

@@ -10,13 +10,6 @@
 #import "CandyShopService.h"
 
 
-@interface PurchaseRepository()
-
-- (BOOL)simplePredicateCountTest:(NSPredicate *)pred;
-
-@end
-
-
 @implementation PurchaseRepository
 
 #pragma mark -
@@ -97,7 +90,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (BOOL)simplePredicateCountTest:(NSPredicate *)pred {
 	
 	NSFetchRequest *request = [self newFetchRequestWithSort:self.defaultSortDescriptors andPredicate:pred];

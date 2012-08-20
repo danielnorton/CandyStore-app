@@ -12,14 +12,6 @@
 #import "EndpointService.h"
 
 
-@interface ExchangeAvailableItemsRemoteService()
-
-- (void)notifyDelegateSucceededRefreshing;
-- (void)notifyDelegateFailedRefreshing;
-
-@end
-
-
 @implementation ExchangeAvailableItemsRemoteService
 
 
@@ -72,7 +64,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateSucceededRefreshing {
 	
 	id<ExchangeAvailableItemsRemoteServiceDelegate> del = (id<ExchangeAvailableItemsRemoteServiceDelegate>)self.delegate;

@@ -15,14 +15,6 @@
 #import "ReceiptVerificationRemoteService.h"
 
 
-@interface ExchangeUseCreditRemoteService()
-
-- (void)notifyDelegateSucceededUsing;
-- (void)notifyDelegateFailedUsing;
-
-@end
-
-
 @implementation ExchangeUseCreditRemoteService
 
 
@@ -117,7 +109,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateSucceededUsing {
 	
 	id<ExchangeUseCreditRemoteServiceDelegate> del = (id<ExchangeUseCreditRemoteServiceDelegate>)self.delegate;

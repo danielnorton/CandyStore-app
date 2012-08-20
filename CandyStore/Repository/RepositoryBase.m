@@ -10,11 +10,6 @@
 
 @implementation RepositoryBase
 
-@synthesize managedObjectContext;
-@synthesize typeName;
-@synthesize defaultSortDescriptors;
-@synthesize defaultSectionNameKeyPath;
-@synthesize keyName;
 
 #pragma mark -
 #pragma mark RepositoryBase
@@ -33,7 +28,7 @@
 
 - (NSManagedObject *)itemForId:(id)modelId {
 	
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@",keyName, modelId];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@",_keyName, modelId];
 	NSArray *items = [self fetchForSort:self.defaultSortDescriptors andPredicate:pred];
 	if (!items || items.count == 0) {
 		return nil;
@@ -47,7 +42,7 @@
 	NSManagedObject *object = [self itemForId:modelId];
 	if (!object) {
 		object = [self insertNewObject];
-		[object setValue:modelId forKey:keyName];
+		[object setValue:modelId forKey:_keyName];
 	}
 	
 	return object;
@@ -56,7 +51,7 @@
 - (NSArray *)fetchAll {
 	
 	NSError *error = nil;
-	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:defaultSortDescriptors andPredicate:nil];
+	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:_defaultSortDescriptors andPredicate:nil];
 	NSArray *all = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if (error != nil) {
 		return nil;
@@ -79,7 +74,7 @@
 
 - (NSFetchedResultsController *)controllerForAll {
 	
-	NSFetchedResultsController *fetch = [self controllerWithSort:defaultSortDescriptors andPredicate:nil];	
+	NSFetchedResultsController *fetch = [self controllerWithSort:_defaultSortDescriptors andPredicate:nil];
 	return fetch;
 }
 
@@ -89,8 +84,8 @@
 	
 	NSFetchedResultsController *fetchedResultsController =
 	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-										 managedObjectContext:managedObjectContext
-										   sectionNameKeyPath:defaultSectionNameKeyPath
+										 managedObjectContext:_managedObjectContext
+										   sectionNameKeyPath:_defaultSectionNameKeyPath
 													cacheName:nil];
 	return fetchedResultsController;
 }
@@ -99,7 +94,7 @@
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:nil andPredicate:nil];
 	
 	NSError *error = nil;
-	NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+	NSUInteger count = [_managedObjectContext countForFetchRequest:fetchRequest error:&error];
 	if (error != nil) {
 		return 0;
 	}	
@@ -110,8 +105,8 @@
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setReturnsDistinctResults:YES];
 	
-	NSEntityDescription *entity = [NSEntityDescription entityForName:typeName
-											  inManagedObjectContext:managedObjectContext];	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:_typeName
+											  inManagedObjectContext:_managedObjectContext];
 	
 	[fetchRequest setReturnsDistinctResults:YES];
 	[fetchRequest setEntity:entity];
@@ -122,15 +117,15 @@
 }
 
 - (void)undo {
-	[managedObjectContext undo];
+	[_managedObjectContext undo];
 }
 
 - (void)rollback {
-	[managedObjectContext rollback];
+	[_managedObjectContext rollback];
 }
 
 - (BOOL)save:(NSError **)error {
-	return [managedObjectContext save:error];
+	return [_managedObjectContext save:error];
 }
 
 - (BOOL)purge:(NSError **)error {
@@ -139,7 +134,7 @@
 	
 	NSError *internal = nil;
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:nil andPredicate:nil];
-	NSArray *all = [managedObjectContext executeFetchRequest:fetchRequest error:&internal];
+	NSArray *all = [_managedObjectContext executeFetchRequest:fetchRequest error:&internal];
 	if (internal) {
 		*error = internal;
 		return NO;
@@ -148,20 +143,20 @@
 	[all enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		NSManagedObject *one = (NSManagedObject *)obj;
-		[managedObjectContext deleteObject:one];
+		[_managedObjectContext deleteObject:one];
 	}];
 	
 	return [self save:error];
 }
 
 - (BOOL)deleteAndSave:(NSManagedObject *)object error:(NSError **)error {
-	[managedObjectContext deleteObject:object];
+	[_managedObjectContext deleteObject:object];
 	return [self save:error];
 }
 
 - (NSManagedObject *)insertNewObject {
-	return [NSEntityDescription insertNewObjectForEntityForName:typeName
-										 inManagedObjectContext:managedObjectContext];
+	return [NSEntityDescription insertNewObjectForEntityForName:_typeName
+										 inManagedObjectContext:_managedObjectContext];
 }
 
 - (void)setDefaultSortDescriptorsByKey:(NSString *)defaultSortKey {

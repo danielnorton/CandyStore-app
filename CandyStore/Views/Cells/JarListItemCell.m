@@ -9,23 +9,7 @@
 #import "JarListItemCell.h"
 
 
-@interface JarListItemCell()
-
-- (void)notifyDelegateDidEat;
-- (void)notifyDelegateDidExchange;
-
-@end
-
-
 @implementation JarListItemCell
-
-@synthesize titleLabel;
-@synthesize quantityLabel;
-@synthesize iconView;
-@synthesize eatButton;
-@synthesize exchangeButton;
-@synthesize product;
-@synthesize delegate;
 
 
 #pragma mark -
@@ -42,17 +26,17 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateDidEat {
 	
-	if (![delegate conformsToProtocol:@protocol(JarListItemCellDelegate)]) return;
-	[delegate jarListItemCell:self didEatOneProduct:self.product];
+	if (![_delegate conformsToProtocol:@protocol(JarListItemCellDelegate)]) return;
+	[_delegate jarListItemCell:self didEatOneProduct:self.product];
 }
 
 - (void)notifyDelegateDidExchange {
 	
-	if (![delegate conformsToProtocol:@protocol(JarListItemCellDelegate)]) return;
-	[delegate jarListItemCell:self didExchangeOneProduct:self.product];
+	if (![_delegate conformsToProtocol:@protocol(JarListItemCellDelegate)]) return;
+	[_delegate jarListItemCell:self didExchangeOneProduct:self.product];
 }
 
 @end

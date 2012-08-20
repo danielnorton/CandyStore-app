@@ -28,12 +28,6 @@
 
 @property (nonatomic, strong) NSIndexPath *activeBuyButtonIndexPath;
 
-- (BOOL)isLastRow:(int)row;
-- (void)reloadVisibleCells;
-- (void)configureDescriptionCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)configurePurchaseCell:(ShopItemDetailPurchaseCell *)purchaseCell atIndexPath:(NSIndexPath *)indexPath;
-- (void)setBuyButton:(BuyButton *)buyButton enabledForProduct:(Product *)product;
-
 @end
 
 
@@ -227,7 +221,7 @@
 
 #pragma mark -
 #pragma mark ShopItemDetailViewController
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (BOOL)isLastRow:(int)row {
 
 	int last = [self tableView:self.tableView numberOfRowsInSection:0] - 1;

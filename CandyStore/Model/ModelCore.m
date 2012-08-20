@@ -18,25 +18,19 @@
 @property (nonatomic, assign) BOOL useBundleFile;
 @property (nonatomic, strong) NSString *fileName;
 
-- (NSString *)applicationLibraryDirectory;
-
 @end
+
 
 @implementation ModelCore
 
-
-@synthesize managedObjectContext;
-@synthesize managedObjectModel;
-@synthesize persistentStoreCoordinator;
-@synthesize useBundleFile;
-@synthesize fileName;
+@synthesize managedObjectContext = _managedObjectContext;
 
 #pragma mark -
 #pragma mark NSObject
 - (id)init {
 	if (![super init]) return nil;
 	
-	useBundleFile = kUseBundleFile;
+	_useBundleFile = kUseBundleFile;
 	
 	NSString *name = [[UIApplication appName] stringByReplacingOccurrencesOfString:@" " withString:[NSString string]];
 	[self setFileName:name];
@@ -47,48 +41,48 @@
 #pragma mark ModelCore
 - (NSManagedObjectContext *) managedObjectContext {
     
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator: coordinator];
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator: coordinator];
     }
 	
-	if (!useBundleFile) {
-		[managedObjectContext save:nil];
+	if (!_useBundleFile) {
+		[_managedObjectContext save:nil];
 	}
 	
-    return managedObjectContext;
+    return _managedObjectContext;
 }
 
-#pragma mark Private Extensions
+#pragma mark Private Extension
 - (NSManagedObjectModel *)managedObjectModel {
     
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
     }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];    
-    return managedObjectModel;
+    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    return _managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
     }
     
 	NSString *type = @"sqlite";
-	NSString *fileNameWithExtension = [NSString stringWithFormat:@"%@.%@", fileName, type];
+	NSString *fileNameWithExtension = [NSString stringWithFormat:@"%@.%@", _fileName, type];
 	NSString *storePath = [[self applicationLibraryDirectory] stringByAppendingPathComponent: fileNameWithExtension];
 	NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
 	
 	NSLog(@"path: %@", storePath);
-	if (useBundleFile) {	
+	if (_useBundleFile) {
 		// Set up the store, provide a pre-populated default store.
-		NSString *bundleStorePath = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
+		NSString *bundleStorePath = [[NSBundle mainBundle] pathForResource:_fileName ofType:type];
 		NSFileManager *fileManager = [[NSFileManager alloc] init];
 		if (![fileManager fileExistsAtPath:storePath]) {
 			if (bundleStorePath) {
@@ -100,15 +94,15 @@
 	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
 							 NSInferMappingModelAutomaticallyOption: @YES};
 	
-	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
 	NSError *error;
-	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
 	
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 - (NSString *)applicationLibraryDirectory {

@@ -23,16 +23,11 @@
 @property (nonatomic, strong) NSIndexPath *waitingIndexPath;
 @property (nonatomic, readonly) BOOL hasCredits;
 
-- (void)finishCredit;
-
 @end
 
 
 @implementation CandyExchangeViewController
 
-@synthesize exchangeListItemCell;
-
-@synthesize waitingIndexPath;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -61,7 +56,7 @@
 	if (!cell) {
 		
 		[[NSBundle mainBundle] loadNibNamed:@"ExchangeListItemCell" owner:self options:nil];
-		cell = exchangeListItemCell;
+		cell = _exchangeListItemCell;
 		[self setExchangeListItemCell:nil];
 	}
 	
@@ -210,7 +205,7 @@
 
 #pragma mark -
 #pragma mark CandyExchangeViewController
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (BOOL)hasCredits {
 	
 	ExchangeItemRepository *repo = [[ExchangeItemRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
@@ -220,7 +215,7 @@
 
 - (void)finishCredit {
 	
-	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:waitingIndexPath];
+	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_waitingIndexPath];
 	[cell clearAccessoryViewWith:UITableViewCellAccessoryNone];
 	[self setWaitingIndexPath:nil];	
 	[self.navigationController.view setUserInteractionEnabled:YES];

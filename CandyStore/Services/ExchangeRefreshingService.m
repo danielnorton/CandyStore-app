@@ -10,20 +10,7 @@
 #import "NSObject+remoteErrorToApp.h"
 
 
-@interface ExchangeRefreshingService()
-
-- (void)setStatus:(ExchangeRefreshingServiceStatus)status;
-- (void)beginRefreshingAvailableItems;
-- (void)notifyDelegateDidRefresh;
-- (void)notifyDelegateFailedRefresh;
-
-@end
-
 @implementation ExchangeRefreshingService
-
-
-@synthesize delegate;
-@synthesize status;
 
 
 #pragma mark -
@@ -75,11 +62,11 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)setStatus:(ExchangeRefreshingServiceStatus)aStatus {
 	
-	status = aStatus;
-	NSLog(@"ExchangeRefreshingService status: %d", status);
+	_status = aStatus;
+	NSLog(@"ExchangeRefreshingService status: %d", aStatus);
 }
 
 - (void)beginRefreshingAvailableItems {
@@ -95,16 +82,16 @@
 	
 	[self setStatus:ExchangeRefreshingServiceStatusIdle];
 	
-	if (![delegate conformsToProtocol:@protocol(ExchangeRefreshingServiceDelegate)]) return;
-	[delegate exchangeRefreshingServiceDidRefresh:self];
+	if (![_delegate conformsToProtocol:@protocol(ExchangeRefreshingServiceDelegate)]) return;
+	[_delegate exchangeRefreshingServiceDidRefresh:self];
 }
 
 - (void)notifyDelegateFailedRefresh {
 	
 	[self setStatus:ExchangeRefreshingServiceStatusFailed];
 	
-	if (![delegate conformsToProtocol:@protocol(ExchangeRefreshingServiceDelegate)]) return;
-	[delegate exchangeRefreshingServiceFailedRefresh:self];
+	if (![_delegate conformsToProtocol:@protocol(ExchangeRefreshingServiceDelegate)]) return;
+	[_delegate exchangeRefreshingServiceFailedRefresh:self];
 }
 
 

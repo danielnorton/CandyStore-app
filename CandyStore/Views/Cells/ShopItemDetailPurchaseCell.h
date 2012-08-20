@@ -25,8 +25,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *iconView;
 
-@property (nonatomic, unsafe_unretained) Product *product;
-@property (nonatomic, unsafe_unretained) id<ShopItemDetailPurchaseCellDelegate> delegate;
+@property (nonatomic, weak) Product *product;
+@property (nonatomic, weak) id<ShopItemDetailPurchaseCellDelegate> delegate;
 
 - (void)resizeTitleFromBuyButton;
 

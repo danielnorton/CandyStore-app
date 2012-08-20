@@ -10,9 +10,6 @@
 
 @implementation ExchangeListItemCell
 
-@synthesize titleLabel;
-@synthesize quantityLabel;
-@synthesize iconView;
 
 #pragma mark -
 #pragma mark ExchangeListItemCell

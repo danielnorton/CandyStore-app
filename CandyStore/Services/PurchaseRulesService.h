@@ -11,7 +11,7 @@
 extern NSString * const PurchaseRuleDescriptionTooManyCandiesForSmallJar;
 NSString * const PurchaseRuleDescriptionPurchaseRulesPurchasesDisabled;
 
-typedef enum {
+typedef NS_ENUM(uint, PurchaseRules) {
 	
 	PurchaseRulesOK,
 	PurchaseRulesTooManyCandiesForSmallJar,
@@ -19,7 +19,7 @@ typedef enum {
 	PurchaseRulesAlreadyBoughtBigJar,
 	PurchaseRulesPurchasesDisabled
 	
-} PurchaseRules;
+};
 
 @interface PurchaseRulesService : NSObject
 

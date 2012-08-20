@@ -6,14 +6,14 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-typedef enum {
+typedef NS_ENUM(uint, RefreshingTableViewControllerState) {
 	
 	RefreshingTableViewControllerStateUnknown,
 	RefreshingTableViewControllerStateIdle,
 	RefreshingTableViewControllerStateRefresing,
 	RefreshingTableViewControllerStateFailed
 	
-} RefreshingTableViewControllerState;
+};
 
 @interface RefreshingTableViewController : UITableViewController
 <NSFetchedResultsControllerDelegate>

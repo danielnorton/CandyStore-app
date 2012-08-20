@@ -16,20 +16,10 @@
 
 @property (nonatomic, assign) int verifications;
 
-- (void)deleteFailedPurchase:(Purchase *)purchase;
-- (void)markPurchase:(Purchase *)purchase asExpired:(BOOL)expired;
-- (void)decrementVerificationCount;
-- (void)notifyDelegateDidDeletePurchase;
-- (void)notifyDelegateDidComplete;
-
 @end
 
 
 @implementation ReceiptVerificationLocalService
-
-
-@synthesize delegate;
-@synthesize verifications;
 
 
 #pragma mark -
@@ -88,7 +78,7 @@
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
 	NSArray *all = [repo fetchAll];
-	verifications = all.count;
+	_verifications = all.count;
 
 	if (all.count == 0) {
 
@@ -106,7 +96,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)deleteFailedPurchase:(Purchase *)purchase {
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:purchase.managedObjectContext];
@@ -124,8 +114,8 @@
 
 - (void)decrementVerificationCount {
 	
-	verifications--;
-	if (verifications <= 0) {
+	_verifications--;
+	if (_verifications <= 0) {
 		
 		[self notifyDelegateDidComplete];
 	}
@@ -133,14 +123,14 @@
 
 - (void)notifyDelegateDidDeletePurchase {
 	
-	if (![delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
-	[delegate receiptVerificationLocalServiceDidDeletePurchase:self];
+	if (![_delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
+	[_delegate receiptVerificationLocalServiceDidDeletePurchase:self];
 }
 
 - (void)notifyDelegateDidComplete {
 	
-	if (![delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
-	[delegate receiptVerificationLocalServiceDidComplete:self];
+	if (![_delegate conformsToProtocol:@protocol(ReceiptVerificationLocalServiceDelegate)]) return;
+	[_delegate receiptVerificationLocalServiceDidComplete:self];
 }
 
 

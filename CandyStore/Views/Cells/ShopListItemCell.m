@@ -10,11 +10,6 @@
 
 @implementation ShopListItemCell
 
-@synthesize titleLabel;
-@synthesize priceLabel;
-@synthesize iconView;
-
-
 #pragma mark -
 #pragma mark ShopListItemCell
 + (float)defaultHeight {

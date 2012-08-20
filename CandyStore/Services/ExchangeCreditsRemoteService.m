@@ -13,14 +13,6 @@
 #import "CandyShopService.h"
 
 
-@interface ExchangeCreditsRemoteService()
-
-- (void)notifyDelegateSucceededRefreshing;
-- (void)notifyDelegateFailedRefreshing;
-
-@end
-
-
 @implementation ExchangeCreditsRemoteService
 
 
@@ -83,7 +75,7 @@
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)notifyDelegateSucceededRefreshing {
 	
 	id<ExchangeCreditsRemoteServiceDelegate> del = (id<ExchangeCreditsRemoteServiceDelegate>)self.delegate;

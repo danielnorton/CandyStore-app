@@ -10,7 +10,7 @@
 #import "AppProductRemoteService.h"
 
 
-typedef enum {
+typedef NS_ENUM(uint, ProductBuilderServiceStatus) {
 
 	ProductBuilderServiceStatusUnknown,
 	ProductBuilderServiceStatusRetreivingFromAppService,
@@ -19,7 +19,7 @@ typedef enum {
 	ProductBuilderServiceStatusFailed,
 	ProductBuilderServiceStatusIdle
 	
-} ProductBuilderServiceStatus;
+};
 
 @class ProductBuilderService;
 
@@ -33,9 +33,9 @@ typedef enum {
 
 @interface ProductBuilderService : NSObject <SKProductsRequestDelegate, AppProductRemoteServiceDelegate>
 
-@property (nonatomic, unsafe_unretained) id<ProductBuilderServiceDelegate> delegate;
+@property (nonatomic, weak) id<ProductBuilderServiceDelegate> delegate;
 @property (nonatomic, readonly) ProductBuilderServiceStatus status;
-@property (unsafe_unretained, nonatomic, readonly) NSManagedObjectContext *context;
+@property (weak, nonatomic, readonly) NSManagedObjectContext *context;
 
 + (BOOL)hasSignificantTimePassedSinceLastUpdate;
 - (void)beginBuildingProducts:(NSManagedObjectContext *)context;

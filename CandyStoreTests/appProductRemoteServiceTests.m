@@ -19,7 +19,6 @@
 
 @implementation AppProductRemoteServiceTests
 
-@synthesize products;
 
 #pragma mark -
 #pragma mark RemoteServiceDelegate
@@ -59,13 +58,13 @@
 	
 	[self waitForCompletion:1.0f doneTest:^BOOL(void) {
 		
-		return (products != nil);
+		return (_products != nil);
 	}];
 }
 
 - (void)testShouldGetProducts {
 	
-	STAssertNotNil(products, @"Didn't retreive products.");
+	STAssertNotNil(_products, @"Didn't retreive products.");
 }
 
 

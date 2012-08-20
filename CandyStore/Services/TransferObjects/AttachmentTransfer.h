@@ -6,13 +6,7 @@
 //
 
 
-@interface AttachmentTransfer : NSObject {
-
-	NSURL *localURL;
-	NSString *contentType;
-	NSString *parameterName;
-	NSString *destinationFileName;
-}
+@interface AttachmentTransfer : NSObject
 
 @property (nonatomic, strong) NSURL *localURL;
 @property (nonatomic, strong) NSString *contentType;

@@ -28,26 +28,10 @@
 @property (nonatomic, strong) ExchangeRefreshingService *exchangeRefreshingService;
 @property (nonatomic, strong) ReceiptVerificationLocalService *receiptVerificationLocalService;
 
-- (void)verifyPurchases;
-- (BOOL)canRestoreOrRefresh;
-- (void)alertUserHasNotPurchasedExchange;
-- (void)updateJarTabImage;
-
 @end
 
 
 @implementation CandyStoreAppDelegate
-
-@synthesize window;
-@synthesize tabBarController;
-@synthesize candyJarViewController;
-@synthesize candyShopViewController;
-@synthesize candyExchangeViewController;
-@synthesize myJarTabBarItem;
-@synthesize productBuilderService;
-@synthesize transactionReceiptService;
-@synthesize exchangeRefreshingService;
-@synthesize receiptVerificationLocalService;
 
 #pragma mark -
 #pragma mark UIApplicationDelegate
@@ -55,7 +39,7 @@
 	
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
-		[candyJarViewController resetShouldEnableExchangeButtons];
+		[_candyJarViewController resetShouldEnableExchangeButtons];
 		[self updateProducts];
 	};
 	
@@ -75,7 +59,7 @@
 						 queue:nil
 					usingBlock:^(NSNotification *notification) {
 						
-						[candyJarViewController resetShouldEnableExchangeButtons];
+						[_candyJarViewController resetShouldEnableExchangeButtons];
 						[self updateJarTabImage];
 					}];
 	
@@ -84,8 +68,8 @@
 	[self setTransactionReceiptService:transService];
 	[transService beginObserving];
 	
-	[window setRootViewController:tabBarController];
-	[window makeKeyAndVisible];
+	[_window setRootViewController:_tabBarController];
+	[_window makeKeyAndVisible];
     return YES;
 }
 
@@ -126,8 +110,8 @@
 
 - (void)productBuilderServiceDidFail:(ProductBuilderService *)sender {
 	
-	[candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
-	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
+	[_candyShopViewController presentDataError:NSLocalizedString(@"Candy Store Is Unavailable", @"Candy Store Is Unavailable")];
+	[_candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
 }
 
 
@@ -145,26 +129,26 @@
 #pragma mark ExchangeRefreshingServiceDelegate
 - (void)exchangeRefreshingServiceDidRefresh:(ExchangeRefreshingService *)sender {
 	
-	[candyExchangeViewController completeRefreshing];
+	[_candyExchangeViewController completeRefreshing];
 }
 
 - (void)exchangeRefreshingServiceFailedRefresh:(ExchangeRefreshingService *)sender {
 	
-	[candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
+	[_candyExchangeViewController presentDataError:NSLocalizedString(@"Candy Exchange Is Unavailable", @"Candy Exchange Is Unavailable")];
 }
 
 
 #pragma mark ReceiptVerificationLocalServiceDelegate
 - (void)receiptVerificationLocalServiceDidDeletePurchase:(ReceiptVerificationLocalService *)sender {
 	
-	[candyShopViewController completeRefreshing];
+	[_candyShopViewController completeRefreshing];
 	[self updateJarTabImage];
 }
 
 - (void)receiptVerificationLocalServiceDidComplete:(ReceiptVerificationLocalService *)sender {
 	
-	[candyShopViewController completeRefreshing];
-	[candyJarViewController resetShouldEnableExchangeButtons];
+	[_candyShopViewController completeRefreshing];
+	[_candyJarViewController resetShouldEnableExchangeButtons];
 	[self updateExchange];
 }
 
@@ -179,10 +163,10 @@
 	
 	if (![self canRestoreOrRefresh]) return;
 	
-	[candyShopViewController beginRefreshing];
-	[candyExchangeViewController beginRefreshing];
+	[_candyShopViewController beginRefreshing];
+	[_candyExchangeViewController beginRefreshing];
 	
-	[productBuilderService setDelegate:nil];
+	[_productBuilderService setDelegate:nil];
 	ProductBuilderService *service = [[ProductBuilderService alloc] init];
 	[service setDelegate:self];
 	[self setProductBuilderService:service];
@@ -193,9 +177,9 @@
 	
 	if (![self canRestoreOrRefresh]) return;
 	
-	[candyExchangeViewController beginRefreshing];
+	[_candyExchangeViewController beginRefreshing];
 	
-	[exchangeRefreshingService setDelegate:nil];
+	[_exchangeRefreshingService setDelegate:nil];
 	ExchangeRefreshingService *service = [[ExchangeRefreshingService alloc] init];
 	[service setDelegate:self];
 	[self setExchangeRefreshingService:service];
@@ -220,16 +204,16 @@
 	
 	if (![self canRestoreOrRefresh]) return;
 	
-	[candyShopViewController beginRefreshing];
-	[candyExchangeViewController beginRefreshing];
-	[transactionReceiptService restoreTransactions];
+	[_candyShopViewController beginRefreshing];
+	[_candyExchangeViewController beginRefreshing];
+	[_transactionReceiptService restoreTransactions];
 }
 
 
-#pragma mark Private Extension
+#pragma mark Private Messages
 - (void)verifyPurchases {
 
-	[receiptVerificationLocalService setDelegate:nil];
+	[_receiptVerificationLocalService setDelegate:nil];
 	ReceiptVerificationLocalService *service = [[ReceiptVerificationLocalService alloc] init];
 	[service setDelegate:self];
 	[self setReceiptVerificationLocalService:service];
@@ -238,13 +222,13 @@
 
 - (BOOL)canRestoreOrRefresh {
 
-	BOOL canRefreshProducts = (productBuilderService.status == ProductBuilderServiceStatusUnknown)
-	|| (productBuilderService.status == ProductBuilderServiceStatusIdle)
-	|| (productBuilderService.status == ProductBuilderServiceStatusFailed);
+	BOOL canRefreshProducts = (_productBuilderService.status == ProductBuilderServiceStatusUnknown)
+	|| (_productBuilderService.status == ProductBuilderServiceStatusIdle)
+	|| (_productBuilderService.status == ProductBuilderServiceStatusFailed);
 
-	BOOL canRefreshExchange = (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusUnknown)
-	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusIdle)
-	|| (exchangeRefreshingService.status == ExchangeRefreshingServiceStatusFailed);
+	BOOL canRefreshExchange = (_exchangeRefreshingService.status == ExchangeRefreshingServiceStatusUnknown)
+	|| (_exchangeRefreshingService.status == ExchangeRefreshingServiceStatusIdle)
+	|| (_exchangeRefreshingService.status == ExchangeRefreshingServiceStatusFailed);
 
 	return canRefreshProducts && canRefreshExchange;
 }
@@ -259,7 +243,7 @@
 	}
 	
 	service.counter++;
-	[tabBarController popup:service.message];
+	[_tabBarController popup:service.message];
 }
 
 - (void)updateJarTabImage {
@@ -268,7 +252,7 @@
 	? [UIImage imageNamed:@"bigJarTab"]
 	: [UIImage imageNamed:@"smallJarTab"];
 	
-	[myJarTabBarItem setImage:icon];
+	[_myJarTabBarItem setImage:icon];
 }
 
 

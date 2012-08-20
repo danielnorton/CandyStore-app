@@ -22,7 +22,7 @@
 @interface ReceiptVerificationLocalService : NSObject
 <ReceiptVerificationRemoteServiceDelegate>
 
-@property (nonatomic, unsafe_unretained) id<ReceiptVerificationLocalServiceDelegate> delegate;
+@property (nonatomic, weak) id<ReceiptVerificationLocalServiceDelegate> delegate;
 
 - (void)verifyAllPurchases;
 
