@@ -76,8 +76,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	return YES;
+- (NSUInteger)supportedInterfaceOrientations {
+	
+	return UIInterfaceOrientationMaskAll;
 }
 
 

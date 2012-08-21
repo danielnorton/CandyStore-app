@@ -31,15 +31,9 @@
 
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
+- (NSUInteger)supportedInterfaceOrientations {
 	
-	[self setExchangeListItemCell:nil];
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	return YES;
+	return UIInterfaceOrientationMaskAll;
 }
 
 

@@ -17,12 +17,6 @@
 
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setFetchedResultsController:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	

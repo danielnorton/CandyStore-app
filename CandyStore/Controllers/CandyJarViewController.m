@@ -34,13 +34,6 @@
 
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setWelcomeView:nil];
-	[self setTableView:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -68,8 +61,9 @@
 	[self resetShouldEnableExchangeButtons];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	return YES;
+- (NSUInteger)supportedInterfaceOrientations {
+	
+	return UIInterfaceOrientationMaskAll;
 }
 
 

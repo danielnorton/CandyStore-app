@@ -15,14 +15,6 @@
 
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setAppNameLabel:nil];
-	[self setVersionLabel:nil];
-	[self setStoreKitLabel:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
