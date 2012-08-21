@@ -21,21 +21,15 @@
 
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setShopListItemCell:nil];
-	[self setRestoreButton:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	[_restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	return YES;
+- (NSUInteger)supportedInterfaceOrientations {
+
+	return UIInterfaceOrientationMaskAll;
 }
 
 

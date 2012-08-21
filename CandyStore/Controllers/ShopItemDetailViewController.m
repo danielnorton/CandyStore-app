@@ -6,7 +6,6 @@
 //  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
-#import <StoreKit/StoreKit.h>
 #import "ShopItemDetailViewController.h"
 #import "Style.h"
 #import "TransactionReceiptService.h"
@@ -34,24 +33,13 @@
 @implementation ShopItemDetailViewController
 
 
-@synthesize purchaseCell;
-@synthesize product;
-@synthesize activeBuyButtonIndexPath;
-
 #pragma mark -
 #pragma mark UIViewController
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[self setPurchaseCell:nil];
-	[self setActiveBuyButtonIndexPath:nil];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
-	[self setTitle:product.title];
+	[self setTitle:_product.title];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -97,9 +85,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 	int answer = 2;
-	if (product.subscriptions.count > 0) {
+	if (_product.subscriptions.count > 0) {
 		
-		answer += product.subscriptions.count;
+		answer += _product.subscriptions.count;
 	}
 	return answer;
 }
@@ -126,7 +114,7 @@
     if (cell == nil) {
 
 		[[NSBundle mainBundle] loadNibNamed:@"ShopItemDetailPurchaseCell" owner:self options:nil];
-        cell = purchaseCell;
+        cell = _purchaseCell;
 		[self setPurchaseCell:nil];
     }
 	
@@ -143,7 +131,7 @@
 		
 	} else if ([self isLastRow:indexPath.row]) {
 	
-		CGSize size = [product.productDescription sizeWithFont:[UIFont productDescriptionFont]
+		CGSize size = [_product.productDescription sizeWithFont:[UIFont productDescriptionFont]
 											 constrainedToSize:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)
 												 lineBreakMode:NSLineBreakByWordWrapping];
 		
@@ -160,9 +148,9 @@
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-	if (!activeBuyButtonIndexPath) return;
+	if (!_activeBuyButtonIndexPath) return;
 	
-	ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView cellForRowAtIndexPath:activeBuyButtonIndexPath];
+	ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
 	[cell.buyButton setSelected:NO];
 	[cell resizeTitleFromBuyButton];
 	[self setActiveBuyButtonIndexPath:nil];
@@ -249,7 +237,7 @@
 
 - (void)configureDescriptionCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
-	[cell.textLabel setText:product.productDescription];
+	[cell.textLabel setText:_product.productDescription];
 	[cell.textLabel setFont:[UIFont productDescriptionFont]];
 	[cell.textLabel setNumberOfLines:0];
 	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -268,15 +256,15 @@
 		[cell.titleLabel setFont:[UIFont modelTitleFont]];
 		[cell.titleLabel setShadowColor:[UIColor modelTitleShadowColor]];
 
-		[cell setProduct:product];
+		[cell setProduct:_product];
 		
 		[cell.iconView setHidden:NO];
 		ImageCachingService *service = [[ImageCachingService alloc] init];
-		UIImage *image = [service cachedImageAtPath:product.imagePath];
+		UIImage *image = [service cachedImageAtPath:_product.imagePath];
 		if (!image) {
 			
 			[service setDelegate:self];
-			[service beginLoadingImageAtPath:product.imagePath withUserData:indexPath];
+			[service beginLoadingImageAtPath:_product.imagePath withUserData:indexPath];
 			
 		} else {
 			
@@ -284,18 +272,18 @@
 		}
 		
 
-		[cell.titleLabel setText:product.title];
+		[cell.titleLabel setText:_product.title];
 		
-		if (product.subscriptions.count > 0) {
+		if (_product.subscriptions.count > 0) {
 			
 			[cell.buyButton setHidden:YES];
 			
 		} else {
 			
 			[cell.buyButton setHidden:NO];
-			[cell.buyButton setTitle:product.localizedPrice forState:UIControlStateNormal];
+			[cell.buyButton setTitle:_product.localizedPrice forState:UIControlStateNormal];
 			
-			[self setBuyButton:cell.buyButton enabledForProduct:product];
+			[self setBuyButton:cell.buyButton enabledForProduct:_product];
 		}
 		
 	} else {
@@ -303,7 +291,7 @@
 		titleLabelFrame.origin.x = kTitleLabelSubscriptionX;
 		
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"index == %d", indexPath.row - 1];
-		Product *subscription = (Product *)[[product.subscriptions filteredSetUsingPredicate:pred] anyObject];
+		Product *subscription = (Product *)[[_product.subscriptions filteredSetUsingPredicate:pred] anyObject];
 		
 		[cell setProduct:subscription];
 		[cell.titleLabel setText:subscription.productDescription];

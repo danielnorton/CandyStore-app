@@ -144,20 +144,21 @@ NSNumberFormatter *currencyFormatter;
 		[product setIsActive:YES];
 		[product setInternalKey:item[@"key"]];
 		
-		NSDictionary *durations = (NSDictionary *)item[@"durations"];
+		NSArray *durations = (NSArray *)item[@"durations"];
 		if (durations) {
 			
-			__block int subscriptionIndex = 0;
-			[durations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+			[durations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 				
-				[identifiers addObject:key];
+				NSDictionary *item = (NSDictionary *)obj;
+				NSNumber *index = (NSNumber *)item[@"index"];
+				NSString *identifier = (NSString *)item[@"identifier"];
+				NSString *description = (NSString *)item[@"description"];
 				
-				Product *subscription = [repo addOrUpdateSubscriptionFromIdentifer:key toProduct:product];
+				Product *subscription = [repo addOrUpdateSubscriptionFromIdentifer:identifier toProduct:product];
 				[subscription setImagePath:imagePath];
 				[subscription setKind:kind];
-				[subscription setProductDescription:obj];
-				[subscription setIndex:@(subscriptionIndex)];
-				subscriptionIndex++;
+				[subscription setProductDescription:description];
+				[subscription setIndex:index];
 				[subscription setIsActive:YES];
 			}];
 			
