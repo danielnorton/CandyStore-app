@@ -130,7 +130,7 @@
 	
 	[cell.quantityLabel setText:[exchangeItem.quantityAvailable stringValue]];
 	
-	if ([product.parent.internalKey isEqualToString:InternalKeyExchange]) {
+	if ([product.internalKey isEqualToString:InternalKeyExchange]) {
 		
 		[cell.titleLabel setText:NSLocalizedString(@"Available Credits", @"Available Credits")];
 		
