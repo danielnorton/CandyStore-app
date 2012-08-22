@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">11A511</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
-		<string key="IBDocument.AppKitVersion">1138</string>
-		<string key="IBDocument.HIToolboxVersion">566.00</string>
+		<int key="IBDocument.SystemTarget">1536</int>
+		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2829</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">534</string>
+			<string key="NS.object.0">1914</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBUITableViewCell</string>
+			<string>IBProxyObject</string>
+			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
-			<string>IBUIButton</string>
-			<string>IBProxyObject</string>
+			<string>IBUITableViewCell</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys" id="0">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
-			<reference key="dict.values" ref="0"/>
+			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
+			<integer value="1" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -77,16 +74,6 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
-								<object class="NSFont" key="IBUIFont" id="353052580">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">20</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<object class="NSColor" key="IBUITextColor" id="530403746">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<object class="NSColor" key="IBUIShadowColor">
 									<int key="NSColorSpace">1</int>
@@ -95,6 +82,24 @@
 								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<string key="IBUIText">Label</string>
+								<object class="NSColor" key="IBUITextColor" id="530403746">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+								</object>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="458073515">
+									<string key="name">Helvetica-Bold</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">2</int>
+									<double key="pointSize">20</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="353052580">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">20</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<int key="IBUIAutoshrinkMode">2</int>
 							</object>
 							<object class="IBUILabel" id="71930303">
 								<reference key="NSNextResponder" ref="796270224"/>
@@ -109,9 +114,6 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
-								<reference key="IBUIFont" ref="353052580"/>
-								<reference key="IBUITextColor" ref="530403746"/>
 								<nil key="IBUIHighlightedColor"/>
 								<object class="NSColor" key="IBUIShadowColor">
 									<int key="NSColorSpace">1</int>
@@ -120,7 +122,12 @@
 								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<string key="IBUIText">Label</string>
+								<reference key="IBUITextColor" ref="530403746"/>
 								<int key="IBUITextAlignment">2</int>
+								<reference key="IBUIFontDescription" ref="458073515"/>
+								<reference key="IBUIFont" ref="353052580"/>
+								<int key="IBUIAutoshrinkMode">2</int>
 							</object>
 							<object class="IBUIButton" id="321260692">
 								<reference key="NSNextResponder" ref="796270224"/>
@@ -138,11 +145,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="602316159">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
 								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">Eat It</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="606672275">
@@ -156,6 +158,17 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="59451580">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
+								</object>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="214759774">
+									<string key="name">Helvetica-Bold</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">2</int>
+									<double key="pointSize">13</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="602316159">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUIButton" id="71725176">
@@ -174,15 +187,16 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="602316159"/>
 								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">Add to Exchange</string>
 								<reference key="IBUIHighlightedTitleColor" ref="606672275"/>
 								<reference key="IBUINormalTitleColor" ref="7001907"/>
 								<reference key="IBUINormalTitleShadowColor" ref="59451580"/>
+								<reference key="IBUIFontDescription" ref="214759774"/>
+								<reference key="IBUIFont" ref="602316159"/>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 115}</string>
+						<string key="NSFrameSize">{320, 114}</string>
 						<reference key="NSSuperview" ref="380869837"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="325539443"/>
@@ -205,7 +219,6 @@
 				<string key="NSReuseIdentifierKey">_NS:358</string>
 				<reference key="IBUIBackgroundColor" ref="7001907"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="796270224"/>
 			</object>
@@ -213,6 +226,14 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">jarListItemCell</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="380869837"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">eatButton</string>
@@ -254,14 +275,6 @@
 					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">jarListItemCell</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="380869837"/>
-					</object>
-					<int key="connectionID">15</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didTapEatButton:</string>
 						<reference key="source" ref="321260692"/>
@@ -285,7 +298,9 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBObjectRecord">
 						<int key="objectID">0</int>
-						<reference key="object" ref="0"/>
+						<object class="NSArray" key="object" id="0">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="children" ref="1000"/>
 						<nil key="parent"/>
 					</object>
@@ -357,7 +372,7 @@
 					<string>9.IBPluginDependency</string>
 					<string>9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CandyJarViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -397,13 +412,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>jarListItemCell</string>
 							<string>tableView</string>
 							<string>welcomeView</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>JarListItemCell</string>
 							<string>UITableView</string>
 							<string>UIWebView</string>
 						</object>
@@ -412,16 +425,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>jarListItemCell</string>
 							<string>tableView</string>
 							<string>welcomeView</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">jarListItemCell</string>
-								<string key="candidateClassName">JarListItemCell</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">tableView</string>
 								<string key="candidateClassName">UITableView</string>
@@ -440,6 +448,38 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">JarListItemCell</string>
 					<string key="superclassName">UITableViewCell</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>didTapEatButton:</string>
+							<string>didTapExchangeButton:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>didTapEatButton:</string>
+							<string>didTapExchangeButton:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">didTapEatButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">didTapExchangeButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -450,7 +490,7 @@
 							<string>quantityLabel</string>
 							<string>titleLabel</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -469,7 +509,7 @@
 							<string>quantityLabel</string>
 							<string>titleLabel</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">eatButton</string>
@@ -512,6 +552,6 @@
 			<string key="NS.key.0">shopPlaceholder.png</string>
 			<string key="NS.object.0">{40, 40}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">534</string>
+		<string key="IBCocoaTouchPluginVersion">1914</string>
 	</data>
 </archive>

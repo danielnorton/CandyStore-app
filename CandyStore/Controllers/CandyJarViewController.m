@@ -17,7 +17,6 @@
 #import "NSObject+remoteErrorToApp.h"
 #import "UIApplication+delegate.h"
 #import "CandyStoreAppDelegate.h"
-#import "AboutViewController.h"
 #import "UIViewController+newWithDefaultNib.h"
 
 
@@ -261,15 +260,6 @@
 		[self setShouldEnableExchangeButtons:newEnable];
 		[self.tableView reloadData];
 	}
-}
-
-
-#pragma mark IBAction
-- (IBAction)didTapAboutButton:(id)sender {
-
-	AboutViewController *about = [AboutViewController newWithDefaultNib];
-	[about setModalTransitionStyle:UIModalTransitionStylePartialCurl];
-	[self presentViewController:about animated:YES completion:NULL];
 }
 
 

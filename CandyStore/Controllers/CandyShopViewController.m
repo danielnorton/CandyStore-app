@@ -14,6 +14,7 @@
 #import "ShopItemDetailViewController.h"
 #import "UITableViewCell+activity.h"
 #import "CandyShopService.h"
+#import "UIApplication+delegate.h"
 
 
 @implementation CandyShopViewController
@@ -152,6 +153,19 @@
 	NSFetchedResultsController *controller = [repo controllerForCandyShop];
 	[controller setDelegate:self];
 	[self setFetchedResultsController:controller];
+}
+
+#pragma mark -
+#pragma mark CandyShopViewController
+#pragma mark IBAction
+- (IBAction)didTapRestore:(UIBarButtonItem *)sender {
+	
+	[[UIApplication thisApp] restoreTransactions];
+}
+
+- (IBAction)didTapRefresh:(UIBarButtonItem *)sender {
+	
+	[[UIApplication thisApp] updateProducts];
 }
 
 @end

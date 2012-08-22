@@ -154,6 +154,8 @@ NSNumberFormatter *currencyFormatter;
 				NSString *identifier = (NSString *)item[@"identifier"];
 				NSString *description = (NSString *)item[@"description"];
 				
+				[identifiers addObject:identifier];
+				
 				Product *subscription = [repo addOrUpdateSubscriptionFromIdentifer:identifier toProduct:product];
 				[subscription setImagePath:imagePath];
 				[subscription setKind:kind];

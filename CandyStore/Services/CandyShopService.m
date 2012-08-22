@@ -54,9 +54,7 @@ NSString * const InternalKeyExchange = @"exchange";
 + (BOOL)hasBigCandyJar {
 	
 	PurchaseRepository *repo = [[PurchaseRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
-	BOOL answer = [repo hasBigCandyJar];
-	
-	return answer;
+	return [repo hasBigCandyJar];
 }
 
 + (BOOL)canSeeExchangeTab {
@@ -66,18 +64,14 @@ NSString * const InternalKeyExchange = @"exchange";
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	ExchangeItemRepository *exchangeRepo = [[ExchangeItemRepository alloc] initWithContext:context];
 	ExchangeItem *credits = [exchangeRepo creditsItem];
-	BOOL hasCredits = [credits.quantityAvailable integerValue] > 0;
-	
-	return hasCredits;
+	return [credits.quantityAvailable integerValue] > 0;
 }
 
 + (BOOL)canAddToExchangeCredits {
 
 	NSManagedObjectContext *context = [ModelCore sharedManager].managedObjectContext;
 	PurchaseRepository *purchaseRepo = [[PurchaseRepository alloc] initWithContext:context];
-	BOOL isSubscribed = [purchaseRepo hasActiveExchangeSubscription];
-	
-	return isSubscribed;
+	return [purchaseRepo hasActiveExchangeSubscription];
 }
 
 + (BOOL)canMakePayments {

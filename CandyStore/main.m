@@ -6,11 +6,12 @@
 //  Copyright 2011 Firefly Logic. All rights reserved.
 //
 
+#import "CandyStoreAppDelegate.h"
 
 int main(int argc, char *argv[]) {
 	
 	@autoreleasepool {
-		int retVal = UIApplicationMain(argc, argv, nil, nil);
-		return retVal;
+
+		return UIApplicationMain(argc, argv, nil, NSStringFromClass([CandyStoreAppDelegate class]));
 	}
 }

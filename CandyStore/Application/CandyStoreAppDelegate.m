@@ -23,6 +23,12 @@
 
 @interface CandyStoreAppDelegate()
 
+@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, strong) IBOutlet CandyJarViewController *candyJarViewController;
+@property (nonatomic, strong) IBOutlet CandyShopViewController *candyShopViewController;
+@property (nonatomic, strong) IBOutlet CandyExchangeViewController *candyExchangeViewController;
+@property (nonatomic, strong) IBOutlet UITabBarItem *myJarTabBarItem;
+
 @property (nonatomic, strong) ProductBuilderService *productBuilderService;
 @property (nonatomic, strong) TransactionReceiptService *transactionReceiptService;
 @property (nonatomic, strong) ExchangeRefreshingService *exchangeRefreshingService;
@@ -36,6 +42,12 @@
 #pragma mark -
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
+	self.tabBarController = (UITabBarController *)_window.rootViewController;
+	self.candyJarViewController = _tabBarController.viewControllers[0];
+	self.myJarTabBarItem = _candyJarViewController.tabBarItem;
+	self.candyShopViewController = (CandyShopViewController *)((UINavigationController *)_tabBarController.viewControllers[1]).topViewController;
+	self.candyExchangeViewController = (CandyExchangeViewController *)((UINavigationController *)_tabBarController.viewControllers[2]).topViewController;
 	
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
@@ -67,9 +79,7 @@
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
 	[transService beginObserving];
-	
-	[_window setRootViewController:_tabBarController];
-	[_window makeKeyAndVisible];
+
     return YES;
 }
 
@@ -186,6 +196,17 @@
 	[service beginRefreshing];
 }
 
+- (void)restoreTransactions {
+	
+	// can only be called from Candy Shop view controller, but it's here for consistancy
+	
+	if (![self canRestoreOrRefresh]) return;
+	
+	[_candyShopViewController beginRefreshing];
+	[_candyExchangeViewController beginRefreshing];
+	[_transactionReceiptService restoreTransactions];
+}
+
 
 #pragma mark IBAction
 - (IBAction)updateProducts:(id)sender {
@@ -196,17 +217,6 @@
 - (IBAction)updateExchange:(id)sender {
 	
 	[self updateExchange];
-}
-
-- (IBAction)restoreTransactions:(id)sender {
-	
-	// can only be called from Candy Shop view controller, but it's here for consistancy
-	
-	if (![self canRestoreOrRefresh]) return;
-	
-	[_candyShopViewController beginRefreshing];
-	[_candyExchangeViewController beginRefreshing];
-	[_transactionReceiptService restoreTransactions];
 }
 
 

@@ -199,6 +199,12 @@
 
 #pragma mark -
 #pragma mark CandyExchangeViewController
+#pragma mark IBAction
+- (IBAction)didTapRefresh:(UIBarButtonItem *)sender {
+	
+	[[UIApplication thisApp] updateExchange];
+}
+
 #pragma mark Private Messages
 - (BOOL)hasCredits {
 	
