@@ -151,7 +151,7 @@
 #pragma mark ReceiptVerificationLocalServiceDelegate
 - (void)receiptVerificationLocalServiceDidDeletePurchase:(ReceiptVerificationLocalService *)sender {
 	
-	[_candyShopViewController completeRefreshing];
+	//[_candyShopViewController completeRefreshing]; // <-- may not belong here
 	[self updateJarTabImage];
 }
 

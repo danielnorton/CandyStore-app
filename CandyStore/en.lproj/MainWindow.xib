@@ -62,7 +62,6 @@
 							<string key="NSResourceName">exchangeTab.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUITabBar" ref="42719068"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="576123834"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -120,7 +119,6 @@
 								<string key="NSResourceName">smallJarTab.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<reference key="IBUITabBar" ref="42719068"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="576123834"/>
 						<string key="IBUINibName">CandyJarViewController</string>
@@ -139,7 +137,6 @@
 								<string key="NSResourceName">shopTab.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<reference key="IBUITabBar" ref="42719068"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="576123834"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -207,13 +204,6 @@
 						<bytes key="NSWhite">MCAwAA</bytes>
 					</object>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					<object class="NSMutableArray" key="IBUIItems">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<reference ref="61925160"/>
-						<reference ref="84659423"/>
-						<reference ref="127256215"/>
-					</object>
-					<reference key="IBUISelectedItem" ref="127256215"/>
 				</object>
 			</object>
 			<object class="IBUIWindow" id="117978783">

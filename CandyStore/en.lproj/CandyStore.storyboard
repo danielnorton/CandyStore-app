@@ -96,11 +96,31 @@
                     </navigationItem>
                     <connections>
                         <outlet property="restoreButton" destination="5JZ-Lb-Zba" id="9Uf-Bp-F9F"/>
+                        <segue destination="0tT-f2-00f" kind="push" id="HgA-F9-PTS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPC-vQ-5RG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="808" y="-27"/>
+        </scene>
+        <!--Shop Item Detail View Controller-->
+        <scene sceneID="OkF-YR-mD7">
+            <objects>
+                <tableViewController id="0tT-f2-00f" customClass="ShopItemDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vbx-W7-xye">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="0tT-f2-00f" id="sFO-Bz-l8Z"/>
+                            <outlet property="delegate" destination="0tT-f2-00f" id="QjB-7A-fKQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="yHH-fw-fZi"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSp-jM-aZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353" y="-27"/>
         </scene>
         <!--Candy Jar View Controller - My Candy Jar-->
         <scene sceneID="TPs-K2-p5k">
@@ -257,86 +277,6 @@
         <image name="shopTab.png" width="30" height="30"/>
         <image name="smallJarTab.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="appNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="storeKitLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CandyExchangeViewController" superclassName="RefreshingTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CandyExchangeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapRefresh:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="exchangeListItemCell" candidateClass="ExchangeListItemCell"/>
-            </relationships>
-        </class>
-        <class className="CandyJarViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CandyJarViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="jarListItemCell" candidateClass="JarListItemCell"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="welcomeView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="CandyShopViewController" superclassName="RefreshingTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CandyShopViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapRefresh:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="didTapRestore:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="restoreButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="shopListItemCell" candidateClass="ShopListItemCell"/>
-            </relationships>
-        </class>
-        <class className="CandyStoreAppDelegate" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CandyStoreAppDelegate.h"/>
-            <relationships>
-                <relationship kind="action" name="updateExchange:"/>
-                <relationship kind="action" name="updateProducts:"/>
-                <relationship kind="outlet" name="candyExchangeViewController" candidateClass="CandyExchangeViewController"/>
-                <relationship kind="outlet" name="candyJarViewController" candidateClass="CandyJarViewController"/>
-                <relationship kind="outlet" name="candyShopViewController" candidateClass="CandyShopViewController"/>
-                <relationship kind="outlet" name="myJarTabBarItem" candidateClass="UITabBarItem"/>
-                <relationship kind="outlet" name="tabBarController" candidateClass="UITabBarController"/>
-            </relationships>
-        </class>
-        <class className="ExchangeListItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExchangeListItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="JarListItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JarListItemCell.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapEatButton:"/>
-                <relationship kind="action" name="didTapExchangeButton:"/>
-                <relationship kind="outlet" name="eatButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="exchangeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="iconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="quantityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RefreshingTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RefreshingTableViewController.h"/>
-        </class>
-        <class className="ShopListItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShopListItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
