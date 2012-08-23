@@ -96,7 +96,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="restoreButton" destination="5JZ-Lb-Zba" id="9Uf-Bp-F9F"/>
-                        <segue destination="0tT-f2-00f" kind="push" id="HgA-F9-PTS"/>
+                        <segue destination="0tT-f2-00f" kind="push" identifier="shopItemDetailSegue" id="HgA-F9-PTS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPC-vQ-5RG" userLabel="First Responder" sceneMemberID="firstResponder"/>

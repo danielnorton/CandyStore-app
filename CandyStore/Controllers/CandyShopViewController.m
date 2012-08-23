@@ -33,6 +33,16 @@
 	return UIInterfaceOrientationMaskAll;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	
+	if (![segue.destinationViewController isKindOfClass:[ShopItemDetailViewController class]]) return;
+	if (![sender isKindOfClass:[Product class]]) return;
+	
+	Product *product = (Product *)sender;
+	ShopItemDetailViewController *controller = (ShopItemDetailViewController *)segue.destinationViewController;
+	[controller setProduct:product];
+}
+
 
 #pragma mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,12 +99,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
+
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-	ShopItemDetailViewController *controller = [ShopItemDetailViewController newWithDefaultNib];
-	[controller setProduct:product];
-	
-	[self.navigationController pushViewController:controller animated:YES];
+	[self performSegueWithIdentifier:@"shopItemDetailSegue" sender:product];
 }
 
 
