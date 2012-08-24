@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hL-bm-dGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808" y="-706"/>
+            <point key="canvasLocation" x="1334" y="-706"/>
         </scene>
         <!--Candy Shop View Controller - Candy Shop-->
         <scene sceneID="FVL-uu-fam">
@@ -122,12 +122,12 @@
             </objects>
             <point key="canvasLocation" x="1353" y="-27"/>
         </scene>
-        <!--Candy Jar View Controller - My Candy Jar-->
+        <!--Candy Jar View Controller - Candy Jar-->
         <scene sceneID="TPs-K2-p5k">
             <objects>
                 <viewController id="DwT-el-Lmx" customClass="CandyJarViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="upk-JI-sby">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="s2J-1B-alm">
@@ -169,7 +169,7 @@
                             <constraint firstItem="0P9-CP-unz" firstAttribute="leading" secondItem="upk-JI-sby" secondAttribute="leading" type="default" id="zef-V8-8Je"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Candy Jar" image="smallJarTab.png" id="I9O-PN-rUi"/>
+                    <navigationItem key="navigationItem" title="Candy Jar" id="9IJ-w9-InF"/>
                     <connections>
                         <outlet property="tableView" destination="gd8-KD-189" id="tke-Ba-hK2"/>
                         <outlet property="welcomeView" destination="s2J-1B-alm" id="Ctn-Af-vey"/>
@@ -177,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rvI-wY-bKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282" y="-706"/>
+            <point key="canvasLocation" x="808" y="-706"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="drz-eM-lmH">
@@ -188,9 +188,10 @@
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="DwT-el-Lmx" kind="relationship" relationship="viewControllers" id="mAG-6y-SeF"/>
+                        <segue destination="mZN-Pl-rz5" kind="relationship" relationship="viewControllers" id="mAG-6y-SeF"/>
                         <segue destination="IZQ-F6-DgP" kind="relationship" relationship="viewControllers" id="sOg-6G-rd2"/>
                         <segue destination="dcB-i1-Xuk" kind="relationship" relationship="viewControllers" id="jza-80-Rgg"/>
                     </connections>
@@ -269,6 +270,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLO-lh-NRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="808" y="629"/>
+        </scene>
+        <!--Navigation Controller - My Candy Jar-->
+        <scene sceneID="Xt5-OU-uLF">
+            <objects>
+                <navigationController id="mZN-Pl-rz5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Candy Jar" image="smallJarTab.png" id="I9O-PN-rUi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DNc-8d-fct">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DwT-el-Lmx" kind="relationship" relationship="rootViewController" id="rm1-aa-cOF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HR6-CM-hMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="282" y="-706"/>
         </scene>
     </scenes>
     <resources>

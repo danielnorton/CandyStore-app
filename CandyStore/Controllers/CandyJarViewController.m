@@ -18,12 +18,15 @@
 #import "UIApplication+delegate.h"
 #import "CandyStoreAppDelegate.h"
 #import "UIViewController+newWithDefaultNib.h"
+#import "TransactionDownloadService.h"
+#import "ProductContentService.h"
 
 
 @interface CandyJarViewController()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, assign) BOOL shouldEnableExchangeButtons;
+@property (nonatomic, strong) UIBarButtonItem *bigJarDocumentButton;
 
 @end
 
@@ -48,12 +51,13 @@
 	NSFetchedResultsController *controller = [repo controllerForMyCandyJar];
 	[self setFetchedResultsController:controller];
 	[self fetch];
+	
+	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(didTapBigJarDocumentButton:)];
+	[self setBigJarDocumentButton:button];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-		
-	[self.navigationController setNavigationBarHidden:YES];
 	
 	[self showHideViews];
 	
@@ -141,6 +145,13 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	
 	[self showHideViews];
+}
+
+
+#pragma mark UIDocumentInteractionControllerDelegate
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+	
+	return self;
 }
 
 
@@ -342,6 +353,17 @@
 		
 		[self fetch];
 	}
+	
+	if ([CandyShopService hasBigCandyJar]) {
+	
+		[self.navigationItem setRightBarButtonItem:_bigJarDocumentButton];
+		[self.navigationItem setTitle:NSLocalizedString(@"Big Candy Jar", @"Big Candy Jar")];
+		
+	} else {
+		
+		[self.navigationItem setRightBarButtonItem:nil];
+		[self.navigationItem setTitle:NSLocalizedString(@"Candy Jar", @"Candy Jar")];
+	}
 }
 
 - (void)fetch {
@@ -353,6 +375,25 @@
 		// TODO: handle error
 		[_fetchedResultsController setDelegate:nil];
 	}
+}
+
+- (void)didTapBigJarDocumentButton:(UIBarButtonItem *)sender {
+	
+	ProductRepository *repo = [[ProductRepository alloc] initWithContext:[ModelCore sharedManager].managedObjectContext];
+	Product *product = (Product *)[[repo fetchProductsForProductKind:ProductKindBigCandyJar] lastObject];
+	if (!product) return;
+	
+	
+	NSArray *files = [ProductContentService contentFilesWithExtension:@"pdf" forProductIdentifier:product.identifier];
+	if (!files || files.count == 0) return;
+	
+	NSString *fileName = [files lastObject];
+	NSString *filePath = [[ProductContentService contentDirectoryForProductIdentifier:product.identifier] stringByAppendingPathComponent:fileName];
+	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+	
+	UIDocumentInteractionController *controller = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+	[controller setDelegate:self];
+	[controller presentPreviewAnimated:YES];
 }
 
 

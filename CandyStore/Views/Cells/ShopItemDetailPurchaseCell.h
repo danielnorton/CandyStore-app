@@ -24,6 +24,7 @@
 @property (nonatomic, strong) IBOutlet BuyButton *buyButton;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) IBOutlet UIProgressView *downloadProgress;
 
 @property (nonatomic, weak) Product *product;
 @property (nonatomic, weak) id<ShopItemDetailPurchaseCellDelegate> delegate;

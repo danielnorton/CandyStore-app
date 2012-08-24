@@ -9,6 +9,7 @@
 #import "ShopItemDetailViewController.h"
 #import "Style.h"
 #import "TransactionReceiptService.h"
+#import "TransactionDownloadService.h"
 #import "UITableViewDelgate+emptyFooter.h"
 #import "CandyShopService.h"
 #import "PurchaseRulesService.h"
@@ -45,29 +46,109 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceCompletedNotification
-													  object:nil
-													   queue:nil
-												  usingBlock:^(NSNotification *notification) {
-													  
-													  [self.navigationController.view setUserInteractionEnabled:YES];
-													  [self.navigationController popToRootViewControllerAnimated:YES];
-												  }];
+	NSNotificationCenter *ctr = [NSNotificationCenter defaultCenter];
+	[ctr addObserverForName:TransactionReceiptServiceCompletedNotification
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 [self.navigationController.view setUserInteractionEnabled:YES];
+					 [self.navigationController popToRootViewControllerAnimated:YES];
+				 }];
 	
-	[[NSNotificationCenter defaultCenter] addObserverForName:TransactionReceiptServiceFailedNotification
-													  object:nil
-													   queue:nil
-												  usingBlock:^(NSNotification *notification) {
-													  
-													  SKPaymentTransaction *transaction = [notification userInfo][TransactionReceiptServiceKeyTransaction];
-													  if (transaction.error.code == -1001) {
-														  
-														  [self popup:transaction.error.localizedDescription];
-													  }
-													  
-													  [self.navigationController.view setUserInteractionEnabled:YES];
-													  [self.tableView reloadData];
-												  }];
+	[ctr addObserverForName:TransactionReceiptServiceFailedNotification
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 SKPaymentTransaction *transaction = [notification userInfo][TransactionReceiptServiceKeyTransaction];
+					 if (transaction.error.code == -1001) {
+						 
+						 [self popup:transaction.error.localizedDescription];
+					 }
+					 
+					 [self.navigationController.view setUserInteractionEnabled:YES];
+					 [self.tableView reloadData];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceBeginTransactionDownloads
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:0.0f];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceCompleteTransactionDownloads
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:1.0f];
+					 
+					 [self.navigationController.view setUserInteractionEnabled:YES];
+					 [self.navigationController popToRootViewControllerAnimated:YES];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceReportDownloadWaiting
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:0.0f];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceReportDownloadActive
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 
+					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+					 
+					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:download.progress];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceReportDownloadFinished
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 
+					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+
+					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:download.progress];
+				 }];
+	
+	[ctr addObserverForName:TransactionDownloadServiceReportDownloadFailed
+					 object:nil
+					  queue:nil
+				 usingBlock:^(NSNotification *notification) {
+					 
+					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
+					 
+					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+					 
+					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 [cell.downloadProgress setHidden:NO];
+					 [cell.downloadProgress setProgress:download.progress];
+					 
+					 if (!download.error) return;
+					 
+					 [self popup:download.error.localizedDescription];
+				 }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

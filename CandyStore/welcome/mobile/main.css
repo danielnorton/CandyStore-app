@@ -7,20 +7,20 @@
 body {
     margin: 0px;
     min-height: 356px;
-    font-family: Helvetica;
+    font-family: Avenir;
     background-image: url(../Images/backgroundStripes.png);
     background-repeat: repeat repeat;
 }
 
 #footer {
     position: relative;
-    font-family: Helvetica;
+    font-family: Avenir;
     font-size: 10pt;
     text-overflow: ellipsis;
     overflow: hidden;
     text-shadow: rgb(255, 255, 255) 0px 1px 0px;
     -webkit-margin-top-collapse: separate;
-    margin-top: 10px;
+    margin-top: 0px;
     width: 156px;
     margin-left: auto;
     margin-right: auto;
@@ -33,7 +33,7 @@ body {
     -webkit-margin-top-collapse: separate;
     -webkit-margin-bottom-collapse: separate;
     width: auto;
-    min-height: 411px;
+    min-height: 337px;
     height: auto;
 }
 
@@ -61,7 +61,7 @@ body {
 }
 
 #text {
-    font-family: Helvetica;
+    font-family: Avenir;
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
@@ -75,7 +75,7 @@ body {
     text-shadow: rgb(255, 255, 255) 0px 1px 0px;
     color: rgb(0, 0, 128);
     padding: 16px;
-    margin-top: 35px;
+    margin-top: 5px;
     width: auto;
     margin-right: 0px;
     min-height: 28px;
@@ -87,7 +87,7 @@ body {
 }
 
 #text1 {
-    font-family: Helvetica;
+    font-family: Avenir;
     font-size: 17px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -98,7 +98,7 @@ body {
     text-align: center;
     text-shadow: rgb(255, 255, 255) 0px 1px 0px;
     color: rgb(0, 0, 0);
-    margin-top: 30px;
+    margin-top: 0px;
     width: auto;
     margin-right: 0px;
     min-height: 43px;

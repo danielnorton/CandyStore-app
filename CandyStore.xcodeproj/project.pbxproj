@@ -71,8 +71,11 @@
 		9B99DDA413E9D7FB006A7838 /* PurchaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA313E9D7FB006A7838 /* PurchaseRepository.m */; };
 		9B99DDA713E9D9D4006A7838 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDA613E9D9D4006A7838 /* Purchase.m */; };
 		9B99DDAD13E9D9F2006A7838 /* Purchase+model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */; };
+		9BA3D75615E6AEF100C0970F /* ProductContentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3D75515E6AEF100C0970F /* ProductContentService.m */; };
 		9BA7D97413DE2DEC00D02880 /* ExchangeSubscriptionNotificationServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */; };
 		9BA7D97713DE2E6F00D02880 /* UIApplication+delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */; };
+		9BAE33B815E6146700F3F80C /* TransactionDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE33B715E6146700F3F80C /* TransactionDownloadService.m */; };
+		9BAE33B915E6146700F3F80C /* TransactionDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE33B715E6146700F3F80C /* TransactionDownloadService.m */; };
 		9BCAA78C13E316EF00C92FBB /* RefreshingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */; };
 		9BCAA79013E3196200C92FBB /* UIViewController+barButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA78F13E3196200C92FBB /* UIViewController+barButtons.m */; };
 		9BCAA79313E31AAE00C92FBB /* UITableViewCell+activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCAA79213E31AAD00C92FBB /* UITableViewCell+activity.m */; };
@@ -256,10 +259,14 @@
 		9B99DDA613E9D9D4006A7838 /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
 		9B99DDAB13E9D9F2006A7838 /* Purchase+model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Purchase+model.h"; sourceTree = "<group>"; };
 		9B99DDAC13E9D9F2006A7838 /* Purchase+model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Purchase+model.m"; sourceTree = "<group>"; };
+		9BA3D75415E6AEF100C0970F /* ProductContentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductContentService.h; sourceTree = "<group>"; };
+		9BA3D75515E6AEF100C0970F /* ProductContentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductContentService.m; sourceTree = "<group>"; };
 		9BA7D97113DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeSubscriptionNotificationServiceTests.h; sourceTree = "<group>"; };
 		9BA7D97213DE2DAF00D02880 /* ExchangeSubscriptionNotificationServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeSubscriptionNotificationServiceTests.m; sourceTree = "<group>"; };
 		9BA7D97513DE2E6F00D02880 /* UIApplication+delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+delegate.h"; sourceTree = "<group>"; };
 		9BA7D97613DE2E6F00D02880 /* UIApplication+delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+delegate.m"; sourceTree = "<group>"; };
+		9BAE33B615E6146700F3F80C /* TransactionDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionDownloadService.h; sourceTree = "<group>"; };
+		9BAE33B715E6146700F3F80C /* TransactionDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionDownloadService.m; sourceTree = "<group>"; };
 		9BCAA78A13E316EF00C92FBB /* RefreshingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingTableViewController.h; sourceTree = "<group>"; };
 		9BCAA78B13E316EF00C92FBB /* RefreshingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingTableViewController.m; sourceTree = "<group>"; };
 		9BCAA78E13E3196200C92FBB /* UIViewController+barButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+barButtons.h"; sourceTree = "<group>"; };
@@ -630,6 +637,10 @@
 				9B341CD013F7A79A0047A3C2 /* FakeStoreKitBuilderService.m */,
 				9BF47B8615E1DF3A0039788E /* SelfReferenceService.h */,
 				9BF47B8715E1DF3B0039788E /* SelfReferenceService.m */,
+				9BAE33B615E6146700F3F80C /* TransactionDownloadService.h */,
+				9BAE33B715E6146700F3F80C /* TransactionDownloadService.m */,
+				9BA3D75415E6AEF100C0970F /* ProductContentService.h */,
+				9BA3D75515E6AEF100C0970F /* ProductContentService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -981,6 +992,8 @@
 				9BF47B7F15E0B0920039788E /* SBJsonWriter.m in Sources */,
 				9BF47B8115E0B0960039788E /* NSData+Base64.m in Sources */,
 				9BF47B8815E1DF3C0039788E /* SelfReferenceService.m in Sources */,
+				9BAE33B815E6146700F3F80C /* TransactionDownloadService.m in Sources */,
+				9BA3D75615E6AEF100C0970F /* ProductContentService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1021,7 @@
 				9BF47B7E15E0B0920039788E /* SBJsonUTF8Stream.m in Sources */,
 				9BF47B8015E0B0920039788E /* SBJsonWriter.m in Sources */,
 				9BF47B8915E1DF3C0039788E /* SelfReferenceService.m in Sources */,
+				9BAE33B915E6146700F3F80C /* TransactionDownloadService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

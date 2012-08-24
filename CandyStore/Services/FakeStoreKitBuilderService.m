@@ -74,7 +74,7 @@
 	[product setProductDescription:@"Delicious green candy to buy and \"eat\" in your app"];
 	
 	
-	product = (Product *)[repo itemForId:@"com.brimstead.candystore2.bigcandyjar"];
+	product = (Product *)[repo itemForId:@"com.brimstead.candystore2.bigcandyjar2"];
 	[product setLocalizedPrice:@"$1.99"];
 	[product setTitle:@"Big Candy Jar"];
 	[product setProductDescription:@"The Big Candy Jar allows you to store virtually unlimited amounts of candy on your device."];

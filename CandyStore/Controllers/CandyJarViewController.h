@@ -13,8 +13,8 @@
 
 @interface CandyJarViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate,
-NSFetchedResultsControllerDelegate, ImageCachingServiceDelegate,
-JarListItemCellDelegate, ExchangeAddCreditRemoteServiceDelegate>
+NSFetchedResultsControllerDelegate, UIDocumentInteractionControllerDelegate,
+ImageCachingServiceDelegate, JarListItemCellDelegate, ExchangeAddCreditRemoteServiceDelegate>
 
 
 @property (nonatomic, strong) IBOutlet UIWebView *welcomeView;

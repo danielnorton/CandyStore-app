@@ -44,10 +44,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	self.tabBarController = (UITabBarController *)_window.rootViewController;
-	self.candyJarViewController = _tabBarController.viewControllers[0];
-	self.myJarTabBarItem = _candyJarViewController.tabBarItem;
+	self.candyJarViewController = (CandyJarViewController *)((UINavigationController *)_tabBarController.viewControllers[0]).topViewController;
 	self.candyShopViewController = (CandyShopViewController *)((UINavigationController *)_tabBarController.viewControllers[1]).topViewController;
 	self.candyExchangeViewController = (CandyExchangeViewController *)((UINavigationController *)_tabBarController.viewControllers[2]).topViewController;
+	self.myJarTabBarItem = _candyJarViewController.parentViewController.tabBarItem;
 	
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		

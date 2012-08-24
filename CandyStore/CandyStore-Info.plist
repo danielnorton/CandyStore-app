@@ -35,6 +35,25 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>CandyStore</string>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>TintColor</key>
+			<dict>
+				<key>Blue</key>
+				<real>0.93725490199999995</real>
+				<key>Green</key>
+				<real>0.68235294120000001</real>
+				<key>Red</key>
+				<real>0.0</real>
+			</dict>
+			<key>Translucent</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

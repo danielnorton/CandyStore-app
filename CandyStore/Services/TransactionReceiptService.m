@@ -12,6 +12,8 @@
 #import "ProductRepository.h"
 #import "PurchaseRepository.h"
 #import "ReceiptVerificationLocalService.h"
+#import "TransactionDownloadService.h"
+
 
 NSString * const TransactionReceiptServiceProcessingNotification = @"TransactionReceiptServiceProcessingNotification";
 NSString * const TransactionReceiptServiceCompletedNotification = @"TransactionReceiptServiceCompletedNotification";
@@ -19,6 +21,13 @@ NSString * const TransactionReceiptServiceFailedNotification = @"TransactionRece
 NSString * const TransactionReceiptServiceRestoreCompletedNotification = @"TransactionReceiptServiceRestoreCompletedNotification";
 NSString * const TransactionReceiptServiceRestoreFailedNotification = @"TransactionReceiptServiceRestoreFailedNotification";
 NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptServiceKeyTransaction";
+
+
+@interface TransactionReceiptService()
+
+@property (nonatomic, strong) TransactionDownloadService *downloadService;
+
+@end
 
 
 @implementation TransactionReceiptService
@@ -65,10 +74,15 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 				return;
 			}
 			
+			if (transaction.downloads.count == 0) {
 			
-			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-			
-			[self notifyName:TransactionReceiptServiceCompletedNotification forTransaction:transaction];
+				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+				[self notifyName:TransactionReceiptServiceCompletedNotification forTransaction:transaction];
+
+			} else {
+
+				[self beginDownload:transaction];
+			}
 			
 		} else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
 			
@@ -126,6 +140,14 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 													  userInfo:nil];
 }
 
+
+#pragma mark Private Messages
+- (void)beginDownload:(SKPaymentTransaction *)transaction {
+
+	TransactionDownloadService *service = [[TransactionDownloadService alloc] init];
+	[self setDownloadService:service];
+	[service begin:transaction];
+}
 
 @end
 
