@@ -289,15 +289,6 @@
 - (void)finishBuildingResponse {
 
 	NSString *payloadAsString = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
-	
-//	const int max = 100;
-//	NSString *log; 
-//	if (payloadAsString.length > max) {
-//		log = [NSString stringWithFormat:@"%@ ...", [payloadAsString substringToIndex:max]];
-//	} else {
-//		log = payloadAsString;
-//	}
-//	NSLog(@"payload: %@", log);
 		
 	BOOL win = YES;
 	switch (_returnType) {
