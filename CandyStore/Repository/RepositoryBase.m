@@ -33,6 +33,11 @@
 	if (![super init]) return nil;
 	
 	[self setManagedObjectContext:aManagedObjectContext];
+	[self setDefaultSectionNameKeyPath:nil];
+	
+	NSString *className = NSStringFromClass([self class]);
+	NSString *typeConvention = [className stringByReplacingOccurrencesOfString:@"Repository" withString:[NSString string]];
+	[self setTypeName:typeConvention];
 	
 	return self;
 }
@@ -46,6 +51,17 @@
 	}
 	
 	return [items lastObject];
+}
+
+- (NSManagedObject *)getOrAddItemForId:(id)modelId {
+	
+	NSManagedObject *object = [self itemForId:modelId];
+	if (!object) {
+		object = [self insertNewObject];
+		[object setValue:modelId forKey:keyName];
+	}
+	
+	return object;
 }
 
 - (NSArray *)fetchAll {
@@ -75,7 +91,7 @@
 }
 
 - (NSFetchedResultsController *)controllerForAll {
-
+	
 	NSFetchedResultsController *fetch = [self controllerWithSort:defaultSortDescriptors andPredicate:nil];	
 	return fetch;
 }
@@ -134,7 +150,7 @@
 
 - (BOOL)purge:(NSError **)error {
 	
-	if (*error) return NO;
+	if (error) return NO;
 	
 	NSError *internal = nil;
 	NSFetchRequest *fetchRequest = [self newFetchRequestWithSort:nil andPredicate:nil];
