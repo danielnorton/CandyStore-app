@@ -13,7 +13,7 @@ if(!window.dashcode){dashcode=new Object()}dashcode.setupParts=function(){if(das
  code generator otherwise the changes will be lost.
  */
 var dashcodePartSpecs = {
-    "footer": { "text": "Developed with Dashcode", "view": "DC.Text" },
+    "footer": { "text": "This view developed with Dashcode", "view": "DC.Text" },
     "image": { "view": "DC.ImageLayout" },
     "text": { "text": "Welcome to Candy Store", "view": "DC.Text" },
     "text1": { "text": "Visit the shop to buy some candy.", "view": "DC.Text" }
