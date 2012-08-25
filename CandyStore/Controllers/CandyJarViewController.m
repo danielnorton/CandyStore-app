@@ -225,8 +225,8 @@
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
 
 	ExchangeAddCreditRemoteService *service = [[ExchangeAddCreditRemoteService alloc] init];
-	[service beginAddingCreditFromPurchase:[product.purchases anyObject]];
 	[service setDelegate:self];
+	[service beginAddingCreditFromPurchase:[product.purchases anyObject]];
 }
 
 
