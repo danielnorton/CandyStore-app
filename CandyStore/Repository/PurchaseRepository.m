@@ -24,7 +24,6 @@
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext {
 	if (![super initWithContext:aManagedObjectContext]) return nil;
 	
-	[self setTypeName:@"Purchase"];
 	[self setDefaultSortDescriptorsByKey:@"transactionIdentifier"];
 	[self setKeyName:@"transactionIdentifier"];
 	
