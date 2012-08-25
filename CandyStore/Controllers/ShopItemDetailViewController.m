@@ -111,9 +111,10 @@
 					 
 					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
 					 
-					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+					 if (![notification.userInfo isKindOfClass:[NSDictionary class]]) return;
 					 
-					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 NSDictionary *userInfo = (NSDictionary *)notification.userInfo;
+					 SKDownload *download = (SKDownload *)userInfo[TransactionDownloadServiceKeyDownload];
 					 [cell.downloadProgress setHidden:NO];
 					 [cell.downloadProgress setProgress:download.progress];
 				 }];
@@ -125,9 +126,10 @@
 					 
 					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
 					 
-					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+					 if (![notification.userInfo isKindOfClass:[NSDictionary class]]) return;
 
-					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 NSDictionary *userInfo = (NSDictionary *)notification.userInfo;
+					 SKDownload *download = (SKDownload *)userInfo[TransactionDownloadServiceKeyDownload];
 					 [cell.downloadProgress setHidden:NO];
 					 [cell.downloadProgress setProgress:download.progress];
 				 }];
@@ -139,9 +141,10 @@
 					 
 					 ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[self.tableView cellForRowAtIndexPath:_activeBuyButtonIndexPath];
 					 
-					 if (![notification.userInfo isKindOfClass:[SKDownload class]]) return;
+					 if (![notification.userInfo isKindOfClass:[NSDictionary class]]) return;
 					 
-					 SKDownload *download = (SKDownload *)notification.userInfo;
+					 NSDictionary *userInfo = (NSDictionary *)notification.userInfo;
+					 SKDownload *download = (SKDownload *)userInfo[TransactionDownloadServiceKeyDownload];
 					 [cell.downloadProgress setHidden:NO];
 					 [cell.downloadProgress setProgress:download.progress];
 					 
