@@ -18,8 +18,6 @@
 - (id)initWithContext:(NSManagedObjectContext *)aManagedObjectContext {
 	if (![super initWithContext:aManagedObjectContext]) return nil;
 	
-	[self setTypeName:@"Product"];
-	
 	NSSortDescriptor *kindSort = [NSSortDescriptor sortDescriptorWithKey:@"productKindData" ascending:YES];
 	NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
 	NSArray *sortDescriptors = [NSArray arrayWithObjects:kindSort, titleSort, nil];
