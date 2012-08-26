@@ -16,6 +16,10 @@
 #import "NSObject+popup.h"
 #import "UITableViewCell+activity.h"
 #import "NSObject+remoteErrorToApp.h"
+#import "ExchangeListItemCell.h"
+
+
+#define kExchangeListItemCellIdentifier @"exchangeListItemCell"
 
 
 @interface CandyExchangeViewController()
@@ -31,6 +35,13 @@
 
 #pragma mark -
 #pragma mark UIViewController
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	UINib *nib = [UINib nibWithNibName:@"ExchangeListItemCell" bundle:nil];
+	[self.tableView registerNib:nib forCellReuseIdentifier:kExchangeListItemCellIdentifier];
+}
+
 - (NSUInteger)supportedInterfaceOrientations {
 	
 	return UIInterfaceOrientationMaskAll;
@@ -45,17 +56,8 @@
 		return [self refreshingCellForTableView:tableView];
 	}
 	
-	static NSString *identifier = @"exchangeListItemCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (!cell) {
-		
-		[[NSBundle mainBundle] loadNibNamed:@"ExchangeListItemCell" owner:self options:nil];
-		cell = _exchangeListItemCell;
-		[self setExchangeListItemCell:nil];
-	}
-	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kExchangeListItemCellIdentifier];
 	[self configureCell:cell atIndexPath:indexPath];
-	
 	return cell;
 }
 

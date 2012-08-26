@@ -30,4 +30,8 @@
 
 @property (nonatomic, weak) id<JarListItemCellDelegate> delegate;
 
+
+- (void)configureButtonDefaults;
+
+
 @end

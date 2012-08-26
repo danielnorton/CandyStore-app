@@ -22,6 +22,7 @@
 #define kDescriptionPadding 20.0f
 #define kTitleLabelProductX 69.0f
 #define kTitleLabelSubscriptionX 5.0f
+#define kShopItemDetailPurchaseCellIdentifier @"shopItemDetailPurchaseCell"
 
 
 @interface ShopItemDetailViewController()
@@ -41,6 +42,9 @@
 	
 	[self.tableView setSeparatorColor:[UIColor shopTableSeperatorColor]];
 	[self setTitle:_product.title];
+	
+	UINib *nib = [UINib nibWithNibName:@"ShopItemDetailPurchaseCell" bundle:nil];
+	[self.tableView registerNib:nib forCellReuseIdentifier:kShopItemDetailPurchaseCellIdentifier];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -194,17 +198,8 @@
 		return cell;
 	}
 	
-	static NSString *cellIdentifier = @"shopItemDetailPurchaseCell";
-    ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-
-		[[NSBundle mainBundle] loadNibNamed:@"ShopItemDetailPurchaseCell" owner:self options:nil];
-        cell = _purchaseCell;
-		[self setPurchaseCell:nil];
-    }
-	
+    ShopItemDetailPurchaseCell *cell = (ShopItemDetailPurchaseCell *)[tableView dequeueReusableCellWithIdentifier:kShopItemDetailPurchaseCellIdentifier];
 	[self configurePurchaseCell:cell atIndexPath:indexPath];
-	
     return cell;
 }
 

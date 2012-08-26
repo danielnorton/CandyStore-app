@@ -15,6 +15,10 @@
 #import "UITableViewCell+activity.h"
 #import "CandyShopService.h"
 #import "UIApplication+delegate.h"
+#import "ShopListItemCell.h"
+
+
+#define kShopListItemCellIdentifier @"shopListItemCell"
 
 
 @implementation CandyShopViewController
@@ -26,6 +30,9 @@
 	[super viewDidLoad];
 	
 	[_restoreButton setEnabled:[CandyShopService isStoreKitEnabled]];
+	
+	UINib *nib = [UINib nibWithNibName:@"ShopListItemCell" bundle:nil];
+	[self.tableView registerNib:nib forCellReuseIdentifier:kShopListItemCellIdentifier];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -52,17 +59,8 @@
 		return [self refreshingCellForTableView:tableView];
 	}
 	
-	static NSString *identifier = @"shopListItemCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (!cell) {
-
-		[[NSBundle mainBundle] loadNibNamed:@"ShopListItemCell" owner:self options:nil];
-		cell = _shopListItemCell;
-		[self setShopListItemCell:nil];
-	}
-	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kShopListItemCellIdentifier];
 	[self configureCell:cell atIndexPath:indexPath];
-	
 	return cell;
 }
 

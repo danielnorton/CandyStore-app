@@ -14,7 +14,6 @@
 @interface ShopItemDetailViewController : UITableViewController
 <ImageCachingServiceDelegate, ShopItemDetailPurchaseCellDelegate, SKProductsRequestDelegate>
 
-@property (nonatomic, strong) IBOutlet ShopItemDetailPurchaseCell *purchaseCell;
 @property (nonatomic, weak) Product *product;
 
 @end

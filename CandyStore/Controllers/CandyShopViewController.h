@@ -8,13 +8,11 @@
 
 #import "RefreshingTableViewController.h"
 #import "ImageCachingService.h"
-#import "ShopListItemCell.h"
 
 
 @interface CandyShopViewController : RefreshingTableViewController
 <ImageCachingServiceDelegate>
 
-@property (nonatomic, strong) IBOutlet ShopListItemCell *shopListItemCell;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *restoreButton;
 
 @end

@@ -10,18 +10,18 @@
 #import "UIApplication+delegate.h"
 
 
-@implementation RemoteServiceBase(remoteErrorToApp)
+@implementation NSObject(remoteErrorToApp)
 
-- (void)passFailedAuthenticationNotificationToAppDelegate {
+- (void)passFailedAuthenticationNotificationToAppDelegate:(RemoteServiceBase *)sender {
 	
 	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
-	[delegate remoteServiceDidFailAuthentication:self];
+	[delegate remoteServiceDidFailAuthentication:sender];
 }
 
-- (void)passTimeoutNotificationToAppDelegate {
+- (void)passTimeoutNotificationToAppDelegate:(RemoteServiceBase *)sender {
 
 	id<RemoteServiceDelegate> delegate = [UIApplication thisApp];
-	[delegate remoteServiceDidTimeout:self];
+	[delegate remoteServiceDidTimeout:sender];
 }
 
 @end

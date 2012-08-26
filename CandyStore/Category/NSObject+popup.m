@@ -3,7 +3,7 @@
 // 
 //
 //  Created by Daniel Norton on 10/19/10.
-//  Copyright 2011 Firefly Logic. All rights reserved.
+//  Copyright 2011 Daniel Norton. All rights reserved.
 //
 
 #import "NSObject+popup.h"

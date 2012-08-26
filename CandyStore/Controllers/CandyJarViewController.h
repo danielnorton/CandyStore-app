@@ -19,7 +19,6 @@ ImageCachingServiceDelegate, JarListItemCellDelegate, ExchangeAddCreditRemoteSer
 
 @property (nonatomic, strong) IBOutlet UIWebView *welcomeView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet JarListItemCell *jarListItemCell;
 
 - (void)resetShouldEnableExchangeButtons;
 

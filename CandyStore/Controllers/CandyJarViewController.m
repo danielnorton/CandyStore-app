@@ -22,6 +22,9 @@
 #import "ProductContentService.h"
 
 
+#define kJarListItemCellIdentifier @"JarListItemCell"
+
+
 @interface CandyJarViewController()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -54,6 +57,10 @@
 	
 	UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(didTapBigJarDocumentButton:)];
 	[self setBigJarDocumentButton:button];
+	
+
+	UINib *nib = [UINib nibWithNibName:@"JarListItemCell" bundle:nil];
+	[_tableView registerNib:nib forCellReuseIdentifier:kJarListItemCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,46 +91,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    static NSString *cellIdentifier = @"JarListItemCell";
-    JarListItemCell *cell = (JarListItemCell *)[aTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-		
-		[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-		cell = self.jarListItemCell;
-		[self setJarListItemCell:nil];
-		
-		[cell.exchangeButton.titleLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
-		[cell.exchangeButton setTitleColor:[UIColor buyButtonTextColor] forState:UIControlStateNormal];
-		[cell.exchangeButton setTitleShadowColor:[UIColor buyButtonShadowColor] forState:UIControlStateNormal];
-		
-		[cell.exchangeButton setTitleColor:[UIColor buyButtonDisabledTextColor] forState:UIControlStateDisabled];
-		[cell.exchangeButton setTitleShadowColor:[UIColor buyButtonDisabledShadowColor] forState:UIControlStateDisabled];
-		
-		[cell.eatButton.titleLabel setShadowOffset:CGSizeMake(0.0f, -1.0f)];
-		[cell.eatButton setTitleColor:[UIColor buyButtonTextColor] forState:UIControlStateNormal];
-		[cell.eatButton setTitleShadowColor:[UIColor buyButtonShadowColor] forState:UIControlStateNormal];
-		
-		[cell.eatButton setTitleColor:[UIColor buyButtonDisabledTextColor] forState:UIControlStateDisabled];
-		[cell.eatButton setTitleShadowColor:[UIColor buyButtonDisabledShadowColor] forState:UIControlStateDisabled];
-		
-		UIImage *blue = [[UIImage imageNamed:@"blueBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
-		UIImage *green = [[UIImage imageNamed:@"greenBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
-		UIImage *gray = [[UIImage imageNamed:@"grayBuyButton"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f];
-		
-		[cell.exchangeButton setBackgroundColor:[UIColor clearColor]];
-		[cell.exchangeButton setBackgroundImage:blue forState:UIControlStateNormal];
-		[cell.exchangeButton setBackgroundImage:green forState:UIControlStateSelected];
-		[cell.exchangeButton setBackgroundImage:gray forState:UIControlStateDisabled];
-		
-		[cell.eatButton setBackgroundColor:[UIColor clearColor]];
-		[cell.eatButton setBackgroundImage:blue forState:UIControlStateNormal];
-		[cell.eatButton setBackgroundImage:green forState:UIControlStateSelected];
-		[cell.eatButton setBackgroundImage:gray forState:UIControlStateDisabled];
-    }
-	
+	JarListItemCell *cell = (JarListItemCell *)[aTableView dequeueReusableCellWithIdentifier:kJarListItemCellIdentifier];
 	[self configureCell:cell atIndexPath:indexPath];
-	
-    return cell;
+	return cell;
 }
 
 
@@ -163,7 +133,7 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     
-	[self showHideViews];
+    [self showHideViews];
 	
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -180,7 +150,7 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
 	
-	[self showHideViews];
+    [self showHideViews];
 	
     switch(type) {
             
@@ -211,15 +181,15 @@
 #pragma mark ImageCachingServiceDelegate
 - (void)imageCachingService:(ImageCachingService *)sender didLoadImage:(UIImage *)image fromPath:(NSString *)path withUserData:(id)userData {
 	
-	[self reloadVisibleCells];
+    [self reloadVisibleCells];
 }
 
 
 #pragma mark JarListItemCellDelegate
 - (void)jarListItemCell:(JarListItemCell *)cell didEatOneProduct:(Product *)product {
 	
-	CandyEatingService *service = [[CandyEatingService alloc] init];
-	[service eatCandy:product];
+    CandyEatingService *service = [[CandyEatingService alloc] init];
+    [service eatCandy:product];
 }
 
 - (void)jarListItemCell:(JarListItemCell *)cell didExchangeOneProduct:(Product *)product {
@@ -286,11 +256,12 @@
 - (void)configureCell:(JarListItemCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	[cell setDelegate:self];
+	[cell configureButtonDefaults];
 	
 	Product *product = (Product *)[self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	NSNumber *count = [product valueForKeyPath:@"purchases.@count"];
-    [cell.titleLabel setText:product.title];
+	[cell.titleLabel setText:product.title];
 	[cell.quantityLabel setText:[count stringValue]];
 	[cell setProduct:product];
 

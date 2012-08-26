@@ -8,13 +8,11 @@
 
 #import "RefreshingTableViewController.h"
 #import "ImageCachingService.h"
-#import "ExchangeListItemCell.h"
 #import "ExchangeUseCreditRemoteService.h"
 
 
 @interface CandyExchangeViewController : RefreshingTableViewController
 <ImageCachingServiceDelegate, ExchangeUseCreditRemoteServiceDelegate>
 
-@property (nonatomic, strong) IBOutlet ExchangeListItemCell *exchangeListItemCell;
 
 @end

@@ -158,7 +158,7 @@ NSString * const TransactionDownloadServiceReportDownloadCancelled = @"Transacti
 			break;
 	}
 	
-	NSLog(@"downloadProgress for %@ == %@", download.transaction.payment.productIdentifier, message);
+	NSLog(@"( %1.3f%% ) %@ == %@", (download.progress * 100), download.transaction.payment.productIdentifier, message);
 	
 	if (shouldFinish) {
 		
