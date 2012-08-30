@@ -43,12 +43,16 @@
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
+	// Compromise from transitioning from XIbs to Storyboard. Must wire-up deep relationships like these by hand
 	self.tabBarController = (UITabBarController *)_window.rootViewController;
 	self.candyJarViewController = (CandyJarViewController *)((UINavigationController *)_tabBarController.viewControllers[0]).topViewController;
 	self.candyShopViewController = (CandyShopViewController *)((UINavigationController *)_tabBarController.viewControllers[1]).topViewController;
 	self.candyExchangeViewController = (CandyExchangeViewController *)((UINavigationController *)_tabBarController.viewControllers[2]).topViewController;
 	self.myJarTabBarItem = _candyJarViewController.parentViewController.tabBarItem;
 	
+	
+	// Update view controllers and views based on change notifications from the
+	// async transaction handling
 	void (^respondToReceiptRestoreNotification)(NSNotification *) = ^(NSNotification *notification) {
 		
 		[_candyJarViewController resetShouldEnableExchangeButtons];
@@ -76,6 +80,7 @@
 					}];
 	
 	
+	// Wire-up the transaction observer
 	TransactionReceiptService *transService = [[TransactionReceiptService alloc] init];
 	[self setTransactionReceiptService:transService];
 	[transService beginObserving];

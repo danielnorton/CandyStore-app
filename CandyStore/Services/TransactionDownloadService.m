@@ -76,7 +76,7 @@ NSString * const TransactionDownloadServiceReportDownloadCancelled = @"Transacti
 	NSMutableArray *newTimers = [NSMutableArray arrayWithCapacity:0];
 	[self setDownloadProgressTimers:newTimers];
 	
-	[transaction.downloads enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+	[notFinished enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		SKDownload *download = (SKDownload *)obj;
 		
@@ -88,7 +88,7 @@ NSString * const TransactionDownloadServiceReportDownloadCancelled = @"Transacti
 		[newTimers addObject:timer];
 	}];
 	
-	[[SKPaymentQueue defaultQueue] startDownloads:transaction.downloads];
+	[[SKPaymentQueue defaultQueue] startDownloads:notFinished];
 }
 
 

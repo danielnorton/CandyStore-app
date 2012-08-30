@@ -76,7 +76,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			
 			if (transaction.downloads.count == 0) {
 			
-				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+				[queue finishTransaction:transaction];
 				[self notifyName:TransactionReceiptServiceCompletedNotification forTransaction:transaction];
 
 			} else {
@@ -86,7 +86,7 @@ NSString * const TransactionReceiptServiceKeyTransaction = @"TransactionReceiptS
 			
 		} else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
 			
-			[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+			[queue finishTransaction:transaction];
 			[self notifyName:TransactionReceiptServiceFailedNotification forTransaction:transaction];
 		}
 	}];

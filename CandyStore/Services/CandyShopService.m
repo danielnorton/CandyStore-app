@@ -21,6 +21,9 @@ NSString * const InternalKeyBigCandyJar = @"bigcandyjar";
 NSString * const InternalKeyExchange = @"exchange";
 
 
+static BOOL isEnabled = YES;
+
+
 @implementation CandyShopService
 
 
@@ -28,16 +31,12 @@ NSString * const InternalKeyExchange = @"exchange";
 #pragma mark NSObject
 + (void)initialize {
 	
-	BOOL enabled = YES;
-	
 #if TARGET_IPHONE_SIMULATOR
 	
-	enabled = NO;
+	isEnabled = NO;
 	
 #endif
-	
-	[[NSUserDefaults standardUserDefaults] setObject:@(enabled) forKey:kKeyUseStoreKit];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 
@@ -45,10 +44,7 @@ NSString * const InternalKeyExchange = @"exchange";
 #pragma mark CandyShopService
 + (BOOL)isStoreKitEnabled {
 	
-	NSNumber *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyUseStoreKit];
-	return enabled
-	? [enabled boolValue]
-	: NO;
+	return isEnabled;
 }
 
 + (BOOL)hasBigCandyJar {
